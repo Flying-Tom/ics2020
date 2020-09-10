@@ -31,7 +31,7 @@ typedef struct {
    * in PA2 able to directly access these registers.
    */
  
-  union{
+  struct{
   rtlreg_t eax, ecx, edx, ebx, esp, ebp, esi, edi;
   };
 
