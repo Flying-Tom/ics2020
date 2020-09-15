@@ -47,7 +47,9 @@ static int cmd_si(char *args ) {
 }
 
 static int cmd_info(char *args ) {
-  isa_reg_display();
+  char *arg = strtok(NULL,"");
+  if(*arg=='r')
+    isa_reg_display();
   return 0;
 }
 
