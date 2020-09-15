@@ -60,7 +60,8 @@ static int cmd_x(char *args ) {
   return 0;
 }
 
-static int cmd_de(char *args ) {
+static int cmd_p(char *args ) {
+  args= strtok(NULL,"");
   bool *judge = false;
   word_t exprjudge = expr(args,judge);
   if(exprjudge!=0)
@@ -68,6 +69,7 @@ static int cmd_de(char *args ) {
   else
   return 1;
 }
+
 
 static int cmd_help(char *args);
 
@@ -82,7 +84,8 @@ static struct {
   { "si", "push the debug program one step more", cmd_si },
   { "info", "print the debug information", cmd_info },
   { "x", "scanf the ram", cmd_x },
-  { "de", "debug a new function",cmd_de}
+  { "p", "print the value of an expression",cmd_p}
+  //{ "de", "debug a new function",cmd_de}
 
   /* TODO: Add more commands */
 
