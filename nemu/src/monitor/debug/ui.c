@@ -61,10 +61,12 @@ static int cmd_x(char *args ) {
 }
 
 static int cmd_de(char *args ) {
-  char *arg = strtok(NULL,"");
-  char str[100];
-  sscanf(arg,"%s",str);
+  bool judge = false;
+  word_t exprjudge = expr(args,&judge);
+  if(exprjudge==0)
   return 0;
+  else
+  return 1;
 }
 
 static int cmd_help(char *args);
