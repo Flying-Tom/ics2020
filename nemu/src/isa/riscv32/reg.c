@@ -9,6 +9,18 @@ const char *regsl[] = {
 };
 
 void isa_reg_display() {
+  for(int i=0 ; i<=7 ; i++ )
+    printf("%s:%d  ",regsl[i],x86_CPU_state.gpr[i%8]._32);
+  printf("\n");
+  for(int i=8 ; i<=15 ; i++ )
+    printf("%s:%d  ",regsl[i],x86_CPU_state.gpr[i%8]._16);
+  printf("\n");
+  for(int i=16 ; i<=23 ; i++ )
+    printf("%s:%d  ",regsl[i],x86_CPU_state.gpr[i%8]._8[0]);
+  printf("\n");
+  for(int i=24 ; i<=31 ; i++ )
+    printf("%s:%d  ",regsl[i],x86_CPU_state.gpr[i%8]._8[1]);
+  printf("\n");
 }
 
 word_t isa_reg_str2val(const char *s, bool *success) {
