@@ -42,8 +42,14 @@ void reg_test() {
 }
 
 void isa_reg_display() {
-    printf("$eax = %d  ",cpu.eax);
-   
+    printf("$eax = %d\n",cpu.eax);
+    printf("$ecx = %d\n",cpu.ecx);
+    printf("$edx = %d\n",cpu.edx);
+    printf("$ebx = %d\n",cpu.ebx);
+    printf("$esp = %d\n",cpu.esp);
+    printf("$ebp = %d\n",cpu.ebp);
+    printf("$esi = %d\n",cpu.esi);
+    printf("$edi = %d\n",cpu.edi);  
 }
 
 word_t isa_reg_str2val(const char *s, bool *success) {
