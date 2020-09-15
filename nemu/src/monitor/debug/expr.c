@@ -24,13 +24,13 @@ static struct rule {
   {" +", TK_NOTYPE},    // spaces
   {"\\+", '+'},         // plus
   {"==", TK_EQ},        // equal 
-  {"0x[0-9,a-f]*", TK_HEXNUM},
-  {"[0-9]*", TK_DECNUM},
-  {"\\-", '-'},
-  {"\\*", '*'},
-  {"\\/", '/'},
-  {"\\(", '('},
-  {"\\)", ')'}, 
+  {"0x[0-9,a-f]*", TK_HEXNUM}, // hexnum
+  {"[0-9]*", TK_DECNUM},  // decnum
+  {"\\-", '-'},  // minus
+  {"\\*", '*'},  // times
+  {"\\/", '/'},  // divide
+  {"\\(", '('},  // leftp
+  {"\\)", ')'},  // rightp
 
 };
 
@@ -129,7 +129,7 @@ word_t expr(char *e, bool *success) {
   }
 
   /* TODO: Insert codes to evaluate the expression. */
-  //TODO();
+  TODO();
 
   return 0;
 }
