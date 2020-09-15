@@ -61,7 +61,6 @@ static int cmd_x(char *args ) {
 }
 
 static int cmd_p(char *args ) {
-  args= strtok(NULL,"");
   bool *judge = false;
   word_t exprjudge = expr(args,judge);
   if(exprjudge!=0)
