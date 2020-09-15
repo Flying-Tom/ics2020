@@ -63,7 +63,7 @@ static int cmd_x(char *args ) {
 static int cmd_de(char *args ) {
   bool *judge = false;
   word_t exprjudge = expr(args,judge);
-  if(exprjudge==0)
+  if(exprjudge!=0)
   return 0;
   else
   return 1;
