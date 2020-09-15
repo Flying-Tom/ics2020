@@ -62,8 +62,8 @@ static int cmd_x(char *args ) {
 
 static int cmd_de(char *args ) {
   char *arg = strtok(NULL,"");
-  char str;
-  sscanf(arg,"%s",&str);
+  char str[100];
+  sscanf(arg,"%s",str);
   return 0;
 }
 
