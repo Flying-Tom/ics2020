@@ -37,6 +37,24 @@ static int cmd_q(char *args) {
   return -1;
 }
 
+static int cmd_si(char *args ) {
+  char *arg = strtok(NULL,"");
+  int num = 1;
+  if( arg != NULL)
+    sscanf(arg," %d",&num);
+  cpu_exec(num);
+  return 0;
+}
+
+static int cmd_info(char *args ) {
+  isa_reg_display();
+  return 0;
+}
+
+static int cmd_x(char *args ) {
+  return 0;
+}
+
 static int cmd_help(char *args);
 
 static struct {
@@ -47,6 +65,9 @@ static struct {
   { "help", "Display informations about all supported commands", cmd_help },
   { "c", "Continue the execution of the program", cmd_c },
   { "q", "Exit NEMU", cmd_q },
+  { "si", "push the debug program one step more", cmd_si },
+  { "info", "print the debug information", cmd_info },
+  { "x", "scanf the ram", cmd_x },
 
   /* TODO: Add more commands */
 
