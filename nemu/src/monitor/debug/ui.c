@@ -60,6 +60,13 @@ static int cmd_x(char *args ) {
   return 0;
 }
 
+static int cmd_de(char *args ) {
+  char *arg = strtok(NULL,"");
+  char str;
+  sscanf(arg,"%s",&str);
+  return 0;
+}
+
 static int cmd_help(char *args);
 
 static struct {
@@ -73,6 +80,7 @@ static struct {
   { "si", "push the debug program one step more", cmd_si },
   { "info", "print the debug information", cmd_info },
   { "x", "scanf the ram", cmd_x },
+  { "de", "debug a new function",cmd_de}
 
   /* TODO: Add more commands */
 
