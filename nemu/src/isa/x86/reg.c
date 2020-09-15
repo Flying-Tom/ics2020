@@ -42,7 +42,6 @@ void reg_test() {
 }
 
 void isa_reg_display() {
-    cpu.eax = 114514;
     printf("$eax = %d\n",cpu.eax);
     printf("$ecx = %d\n",cpu.ecx);
     printf("$edx = %d\n",cpu.edx);

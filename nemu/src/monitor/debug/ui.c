@@ -41,7 +41,7 @@ static int cmd_si(char *args ) {
   char *arg = strtok(NULL,"");
   int num = 1;
   if( arg != NULL)
-    sscanf(arg," %d",&num);
+    sscanf(arg,"%d",&num);
   cpu_exec(num);
   return 0;
 }
@@ -54,6 +54,9 @@ static int cmd_info(char *args ) {
 }
 
 static int cmd_x(char *args ) {
+  char *arg = strtok(NULL,"");
+  int num=0;
+  sscanf(arg,"%d",&num);
   return 0;
 }
 
