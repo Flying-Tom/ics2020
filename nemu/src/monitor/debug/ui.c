@@ -71,7 +71,7 @@ static int cmd_p(char *args ) {
     printf("%d\n", exprjudge);
   }
   else{
-    printf("ERROR\n");
+    printf("ERROR!\n");
   }
   return 0;
 }
