@@ -113,8 +113,11 @@ static bool make_token(char *e) {
           case '-':
             tokens[nr_token++].type ='-';
             break;
-          case TK_EQ:
-            tokens[nr_token++].type =TK_EQ;
+          case '*':
+            tokens[nr_token++].type ='*';
+            break;
+          case '/':
+            tokens[nr_token++].type ='/';
             break;
           case '(':
             tokens[nr_token++].type ='(';
@@ -122,9 +125,12 @@ static bool make_token(char *e) {
           case ')':
             tokens[nr_token++].type =')';
             break;
+          case TK_EQ:
+            tokens[nr_token++].type =TK_EQ;
+            break;
           default:
             printf("There exists an undefined expression. Please check it. Failed! \n");
-            printf("%d",rules[i].token_type);
+            //printf("%d",rules[i].token_type);
         }
 
         break;
