@@ -54,12 +54,13 @@ static int cmd_info(char *args ) {
 }
 
 static int cmd_x(char *args ) {
+  unsigned int num=0,address_start=0;
   char *arg = strtok(NULL,"");
-  unsigned int num=0,address;
   sscanf(arg,"%d",&num);
-  sscanf(arg,"0x%x",&address);
-  printf("0x%x \n",address);
-  printf("%d \n",paddr_read(address,4));
+  arg = strtok(NULL,"");
+  sscanf(arg," 0x%x",&address_start);
+  printf("0x%x \n",address_start);
+  printf("%d \n",paddr_read(address_start,4));
   return 0;
 }
 
