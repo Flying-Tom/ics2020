@@ -108,7 +108,7 @@ static bool make_token(char *e) {
             tokens[nr_token].type = TK_DECNUM;
             strncpy(tokens[nr_token].str,substr_start,substr_len);
             break;
-          default: TODO();
+          default: TODO(); break;
         }
 
         break;
