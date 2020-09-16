@@ -38,7 +38,7 @@ static int cmd_q(char *args) {
 }
 
 static int cmd_si(char *args ) {
-  char *arg = strtok(NULL,"");
+  char *arg = strtok(NULL," ");
   int num = 1;
   if( arg != NULL)
     sscanf(arg,"%d",&num);
@@ -47,7 +47,7 @@ static int cmd_si(char *args ) {
 }
 
 static int cmd_info(char *args ) {
-  char *arg = strtok(NULL,"");
+  char *arg = strtok(NULL," ");
   if(*arg=='r')
     isa_reg_display();
   return 0;
