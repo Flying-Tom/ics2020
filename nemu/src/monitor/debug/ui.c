@@ -67,10 +67,8 @@ static int cmd_x(char *args ) {
 static int cmd_p(char *args ) {
   bool judge = false;
   word_t exprjudge = expr(args,&judge);
-  if(exprjudge!=0)
+  printf("%d", exprjudge);
   return 0;
-  else
-  return 1;
 }
 
 
