@@ -55,7 +55,8 @@ static int cmd_info(char *args ) {
 
 static int cmd_x(char *args ) {
   unsigned int num=0,address_start=0;
-  char *arg1 = strtok(NULL,""),*arg2 = strtok(NULL,"");
+  char *arg1 = strtok(NULL,"");
+  char *arg2 = strtok(NULL,"");
   sscanf(arg1,"%d",&num);
   sscanf(arg2,"0x%x",&address_start);
   printf("0x%x \n",address_start);
