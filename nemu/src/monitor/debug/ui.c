@@ -59,7 +59,8 @@ static int cmd_x(char *args ) {
   sscanf(arg,"%d",&num);
   arg = strtok(NULL," ");
   sscanf(arg,"0x%x",&address_start);
-  printf("0x%x:%d\n",address_start,paddr_read(address_start,4));
+  for(int i=0 ; i < num ; i++)
+  printf("0x%x : %x\n",address_start,paddr_read(address_start,4));
   return 0;
 }
 
