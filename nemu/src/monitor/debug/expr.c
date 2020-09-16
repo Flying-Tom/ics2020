@@ -87,7 +87,7 @@ static bool make_token(char *e) {
          * of tokens, some extra actions should be performed.
          */
         
-        /*switch (rules[i].token_type) {
+        switch (rules[i].token_type) {
           case TK_NOTYPE:
             break;
           case TK_HEXNUM:
@@ -97,7 +97,7 @@ static bool make_token(char *e) {
               return false;
             }
             tokens[nr_token].type = TK_HEXNUM;
-            strncpy(tokens[nr_token].str,substr_start,substr_len);
+            strncpy(tokens[nr_token++].str,substr_start,substr_len);
             break;
           case TK_DECNUM:
             if(substr_len>31)
@@ -106,10 +106,27 @@ static bool make_token(char *e) {
               return false;
             }
             tokens[nr_token].type = TK_DECNUM;
-            strncpy(tokens[nr_token].str,substr_start,substr_len);
+            strncpy(tokens[nr_token++].str,substr_start,substr_len);
             break;
-          default: TODO(); break;
-        }*/
+          case '+':
+            tokens[nr_token++].type ='+';
+            break;
+          case '-':
+            tokens[nr_token++].type ='-';
+            break;
+          case TK_EQ:
+            tokens[nr_token++].type =TK_EQ;
+            break;
+          case '(':
+            tokens[nr_token++].type ='(';
+            break;
+          case ')':
+            tokens[nr_token++].type =')';
+            break;
+          default:
+            printf("There exists an undefined expression. Failed"); 
+            return false;
+        }
 
         break;
       }
