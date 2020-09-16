@@ -88,6 +88,23 @@ static bool make_token(char *e) {
          */
 
         switch (rules[i].token_type) {
+          case TK_NOTYPE:
+            break;
+          case TK_HEXNUM:
+            if(substr_len > 31)
+              assert(false);
+            tokens[nr_token].type = TK_HEXNUM;
+            strncpy(tokens[nr_token].str,substr_start,substr_len);
+          case TK_DECNUM:
+            if(substr_len > 31)
+              assert(false);
+            tokens[nr_token].type = TK_DECNUM;
+            strncpy(tokens[nr_token].str,substr_start,substr_len);
+          case '+':
+            if(substr_len > 31)
+              assert(false);
+            tokens[nr_token].type = TK_DECNUM;
+            strncpy(tokens[nr_token].str,substr_start,substr_len);
           default: TODO();
         }
 
