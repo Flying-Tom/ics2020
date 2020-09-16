@@ -123,8 +123,8 @@ static bool make_token(char *e) {
             tokens[nr_token++].type =')';
             break;
           default:
-            printf("There exists an undefined expression. Please check it. Failed! \n"); 
-            return false;
+            printf("There exists an undefined expression. Please check it. Failed! \n");
+            printf("%d",rules[i].token_type);
         }
 
         break;
