@@ -166,8 +166,12 @@ static uint32_t check_parenthese(uint32_t p, uint32_t q){
 static uint32_t singletoken_value(Token x){
   int temp;
   switch(x.type){
-    case TK_DECNUM : sscanf(x.str,"%d",&temp);
-    case TK_HEXNUM : sscanf(x.str,"%x",&temp);
+    case TK_DECNUM : 
+      sscanf(x.str,"%d",&temp);
+      break;
+    case TK_HEXNUM : 
+    sscanf(x.str,"%x",&temp);
+      break;
   }
   return temp;
 }
