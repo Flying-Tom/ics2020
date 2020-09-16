@@ -87,7 +87,7 @@ static bool make_token(char *e) {
          * of tokens, some extra actions should be performed.
          */
         
-        switch (rules[i].token_type) {
+        /*switch (rules[i].token_type) {
           case TK_NOTYPE:
             break;
           case TK_HEXNUM:
@@ -109,7 +109,7 @@ static bool make_token(char *e) {
             strncpy(tokens[nr_token].str,substr_start,substr_len);
             break;
           default: TODO(); break;
-        }
+        }*/
 
         break;
       }
