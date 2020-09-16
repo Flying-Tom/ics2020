@@ -24,8 +24,8 @@ static struct rule {
   {" +", TK_NOTYPE},    // spaces
   {"\\+", '+'},         // plus
   {"==", TK_EQ},        // equal 
-  {"0x[0-9,a-f]*", TK_HEXNUM}, // hexnum
-  {"[0-9]*", TK_DECNUM},  // decnum
+  {"0x[0-9,a-f]+", TK_HEXNUM}, // hexnum
+  {"[0-9]+", TK_DECNUM},  // decnum
   {"\\-", '-'},  // minus
   {"\\*", '*'},  // times
   {"\\/", '/'},  // divide
