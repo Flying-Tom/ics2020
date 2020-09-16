@@ -78,7 +78,6 @@ static bool make_token(char *e) {
 
         Log("match rules[%d] = \"%s\" at position %d with len %d: %.*s",
             i, rules[i].regex, position, substr_len, substr_len, substr_start);
-        printf("YES\n");
 
         position += substr_len;
 
@@ -140,16 +139,100 @@ static bool make_token(char *e) {
 
   return true;
 }
+static uint32_t check_parenthese(uint32_t p, uint32_t q){
+  
+  int cnt=0;
+  for(int i = p ; i<= q ; i++)
+  {
+    if(tokens[i].type=='(')
+      cnt++;
+    if(tokens[i].type==')')
+    {
+      if(cnt==0)
+        return false;
+      else
+        cnt--;
+    }
+  }
+  return cnt==0;
+}
 
+static uint32_t singletoken_value(Token x){
+  int temp;
+  switch(x.type){
+    case TK_DECNUM : sscanf(x.str,"%d",&temp);
+    case TK_HEXNUM : sscanf(x.str,"%x",&temp);
+  }
+  return temp;
+}
+
+static uint32_t main_operator(uint32_t p, uint32_t q){
+  int cnt = 0,judge = 0,temp[32] = {},flag=0;
+  for(int i = p ; i<=q ; i++)
+  {
+    if(tokens[i].type=='(')
+      judge++ ;
+    if(tokens[i].type==')')
+      judge++ ;
+    if(tokens[i].type== '+' || tokens[i].type== '-' || tokens[i].type=='*' || tokens[i].type=='/' ){
+      if(judge==0)
+      temp[cnt++]=i;
+    }
+  }
+  cnt--;
+  for(int i=0  ; i<=cnt ; i++)
+  {
+    if(tokens[temp[i]].type=='*' || tokens[temp[i]].type=='/'){
+      flag=1;
+      break;
+    }
+  }
+  
+  if(flag==1){
+    for(int i=cnt ; i>=0; i--)
+      if(tokens[temp[i]].type=='*' || tokens[temp[i]].type=='/')
+        return i;
+  }
+  else{
+    for(int i=cnt ; i>=0; i--)
+      if(tokens[temp[i]].type=='+' || tokens[temp[i]].type=='-')
+        return i;
+  }
+
+  return 0;
+}
+
+static uint32_t eval(uint32_t p, uint32_t q){
+  if(p > q){
+      printf("illegal");//need to modify
+      return 0;
+  }
+  else if( p == q){
+    return singletoken_value(tokens[p]);
+  }
+  else if (check_parenthese(p,q) == true){
+    return eval(p+1,q-1);
+  }
+  else{
+    int op = main_operator(p,q);
+    switch(tokens[op].type){
+      case '+': return eval( p, op - 1) + eval( op + 1, q);
+      case '-': return eval( p, op - 1) - eval( op + 1, q);
+      case '*': return eval( p, op - 1) * eval( op + 1, q);
+      case '/': return eval( p, op - 1) / eval( op + 1, q);
+      default: assert(0);
+    }
+  }
+  return 0;
+}
 
 word_t expr(char *e, bool *success) {
   if (!make_token(e)) {
     *success = false;
     return 0;
   }
-
+  
   /* TODO: Insert codes to evaluate the expression. */
-  TODO();
-
-  return 0;
+  nr_token--;
+  return eval(0,nr_token);
 }
