@@ -69,6 +69,8 @@ static int cmd_p(char *args ) {
   word_t expr_value = expr(args,&success);
   if(success)
     printf("%d\n", expr_value);
+  else
+    printf("Synax error! \n");
   return 0;
 }
 

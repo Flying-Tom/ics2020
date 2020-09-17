@@ -171,7 +171,7 @@ static bool check_parenthese_legal(uint32_t p, uint32_t q)
       return false;
 }
 
-static bool check_parenthese(uint32_t p, uint32_t q, bool* legal, int* error_info)
+static bool check_parenthese(uint32_t p, uint32_t q, bool* legal)
 {
   if( p == q )
   return false;
@@ -182,12 +182,11 @@ static bool check_parenthese(uint32_t p, uint32_t q, bool* legal, int* error_inf
   }
   else
   *legal = check_parenthese_legal(p + 1, q - 1);
-  if(!(*legal))
-  *error_info = 1;
+
   return (flag && *legal);
 }
 
-static uint32_t singletoken_value(Token x, bool* legal, int* error_info){
+static uint32_t singletoken_value(Token x, bool* legal){
   int temp = 0;
   switch(x.type){
     case TK_DECNUM : 
@@ -198,7 +197,6 @@ static uint32_t singletoken_value(Token x, bool* legal, int* error_info){
       break;
     default:
     *legal = false;
-    *error_info = 3;
   }
   return temp;
 }
@@ -239,26 +237,25 @@ static uint32_t main_operator(uint32_t p, uint32_t q ){
   return 0;
 }
 
-static uint32_t eval(uint32_t p, uint32_t q,bool* legal,int* error_info){
+static uint32_t eval(uint32_t p, uint32_t q,bool* legal){
 
   if(p > q){
       *legal = false;
-      *error_info = 2;
       return 0;
   }
   else if( p == q ){
-    return singletoken_value(tokens[p],legal,error_info);
+    return singletoken_value(tokens[p],legal);
   }
-  else if (check_parenthese(p,q,legal,error_info) == true){
-    return eval(p+1,q-1,legal, error_info);
+  else if (check_parenthese(p,q,legal) == true){
+    return eval(p+1,q-1,legal);
   }
   else{
     uint32_t op = main_operator(p,q);
     switch(tokens[op].type){
-      case '+': return eval( p, op - 1 , legal, error_info) + eval( op + 1, q , legal, error_info); break;
-      case '-': return eval( p, op - 1 , legal, error_info) - eval( op + 1, q , legal, error_info); break;
-      case '*': return eval( p, op - 1 , legal, error_info) * eval( op + 1, q , legal, error_info); break;
-      case '/': return eval( p, op - 1 , legal, error_info) / eval( op + 1, q , legal, error_info); break;
+      case '+': return eval( p, op - 1 , legal) + eval( op + 1, q , legal); break;
+      case '-': return eval( p, op - 1 , legal) - eval( op + 1, q , legal); break;
+      case '*': return eval( p, op - 1 , legal) * eval( op + 1, q , legal); break;
+      case '/': return eval( p, op - 1 , legal) / eval( op + 1, q , legal); break;
       default: 
       *legal = false;
       //*error_info = 3;
@@ -273,25 +270,6 @@ word_t expr(char *e, bool *success) {
     return 0;
   }
   /* TODO: Insert codes to evaluate the expression. */
-    int error_info=0;
   nr_token--;
-  uint32_t expr_value = eval(0,nr_token,success,&error_info);
-  if(*success == false)
-  {
-    switch (error_info)
-    {
-      case 1: 
-        printf("Synax error! There may be something wrong with the ().\n");
-        break;
-      case 2: 
-        printf("Synax error! There may be something wrong with the ().\n");
-        break;
-      case 3: 
-        printf("Synax error! There exist undefined identifier.\n");
-        break;
-      default:
-        printf("Synax error! \n");
-    }
-  }
-  return expr_value;
+  return eval(0,nr_token,success);
 }
