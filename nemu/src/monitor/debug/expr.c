@@ -155,16 +155,14 @@ static bool check_parenthese_legal(uint32_t p, uint32_t q)
   return true;
   for(int i = p ; i<= q ; i++)
   {
+    if(cnt < 0)
+        return false;
+
     if(tokens[i].type=='(')
         cnt++;
 
     if(tokens[i].type==')')
-    {
-      if(cnt == 0)
-        return false;
-      else
         cnt--;
-    }
   }
     if(cnt == 0)
       return true;
