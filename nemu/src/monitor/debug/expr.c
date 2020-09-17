@@ -221,7 +221,7 @@ static uint32_t main_operator(uint32_t p, uint32_t q){
   
   if(flag==1){
     for(int i=cnt ; i>=0; i--)
-      if(tokens[temp[i]].type=='+' || tokens[temp[i]].type=='1')
+      if(tokens[temp[i]].type=='+' || tokens[temp[i]].type=='-')
         return temp[i];
   }
   else{
