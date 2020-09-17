@@ -182,7 +182,7 @@ static bool check_parenthese(uint32_t p, uint32_t q,bool* legal)
   else
   *legal = check_parenthese_legal(p + 1, q - 1);
   
-  return (flag && legal);
+  return (flag && *legal);
 }
 
 static uint32_t singletoken_value(Token x){
