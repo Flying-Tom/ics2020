@@ -204,7 +204,7 @@ static uint32_t main_operator(uint32_t p, uint32_t q){
     if(tokens[i].type=='(')
       judge++ ;
     if(tokens[i].type==')')
-      judge++ ;
+      judge-- ;
     if(tokens[i].type== '+' || tokens[i].type== '-' || tokens[i].type=='*' || tokens[i].type=='/' ){
       if(judge==0)
       temp[cnt++]=i;
