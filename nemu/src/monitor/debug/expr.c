@@ -213,7 +213,7 @@ static uint32_t main_operator(uint32_t p, uint32_t q){
   cnt--;
   for(int i=0  ; i<=cnt ; i++)
   {
-    if(tokens[temp[i]].type=='*' || tokens[temp[i]].type=='/'){
+    if(tokens[temp[i]].type=='+' || tokens[temp[i]].type=='-'){
       flag=1;
       break;
     }
@@ -221,12 +221,12 @@ static uint32_t main_operator(uint32_t p, uint32_t q){
   
   if(flag==1){
     for(int i=cnt ; i>=0; i--)
-      if(tokens[temp[i]].type=='*' || tokens[temp[i]].type=='/')
+      if(tokens[temp[i]].type=='+' || tokens[temp[i]].type=='1')
         return temp[i];
   }
   else{
     for(int i=cnt ; i>=0; i--)
-      if(tokens[temp[i]].type=='+' || tokens[temp[i]].type=='-')
+      if(tokens[temp[i]].type=='*' || tokens[temp[i]].type=='/')
         return temp[i];
   }
 
