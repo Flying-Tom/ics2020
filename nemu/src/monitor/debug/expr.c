@@ -145,13 +145,17 @@ static bool make_token(char *e) {
 
   return true;
 }
-static uint32_t check_parenthese(uint32_t p, uint32_t q){
+static uint32_t check_parenthese(uint32_t p, uint32_t q,bool* s)
+{
   
-  int cnt=0;
+  int cnt=0,flag=0;
   for(int i = p ; i<= q ; i++)
   {
     if(tokens[i].type=='(')
-      cnt++;
+    {
+        cnt++;
+        flag = 1;
+    }
     if(tokens[i].type==')')
     {
       if(cnt==0)
@@ -160,7 +164,13 @@ static uint32_t check_parenthese(uint32_t p, uint32_t q){
         cnt--;
     }
   }
-  return cnt==0;
+  if(flag==0)
+  {
+    s = false;
+    return false;
+  }
+  else
+  return false;
 }
 
 static uint32_t singletoken_value(Token x){
@@ -213,6 +223,7 @@ static uint32_t main_operator(uint32_t p, uint32_t q){
 }
 
 static uint32_t eval(uint32_t p, uint32_t q){
+  bool pair_success=true;
   if(p > q){
       printf("illegal");//need to modify
       return 0;
@@ -220,7 +231,7 @@ static uint32_t eval(uint32_t p, uint32_t q){
   else if( p == q){
     return singletoken_value(tokens[p]);
   }
-  else if (check_parenthese(p,q) == true){
+  else if (check_parenthese(p,q,&pair_success) == true){
     return eval(p+1,q-1);
   }
   else{
