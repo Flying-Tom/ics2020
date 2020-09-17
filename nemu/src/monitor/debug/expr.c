@@ -269,8 +269,8 @@ word_t expr(char *e, bool *success) {
     *success = false;
     return 0;
   }
-  char* error_info="";
   /* TODO: Insert codes to evaluate the expression. */
+    char error_info[60];
   nr_token--;
   uint32_t expr_value = eval(0,nr_token,success,error_info);
   if(*success == false)
