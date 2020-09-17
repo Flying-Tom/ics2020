@@ -249,10 +249,10 @@ static uint32_t eval(uint32_t p, uint32_t q,bool* legal){
   else{
     uint32_t op = main_operator(p,q);
     switch(tokens[op].type){
-      case '+': return eval( p, op - 1 , legal) + eval( op + 1, q , legal);
-      case '-': return eval( p, op - 1 , legal) - eval( op + 1, q , legal);
-      case '*': return eval( p, op - 1 , legal) * eval( op + 1, q , legal);
-      case '/': return eval( p, op - 1 , legal) / eval( op + 1, q , legal);
+      case '+': return eval( p, op - 1 , legal) + eval( op + 1, q , legal); break;
+      case '-': return eval( p, op - 1 , legal) - eval( op + 1, q , legal); break;
+      case '*': return eval( p, op - 1 , legal) * eval( op + 1, q , legal); break;
+      case '/': return eval( p, op - 1 , legal) / eval( op + 1, q , legal); break;
       default: assert(0);
     }
   }

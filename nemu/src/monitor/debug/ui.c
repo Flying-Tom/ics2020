@@ -66,12 +66,12 @@ static int cmd_x(char *args ) {
 
 static int cmd_p(char *args ) {
   bool success = true;
-  word_t exprjudge = expr(args,&success);
+  word_t expr_value = expr(args,&success);
   if(success){
-    printf("%d\n", exprjudge);
+    printf("%d\n", expr_value);
   }
   else{
-    printf("ERROR! There may be something wrong with your expression\n");
+    printf("Synax error! There may be something wrong with your expression\n");
   }
   return 0;
 }
