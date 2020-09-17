@@ -273,7 +273,7 @@ word_t expr(char *e, bool *success) {
     int error_info=0;
   nr_token--;
   uint32_t expr_value = eval(0,nr_token,success,&error_info);
-  if(*success == false){}
+  if(*success == false)
   {
     switch (error_info)
     {
