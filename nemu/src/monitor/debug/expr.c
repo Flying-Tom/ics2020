@@ -174,7 +174,7 @@ static bool check_parenthese_legal(uint32_t p, uint32_t q)
 static bool check_parenthese(uint32_t p, uint32_t q,bool* legal)
 {
   if( p == q )
-  return true;
+  return false;
   bool flag = true;
   if(tokens[p].type != '(' || tokens[q].type != ')' )
     flag = false;
