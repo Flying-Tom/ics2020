@@ -187,7 +187,7 @@ static bool check_parenthese(uint32_t p, uint32_t q, bool* legal, int* error_inf
   return (flag && *legal);
 }
 
-static uint32_t singletoken_value(Token x){
+static uint32_t singletoken_value(Token x,int* error_info){
   int temp;
   switch(x.type){
     case TK_DECNUM : 
@@ -196,6 +196,8 @@ static uint32_t singletoken_value(Token x){
     case TK_HEXNUM : 
       sscanf(x.str,"%x",&temp);
       break;
+    default:
+    *error_info = 3;
   }
   return temp;
 }
@@ -244,7 +246,7 @@ static uint32_t eval(uint32_t p, uint32_t q,bool* legal,int* error_info){
       return 0;
   }
   else if( p == q ){
-    return singletoken_value(tokens[p]);
+    return singletoken_value(tokens[p],error_info);
   }
   else if (check_parenthese(p,q,legal,error_info) == true){
     return eval(p+1,q-1,legal, error_info);
