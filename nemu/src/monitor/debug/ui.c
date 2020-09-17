@@ -65,13 +65,13 @@ static int cmd_x(char *args ) {
 }
 
 static int cmd_p(char *args ) {
-  bool judge = false;
-  word_t exprjudge = expr(args,&judge);
-  if(judge){
+  bool success = true;
+  word_t exprjudge = expr(args,&success);
+  if(success){
     printf("%d\n", exprjudge);
   }
   else{
-    printf("ERROR!\n");
+    printf("ERROR! There may be something wrong with your expression\n");
   }
   return 0;
 }

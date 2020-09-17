@@ -233,25 +233,26 @@ static uint32_t main_operator(uint32_t p, uint32_t q){
   return 0;
 }
 
-static uint32_t eval(uint32_t p, uint32_t q){
-  bool pair_success=true;
+static uint32_t eval(uint32_t p, uint32_t q,bool* legal){
+
   if(p > q){
-      printf("illegal");//need to modify
+     // printf("illegal");//need to modify
+      *legal = false;
       return 0;
   }
   else if( p == q){
     return singletoken_value(tokens[p]);
   }
-  else if (check_parenthese(p,q,&pair_success) == true){
-    return eval(p+1,q-1);
+  else if (check_parenthese(p,q,legal) == true){
+    return eval(p+1,q-1,legal);
   }
   else{
     uint32_t op = main_operator(p,q);
     switch(tokens[op].type){
-      case '+': return eval( p, op - 1) + eval( op + 1, q);
-      case '-': return eval( p, op - 1) - eval( op + 1, q);
-      case '*': return eval( p, op - 1) * eval( op + 1, q);
-      case '/': return eval( p, op - 1) / eval( op + 1, q);
+      case '+': return eval( p, op - 1 , legal) + eval( op + 1, q , legal);
+      case '-': return eval( p, op - 1 , legal) - eval( op + 1, q , legal);
+      case '*': return eval( p, op - 1 , legal) * eval( op + 1, q , legal);
+      case '/': return eval( p, op - 1 , legal) / eval( op + 1, q , legal);
       default: assert(0);
     }
   }
@@ -266,5 +267,5 @@ word_t expr(char *e, bool *success) {
   
   /* TODO: Insert codes to evaluate the expression. */
   nr_token--;
-  return eval(0,nr_token);
+  return eval(0,nr_token,success);
 }
