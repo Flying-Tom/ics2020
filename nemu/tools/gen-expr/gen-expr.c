@@ -7,8 +7,47 @@
 
 // this should be enough
 static char buf[65536];
+static int bufptr = 0 ;
+
+uint32_t choose(uint32_t n){
+  uint32_t temp= rand();
+  temp  = temp % n;
+  return temp;
+}
+
+static inline void gen_num(){
+  buf[bufptr++] = choose(10) + 48;
+  return;
+}
+
+static inline void gen_rand_op(){
+  switch (choose(4))
+  {
+    case 0 : buf[bufptr++] = '+'; break;
+    case 1 : buf[bufptr++] = '-'; break;
+    case 2 : buf[bufptr++] = '*'; break;
+    case 3 : buf[bufptr++] = '/'; break;
+  }
+  return;
+}
+
+static inline void gen(char x){
+  buf[bufptr++] = x;
+  return;
+}
 static inline void gen_rand_expr() {
-  buf[0] = '\0';
+  //buf[0] = '\0';
+  switch (choose(3)) {
+    case 0: 
+      gen_num(); 
+      break;
+    case 1: 
+      gen('('); gen_rand_expr(); gen(')'); 
+      break;
+    default: 
+      gen_rand_expr(); gen_rand_op(); gen_rand_expr(); 
+      break;
+  }
 }
 
 static char code_buf[65536 + 128]; // a little larger than `buf`
@@ -33,6 +72,7 @@ int main(int argc, char *argv[]) {
   int seed = time(0);
   srand(seed);
   int loop = 1;
+  bufptr = 0;
   if (argc > 1) {
     sscanf(argv[1], "%d", &loop);
   }
