@@ -246,7 +246,7 @@ static uint32_t eval(uint32_t p, uint32_t q){
     return eval(p+1,q-1);
   }
   else{
-    int op = main_operator(p,q);
+    uint32_t op = main_operator(p,q);
     switch(tokens[op].type){
       case '+': return eval( p, op - 1) + eval( op + 1, q);
       case '-': return eval( p, op - 1) - eval( op + 1, q);
