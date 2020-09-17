@@ -148,20 +148,18 @@ static bool make_token(char *e) {
   return true;
 }
 
-static bool check_parenthese_legal(uint32_t p, uint32_t q,bool* inner_parenthese_judge)
+static bool check_parenthese_legal(uint32_t p, uint32_t q)
 {
   int cnt=0;
   if(p==q)
   return true;
   for(int i = p ; i<= q ; i++)
   {
-    if(tokens[i].type=='('){
+    if(tokens[i].type=='(')
         cnt++;
-        *inner_parenthese_judge = false;
-    }
+
     if(tokens[i].type==')')
     {
-      *inner_parenthese_judge = false;
       if(cnt == 0)
         return false;
       else
@@ -174,23 +172,19 @@ static bool check_parenthese_legal(uint32_t p, uint32_t q,bool* inner_parenthese
       return false;
 }
 
-static bool check_parenthese(uint32_t p, uint32_t q,bool* legal,int* parenthese_num )
+static bool check_parenthese(uint32_t p, uint32_t q,bool* legal)
 {
   if( p == q )
   return false;
-  bool flag = true, inner_parenthese_judge = true;
-  int num = 0;
+  bool flag = true;
   if(tokens[p].type != '(' || tokens[q].type != ')' ){
-    *legal = check_parenthese_legal(p , q , &inner_parenthese_judge);
     flag = false;
+    *legal = check_parenthese_legal(p , q );
   }
-  else{
-    while(tokens[p+num].type == '(' || tokens[q-num].type == ')')
-      num++;
-    *legal = check_parenthese_legal(p + num , q - num , &inner_parenthese_judge);
-  }
+  else
+  *legal = check_parenthese_legal(p + 1, q - 1);
   
-  return (flag && inner_parenthese_judge);
+  return (flag && legal);
 }
 
 static uint32_t singletoken_value(Token x){
@@ -244,7 +238,6 @@ static uint32_t main_operator(uint32_t p, uint32_t q ){
 
 static uint32_t eval(uint32_t p, uint32_t q,bool* legal){
 
-  int* parenthese_num = 0;
   if(p > q){
      // printf("illegal");//need to modify
       *legal = false;
@@ -253,8 +246,8 @@ static uint32_t eval(uint32_t p, uint32_t q,bool* legal){
   else if( p == q){
     return singletoken_value(tokens[p]);
   }
-  else if (check_parenthese(p,q,legal,parenthese_num) == true){
-    return eval(p+*parenthese_num,q-*parenthese_num,legal);
+  else if (check_parenthese(p,q,legal) == true){
+    return eval(p+1,q-1,legal);
   }
   else{
     uint32_t op = main_operator(p,q);
