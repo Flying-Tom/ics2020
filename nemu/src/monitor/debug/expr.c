@@ -179,9 +179,11 @@ static bool check_parenthese(uint32_t p, uint32_t q,bool* legal)
   if( p == q )
   return false;
   bool flag = true, inner_parenthese_judge = true;
-  if(tokens[p].type != '(' || tokens[q].type != ')' )
+  if(tokens[p].type != '(' || tokens[q].type != ')' ){
+    *legal = check_parenthese_legal(p+1 , q-1 , &inner_parenthese_judge);
     flag = false;
-  
+  }
+  else 
   *legal = check_parenthese_legal(p , q , &inner_parenthese_judge);
   
   return (flag && inner_parenthese_judge);
