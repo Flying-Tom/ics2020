@@ -171,7 +171,7 @@ static bool check_parenthese_legal(uint32_t p, uint32_t q)
       return false;
 }
 
-static bool check_parenthese(uint32_t p, uint32_t q, bool* legal, char* error_info)
+static bool check_parenthese(uint32_t p, uint32_t q, bool* legal, int* error_info)
 {
   if( p == q )
   return false;
@@ -183,7 +183,7 @@ static bool check_parenthese(uint32_t p, uint32_t q, bool* legal, char* error_in
   else
   *legal = check_parenthese_legal(p + 1, q - 1);
   if(!(*legal))
-  *error_info = 'a';
+  *error_info = 1;
   return (flag && *legal);
 }
 
@@ -236,11 +236,11 @@ static uint32_t main_operator(uint32_t p, uint32_t q ){
   return 0;
 }
 
-static uint32_t eval(uint32_t p, uint32_t q,bool* legal,char* error_info){
+static uint32_t eval(uint32_t p, uint32_t q,bool* legal,int* error_info){
 
   if(p > q){
       *legal = false;
-      *error_info = 'b';
+      *error_info = 2;
       return 0;
   }
   else if( p == q ){
@@ -258,7 +258,7 @@ static uint32_t eval(uint32_t p, uint32_t q,bool* legal,char* error_info){
       case '/': return eval( p, op - 1 , legal, error_info) / eval( op + 1, q , legal, error_info); break;
       default: 
       *legal = false;
-      *error_info = 'c';
+      *error_info = 3;
     }
   }
   return 0;
@@ -270,20 +270,20 @@ word_t expr(char *e, bool *success) {
     return 0;
   }
   /* TODO: Insert codes to evaluate the expression. */
-    char* error_info='\0';
+    int* error_info=0;
   nr_token--;
   uint32_t expr_value = eval(0,nr_token,success,error_info);
   if(*success == false){}
   {
     switch (*error_info)
     {
-      case 'a': 
+      case 1: 
         printf("Synax error! There may be something wrong with the ().\n");
         break;
-      case 'b': 
+      case 2: 
         printf("Synax error! There may be something wrong with the ().\n");
         break;
-      case 'c': 
+      case 3: 
         printf("Synax error! There exist undefined identifier.\n");
         break;
       default:
