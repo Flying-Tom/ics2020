@@ -179,7 +179,7 @@ static bool check_parenthese(uint32_t p, uint32_t q,bool* legal)
   if(tokens[p].type != '(' || tokens[q].type != ')' )
     flag = false;
   
-  *legal = check_parenthese_legal(p + 1, q -1);
+  *legal = check_parenthese_legal(p , q);
   
   return flag;
 }
@@ -253,7 +253,7 @@ static uint32_t eval(uint32_t p, uint32_t q,bool* legal){
       case '-': return eval( p, op - 1 , legal) - eval( op + 1, q , legal); break;
       case '*': return eval( p, op - 1 , legal) * eval( op + 1, q , legal); break;
       case '/': return eval( p, op - 1 , legal) / eval( op + 1, q , legal); break;
-      default: assert(0);
+      default: *legal = false;
     }
   }
   return 0;
