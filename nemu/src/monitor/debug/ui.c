@@ -67,12 +67,8 @@ static int cmd_x(char *args ) {
 static int cmd_p(char *args ) {
   bool success = true;
   word_t expr_value = expr(args,&success);
-  if(success){
+  if(success)
     printf("%d\n", expr_value);
-  }
-  else{
-    printf("Synax error! There may be something wrong with your expression\n");
-  }
   return 0;
 }
 

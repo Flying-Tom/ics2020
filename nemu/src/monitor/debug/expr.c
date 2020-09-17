@@ -148,6 +148,7 @@ static bool make_token(char *e) {
   return true;
 }
 
+
 static bool check_parenthese_legal(uint32_t p, uint32_t q)
 {
   int cnt=0;
@@ -170,7 +171,7 @@ static bool check_parenthese_legal(uint32_t p, uint32_t q)
       return false;
 }
 
-static bool check_parenthese(uint32_t p, uint32_t q,bool* legal)
+static bool check_parenthese(uint32_t p, uint32_t q, bool* legal, char* error_info)
 {
   if( p == q )
   return false;
@@ -181,7 +182,8 @@ static bool check_parenthese(uint32_t p, uint32_t q,bool* legal)
   }
   else
   *legal = check_parenthese_legal(p + 1, q - 1);
-  
+  if(!(*legal))
+  error_info = "Synax error! There may be something wrong with ( and ).";
   return (flag && *legal);
 }
 
@@ -192,7 +194,7 @@ static uint32_t singletoken_value(Token x){
       sscanf(x.str,"%d",&temp);
       break;
     case TK_HEXNUM : 
-    sscanf(x.str,"%x",&temp);
+      sscanf(x.str,"%x",&temp);
       break;
   }
   return temp;
@@ -234,27 +236,29 @@ static uint32_t main_operator(uint32_t p, uint32_t q ){
   return 0;
 }
 
-static uint32_t eval(uint32_t p, uint32_t q,bool* legal){
+static uint32_t eval(uint32_t p, uint32_t q,bool* legal,char* error_info){
 
   if(p > q){
-     // printf("illegal");//need to modify
       *legal = false;
+      error_info = "Synax error!  There exists a bad expression.";
       return 0;
   }
-  else if( p == q){
+  else if( p == q ){
     return singletoken_value(tokens[p]);
   }
-  else if (check_parenthese(p,q,legal) == true){
-    return eval(p+1,q-1,legal);
+  else if (check_parenthese(p,q,legal,error_info) == true){
+    return eval(p+1,q-1,legal, error_info);
   }
   else{
     uint32_t op = main_operator(p,q);
     switch(tokens[op].type){
-      case '+': return eval( p, op - 1 , legal) + eval( op + 1, q , legal); break;
-      case '-': return eval( p, op - 1 , legal) - eval( op + 1, q , legal); break;
-      case '*': return eval( p, op - 1 , legal) * eval( op + 1, q , legal); break;
-      case '/': return eval( p, op - 1 , legal) / eval( op + 1, q , legal); break;
-      default: *legal = false;
+      case '+': return eval( p, op - 1 , legal, error_info) + eval( op + 1, q , legal, error_info); break;
+      case '-': return eval( p, op - 1 , legal, error_info) - eval( op + 1, q , legal, error_info); break;
+      case '*': return eval( p, op - 1 , legal, error_info) * eval( op + 1, q , legal, error_info); break;
+      case '/': return eval( p, op - 1 , legal, error_info) / eval( op + 1, q , legal, error_info); break;
+      default: 
+      *legal = false;
+      error_info = "Synax error!  There exist undefined identifier.";
     }
   }
   return 0;
@@ -265,8 +269,11 @@ word_t expr(char *e, bool *success) {
     *success = false;
     return 0;
   }
-  
+  char* error_info="";
   /* TODO: Insert codes to evaluate the expression. */
   nr_token--;
-  return eval(0,nr_token,success);
+  uint32_t expr_value = eval(0,nr_token,success,error_info);
+  if(*success == false)
+  printf("%s\n",error_info);
+  return expr_value;
 }
