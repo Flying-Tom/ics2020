@@ -183,7 +183,7 @@ static bool check_parenthese(uint32_t p, uint32_t q, bool* legal, char* error_in
   else
   *legal = check_parenthese_legal(p + 1, q - 1);
   if(!(*legal))
-  error_info = "Synax error! There may be something wrong with ( and ).";
+  *error_info = 'a';
   return (flag && *legal);
 }
 
@@ -240,7 +240,7 @@ static uint32_t eval(uint32_t p, uint32_t q,bool* legal,char* error_info){
 
   if(p > q){
       *legal = false;
-      error_info = "Synax error!  There exists a bad expression.";
+      *error_info = 'b';
       return 0;
   }
   else if( p == q ){
@@ -258,7 +258,7 @@ static uint32_t eval(uint32_t p, uint32_t q,bool* legal,char* error_info){
       case '/': return eval( p, op - 1 , legal, error_info) / eval( op + 1, q , legal, error_info); break;
       default: 
       *legal = false;
-      error_info = "Synax error!  There exist undefined identifier.";
+      *error_info = 'c';
     }
   }
   return 0;
@@ -270,10 +270,25 @@ word_t expr(char *e, bool *success) {
     return 0;
   }
   /* TODO: Insert codes to evaluate the expression. */
-    char error_info[60];
+    char* error_info='\0';
   nr_token--;
   uint32_t expr_value = eval(0,nr_token,success,error_info);
-  if(*success == false)
-  printf("%s\n",error_info);
+  if(*success == false){}
+  {
+    switch (*error_info)
+    {
+      case 'a': 
+        printf("Synax error! There may be something wrong with the ().\n");
+        break;
+      case 'b': 
+        printf("Synax error! There may be something wrong with the ().\n");
+        break;
+      case 'c': 
+        printf("Synax error! There exist undefined identifier.\n");
+        break;
+      default:
+        printf("Synax error! \n");
+    }
+  }
   return expr_value;
 }
