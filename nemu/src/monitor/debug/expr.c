@@ -147,38 +147,40 @@ static bool make_token(char *e) {
 
   return true;
 }
-static uint32_t check_parenthese(uint32_t p, uint32_t q,bool* legal)
+
+static bool check_parenthese_legal(uint32_t p, uint32_t q)
 {
-  
   int cnt=0;
-  bool flag =true ; 
-  legal = false ; 
-  if(tokens[p].type != '(' || tokens[q].type != ')' )
-    flag = false;
-  
+  if(p==q)
+  return true;
   for(int i = p ; i<= q ; i++)
   {
     if(tokens[i].type=='(')
-    {
         cnt++;
-        flag = 1;
-    }
     if(tokens[i].type==')')
     {
-      if(cnt==0)
+      if(cnt == 0)
         return false;
       else
         cnt--;
     }
-    if(cnt<0)
-    {
-      legal = false;
-      break;
-    }
   }
-  if(cnt!=0)
-      legal = false;
+    if(cnt == 0)
+      return true;
+    else
+      return false;
+}
 
+static bool check_parenthese(uint32_t p, uint32_t q,bool* legal)
+{
+  if( p == q )
+  return true;
+  bool flag = true;
+  if(tokens[p].type != '(' || tokens[q].type != ')' )
+    flag = false;
+  
+  *legal = check_parenthese_legal(p + 1, q -1);
+  
   return flag;
 }
 
