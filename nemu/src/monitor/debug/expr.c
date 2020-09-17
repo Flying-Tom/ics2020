@@ -145,10 +145,15 @@ static bool make_token(char *e) {
 
   return true;
 }
-static uint32_t check_parenthese(uint32_t p, uint32_t q,bool* s)
+static uint32_t check_parenthese(uint32_t p, uint32_t q,bool* legal)
 {
   
-  int cnt=0,flag=0;
+  int cnt=0;
+  bool flag =true ; 
+  legal = false ; 
+  if(tokens[p].type != '(' || tokens[q].type != ')' )
+    flag = false;
+  
   for(int i = p ; i<= q ; i++)
   {
     if(tokens[i].type=='(')
@@ -163,14 +168,16 @@ static uint32_t check_parenthese(uint32_t p, uint32_t q,bool* s)
       else
         cnt--;
     }
+    if(cnt<0)
+    {
+      legal = false;
+      break;
+    }
   }
-  if(flag==0)
-  {
-    s = false;
-    return false;
-  }
-  else
-  return false;
+  if(cnt!=0)
+      legal = false;
+
+  return flag;
 }
 
 static uint32_t singletoken_value(Token x){
