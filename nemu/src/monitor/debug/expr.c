@@ -270,12 +270,12 @@ word_t expr(char *e, bool *success) {
     return 0;
   }
   /* TODO: Insert codes to evaluate the expression. */
-    int* error_info=0;
+    int error_info=0;
   nr_token--;
-  uint32_t expr_value = eval(0,nr_token,success,error_info);
+  uint32_t expr_value = eval(0,nr_token,success,&error_info);
   if(*success == false){}
   {
-    switch (*error_info)
+    switch (error_info)
     {
       case 1: 
         printf("Synax error! There may be something wrong with the ().\n");
