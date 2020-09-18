@@ -43,8 +43,8 @@ static inline void gen(char x){
   return;
 }
 static inline void gen_rand_expr() {
-  //if(bufptr>=30)
-  //return;
+  if(bufptr>=100)
+    return;
   switch (choose(3)) {
     case 0: 
       gen_num(); 

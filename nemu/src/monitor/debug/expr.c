@@ -6,7 +6,7 @@
 #include <regex.h>
 
 enum {
-  TK_NOTYPE = 256, TK_EQ, TK_HEXNUM , TK_DECNUM ,
+  TK_NOTYPE = 256, TK_EQ, TK_HEXNUM , TK_DECNUM , TK_NEQ , AND , TK_REG,
 
   /* TODO: Add more token types */
 
@@ -23,14 +23,17 @@ static struct rule {
 
   {" +", TK_NOTYPE},    // spaces
   {"\\+", '+'},         // plus
-  {"==", TK_EQ},        // equal 
   {"0x[0-9,a-f]+", TK_HEXNUM}, // hexnum
   {"[0-9]+", TK_DECNUM},  // decnum
+  {"\\$[a-z]{2,3}",TK_REG},  // reg
   {"\\-", '-'},  // minus
   {"\\*", '*'},  // times
   {"\\/", '/'},  // divide
   {"\\(", '('},  // leftp
   {"\\)", ')'},  // rightp
+  {"==", TK_EQ},  // equal 
+  {"!=", TK_NEQ},  // not equal
+  {"&&", AND},  // and
 
 };
 
@@ -111,6 +114,10 @@ static bool make_token(char *e) {
             strncpy(tokens[nr_token++].str,substr_start,substr_len);
             //tokens[nr_token].str[substr_len] = '\0';
             break;
+          case TK_REG:
+            tokens[nr_token].type = TK_REG;
+            memset(tokens[nr_token].str,'\0',sizeof(tokens[nr_token].str));
+            strncpy(tokens[nr_token++].str,substr_start + 1,substr_len - 1);
           case '+':
             tokens[nr_token++].type ='+';
             break;
@@ -129,8 +136,14 @@ static bool make_token(char *e) {
           case ')':
             tokens[nr_token++].type =')';
             break;
+          case AND:
+            tokens[nr_token++].type =AND;
+            break;
           case TK_EQ:
             tokens[nr_token++].type =TK_EQ;
+            break;
+          case TK_NEQ:
+            tokens[nr_token++].type =TK_NEQ;
             break;
           default:
             printf("There exists an undefined expression. Please check it. Failed! \n");
