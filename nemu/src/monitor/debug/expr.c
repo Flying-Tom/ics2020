@@ -6,7 +6,7 @@
 #include <regex.h>
 
 enum {
-  TK_NOTYPE = 256, TK_EQ, TK_HEXNUM , TK_DECNUM , TK_NEQ , AND , TK_REG,
+  TK_NOTYPE = 256, TK_EQ, TK_HEXNUM , TK_DECNUM , TK_NEQ , TK_AND , TK_REG,
 
   /* TODO: Add more token types */
 
@@ -22,10 +22,10 @@ static struct rule {
    */
 
   {" +", TK_NOTYPE},    // spaces
-  {"\\+", '+'},         // plus
   {"0x[0-9,a-f]+", TK_HEXNUM}, // hexnum
   {"[0-9]+", TK_DECNUM},  // decnum
   {"\\$[a-z]{2,3}",TK_REG},  // reg
+  {"\\+", '+'},         // plus
   {"\\-", '-'},  // minus
   {"\\*", '*'},  // times
   {"\\/", '/'},  // divide
@@ -33,7 +33,7 @@ static struct rule {
   {"\\)", ')'},  // rightp
   {"==", TK_EQ},  // equal 
   {"!=", TK_NEQ},  // not equal
-  {"&&", AND},  // and
+  {"&&", TK_AND},  // and
 
 };
 
@@ -136,8 +136,8 @@ static bool make_token(char *e) {
           case ')':
             tokens[nr_token++].type =')';
             break;
-          case AND:
-            tokens[nr_token++].type =AND;
+          case TK_AND:
+            tokens[nr_token++].type =TK_AND;
             break;
           case TK_EQ:
             tokens[nr_token++].type =TK_EQ;
@@ -285,9 +285,11 @@ static uint32_t eval(uint32_t p, uint32_t q,expr_error* error){
           temp = 1;
         }
         return eval( p, op - 1 , error) / temp; 
+        break;
       }
-      break;
       case TK_EQ: return eval( p, op - 1 , error) == eval( op + 1, q , error); break;
+      case TK_NEQ: return eval( p, op - 1 , error) != eval( op + 1, q , error); break;
+      case TK_AND: return eval( p, op - 1 , error) && eval( op + 1, q , error); break;
       default: 
       *error->legal = false;
       error->type = 's';
