@@ -73,7 +73,23 @@ static int cmd_p(char *args ) {
 }
 
 static int cmd_de(char *args ) {
-  
+  char buf[1024];
+  word_t temp,my_ans,len;
+  FILE *fp = fopen(args,"r");
+  while ((fgets(buf,1024,fp)) != NULL)
+  {
+    len = strlen(buf);
+    buf[len-1] = '\0';
+    strtok(buf," ");
+    sscanf(buf,"%u",&temp);
+    strtok(NULL," ");
+    bool success = true;
+    my_ans =  expr(buf,&success);
+    if( temp == my_ans )
+      printf("Yes, you are right!\n");
+    else
+      printf("Error! %s == %u != %u \n",buf,temp,my_ans);
+  }
   return 0;
 }
 
