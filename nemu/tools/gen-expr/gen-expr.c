@@ -16,6 +16,8 @@ uint32_t choose(uint32_t n){
 }
 
 static inline void gen_num(){
+  uint32_t num_size = choose(3) + 1;
+  while(num_size-- >0)
   buf[bufptr++] = choose(10) + 48;
   return;
 }
