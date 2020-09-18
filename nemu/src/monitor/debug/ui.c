@@ -72,6 +72,11 @@ static int cmd_p(char *args ) {
   return 0;
 }
 
+static int cmd_de(char *args ) {
+  
+  return 0;
+}
+
 
 static int cmd_help(char *args);
 
@@ -86,7 +91,8 @@ static struct {
   { "si", "push the debug program one step more", cmd_si },
   { "info", "print the debug information", cmd_info },
   { "x", "scanf the ram", cmd_x },
-  { "p", "print the value of an expression",cmd_p}
+  { "p", "print the value of an expression",cmd_p},
+  { "de", "debug the function which needs polishing",cmd_de}
   //{ "de", "debug a new function",cmd_de}
 
   /* TODO: Add more commands */
