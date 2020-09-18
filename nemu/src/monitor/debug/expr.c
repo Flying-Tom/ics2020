@@ -287,6 +287,7 @@ static uint32_t eval(uint32_t p, uint32_t q,expr_error* error){
         return eval( p, op - 1 , error) / temp; 
       }
       break;
+      case TK_EQ: return eval( p, op - 1 , error) == eval( op + 1, q , error); break;
       default: 
       *error->legal = false;
       error->type = 's';
