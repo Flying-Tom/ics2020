@@ -95,6 +95,7 @@ static int cmd_de(char *args ) {
       printf("Error! %s == %u != %u \n",de_buf_p,temp,my_ans);
     }
   }
+  fclose(test_log_fp);
   return 0;
 }
 
