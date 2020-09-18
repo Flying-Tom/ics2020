@@ -76,7 +76,10 @@ static int cmd_de(char *args ) {
   char de_buf[1024]="";
   char* de_buf_p;
   word_t temp,my_ans,len;
-  FILE *fp = fopen(args,"r"),*test_log_fp = fopen("test_log","a+");
+  printf("Test is running\n");
+  FILE *fp = fopen(args,"r"),*test_log_fp = fopen("test_log","w");
+  fclose(test_log_fp);
+  test_log_fp = fopen("test_log","a+");
   while ((fgets(de_buf,1024,fp)) != NULL)
   {
     len = strlen(de_buf);
@@ -95,6 +98,7 @@ static int cmd_de(char *args ) {
       printf("Error! %s == %u != %u \n",de_buf_p,temp,my_ans);
     }
   }
+  printf("Test finished !\n");
   fclose(test_log_fp);
   return 0;
 }
