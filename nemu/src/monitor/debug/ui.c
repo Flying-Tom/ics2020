@@ -74,20 +74,22 @@ static int cmd_p(char *args ) {
 
 static int cmd_de(char *args ) {
   char de_buf[1024]="";
-  word_t temp,my_ans;
+  char* de_buf_p;
+  word_t temp,my_ans,len;
   FILE *fp = fopen(args,"r");
   while ((fgets(de_buf,1024,fp)) != NULL)
   {
-    //len = strlen(de_buf);
-    de_buf[strlen(de_buf)] = '\0';
-    sscanf(de_buf,"%u",&temp);
-    strtok(NULL," ");
+    len = strlen(de_buf);
+    de_buf[ len - 1 ] = '\0';
+    de_buf_p = strtok(de_buf," ");
+    sscanf(de_buf_p,"%u",&temp);
+    de_buf_p = strtok(NULL," ");
     bool success = true;
-    my_ans =  expr(de_buf,&success);
+    my_ans =  expr(de_buf_p,&success);
     if( temp == my_ans )
       printf("Yes, you are right!\n");
     else
-      printf("Error! %s == %u != %u \n",de_buf,temp,my_ans);
+      printf("Error! %s == %u != %u \n",de_buf_p,temp,my_ans);
   }
   return 0;
 }
