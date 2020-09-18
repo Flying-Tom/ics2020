@@ -16,10 +16,15 @@ uint32_t choose(uint32_t n){
 }
 
 static inline void gen_num(){
-  uint32_t num_size = choose(3) + 1;
-  while(num_size-- >0)
-  buf[bufptr++] = choose(10) + 48;
+  uint32_t num_size = choose(2) + 1;
+  buf[bufptr] = choose(10) + 48;
+  if(buf[bufptr++] == '0' )
   return;
+  else{
+    while(num_size-- >0)
+    buf[bufptr++] = choose(10) + 48;
+    return;
+  }
 }
 
 static inline void gen_rand_op(){
@@ -93,16 +98,18 @@ int main(int argc, char *argv[]) {
     fputs(code_buf, fp);
     fclose(fp);
 
-    int ret = system("gcc /tmp/.code.c -o /tmp/.expr 2> error.txt");
-    if (ret != 0 || ( fopen("error.txt","r")==0 ) ) continue;
+    int ret = system("gcc /tmp/.code.c -o /tmp/.expr ");
+    if (ret != 0 ) continue;
 
     fp = popen("/tmp/.expr", "r");
     assert(fp != NULL);
 
     int result;
+    char error_info[100];
     fscanf(fp, "%d", &result);
+    fscanf(fp, "%s", error_info);
     pclose(fp);
-
+    if(strcmp(error_info,"Floating point exception"))
     printf("%u %s\n", result, buf);
   }
   return 0;
