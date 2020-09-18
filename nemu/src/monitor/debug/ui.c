@@ -74,11 +74,12 @@ static int cmd_p(char *args ) {
 
 static int cmd_de(char *args ) {
   char de_buf[1024]="";
-  word_t temp,my_ans;
+  word_t temp,my_ans,len;
   FILE *fp = fopen(args,"r");
   while ((fgets(de_buf,1024,fp)) != NULL)
   {
-    de_buf[strlen(de_buf)-1] = '\0';
+    len = strlen(de_buf);
+    de_buf[len-1] = '\0';
     strtok(de_buf," ");
     sscanf(de_buf,"%u",&temp);
     strtok(NULL," ");
