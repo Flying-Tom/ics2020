@@ -76,7 +76,7 @@ static int cmd_de(char *args ) {
   char de_buf[1024]="";
   char* de_buf_p;
   word_t temp,my_ans,len;
-  FILE *fp = fopen(args,"r");
+  FILE *fp = fopen(args,"r"),*test_log_fp = fopen("test_log","a+");
   while ((fgets(de_buf,1024,fp)) != NULL)
   {
     len = strlen(de_buf);
@@ -86,10 +86,14 @@ static int cmd_de(char *args ) {
     de_buf_p = strtok(NULL," ");
     bool success = true;
     my_ans =  expr(de_buf_p,&success);
-    if( temp == my_ans )
+    if( temp == my_ans ){
+      fprintf(test_log_fp,"Yes, you are right!\n");
       printf("Yes, you are right!\n");
-    else
+    }
+    else{
+      fprintf(test_log_fp,"Error! %s == %u != %u \n",de_buf_p,temp,my_ans);
       printf("Error! %s == %u != %u \n",de_buf_p,temp,my_ans);
+    }
   }
   return 0;
 }
