@@ -7,7 +7,7 @@
 
 // this should be enough
 static char buf[65536];
-static int bufptr = 0 ;
+static uint32_t bufptr = 0 ;
 
 uint32_t choose(uint32_t n){
   uint32_t temp= rand();
@@ -36,7 +36,8 @@ static inline void gen(char x){
   return;
 }
 static inline void gen_rand_expr() {
-  //buf[0] = '\0';
+  //if(bufptr>=30)
+  //return;
   switch (choose(3)) {
     case 0: 
       gen_num(); 
@@ -72,17 +73,20 @@ int main(int argc, char *argv[]) {
   int seed = time(0);
   srand(seed);
   int loop = 1;
-  bufptr = 0;
   if (argc > 1) {
     sscanf(argv[1], "%d", &loop);
   }
   int i;
   for (i = 0; i < loop; i ++) {
+    bufptr = 0;
+    memset(buf,'\0',sizeof(buf));
     gen_rand_expr();
-
+    if(bufptr > 32)
+    continue;
+    
     sprintf(code_buf, code_format, buf);
 
-    FILE *fp = fopen("/tmp/.code.c", "w");
+    FILE *fp = fopen("/tmp/.code.c", "w");// w at first , modified
     assert(fp != NULL);
     fputs(code_buf, fp);
     fclose(fp);
