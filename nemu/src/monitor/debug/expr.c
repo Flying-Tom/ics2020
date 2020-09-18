@@ -226,10 +226,18 @@ static uint32_t main_operator(uint32_t p, uint32_t q ){
   int cnt = 0,judge = 0,temp[32] = {},flag=0 ;
   for(int i = p ; i<=q ; i++)
   {
-    if(tokens[i].type=='(')
-      judge++ ;
-    if(tokens[i].type==')')
-      judge-- ;
+    if(tokens[i].type=='(') judge++ ;
+    if(tokens[i].type==')') judge-- ;
+    if(tokens[i].type== TK_AND || tokens[i].type == TK_EQ || tokens[i].type == TK_NEQ  ){
+      if(judge==0)
+      return i;
+    }
+  }
+  judge =0;
+  for(int i = p ; i<=q ; i++)
+  {
+    if(tokens[i].type=='(') judge++ ;
+    if(tokens[i].type==')') judge-- ;
     if(tokens[i].type== '+' || tokens[i].type== '-' || tokens[i].type=='*' || tokens[i].type=='/' ){
       if(judge==0)
       temp[cnt++]=i;
