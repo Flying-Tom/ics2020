@@ -247,6 +247,7 @@ static uint32_t eval(uint32_t p, uint32_t q,expr_error* error){
 
   if(p > q){
       *error->legal = false;
+      error->type = 's';
       return 0;
   }
   else if( p == q ){
@@ -294,11 +295,11 @@ word_t expr(char *e, bool *success) {
   switch (error.type)
   {
     case 's':
-      *error.legal = true;
+      *error.legal = false;
        printf("A syntax error in expression! \n");
       break;
     case '0':
-      *error.legal = true; 
+      *error.legal = false; 
       printf("Division by zero! \n");
       break;
   }
