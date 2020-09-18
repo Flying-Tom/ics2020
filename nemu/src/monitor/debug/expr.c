@@ -288,14 +288,17 @@ word_t expr(char *e, bool *success) {
   /* TODO: Insert codes to evaluate the expression. */
   expr_error error;
   error.legal = success;
+  error.type = '\0';
   nr_token--;
   word_t temp = eval(0,nr_token,&error);
   switch (error.type)
   {
     case 's':
+      *error.legal = true;
        printf("A syntax error in expression! \n");
       break;
     case '0':
+      *error.legal = true; 
       printf("Division by zero! \n");
       break;
   }
