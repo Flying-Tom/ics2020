@@ -83,7 +83,7 @@ int main(int argc, char *argv[]) {
     gen_rand_expr();
     if(bufptr > 32)
     continue;
-    
+
     sprintf(code_buf, code_format, buf);
 
     FILE *fp = fopen("/tmp/.code.c", "w");// w at first , modified
@@ -91,8 +91,8 @@ int main(int argc, char *argv[]) {
     fputs(code_buf, fp);
     fclose(fp);
 
-    int ret = system("gcc /tmp/.code.c -o /tmp/.expr");
-    if (ret != 0) continue;
+    int ret = system("gcc /tmp/.code.c -o /tmp/.expr 2> error.txt");
+    if (ret != 0 || ( fopen("error.txt","r")==0 ) ) continue;
 
     fp = popen("/tmp/.expr", "r");
     assert(fp != NULL);

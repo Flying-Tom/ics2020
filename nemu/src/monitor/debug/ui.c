@@ -70,7 +70,7 @@ static int cmd_p(char *args ) {
   if(success)
     printf("%u\n", expr_value);
   else
-    printf("Synax error! \n");
+    printf("A syntax error in expression! \n");
   return 0;
 }
 
