@@ -69,8 +69,6 @@ static int cmd_p(char *args ) {
   word_t expr_value = expr(args,&success);
   if(success)
     printf("%u\n", expr_value);
-  else
-    printf("A syntax error in expression! \n");
   return 0;
 }
 

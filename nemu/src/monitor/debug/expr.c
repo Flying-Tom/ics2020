@@ -261,7 +261,16 @@ static uint32_t eval(uint32_t p, uint32_t q,expr_error* error){
       case '+': return eval( p, op - 1 , error) + eval( op + 1, q , error); break;
       case '-': return eval( p, op - 1 , error) - eval( op + 1, q , error); break;
       case '*': return eval( p, op - 1 , error) * eval( op + 1, q , error); break;
-      case '/': return eval( p, op - 1 , error) / eval( op + 1, q , error); break;
+      case '/': {
+        uint32_t temp = eval( op + 1, q , error);
+        if (temp == 0){
+          *error->legal = false;
+          error->type = '0';
+          temp = 1;
+        }
+        return eval( p, op - 1 , error) / temp; 
+      }
+      break;
       default: 
       *error->legal = false;
       error->type = 's';
