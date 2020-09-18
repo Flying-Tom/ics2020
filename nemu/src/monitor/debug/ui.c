@@ -87,8 +87,8 @@ static int cmd_de(char *args ) {
     bool success = true;
     my_ans =  expr(de_buf_p,&success);
     if( temp == my_ans ){
-      fprintf(test_log_fp,"Yes, you are right!\n");
-      printf("Yes, you are right!\n");
+      //fprintf(test_log_fp,"Yes, you are right!\n");
+      //printf("Yes, you are right!\n");
     }
     else{
       fprintf(test_log_fp,"Error! %s == %u != %u \n",de_buf_p,temp,my_ans);
