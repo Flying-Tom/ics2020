@@ -279,8 +279,8 @@ static uint32_t eval(uint32_t p, uint32_t q,expr_error* error){
     {
       u_int32_t temp = eval( op + 1, q , error);
       switch(tokens[op].type){
-        case TK_DEREF: return -temp; 
-        case TK_NEG: return paddr_read(temp,4); 
+        case TK_NEG: return -temp; 
+        case TK_DEREF: return paddr_read(temp,4); 
         default: 
         *error->legal = false;
         error->type = 's';
