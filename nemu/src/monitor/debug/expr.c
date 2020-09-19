@@ -301,7 +301,6 @@ static uint32_t eval(uint32_t p, uint32_t q,expr_error* error){
       default: 
       *error->legal = false;
       error->type = 's';
-      //*error_info = 3;
     }
   }
   return 0;
