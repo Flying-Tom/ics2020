@@ -35,3 +35,15 @@ void free_wp(WP *wp){
   wp->next = free_;
   free_ = wp;
 }
+
+bool delete_wp(word_t num){
+  WP* temp = head;
+  while(temp != NULL){
+    if(temp->NO == num){
+      free_wp(temp);
+      return true;
+    }
+    temp = temp->next;
+  }
+  return false;
+}

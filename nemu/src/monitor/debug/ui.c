@@ -105,6 +105,9 @@ static int cmd_w(char *args) {
 }
 
 static int cmd_d(char *args) {
+  word_t num;
+  sscanf(args,"%u",&num);
+  delete_wp(num);
   return 0;
 }
 
