@@ -101,6 +101,7 @@ static int cmd_de(char *args ) {
 }
 
 static int cmd_w(char *args) {
+  insert_wp(new_wp(),args);
   return 0;
 }
 

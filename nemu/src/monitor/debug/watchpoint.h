@@ -12,6 +12,7 @@ typedef struct watchpoint {
 
 } WP;
 
+WP* new_wp();
+void insert_wp(WP* ,char* );
 bool delete_wp(word_t );
-
 #endif
