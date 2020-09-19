@@ -1,12 +1,12 @@
 #include <isa.h>
-
+#include <memory/paddr.h>
 /* We use the POSIX regex functions to process regular expressions.
  * Type 'man regex' for more information about POSIX regex functions.
  */
 #include <regex.h>
 
 enum {
-  TK_NOTYPE = 256, TK_EQ, TK_HEXNUM , TK_DECNUM , TK_NEQ , TK_AND , TK_REG,
+  TK_NOTYPE = 256, TK_EQ, TK_HEXNUM , TK_DECNUM , TK_NEG , TK_AND , TK_REG, TL_NEG, TK_DEREF,
 
   /* TODO: Add more token types */
 
@@ -32,7 +32,7 @@ static struct rule {
   {"\\(", '('},  // leftp
   {"\\)", ')'},  // rightp
   {"==", TK_EQ},  // equal 
-  {"!=", TK_NEQ},  // not equal
+  {"!=", TK_NEG},  // not equal
   {"&&", TK_AND},  // and
 
 };
@@ -142,8 +142,8 @@ static bool make_token(char *e) {
           case TK_EQ:
             tokens[nr_token++].type =TK_EQ;
             break;
-          case TK_NEQ:
-            tokens[nr_token++].type =TK_NEQ;
+          case TK_NEG:
+            tokens[nr_token++].type =TK_NEG;
             break;
           default:
             printf("There exists an undefined expression. Please check it. Failed! \n");
@@ -223,12 +223,12 @@ static uint32_t singletoken_value(Token x, expr_error* error){
 }
 
 static uint32_t main_operator(uint32_t p, uint32_t q ){
-  int cnt = 0,judge = 0,temp[32] = {},flag=0 ;
+  int cnt = 0,judge = 0,temp[32] = {} ;
   for(int i = p ; i<=q ; i++)
   {
     if(tokens[i].type=='(') judge++ ;
     if(tokens[i].type==')') judge-- ;
-    if(tokens[i].type== TK_AND || tokens[i].type == TK_EQ || tokens[i].type == TK_NEQ  ){
+    if(tokens[i].type== TK_AND || tokens[i].type == TK_EQ   ){
       if(judge==0)
       return i;
     }
@@ -244,24 +244,18 @@ static uint32_t main_operator(uint32_t p, uint32_t q ){
     }
   }
   cnt--;
-  for(int i=0  ; i<=cnt ; i++)
-  {
-    if(tokens[temp[i]].type=='+' || tokens[temp[i]].type=='-'){
-      flag=1;
-      break;
-    }
-  }
-  
-  if(flag==1){
-    for(int i=cnt ; i>=0; i--)
+
+  for(int i=cnt ; i>=0; i--)
       if(tokens[temp[i]].type=='+' || tokens[temp[i]].type=='-')
         return temp[i];
-  }
-  else{
-    for(int i=cnt ; i>=0; i--)
+ 
+  for(int i=cnt ; i>=0; i--)
       if(tokens[temp[i]].type=='*' || tokens[temp[i]].type=='/')
         return temp[i];
-  }
+  
+  for(int i=cnt ; i>=0; i--)
+      if(tokens[temp[i]].type==TK_DEREF || tokens[temp[i]].type == TK_NEG)
+        return temp[i];
 
   return 0;
 }
@@ -281,10 +275,21 @@ static uint32_t eval(uint32_t p, uint32_t q,expr_error* error){
   }
   else{
     uint32_t op = main_operator(p,q);
+    if( tokens[op].type == TK_DEREF || tokens[op].type == TK_NEG)
+    {
+      u_int32_t temp = eval( op + 1, q , error);
+      switch(tokens[op].type){
+        case TK_DEREF: return -temp; 
+        case TK_NEG: return paddr_read(temp,4); 
+        default: 
+        *error->legal = false;
+        error->type = 's';
+      }
+    }
     switch(tokens[op].type){
-      case '+': return eval( p, op - 1 , error) + eval( op + 1, q , error); break;
-      case '-': return eval( p, op - 1 , error) - eval( op + 1, q , error); break;
-      case '*': return eval( p, op - 1 , error) * eval( op + 1, q , error); break;
+      case '+': return eval( p, op - 1 , error) + eval( op + 1, q , error); 
+      case '-': return eval( p, op - 1 , error) - eval( op + 1, q , error); 
+      case '*': return eval( p, op - 1 , error) * eval( op + 1, q , error); 
       case '/': {
         uint32_t temp = eval( op + 1, q , error);
         if (temp == 0){
@@ -293,11 +298,10 @@ static uint32_t eval(uint32_t p, uint32_t q,expr_error* error){
           temp = 1;
         }
         return eval( p, op - 1 , error) / temp; 
-        break;
       }
-      case TK_EQ: return eval( p, op - 1 , error) == eval( op + 1, q , error); break;
-      case TK_NEQ: return eval( p, op - 1 , error) != eval( op + 1, q , error); break;
-      case TK_AND: return eval( p, op - 1 , error) && eval( op + 1, q , error); break;
+      case TK_EQ: return eval( p, op - 1 , error) == eval( op + 1, q , error); 
+      case TK_NEG: return eval( p, op - 1 , error) != eval( op + 1, q , error); 
+      case TK_AND: return eval( p, op - 1 , error) && eval( op + 1, q , error); 
       default: 
       *error->legal = false;
       error->type = 's';
@@ -312,10 +316,26 @@ word_t expr(char *e, bool *success) {
     return 0;
   }
   /* TODO: Insert codes to evaluate the expression. */
+  int i = 0;
   expr_error error;
   error.legal = success;
   error.type = '\0';
   nr_token--;
+  if ( tokens[0].type == '*' && (tokens[1].type == TK_HEXNUM  &&  tokens[1].type == TK_DECNUM && tokens[1].type == TK_REG) ) 
+    tokens[0].type = TK_DEREF;
+  if ( tokens[0].type == '-' && (tokens[1].type == TK_HEXNUM  &&  tokens[1].type == TK_DECNUM && tokens[1].type == TK_REG) ) 
+    tokens[0].type = TK_NEG;
+
+
+  for (i = 0; i < nr_token - 1 ; i ++) {
+    if (tokens[i].type == '*' && (tokens[i+1].type == TK_HEXNUM  &&  tokens[i+1].type == TK_DECNUM && tokens[i+1].type == TK_REG) ) {
+      tokens[i].type = TK_DEREF;
+    }
+    if (tokens[i].type == '-' && (tokens[i+1].type == TK_HEXNUM  &&  tokens[i+1].type == TK_DECNUM && tokens[i+1].type == TK_REG) ) {
+      tokens[i].type = TK_NEG;
+    }
+  }
+
   word_t temp = eval(0,nr_token,&error);
   switch (error.type)
   {
