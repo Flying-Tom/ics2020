@@ -100,6 +100,13 @@ static int cmd_de(char *args ) {
   return 0;
 }
 
+static int cmd_w(char *args) {
+  return 0;
+}
+
+static int cmd_d(char *args) {
+  return 0;
+}
 
 static int cmd_help(char *args);
 
@@ -115,6 +122,8 @@ static struct {
   { "info", "print the debug information", cmd_info },
   { "x", "scanf the ram", cmd_x },
   { "p", "print the value of an expression",cmd_p},
+  { "w", "set the watch point",cmd_w},
+  { "d", "delete the watch point",cmd_d},
   { "de", "debug the function which needs polishing",cmd_de}
   //{ "de", "debug a new function",cmd_de}
 
