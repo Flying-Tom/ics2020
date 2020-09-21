@@ -33,10 +33,7 @@ void insert_wp(WP *wp,char* args){
   WP *cur = head;
   uint32_t cnt = 0;
   if(head == NULL)
-  { 
     head = wp;
-    cnt = 0;
-  }
   else
   {
     while (cur->next != NULL)
@@ -44,6 +41,7 @@ void insert_wp(WP *wp,char* args){
       cnt = cur->NO;
       cur = cur->next;
     }
+    cur->next = wp;
     cnt = cur->NO;
   }
   
