@@ -37,7 +37,11 @@ void insert_wp(WP *wp,char* args){
     cnt = cur->NO;
     cur = cur->next;
   }
-  cur = wp;
+  if(head == NULL)
+    head = wp;
+  else
+    cur = wp;
+
   cur->NO = cnt + 1;
   cur->expr = args;
   cur->value=expr(args, &success);
