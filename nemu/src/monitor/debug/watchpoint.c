@@ -30,22 +30,22 @@ WP* new_wp(){
 
 void insert_wp(WP *wp,char* args){
   bool success = true;
-  if(head==NULL)
-  {
-    head = wp;
-    wp->NO = 1;
-    wp->value = expr(args, &success);;
+  WP *cur = head;
+  uint32_t cnt = 0;
+  while (cur != NULL)
+  {  
+    cnt = cur->NO;
+    cur = cur->next;
   }
-  else
-  {
-    wp->expr = args;
-    wp->NO = head->NO + 1;
-    wp->next = head  ;
-    wp->value = expr(args, &success);
-    head = wp;
-  }
+  cur = wp;
+  cur->NO = cnt + 1;
+  cur->expr = args;
+  cur->value=expr(args, &success);
+  cur->next = NULL;
   printf("watchpoint %d: %s\n",wp->NO,args);
 }
+  
+
 
 void free_wp(WP *wp){
   WP *temp=head;
