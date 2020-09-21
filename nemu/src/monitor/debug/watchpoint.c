@@ -71,6 +71,7 @@ bool delete_wp(word_t num){
 void display_wp(){
   WP* cur = head;
   while(cur != NULL){
-   printf("%d : %s == %d",cur->NO,cur->expr,cur->value );
+    printf("%d : %s == %d\n",cur->NO,cur->expr,cur->value );
+    cur = cur->next;
   }
 }
