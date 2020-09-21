@@ -48,10 +48,18 @@ static int cmd_si(char *args ) {
 
 static int cmd_info(char *args ) {
   char *arg = strtok(NULL," ");
-  if(*arg=='r')
-    isa_reg_display();
-  else
-    display_wp();
+  switch (*arg)
+  {
+    case 'r':
+      isa_reg_display();
+      break;
+    case 'w':
+      display_wp();
+    case '\0':
+      printf("need more paramater\n");
+    default:
+      break;
+  }
   return 0;
 }
 
