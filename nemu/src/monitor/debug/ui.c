@@ -48,6 +48,11 @@ static int cmd_si(char *args ) {
 
 static int cmd_info(char *args ) {
   char *arg = strtok(NULL," ");
+  if(args == NULL)
+  {
+    printf("need more paramater\n");
+    return 0;
+  }
   switch (*arg)
   {
     case 'r':
@@ -55,9 +60,9 @@ static int cmd_info(char *args ) {
       break;
     case 'w':
       display_wp();
-    case '\0':
-      printf("need more paramater\n");
+      break;
     default:
+      printf("wrong paramater\n");
       break;
   }
   return 0;
