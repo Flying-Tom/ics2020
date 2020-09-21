@@ -215,6 +215,10 @@ static uint32_t singletoken_value(Token x, expr_error* error){
     case TK_HEXNUM : 
       sscanf(x.str,"%x",&temp);
       break;
+    case TK_REG :
+    {
+     
+    }
     default:
     *error->legal = false;
      error->type = 's';
@@ -346,6 +350,10 @@ word_t expr(char *e, bool *success) {
     case '0':
       *error.legal = false; 
       printf("Division by zero! \n");
+      break;
+    case 'r':
+      *error.legal = false; 
+      printf("No such regsiter! \n");
       break;
   }
   return temp;
