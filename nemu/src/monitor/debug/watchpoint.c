@@ -46,7 +46,7 @@ void insert_wp(WP *wp,char* args){
   }
   
   wp->NO = cnt + 1;
-  strcpy(args,wp->expr);
+  sscanf(args,"%s",wp->expr);
   wp->value=expr(args, &success);
   wp->next = NULL;
   printf("watchpoint %d: %s\n",wp->NO,args);
