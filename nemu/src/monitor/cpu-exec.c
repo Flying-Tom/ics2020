@@ -3,6 +3,7 @@
 #include <monitor/difftest.h>
 #include <stdlib.h>
 #include <sys/time.h>
+#include "./debug/watchpoint.h"
 
 /* The assembly code of instructions executed is only output to the screen
  * when the number of instructions executed is less than this value.
@@ -66,7 +67,8 @@ static uint64_t get_time() {
 /* Simulate how the CPU works. */
 void cpu_exec(uint64_t n) {
   switch (nemu_state.state) {
-    case NEMU_END: case NEMU_ABORT:
+    case NEMU_END: 
+    case NEMU_ABORT:
       printf("Program execution has ended. To restart the program, exit NEMU and run again.\n");
       return;
     default: nemu_state.state = NEMU_RUNNING;
@@ -76,7 +78,15 @@ void cpu_exec(uint64_t n) {
 
   for (; n > 0; n --) {
     vaddr_t this_pc = cpu.pc;
-
+    ///////////////////////////////////////
+    //////////////////////////////////////
+    if(!check_wp())
+    {
+      nemu_state.state = NEMU_STOP;
+      return;
+    }
+    ///////////////////////////////////////
+    ///////////////////////////////////////
     /* Execute one instruction, including instruction fetch,
      * instruction decode, and the actual execution. */
     __attribute__((unused)) vaddr_t seq_pc = isa_exec_once();

@@ -47,7 +47,8 @@ void insert_wp(WP *wp,char* args){
   
   wp->NO = cnt + 1;
   strcpy(wp->expr,args);
-  wp->value=expr(args, &success);
+  wp->value= expr(args, &success);
+  wp->prev_value = wp->value;
   wp->next = NULL;
   printf("watchpoint %d: %s\n",wp->NO,args);
 }
@@ -81,4 +82,23 @@ void display_wp(){
     printf("%d : %s == %d\n",cur->NO,cur->expr,cur->value );
     cur = cur->next;
   }
+}
+
+bool check_wp(){
+  WP* cur = head;
+  uint32_t cur_value;
+  bool success = true;
+  while(cur != NULL)
+  {
+    cur_value = expr(cur->expr, &success);
+    if(cur_value !=cur->value)
+    {
+      printf("Changed || %d : %s == %d =>  %s == %d \n",cur->NO,cur->expr,cur->value,cur->expr,cur_value );
+      cur->prev_value = cur->value;
+      cur->value = cur_value;
+      return false;
+    }
+    cur = cur->next;
+  }
+  return true;
 }
