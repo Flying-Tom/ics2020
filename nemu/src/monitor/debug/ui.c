@@ -50,6 +50,8 @@ static int cmd_info(char *args ) {
   char *arg = strtok(NULL," ");
   if(*arg=='r')
     isa_reg_display();
+  else
+    display_wp();
   return 0;
 }
 
