@@ -299,7 +299,7 @@ static uint32_t eval(uint32_t p, uint32_t q,expr_error* error){
         }
         return eval( p, op - 1 , error) / temp; 
       }
-      case TK_EQ: return eval( p, op - 1 , error) == eval( op + 1, q , error); 
+      case TK_EQ:  return eval( p, op - 1 , error) == eval( op + 1, q , error); 
       case TK_NEG: return eval( p, op - 1 , error) != eval( op + 1, q , error); 
       case TK_AND: return eval( p, op - 1 , error) && eval( op + 1, q , error); 
       default: 
