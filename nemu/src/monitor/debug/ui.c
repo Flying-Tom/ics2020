@@ -50,7 +50,7 @@ static int cmd_info(char *args ) {
   char *arg = strtok(NULL," ");
   if(args == NULL)
   {
-    printf("need more paramater\n");
+    printf("Need more paramater!\n");
     return 0;
   }
   switch (*arg)
@@ -62,7 +62,7 @@ static int cmd_info(char *args ) {
       display_wp();
       break;
     default:
-      printf("wrong paramater\n");
+      printf("Wrong paramater!\n");
       break;
   }
   return 0;
