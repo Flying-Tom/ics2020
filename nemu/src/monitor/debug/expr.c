@@ -356,15 +356,15 @@ word_t expr(char *e, bool *success) {
   {
     case 's':
       *error.legal = false;
-       printf("A syntax error in expression! \n");
+      printf("\033[1m\033[41;37m Wrong \033[0m A syntax error in expression! \n");
       break;
     case '0':
       *error.legal = false; 
-      printf("Division by zero! \n");
+      printf("\033[1m\033[41;37m Wrong \033[0m Division by zero! \n");
       break;
     case 'r':
       *error.legal = false; 
-      printf("No such regsiter! \n");
+      printf("\033[1m\033[41;37m Wrong \033[0m No such regsiter! \n");
       break;
   }
   return temp;
