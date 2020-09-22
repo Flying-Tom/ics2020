@@ -1,4 +1,5 @@
 #include <isa.h>
+#include "../../isa/x86/reg.c"
 #include <memory/paddr.h>
 /* We use the POSIX regex functions to process regular expressions.
  * Type 'man regex' for more information about POSIX regex functions.
@@ -207,7 +208,7 @@ static bool check_parenthese(uint32_t p, uint32_t q, expr_error* error)
 }
 
 static uint32_t singletoken_value(Token x, expr_error* error){
-  int temp = 0;
+  int temp = 0,i;
   switch(x.type){
     case TK_DECNUM : 
       sscanf(x.str,"%d",&temp);
@@ -217,7 +218,15 @@ static uint32_t singletoken_value(Token x, expr_error* error){
       break;
     case TK_REG :
     {
-     
+      for( i = 0 ; i <= 7 ;i++)
+      {
+        if(strcmp(regsl[i],x.str)==0)
+          return cpu.gpr[i]._32;
+        if(strcmp(regsw[i],x.str)==0)
+          return (uint32_t)cpu.gpr[i]._16;
+        //if(strcmp(regsb[i],x.str)==0)
+        //  return ;
+      }
     }
     default:
     *error->legal = false;
