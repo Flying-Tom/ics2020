@@ -88,6 +88,7 @@ static int cmd_p(char *args ) {
 }
 
 static int cmd_de(char *args ) {
+  /*
   char de_buf[1024]="";
   char* de_buf_p;
   word_t temp,my_ans,len;
@@ -112,6 +113,8 @@ static int cmd_de(char *args ) {
   }
   printf("Test finished !\n");
   fclose(test_log_fp);
+  return 0;*/
+  printf("\033[1m\033[45;33m HELLO_WORLD \033[0m\n");
   return 0;
 }
 
@@ -141,13 +144,10 @@ static struct {
   { "info", "print the debug information", cmd_info },
   { "x", "scanf the ram", cmd_x },
   { "p", "print the value of an expression",cmd_p},
-  { "w", "set the watch point",cmd_w},
-  { "d", "delete the watch point",cmd_d},
-  { "de", "debug the function which needs polishing",cmd_de}
-  //{ "de", "debug a new function",cmd_de}
-
+  { "w", "w num : set the watch point num",cmd_w},
+  { "d", "de num : delete the watch point num",cmd_d},
+  { "de", "debug the function which needs polishing. Unfortunately, the tests aren't automatic and you need to modify the source code if you want to debug your code",cmd_de}
   /* TODO: Add more commands */
-
 };
 
 #define NR_CMD (sizeof(cmd_table) / sizeof(cmd_table[0]))

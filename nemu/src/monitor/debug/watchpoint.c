@@ -93,7 +93,7 @@ bool check_wp(){
     cur_value = expr(cur->expr, &success);
     if(cur_value !=cur->value)
     {
-      printf("Changed || %d : %s == %d =>  %s == %d \n",cur->NO,cur->expr,cur->value,cur->expr,cur_value );
+      printf("Changed | %d : %s == %d => %s == %d \n",cur->NO,cur->expr,cur->value,cur->expr,cur_value );
       cur->prev_value = cur->value;
       cur->value = cur_value;
       return false;
