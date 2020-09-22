@@ -345,7 +345,7 @@ word_t expr(char *e, bool *success) {
   if ( tokens[0].type == '-' && (tokens[1].type == TK_HEXNUM  ||  tokens[1].type == TK_DECNUM || tokens[1].type == TK_REG) ) 
     tokens[0].type = TK_NEG;
 
-  for (i=0;i< nr_token - 1;i++) 
+  for (i = 1; i < nr_token ;i++) 
   {
     if (tokens[i].type == '*' && (tokens[i+1].type == TK_HEXNUM  ||  tokens[i+1].type == TK_DECNUM || tokens[i+1].type == TK_REG) ) 
       tokens[i].type = TK_DEREF;
