@@ -335,7 +335,7 @@ word_t expr(char *e, bool *success) {
     return 0;
   }
   /* TODO: Insert codes to evaluate the expression. */
-  int i = 0;
+  int i;
   expr_error error;
   error.legal = success;
   error.type = '\0';
@@ -346,7 +346,7 @@ word_t expr(char *e, bool *success) {
     tokens[0].type = TK_NEG;
 
   printf("check");
-  for (i = 0; i < nr_token - 1 ; i++) 
+  for (i=0;i<5;i++) 
   {
     if (tokens[i].type == '*' && (tokens[i+1].type == TK_HEXNUM  &&  tokens[i+1].type == TK_DECNUM && tokens[i+1].type == TK_REG) ) 
       tokens[i].type = TK_DEREF;
