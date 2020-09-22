@@ -105,7 +105,6 @@ static bool make_token(char *e) {
             tokens[nr_token].type = TK_HEXNUM;
             memset(tokens[nr_token].str,'\0',sizeof(tokens[nr_token].str));
             strncpy(tokens[nr_token++].str,substr_start,substr_len);
-            //tokens[nr_token].str[substr_len] = '\0';
             break;
           case TK_DECNUM:
             if(substr_len>31)
@@ -116,12 +115,12 @@ static bool make_token(char *e) {
             tokens[nr_token].type = TK_DECNUM;
             memset(tokens[nr_token].str,'\0',sizeof(tokens[nr_token].str));
             strncpy(tokens[nr_token++].str,substr_start,substr_len);
-            //tokens[nr_token].str[substr_len] = '\0';
             break;
           case TK_REG:
             tokens[nr_token].type = TK_REG;
             memset(tokens[nr_token].str,'\0',sizeof(tokens[nr_token].str));
             strncpy(tokens[nr_token++].str,substr_start + 1,substr_len - 1);
+            break;
           case '+':
             tokens[nr_token++].type ='+';
             break;
