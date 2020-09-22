@@ -5,6 +5,10 @@
  */
 #include <regex.h>
 
+extern const char* regsl[];
+extern const char* regsw[];
+extern const char* regsb[];
+
 enum {
   TK_NOTYPE = 256, TK_EQ, TK_HEXNUM , TK_DECNUM , TK_NEG , TK_AND , TK_REG, TL_NEG, TK_DEREF,
 
@@ -219,10 +223,10 @@ static uint32_t singletoken_value(Token x, expr_error* error){
     {
       for( i = 0 ; i <= 7 ;i++)
       {
-        //if(strcmp(regsl[i],x.str)==0)
-        //  return cpu.gpr[i]._32;
-        //if(strcmp(regsw[i],x.str)==0)
-        //  return (uint32_t)cpu.gpr[i]._16;
+        if(strcmp(regsl[i],x.str)==0)
+          return cpu.gpr[i]._32;
+        if(strcmp(regsw[i],x.str)==0)
+          return (uint32_t)cpu.gpr[i]._16;
         //if(strcmp(regsb[i],x.str)==0)
         //  return ;
       }
