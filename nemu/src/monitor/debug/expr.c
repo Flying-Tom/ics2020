@@ -1,10 +1,13 @@
 #include <isa.h>
-#include "../../isa/x86/reg.c"
 #include <memory/paddr.h>
 /* We use the POSIX regex functions to process regular expressions.
  * Type 'man regex' for more information about POSIX regex functions.
  */
 #include <regex.h>
+
+const char *regsl[] = {"eax", "ecx", "edx", "ebx", "esp", "ebp", "esi", "edi"};
+const char *regsw[] = {"ax", "cx", "dx", "bx", "sp", "bp", "si", "di"};
+const char *regsb[] = {"al", "cl", "dl", "bl", "ah", "ch", "dh", "bh"};
 
 enum {
   TK_NOTYPE = 256, TK_EQ, TK_HEXNUM , TK_DECNUM , TK_NEG , TK_AND , TK_REG, TL_NEG, TK_DEREF,
