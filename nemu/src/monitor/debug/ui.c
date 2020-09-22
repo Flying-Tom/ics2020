@@ -88,7 +88,6 @@ static int cmd_p(char *args ) {
 }
 
 static int cmd_de(char *args ) {
-  /*
   char de_buf[1024]="";
   char* de_buf_p;
   word_t temp,my_ans,len;
@@ -113,8 +112,6 @@ static int cmd_de(char *args ) {
   }
   printf("Test finished !\n");
   fclose(test_log_fp);
-  return 0;*/
-  printf("\033[1m\033[45;33m HELLO_WORLD \033[0m\n");
   return 0;
 }
 
