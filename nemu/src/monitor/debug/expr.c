@@ -360,7 +360,7 @@ word_t expr(char *e, bool *success) {
       break;
     case '0':
       *error.legal = false; 
-      printf("\033[1m\033[41;37m Wrong \033[0m Division by zero! \n");
+      printf("\033[1m\033[44;37m Warning \033[0m Division by zero! \n");
       break;
     case 'r':
       *error.legal = false; 
