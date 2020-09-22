@@ -247,7 +247,8 @@ static uint32_t main_operator(uint32_t p, uint32_t q ){
   {
     if(tokens[i].type=='(') judge++ ;
     if(tokens[i].type==')') judge-- ;
-    if(tokens[i].type== TK_AND || tokens[i].type == TK_EQ   ){
+    if(tokens[i].type== TK_AND || tokens[i].type == TK_EQ  )
+    {
       if(judge==0)
       return i;
     }
@@ -257,7 +258,8 @@ static uint32_t main_operator(uint32_t p, uint32_t q ){
   {
     if(tokens[i].type=='(') judge++ ;
     if(tokens[i].type==')') judge-- ;
-    if(tokens[i].type== '+' || tokens[i].type== '-' || tokens[i].type=='*' || tokens[i].type=='/' ){
+    if(tokens[i].type== '+' || tokens[i].type== '-' || tokens[i].type=='*' || tokens[i].type=='/' )
+    {
       if(judge==0)
       temp[cnt++]=i;
     }
@@ -273,7 +275,7 @@ static uint32_t main_operator(uint32_t p, uint32_t q ){
         return temp[i];
   
   for(int i=cnt ; i>=0; i--)
-      if(tokens[temp[i]].type==TK_DEREF || tokens[temp[i]].type == TK_NEG)
+      if(tokens[temp[i]].type == TK_DEREF || tokens[temp[i]].type == TK_NEG)
         return temp[i];
 
   return 0;
