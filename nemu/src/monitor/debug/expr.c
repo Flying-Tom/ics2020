@@ -230,6 +230,9 @@ static uint32_t singletoken_value(Token x, expr_error* error){
         //if(strcmp(regsb[i],x.str)==0)
         //  return ;
       }
+      *error->legal = false;
+      error->type = 'r';
+      break;
     }
     default:
     *error->legal = false;
