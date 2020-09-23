@@ -87,7 +87,7 @@ void display_wp(){
 bool check_wp(){
   WP* cur = head;
   uint32_t cur_value;
-  bool success = true;
+  bool success = true,changed = true;
   while(cur != NULL)
   {
     cur_value = expr(cur->expr, &success);
@@ -96,9 +96,9 @@ bool check_wp(){
       printf("\033[1m\033[45;33m Changed \033[0m %d : %s == %d => %s == %d \n",cur->NO,cur->expr,cur->value,cur->expr,cur_value );
       cur->prev_value = cur->value;
       cur->value = cur_value;
-      return false;
+      changed = false;
     }
     cur = cur->next;
   }
-  return true;
+  return changed;
 }
