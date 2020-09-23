@@ -364,7 +364,7 @@ word_t expr(char *e, bool *success) {
     if (tokens[i].type == '*' && tokens[i-1].type != TK_HEXNUM  &&  tokens[i-1].type != TK_DECNUM && tokens[i-1].type != TK_REG && tokens[i-1].type != ')' ) 
       tokens[i].type = TK_DEREF;
     
-    if (tokens[i].type == '-' && tokens[i-1].type != TK_HEXNUM  &&  tokens[i-1].type != TK_DECNUM && tokens[i-1].type != TK_REG ) 
+    if (tokens[i].type == '-' && tokens[i-1].type != TK_HEXNUM  &&  tokens[i-1].type != TK_DECNUM && tokens[i-1].type != TK_REG && tokens[i-1].type != ')' ) 
     {
       int temp=i;
       while(tokens[temp].type == '-')
