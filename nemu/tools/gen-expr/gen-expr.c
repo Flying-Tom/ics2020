@@ -16,7 +16,10 @@ uint32_t choose(uint32_t n){
 }
 
 static inline void gen_num(){
-  uint32_t num_size = choose(1) + 1;
+  uint32_t minus_size = choose(2) ,num_size = choose(1) + 1;
+  while(minus_size--)
+    buf[bufptr++] = '-';
+
   buf[bufptr] = choose(10) + 48;
   if(buf[bufptr++] == '0' )
   return;
@@ -88,7 +91,7 @@ int main(int argc, char *argv[]) {
     bufptr = 0;
     memset(buf,'\0',sizeof(buf));
     gen_rand_expr();
-    if(bufptr > 50)
+    if(bufptr > 64 || bufptr < 16)
     continue;
 
     sprintf(code_buf, code_format, buf);
