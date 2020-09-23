@@ -350,7 +350,7 @@ word_t expr(char *e, bool *success) {
     return 0;
   }
   /* TODO: Insert codes to evaluate the expression. */
-  int i;
+  int i,temp;
   expr_error error;
   error.legal = success;
   error.type = '\0';
@@ -368,19 +368,13 @@ word_t expr(char *e, bool *success) {
     
     if (tokens[i].type == '-' && tokens[i-1].type != TK_HEXNUM  &&  tokens[i-1].type != TK_DECNUM && tokens[i-1].type != TK_REG && tokens[i-1].type != ')' ) 
     {
-      int temp=i;
+      temp=i;
       while(tokens[temp].type == '-')
-      { 
-        //sign_temp *=-1;
         tokens[temp++].type = TK_NEG;
-      }
-      /*
-      if(sign_temp < 0)
-        tokens[i].type = TK_NEG;*/
     }
   }
   
-  word_t temp = eval(0,nr_token,&error);
+  word_t value_temp = eval(0,nr_token,&error);
   switch (error.type)
   {
     case 's':
@@ -396,5 +390,5 @@ word_t expr(char *e, bool *success) {
       printf("\033[1m\033[41;37m Wrong \033[0m No such regsiter! \n");
       break;
   }
-  return temp;
+  return value_temp;
 }

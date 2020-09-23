@@ -110,7 +110,7 @@ static int cmd_de(char *args ) {
       printf("Error! %s == %u != %u \n",de_buf_p,temp,my_ans);
     }
     else
-    fprintf(test_log_fp,"Yes");
+    fprintf(test_log_fp,"Yes\n");
   }
   if(error_cnt == 0)
   fprintf(test_log_fp,"Congratulation! You pass the test.\n");
