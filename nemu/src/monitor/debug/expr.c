@@ -292,7 +292,7 @@ static uint32_t main_operator(uint32_t p, uint32_t q ){
   return 0;
 }
 
-static uint32_t eval(uint32_t p, uint32_t q,expr_error* error){
+static int eval(uint32_t p, uint32_t q,expr_error* error){
 
   if(p > q){
       *error->legal = false;
