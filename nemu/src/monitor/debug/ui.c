@@ -109,6 +109,8 @@ static int cmd_de(char *args ) {
       fprintf(test_log_fp,"Error! %s == %u != %u \n",de_buf_p,temp,my_ans);
       printf("Error! %s == %u != %u \n",de_buf_p,temp,my_ans);
     }
+    else
+    fprintf(test_log_fp,"Yes");
   }
   if(error_cnt == 0)
   fprintf(test_log_fp,"Congratulation! You pass the test.\n");
