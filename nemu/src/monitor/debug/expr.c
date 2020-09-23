@@ -264,6 +264,17 @@ static uint32_t main_operator(uint32_t p, uint32_t q ){
       temp[cnt++]=i;
     }
   }
+  judge =0;
+  for(int i = p ; i<=q ; i++)
+  {
+    if(tokens[i].type=='(') judge++ ;
+    if(tokens[i].type==')') judge-- ;
+    if(tokens[i].type == TK_NEG || tokens[i].type == TK_DEREF )
+    {
+      if(judge==0)
+      temp[cnt++]=i;
+    }
+  }
   if(cnt>0)
   cnt--;
 
