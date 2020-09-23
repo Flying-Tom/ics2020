@@ -291,8 +291,8 @@ static uint32_t main_operator(uint32_t p, uint32_t q ){
 
   return 0;
 }
-
-static uint32_t eval(uint32_t p, uint32_t q,expr_error* error){
+///////uint32_t
+static int eval(uint32_t p, uint32_t q,expr_error* error){
 
   if(p > q){
       *error->legal = false;
@@ -309,7 +309,8 @@ static uint32_t eval(uint32_t p, uint32_t q,expr_error* error){
     uint32_t op = main_operator(p,q);
     if( tokens[op].type == TK_DEREF || tokens[op].type == TK_NEG)
     {
-      u_int32_t temp = eval( op + 1, q , error);
+    //uint32_t
+      int temp = eval( op + 1, q , error);
       switch(tokens[op].type){
         case TK_NEG: return -temp; 
         case TK_DEREF: return paddr_read(temp,4); 
@@ -323,7 +324,8 @@ static uint32_t eval(uint32_t p, uint32_t q,expr_error* error){
       case '-': return eval( p, op - 1 , error) - eval( op + 1, q , error); 
       case '*': return eval( p, op - 1 , error) * eval( op + 1, q , error); 
       case '/': {
-        uint32_t temp = eval( op + 1, q , error);
+      //uint32_t
+        int temp = eval( op + 1, q , error);
         if (temp == 0){
           *error->legal = false;
           error->type = '0';
