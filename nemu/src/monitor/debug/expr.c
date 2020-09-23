@@ -281,7 +281,7 @@ static uint32_t main_operator(uint32_t p, uint32_t q ){
       if(tokens[temp[i]].type=='+' || tokens[temp[i]].type=='-')
         return temp[i];
  
-  for(int i=cnt ; i>=0; i--)
+  for(int i=0 ; i<=cnt; i++)
       if(tokens[temp[i]].type=='*' || tokens[temp[i]].type=='/')
         return temp[i];
   
@@ -292,7 +292,7 @@ static uint32_t main_operator(uint32_t p, uint32_t q ){
   return 0;
 }
 
-static int eval(uint32_t p, uint32_t q,expr_error* error){
+static uint32_t eval(uint32_t p, uint32_t q,expr_error* error){
 
   if(p > q){
       *error->legal = false;
