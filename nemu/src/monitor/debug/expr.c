@@ -369,6 +369,29 @@ word_t expr(char *e, bool *success) {
     if (tokens[i].type == '-' && (tokens[i+1].type == TK_HEXNUM  ||  tokens[i+1].type == TK_DECNUM || tokens[i+1].type == TK_REG) ) 
       tokens[i].type = TK_NEG;
   }
+  
+  for (i = nr_token -1 ; i >=2 ; i--) 
+  {
+   
+    if (tokens[i-1].type == '-' && (tokens[i].type == TK_HEXNUM  ||  tokens[i].type == TK_DECNUM || tokens[i].type == TK_REG) ) 
+    {  
+      int temp = i - 2 ,sign_temp=0;
+      while(tokens[temp].type == '-')
+      {
+          sign_temp++;
+          tokens[temp--].type = TK_NOTYPE;
+      }
+      if(sign_temp == 0)  
+        tokens[temp+1].type = '-';
+      else
+      {
+        if(sign_temp % 2 == 1)
+          tokens[i-1].type = TK_NEG;
+        else
+          tokens[i-1].type = TK_NOTYPE;
+      }
+    }
+  }
 
   word_t temp = eval(0,nr_token,&error);
   switch (error.type)
