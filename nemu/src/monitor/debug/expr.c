@@ -373,7 +373,7 @@ word_t expr(char *e, bool *success) {
         tokens[temp].type = TK_NOTYPE;
         tokens[i].type = TK_NEG;
       }
-      if(sign_temp > 0)
+      if(sign_temp < 0)
         tokens[i].type = TK_NEG;
       else
         tokens[i].type = TK_NOTYPE;
