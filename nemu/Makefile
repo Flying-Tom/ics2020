@@ -118,3 +118,6 @@ clean:
 	$(MAKE) -C tools/gen-expr clean
 	$(MAKE) -C tools/qemu-diff clean
 	$(MAKE) -C tools/kvm-diff clean
+
+count:
+	git rev-parse HEAD | git diff --stat e9616d8cfb8b6b9807cde9567ad23d2b9024c4c1

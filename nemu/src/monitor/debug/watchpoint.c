@@ -52,8 +52,6 @@ void insert_wp(WP *wp,char* args){
   wp->next = NULL;
   printf("watchpoint %d: %s\n",wp->NO,args);
 }
-  
-
 
 void free_wp(WP *wp){
   WP *temp=head;
