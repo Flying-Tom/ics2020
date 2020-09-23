@@ -264,6 +264,7 @@ static uint32_t main_operator(uint32_t p, uint32_t q ){
       temp[cnt++]=i;
     }
   }
+  if(cnt>0)
   cnt--;
 
   for(int i=cnt ; i>=0; i--)
