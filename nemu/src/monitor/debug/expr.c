@@ -366,14 +366,15 @@ word_t expr(char *e, bool *success) {
     
     if (tokens[i].type == '-' && tokens[i-1].type != TK_HEXNUM  &&  tokens[i-1].type != TK_DECNUM && tokens[i-1].type != TK_REG ) 
     {
-      int temp=i,sign_temp=1;
+      int temp=i;
       while(tokens[temp].type == '-')
       { 
-        sign_temp *=-1;
-        tokens[temp++].type = TK_NOTYPE;
+        //sign_temp *=-1;
+        tokens[temp++].type = TK_NEG;
       }
+      /*
       if(sign_temp < 0)
-        tokens[i].type = TK_NEG;
+        tokens[i].type = TK_NEG;*/
     }
   }
   
