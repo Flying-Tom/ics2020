@@ -26,7 +26,6 @@ static struct rule {
    */
 
   {" +", TK_NOTYPE},    // spaces
-  {"--", TK_NOTYPE},  // minus-minus
   {"0x[0-9,a-f]+", TK_HEXNUM}, // hexnum
   {"[0-9]+", TK_DECNUM},  // decnum
   {"\\$[a-z]{2,3}",TK_REG},  // reg
