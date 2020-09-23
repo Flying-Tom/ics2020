@@ -210,22 +210,22 @@ static bool check_parenthese(uint32_t p, uint32_t q, expr_error* error)
   return (flag && *error->legal);
 }
 
-static uint32_t singletoken_value(Token x, expr_error* error){
+static uint32_t singletoken_value(Token* x, expr_error* error){
   int temp = 0,i;
-  switch(x.type){
+  switch(x->type){
     case TK_DECNUM : 
-      sscanf(x.str,"%d",&temp);
+      sscanf(x->str,"%d",&temp);
       break;
     case TK_HEXNUM : 
-      sscanf(x.str,"%x",&temp);
+      sscanf(x->str,"%x",&temp);
       break;
     case TK_REG :
     {
       for( i = 0 ; i <= 7 ;i++)
       {
-        if(strcmp(regsl[i],x.str)==0)
+        if(strcmp(regsl[i],x->str)==0)
           return cpu.gpr[i]._32;
-        if(strcmp(regsw[i],x.str)==0)
+        if(strcmp(regsw[i],x->str)==0)
           return (uint32_t)cpu.gpr[i]._16;
         //if(strcmp(regsb[i],x.str)==0)
         //  return ;
@@ -290,7 +290,7 @@ static uint32_t eval(uint32_t p, uint32_t q,expr_error* error){
       return 0;
   }
   else if( p == q ){
-    return singletoken_value(tokens[p],error);
+    return singletoken_value(&tokens[p],error);
   }
   else if (check_parenthese(p,q,error) == true){
     return eval(p+1,q-1,error);
