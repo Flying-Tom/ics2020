@@ -354,10 +354,9 @@ word_t expr(char *e, bool *success) {
   error.legal = success;
   error.type = '\0';
   nr_token--;
-  /*
+
   if ( tokens[0].type == '*' && (tokens[1].type == TK_HEXNUM  || tokens[1].type == TK_DECNUM || tokens[1].type == TK_REG) ) 
     tokens[0].type = TK_DEREF;
-    */
   if ( tokens[0].type == '-' && (tokens[1].type == TK_HEXNUM  ||  tokens[1].type == TK_DECNUM || tokens[1].type == TK_REG) ) 
     tokens[0].type = TK_NEG;
 
