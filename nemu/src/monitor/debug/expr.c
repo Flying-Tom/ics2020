@@ -374,8 +374,6 @@ word_t expr(char *e, bool *success) {
       }
       if(sign_temp < 0)
         tokens[i].type = TK_NEG;
-      else
-        tokens[i].type = TK_NOTYPE;
     }
   }
   
