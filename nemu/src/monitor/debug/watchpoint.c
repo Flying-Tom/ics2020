@@ -98,6 +98,7 @@ bool check_wp(){
       cur->value = cur_value;
       changed = false;
     }
+    printf("1 \n" );
     cur = cur->next;
   }
   return changed;
