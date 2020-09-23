@@ -370,8 +370,7 @@ word_t expr(char *e, bool *success) {
       while(tokens[temp].type == '-')
       { 
         sign_temp *=-1;
-        tokens[temp].type = TK_NOTYPE;
-        tokens[i].type = TK_NEG;
+        tokens[temp++].type = TK_NOTYPE;
       }
       if(sign_temp < 0)
         tokens[i].type = TK_NEG;
