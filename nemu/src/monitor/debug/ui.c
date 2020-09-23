@@ -90,7 +90,7 @@ static int cmd_p(char *args ) {
 static int cmd_de(char *args ) {
   char de_buf[1024]="";
   char* de_buf_p;
-  word_t temp,my_ans,len;
+  word_t temp,my_ans,len,error_cnt=0;
   printf("Test is running\n");
   FILE *fp = fopen(args,"r"),*test_log_fp = fopen("test_log","w");
   fclose(test_log_fp);
@@ -106,12 +106,17 @@ static int cmd_de(char *args ) {
     my_ans =  expr(de_buf_p,&success);
     if( temp != my_ans  && success)
     {
+      error_cnt++;
       fprintf(test_log_fp,"Error! %s == %u != %u \n",de_buf_p,temp,my_ans);
       printf("Error! %s == %u != %u \n",de_buf_p,temp,my_ans);
     }
   }
-  printf("Test finished !\n");
+  if(error_cnt == 0)
+  fprintf(test_log_fp,"Congratulation! You pass the test.\n");
+  else
+  fprintf(test_log_fp,"Sadly, there are %u errors.\n",error_cnt);
   fclose(test_log_fp);
+  printf("Test finished !\n");
   return 0;
 }
 
