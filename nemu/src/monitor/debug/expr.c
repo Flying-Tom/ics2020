@@ -272,7 +272,7 @@ static uint32_t main_operator(uint32_t p, uint32_t q)
     int  judge = 0, location = -1;
     for (int j = 12; j >= 3; j--)
     {
-        judge = 1;
+        judge = 0;
         for (int i = p; i <= q; i++)
         {
             if (tokens[i].type == '(')
