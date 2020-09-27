@@ -398,7 +398,7 @@ word_t expr(char *e, bool *success)
 
     for (i = 1; i < nr_token; i++)
     {
-        if (tokens[i].type == '*' && tokens[i - 1].type != TK_HEXNUM && tokens[i - 1].type != TK_DECNUM && tokens[i - 1].type != TK_REG && tokens[i - 1].type != ')')
+        if (tokens[i].type == '*' && tokens[i - 1].priority !=0 && tokens[i - 1].type != ')')
         {
             temp = i;
             while (tokens[temp].type == '*')
@@ -408,7 +408,7 @@ word_t expr(char *e, bool *success)
             }
         }
 
-        if (tokens[i].type == '-' && tokens[i - 1].type != TK_HEXNUM && tokens[i - 1].type != TK_DECNUM && tokens[i - 1].type != TK_REG && tokens[i - 1].type != ')')
+        if (tokens[i].type == '-' && tokens[i - 1].priority !=0 && tokens[i - 1].type != ')')
         {
             temp = i;
             while (tokens[temp].type == '-')
