@@ -275,7 +275,7 @@ static uint32_t singletoken_value(Token *x, expr_error *error)
 
 static uint32_t main_operator(uint32_t p, uint32_t q)
 {
-    int  judge = 0, location = -1;
+    int judge = 0, location = -1;
     for (int j = 12; j >= 3; j--)
     {
         judge = 0;
@@ -285,6 +285,11 @@ static uint32_t main_operator(uint32_t p, uint32_t q)
                 judge++;
             if (tokens[i].type == ')')
                 judge--;
+            if (tokens[i].priority == 2)
+            {
+                if (judge == 0)
+                    return i;
+            }
             if (tokens[i].priority == j)
             {
                 if (judge == 0)
@@ -295,19 +300,6 @@ static uint32_t main_operator(uint32_t p, uint32_t q)
             return location;
     }
 
-    judge = 0;
-    for (int i = p; i <= q; i++)
-    {
-        if (tokens[i].type == '(')
-            judge++;
-        if (tokens[i].type == ')')
-            judge--;
-        if (tokens[i].priority == 2)
-        {
-            if (judge == 0)
-                return i;
-        }
-    }
     return 0;
 }
 ///////uint32_t
@@ -370,7 +362,7 @@ static int eval(uint32_t p, uint32_t q, expr_error *error)
         default:
             *error->legal = false;
             error->type = 's';
-            printf("type %c, op=%d,p=%d,q=%d\n",tokens[op].type,op,p,q);
+            printf("type %c, op=%d,p=%d,q=%d\n", tokens[op].type, op, p, q);
             printf("error in main expr\n");
         }
     }
