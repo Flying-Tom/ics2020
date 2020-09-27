@@ -285,15 +285,15 @@ static uint32_t main_operator(uint32_t p, uint32_t q)
                 judge++;
             if (tokens[i].type == ')')
                 judge--;
-            if (tokens[i].priority == 2)
-            {
-                if (judge == 0)
-                    return i;
-            }
             if (tokens[i].priority == j)
             {
                 if (judge == 0)
-                    location = i;
+                {
+                    if (j == 2)
+                        return i;
+                    else
+                        location = i;
+                }
             }
         }
         if (location != -1)
