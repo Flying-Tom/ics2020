@@ -263,6 +263,7 @@ static uint32_t singletoken_value(Token *x, expr_error *error)
     default:
         *error->legal = false;
         error->type = 's';
+        printf("error in single\n");
     }
     return temp;
 }
@@ -333,6 +334,7 @@ static int eval(uint32_t p, uint32_t q, expr_error *error)
             default:
                 *error->legal = false;
                 error->type = 's';
+                printf("error in - and *\n");
             }
         }
         switch (tokens[op].type)
@@ -363,6 +365,7 @@ static int eval(uint32_t p, uint32_t q, expr_error *error)
         default:
             *error->legal = false;
             error->type = 's';
+            printf("error in main expr\n");
         }
     }
     return 0;
