@@ -141,19 +141,19 @@ static bool make_token(char *e)
                     strncpy(tokens[nr_token++].str, substr_start + 1, substr_len - 1);
                     break;
                 case '+':
-                    tokens[nr_token++].type = '+';
+                    tokens[nr_token].type = '+';
                     tokens[nr_token++].priority = 4;
                     break;
                 case '-':
-                    tokens[nr_token++].type = '-';
+                    tokens[nr_token].type = '-';
                     tokens[nr_token++].priority = 4;
                     break;
                 case '*':
-                    tokens[nr_token++].type = '*';
+                    tokens[nr_token].type = '*';
                     tokens[nr_token++].priority = 3;
                     break;
                 case '/':
-                    tokens[nr_token++].type = '/';
+                    tokens[nr_token].type = '/';
                     tokens[nr_token++].priority = 3;
                     break;
                 case '(':
@@ -163,15 +163,15 @@ static bool make_token(char *e)
                     tokens[nr_token++].type = ')';
                     break;
                 case TK_AND:
-                    tokens[nr_token++].type = TK_AND;
+                    tokens[nr_token].type = TK_AND;
                     tokens[nr_token++].priority = 11;
                     break;
                 case TK_EQ:
-                    tokens[nr_token++].type = TK_EQ;
+                    tokens[nr_token].type = TK_EQ;
                     tokens[nr_token++].priority = 7;
                     break;
                 case TK_NEG:
-                    tokens[nr_token++].type = TK_NEG;
+                    tokens[nr_token].type = TK_NEG;
                     tokens[nr_token++].priority = 7;
                     break;
                 default:
