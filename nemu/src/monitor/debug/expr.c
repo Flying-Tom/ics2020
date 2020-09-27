@@ -365,6 +365,7 @@ static int eval(uint32_t p, uint32_t q, expr_error *error)
         default:
             *error->legal = false;
             error->type = 's';
+            printf("type %c\n",tokens[op].type);
             printf("error in main expr\n");
         }
     }
