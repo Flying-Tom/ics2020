@@ -438,6 +438,5 @@ word_t expr(char *e, bool *success)
         printf("\033[1m\033[41;37m Wrong \033[0m No such regsiter! \n");
         break;
     }
-    
     return value_temp;
 }
