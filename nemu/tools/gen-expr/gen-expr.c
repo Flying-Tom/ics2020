@@ -42,6 +42,7 @@ static inline void gen(char x){
   buf[bufptr++] = x;
   return;
 }
+
 static inline void gen_rand_expr() {
   if(bufptr>=100)
     return;
