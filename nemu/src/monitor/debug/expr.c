@@ -122,6 +122,7 @@ static bool make_token(char *e)
                         return false;
                     }
                     tokens[nr_token].type = TK_HEXNUM;
+                    tokens[nr_token].priority = 0;
                     memset(tokens[nr_token].str, '\0', sizeof(tokens[nr_token].str));
                     strncpy(tokens[nr_token++].str, substr_start, substr_len);
                     break;
@@ -132,11 +133,13 @@ static bool make_token(char *e)
                         return false;
                     }
                     tokens[nr_token].type = TK_DECNUM;
+                    tokens[nr_token].priority = 0;
                     memset(tokens[nr_token].str, '\0', sizeof(tokens[nr_token].str));
                     strncpy(tokens[nr_token++].str, substr_start, substr_len);
                     break;
                 case TK_REG:
                     tokens[nr_token].type = TK_REG;
+                    tokens[nr_token].priority = 0;
                     memset(tokens[nr_token].str, '\0', sizeof(tokens[nr_token].str));
                     strncpy(tokens[nr_token++].str, substr_start + 1, substr_len - 1);
                     break;
@@ -157,9 +160,11 @@ static bool make_token(char *e)
                     tokens[nr_token++].priority = 3;
                     break;
                 case '(':
+                    tokens[nr_token].priority = 1;
                     tokens[nr_token++].type = '(';
                     break;
                 case ')':
+                    tokens[nr_token].priority = 1;
                     tokens[nr_token++].type = ')';
                     break;
                 case TK_AND:
