@@ -18,7 +18,7 @@ enum
     TK_NEG,
     TK_AND,
     TK_REG,
-    TL_NEG,
+    TK_NEQ,
     TK_DEREF,
 
     /* TODO: Add more token types */
@@ -46,7 +46,7 @@ static struct rule
     {"\\(", '('},                // leftp
     {"\\)", ')'},                // rightp
     {"==", TK_EQ},               // equal
-    {"!=", TK_NEG},              // not equal
+    {"!=", TK_NEQ},              // not equal
     {"&&", TK_AND},              // and
 
 };
@@ -355,7 +355,7 @@ static int eval(uint32_t p, uint32_t q, expr_error *error)
         }
         case TK_EQ:
             return eval(p, op - 1, error) == eval(op + 1, q, error);
-        case TK_NEG:
+        case TK_NEQ:
             return eval(p, op - 1, error) != eval(op + 1, q, error);
         case TK_AND:
             return eval(p, op - 1, error) && eval(op + 1, q, error);
