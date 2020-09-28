@@ -218,28 +218,25 @@ static bool check_parenthese_legal(uint32_t p, uint32_t q)
         return false;
 }
 
-typedef struct error
-{
-    bool *legal;
-    char type;
-} expr_error;
 
-static bool check_parenthese(uint32_t p, uint32_t q, expr_error *error)
+static bool check_parenthese(uint32_t p, uint32_t q, char *error)
 {
     if (p == q)
         return false;
-    bool flag = true;
+    bool flag = true,  errortemp=true;
     if (tokens[p].type != '(' || tokens[q].type != ')')
     {
         flag = false;
-        *error->legal = check_parenthese_legal(p, q);
+        errortemp = check_parenthese_legal(p, q);
     }
     else
-        *error->legal = check_parenthese_legal(p + 1, q - 1);
-    return (flag && *error->legal);
+        errortemp = check_parenthese_legal(p + 1, q - 1);
+    if(!errortemp)
+        *error='(';
+    return (flag && errortemp);
 }
 
-static uint32_t singletoken_value(Token *x, expr_error *error)
+static uint32_t singletoken_value(Token *x, char *error)
 {
     int temp = 0;
     switch (x->type)
@@ -252,15 +249,14 @@ static uint32_t singletoken_value(Token *x, expr_error *error)
         break;
     case TK_REG:
     {
-        temp = isa_reg_str2val(x->str,error->legal);
-        if( *error->legal == false)
-        error->type = 'r';
+        bool success;
+        temp = isa_reg_str2val(x->str,&success);
+        if( success == false)
+        *error = 'r';
         break;
     }
     default:
-        *error->legal = false;
-        error->type = 's';
-        printf("error in single\n");
+        *error = 's';
     }
     return temp;
 }
@@ -295,13 +291,12 @@ static uint32_t main_operator(uint32_t p, uint32_t q)
     return 0;
 }
 ///////uint32_t
-static int eval(uint32_t p, uint32_t q, expr_error *error)
+static int eval(uint32_t p, uint32_t q, char *error)
 {
 
     if (p > q)
     {
-        *error->legal = false;
-        error->type = 's';
+        *error = 's';
         return 0;
     }
     else if (p == q)
@@ -321,9 +316,7 @@ static int eval(uint32_t p, uint32_t q, expr_error *error)
             case TK_DEREF:
                 return paddr_read(temp, 4);
             default:
-                *error->legal = false;
-                error->type = 's';
-                printf("error in - and *\n");
+                *error = 's';
             }
         }
         switch (tokens[op].type)
@@ -339,8 +332,7 @@ static int eval(uint32_t p, uint32_t q, expr_error *error)
             int temp = eval(op + 1, q, error); //uint32_t
             if (temp == 0)
             {
-                *error->legal = false;
-                error->type = '0';
+                *error = '0';
                 temp = 1;
             }
             return eval(p, op - 1, error) / temp;
@@ -352,10 +344,8 @@ static int eval(uint32_t p, uint32_t q, expr_error *error)
         case TK_AND:
             return eval(p, op - 1, error) && eval(op + 1, q, error);
         default:
-            *error->legal = false;
-            error->type = 's';
+            *error = 's';
             printf("type %c, op=%d,p=%d,q=%d\n", tokens[op].type, op, p, q);
-            printf("error in main expr\n");
         }
     }
     return 0;
@@ -370,9 +360,7 @@ word_t expr(char *e, bool *success)
     }
     /* TODO: Insert codes to evaluate the expression. */
     int i, temp;
-    expr_error error;
-    error.legal = success;
-    error.type = '\0';
+    char *error = '\0';
     nr_token--;
 
     temp = 0;
@@ -411,21 +399,24 @@ word_t expr(char *e, bool *success)
         }
     }
 
-    word_t value_temp = eval(0, nr_token, &error);
-    switch (error.type)
+    word_t value_temp = eval(0, nr_token, error);
+    if(*error!='\0')
+    success = false;
+    switch (*error)
     {
     case 's':
-        *error.legal = false;
         printf("\033[1m\033[41;37m Wrong \033[0m A syntax error in expression! \n");
         break;
+    case '(':
+        printf("\033[1m\033[41;37m Wrong \033[0m A syntax error about paretheses in expression ! \n");
+        break;
     case '0':
-        *error.legal = false;
         printf("\033[1m\033[44;37m Warning \033[0m Division by zero! \n");
         break;
     case 'r':
-        *error.legal = false;
         printf("\033[1m\033[41;37m Wrong \033[0m No such regsiter! \n");
         break;
     }
     return value_temp;
+
 }
