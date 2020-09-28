@@ -360,7 +360,7 @@ word_t expr(char *e, bool *success)
     }
     /* TODO: Insert codes to evaluate the expression. */
     int i, temp;
-    char *error = '\0';
+    char error = '1';
     nr_token--;
 
     temp = 0;
@@ -399,10 +399,10 @@ word_t expr(char *e, bool *success)
         }
     }
 
-    word_t value_temp = eval(0, nr_token, error);
-    if(*error!='\0')
+    word_t value_temp = eval(0, nr_token, &error);
+    if(error!='1')
     success = false;
-    switch (*error)
+    switch (error)
     {
     case 's':
         printf("\033[1m\033[41;37m Wrong \033[0m A syntax error in expression! \n");
