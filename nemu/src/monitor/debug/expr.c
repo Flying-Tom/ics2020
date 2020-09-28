@@ -231,8 +231,9 @@ static bool check_parenthese(uint32_t p, uint32_t q, char *error)
     }
     else
         errortemp = check_parenthese_legal(p + 1, q - 1);
+    /*
     if(!errortemp)
-        *error='(';
+        *error='(';*/
     return (flag && errortemp);
 }
 
