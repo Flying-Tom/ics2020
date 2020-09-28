@@ -397,7 +397,7 @@ word_t expr(char *e, bool *success)
             }
         }
     }
-    for(i = 0; i < nr_token; i++)
+    for(i = 0; i <= nr_token; i++)
     priority_used[tokens[i].priority] = (tokens[i].priority >= 2);
     word_t value_temp = eval(0, nr_token, &error);
     if (error != '1')
