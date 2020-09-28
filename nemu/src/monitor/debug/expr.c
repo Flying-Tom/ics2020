@@ -241,7 +241,7 @@ static bool check_parenthese(uint32_t p, uint32_t q, expr_error *error)
 
 static uint32_t singletoken_value(Token *x, expr_error *error)
 {
-    int temp = 0, i;
+    int temp = 0;
     switch (x->type)
     {
     case TK_DECNUM:
@@ -252,16 +252,8 @@ static uint32_t singletoken_value(Token *x, expr_error *error)
         break;
     case TK_REG:
     {
-        for (i = 0; i <= 7; i++)
-        {
-            if (strcmp(regsl[i], x->str) == 0)
-                return cpu.gpr[i]._32;
-            if (strcmp(regsw[i], x->str) == 0)
-                return (uint32_t)cpu.gpr[i]._16;
-            //if(strcmp(regsb[i],x.str)==0)
-            //  return ;
-        }
-        *error->legal = false;
+        temp = isa_reg_str2val(x->str,error->legal);
+        if( *error->legal == false)
         error->type = 'r';
         break;
     }
