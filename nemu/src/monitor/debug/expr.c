@@ -265,8 +265,8 @@ static uint32_t main_operator(uint32_t p, uint32_t q)
     for (int j = 12; j >= 2; j--)
     {
         judge = 0;
-        if(priority_used[j]==0)
-        continue;
+        //if(priority_used[j]==0)
+        //continue;
         for (int i = p; i <= q; i++)
         {
             if (tokens[i].type == '(')
@@ -345,7 +345,6 @@ static int eval(uint32_t p, uint32_t q, char *error)
             return eval(p, op - 1, error) && eval(op + 1, q, error);
         default:
             *error = 's';
-            printf("type %c, op=%d,p=%d,q=%d\n", tokens[op].type, op, p, q);
         }
     }
     return 0;
