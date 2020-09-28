@@ -401,7 +401,7 @@ word_t expr(char *e, bool *success)
 
     word_t value_temp = eval(0, nr_token, &error);
     if(error!='1')
-    success = false;
+    *success = false;
     switch (error)
     {
     case 's':
