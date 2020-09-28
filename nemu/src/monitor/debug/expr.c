@@ -83,6 +83,7 @@ typedef struct token
 
 static Token tokens[128] __attribute__((used)) = {};
 static int nr_token __attribute__((used)) = 0;
+static int priority_used[16] = {};
 
 static bool make_token(char *e)
 {
@@ -218,12 +219,11 @@ static bool check_parenthese_legal(uint32_t p, uint32_t q)
         return false;
 }
 
-
 static bool check_parenthese(uint32_t p, uint32_t q, char *error)
 {
     if (p == q)
         return false;
-    bool flag = true,  errortemp=true;
+    bool flag = true, errortemp = true;
     if (tokens[p].type != '(' || tokens[q].type != ')')
     {
         flag = false;
@@ -231,9 +231,6 @@ static bool check_parenthese(uint32_t p, uint32_t q, char *error)
     }
     else
         errortemp = check_parenthese_legal(p + 1, q - 1);
-    /*
-    if(!errortemp)
-        *error='(';*/
     return (flag && errortemp);
 }
 
@@ -251,9 +248,9 @@ static uint32_t singletoken_value(Token *x, char *error)
     case TK_REG:
     {
         bool success;
-        temp = isa_reg_str2val(x->str,&success);
-        if( success == false)
-        *error = 'r';
+        temp = isa_reg_str2val(x->str, &success);
+        if (success == false)
+            *error = 'r';
         break;
     }
     default:
@@ -268,6 +265,8 @@ static uint32_t main_operator(uint32_t p, uint32_t q)
     for (int j = 12; j >= 2; j--)
     {
         judge = 0;
+        if(priority_used[j]==0)
+        continue;
         for (int i = p; i <= q; i++)
         {
             if (tokens[i].type == '(')
@@ -379,7 +378,7 @@ word_t expr(char *e, bool *success)
 
     for (i = 1; i < nr_token; i++)
     {
-        if (tokens[i].type == '*' && tokens[i - 1].priority !=0 && tokens[i - 1].type != ')')
+        if (tokens[i].type == '*' && tokens[i - 1].priority != 0 && tokens[i - 1].type != ')')
         {
             temp = i;
             while (tokens[temp].type == '*')
@@ -389,7 +388,7 @@ word_t expr(char *e, bool *success)
             }
         }
 
-        if (tokens[i].type == '-' && tokens[i - 1].priority !=0 && tokens[i - 1].type != ')')
+        if (tokens[i].type == '-' && tokens[i - 1].priority != 0 && tokens[i - 1].type != ')')
         {
             temp = i;
             while (tokens[temp].type == '-')
@@ -399,10 +398,11 @@ word_t expr(char *e, bool *success)
             }
         }
     }
-
+    for(i = 0; i < nr_token; i++)
+    priority_used[i] = (tokens[i].priority >= 2);
     word_t value_temp = eval(0, nr_token, &error);
-    if(error!='1')
-    *success = false;
+    if (error != '1')
+        *success = false;
     switch (error)
     {
     case 's':
@@ -419,5 +419,4 @@ word_t expr(char *e, bool *success)
         break;
     }
     return value_temp;
-
 }
