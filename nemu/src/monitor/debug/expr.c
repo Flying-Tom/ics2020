@@ -208,10 +208,8 @@ static bool check_parenthese_legal(uint32_t p, uint32_t q)
     {
         if (cnt < 0)
             return false;
-        if (tokens[i].type == '(')
-            cnt++;
-        if (tokens[i].type == ')')
-            cnt--;
+        cnt += (tokens[i].type == '(');
+        cnt -= (tokens[i].type == ')');
     }
     if (cnt == 0)
         return true;
@@ -269,10 +267,8 @@ static uint32_t main_operator(uint32_t p, uint32_t q)
         //continue;
         for (int i = p; i <= q; i++)
         {
-            if (tokens[i].type == '(')
-                judge++;
-            if (tokens[i].type == ')')
-                judge--;
+            judge += (tokens[i].type == '(');
+            judge -= (tokens[i].type == ')');
             if (tokens[i].priority == j)
             {
                 if (judge == 0)
@@ -331,11 +327,8 @@ static int eval(uint32_t p, uint32_t q, char *error)
         {
             int temp = eval(op + 1, q, error); //uint32_t
             if (temp == 0)
-            {
                 *error = '0';
-                temp = 1;
-            }
-            return eval(p, op - 1, error) / temp;
+            return eval(p, op - 1, error);
         }
         case TK_EQ:
             return eval(p, op - 1, error) == eval(op + 1, q, error);
@@ -358,11 +351,9 @@ word_t expr(char *e, bool *success)
         return 0;
     }
     /* TODO: Insert codes to evaluate the expression. */
-    int i, temp;
+    int i, temp = 0;
     char error = '1';
     nr_token--;
-
-    temp = 0;
     while (tokens[temp].type == '*')
     {
         tokens[temp].type = TK_DEREF;
@@ -397,8 +388,8 @@ word_t expr(char *e, bool *success)
             }
         }
     }
-    for(i = 0; i <= nr_token; i++)
-    priority_used[tokens[i].priority] = (tokens[i].priority >= 2);
+    for (i = 0; i <= nr_token; i++)
+        priority_used[tokens[i].priority] = (tokens[i].priority >= 2);
     word_t value_temp = eval(0, nr_token, &error);
     if (error != '1')
         *success = false;
