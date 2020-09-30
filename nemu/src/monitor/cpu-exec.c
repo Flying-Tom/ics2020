@@ -28,7 +28,7 @@ void asm_print(vaddr_t this_pc, int instr_len, bool print_flag);
 int is_exit_status_bad() {
   int good = (nemu_state.state == NEMU_END && nemu_state.halt_ret == 0) ||
     (nemu_state.state == NEMU_QUIT);
-  return !good;
+  return good;
 }
 
 void rtl_exit(int state, vaddr_t halt_pc, uint32_t halt_ret) {
