@@ -286,8 +286,8 @@ static uint32_t main_operator(uint32_t p, uint32_t q)
 
     return 0;
 }
-///////uint32_t
-static int eval(uint32_t p, uint32_t q, char *error)
+
+static word_t eval(uint32_t p, uint32_t q, char *error)
 {
 
     if (p > q)
@@ -301,10 +301,10 @@ static int eval(uint32_t p, uint32_t q, char *error)
         return eval(p + 1, q - 1, error);
     else
     {
-        uint32_t op = main_operator(p, q);
+        word_t op = main_operator(p, q);
         if (tokens[op].type == TK_DEREF || tokens[op].type == TK_NEG)
         {
-            int temp = eval(op + 1, q, error); //uint32_t
+            int temp = eval(op + 1, q, error); 
             switch (tokens[op].type)
             {
             case TK_NEG:
@@ -325,7 +325,7 @@ static int eval(uint32_t p, uint32_t q, char *error)
             return eval(p, op - 1, error) * eval(op + 1, q, error);
         case '/':
         {
-            int temp = eval(op + 1, q, error); //uint32_t
+            word_t temp = eval(op + 1, q, error); 
             if (temp == 0)
             {
                 *error = '0';
