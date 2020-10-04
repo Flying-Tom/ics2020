@@ -123,5 +123,4 @@ count:
 	git rev-parse HEAD | git diff --stat e9616d8cfb8b6b9807cde9567ad23d2b9024c4c1
 
 pa2:
-	TEMP := $(shell cd ../am-kernels/tests/cpu-tests/)
-	TEMP := $(shell make ARCH=x86-nemu ALL=dummy run)
+	cd ../am-kernels/tests/cpu-tests/ && make ARCH=x86-nemu ALL=dummy run
