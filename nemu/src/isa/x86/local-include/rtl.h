@@ -54,7 +54,7 @@ static inline def_rtl(pop, rtlreg_t *dest)
 {
     // dest <- M[esp]
     // esp <- esp + 4
-    //rtl_lm(s, dest, 0, &cpu.esp, 4);
+    rtl_lm(s, dest, &cpu.esp , 0 , 4);
     rtl_addi(s, &cpu.esp, &cpu.esp, 4);
 }
 
