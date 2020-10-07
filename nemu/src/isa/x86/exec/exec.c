@@ -141,6 +141,8 @@ again:
         IDEX(0xf7, E, gp3)
         IDEXW(0xfe, E, gp4, 1)
         IDEX(0xff, E, gp5)
+        /////////////////////
+        IDEX(0xe8, E, call)
     case 0x66:
         s->isa.is_operand_size_16 = true;
         goto again;
