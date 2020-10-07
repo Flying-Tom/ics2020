@@ -54,7 +54,7 @@ static inline def_rtl(pop, rtlreg_t *dest)
 {
     // dest <- M[esp]
     // esp <- esp + 4
-    rtl_lm(s, dest, &cpu.esp , 0 , 4);
+    rtl_lm(s, dest, &cpu.esp, 0, 4);
     rtl_addi(s, &cpu.esp, &cpu.esp, 4);
 }
 
@@ -101,9 +101,10 @@ def_rtl_setget_eflags(CF)
         def_rtl_setget_eflags(ZF)
             def_rtl_setget_eflags(SF)
 
-                static inline def_rtl(update_ZF, const rtlreg_t *result, int width)
+static inline def_rtl(update_ZF, const rtlreg_t *result, int width)
 {
     // eflags.ZF <- is_zero(result[width * 8 - 1 .. 0])
+    
     TODO();
 }
 
