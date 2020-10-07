@@ -74,11 +74,24 @@ static inline def_rtl(pop, rtlreg_t *dest)
     }
 }
 
+static inline rtlreg_t is_overflow(const rtlreg_t *src1, char op, const rtlreg_t *src2)
+{
+    switch (op)
+    {
+    case '+':
+        return ((sword_t)(*src1) + (sword_t)(*src2) == *src1 + *src2);
+    case '-':
+        return ((sword_t)(*src1) - (sword_t)(*src2) == *src1 - *src2);
+    }
+    assert(0);
+    return 0;
+}
+
 static inline def_rtl(is_sub_overflow, rtlreg_t *dest,
                       const rtlreg_t *res, const rtlreg_t *src1, const rtlreg_t *src2, int width)
 {
     // dest <- is_overflow(src1 - src2)
-    TODO();
+    *dest = is_overflow(src1, '-', src2);
 }
 
 static inline def_rtl(is_sub_carry, rtlreg_t *dest,
@@ -92,7 +105,7 @@ static inline def_rtl(is_add_overflow, rtlreg_t *dest,
                       const rtlreg_t *res, const rtlreg_t *src1, const rtlreg_t *src2, int width)
 {
     // dest <- is_overflow(src1 + src2)
-    TODO();
+    *dest = is_overflow(src1, '+', src2);
 }
 
 static inline def_rtl(is_add_carry, rtlreg_t *dest,
@@ -117,7 +130,7 @@ def_rtl_setget_eflags(CF)
         def_rtl_setget_eflags(ZF)
             def_rtl_setget_eflags(SF)
 
-static inline def_rtl(update_ZF, const rtlreg_t *result, int width)
+                static inline def_rtl(update_ZF, const rtlreg_t *result, int width)
 {
     // eflags.ZF <- is_zero(result[width * 8 - 1 .. 0])
     cpu.eflags.ZF = (*result == 0);
