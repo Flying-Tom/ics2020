@@ -3,7 +3,6 @@
 
 #include <common.h>
 
-
 // memory
 #define x86_IMAGE_START 0x100000
 #define x86_PMEM_BASE 0x0
@@ -17,36 +16,45 @@
  * For more details about the register encoding scheme, see i386 manual.
  */
 
-typedef struct {
-  union{
-    	union{
-	    	uint32_t _32;
-    		uint16_t _16;
-     		uint8_t _8[2];
-	     } gpr[8];
+typedef struct
+{
+    union
+    {
+        union
+        {
+            uint32_t _32;
+            uint16_t _16;
+            uint8_t _8[2];
+        } gpr[8];
 
-  /* Do NOT change the order of the GPRs' definitions. */
+        /* Do NOT change the order of the GPRs' definitions. */
 
-  /* In NEMU, rtlreg_t is exactly uint32_t. This makes RTL instructions
+        /* In NEMU, rtlreg_t is exactly uint32_t. This makes RTL instructions
    * in PA2 able to directly access these registers.
    */
- 
-  struct{
-  	rtlreg_t eax, ecx, edx, ebx, esp, ebp, esi, edi;
-  };
 
-};
+        struct
+        {
+            rtlreg_t eax, ecx, edx, ebx, esp, ebp, esi, edi;
+        };
+    };
 
-  vaddr_t pc;
+    struct
+    {
+        rtlreg_t CF, OF, ZF, SF;
+    } eflags;
+
+    vaddr_t pc;
 } x86_CPU_state;
 
 // decode
-typedef struct {
-  bool is_operand_size_16;
-  uint8_t ext_opcode;
-  const rtlreg_t *mbase;
-  rtlreg_t mbr;
-  word_t moff;
+typedef struct
+{
+    bool is_operand_size_16;
+    uint8_t ext_opcode;
+    const rtlreg_t *mbase;
+    rtlreg_t mbr;
+    word_t moff;
 } x86_ISADecodeInfo;
 
 #define suffix_char(width) ((width) == 4 ? 'l' : ((width) == 1 ? 'b' : ((width) == 2 ? 'w' : '?')))

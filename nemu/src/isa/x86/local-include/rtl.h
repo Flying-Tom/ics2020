@@ -120,13 +120,13 @@ def_rtl_setget_eflags(CF)
                 static inline def_rtl(update_ZF, const rtlreg_t *result, int width)
 {
     // eflags.ZF <- is_zero(result[width * 8 - 1 .. 0])
-
-    TODO();
+    cpu.eflags.ZF = (*result == 0);
 }
 
 static inline def_rtl(update_SF, const rtlreg_t *result, int width)
 {
     // eflags.SF <- is_sign(result[width * 8 - 1 .. 0])
+    rtl_shri(s, &cpu.eflags.SF, result, width * 8 - 1);
     TODO();
 }
 
