@@ -46,8 +46,16 @@ static inline def_rtl(push, const rtlreg_t *src1)
 {
     // esp <- esp - 4
     // M[esp] <- src1
-    rtl_subi(s, &cpu.esp, &cpu.esp, 4);
-    rtl_sm(s, &cpu.esp, 0, src1, 4);
+    if (s->isa.is_operand_size_16)
+    {
+        rtl_subi(s, &cpu.esp, &cpu.esp, 2);
+        rtl_sm(s, &cpu.esp, 0, src1, 2);
+    }
+    else
+    {
+        rtl_subi(s, &cpu.esp, &cpu.esp, 4);
+        rtl_sm(s, &cpu.esp, 0, src1, 4);
+    }
 }
 
 static inline def_rtl(pop, rtlreg_t *dest)
@@ -101,10 +109,10 @@ def_rtl_setget_eflags(CF)
         def_rtl_setget_eflags(ZF)
             def_rtl_setget_eflags(SF)
 
-static inline def_rtl(update_ZF, const rtlreg_t *result, int width)
+                static inline def_rtl(update_ZF, const rtlreg_t *result, int width)
 {
     // eflags.ZF <- is_zero(result[width * 8 - 1 .. 0])
-    
+
     TODO();
 }
 
