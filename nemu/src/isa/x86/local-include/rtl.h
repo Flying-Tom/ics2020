@@ -76,15 +76,22 @@ static inline def_rtl(pop, rtlreg_t *dest)
 
 static inline rtlreg_t is_overflow(const rtlreg_t *src1, char op, const rtlreg_t *src2)
 {
+    /*rtlreg_t res;
     switch (op)
     {
     case '+':
-        return ((sword_t)(*src1) + (sword_t)(*src2) == *src1 + *src2);
+        res = *src1 + *src2;
+        break;
     case '-':
-        return ((sword_t)(*src1) - (sword_t)(*src2) == *src1 - *src2);
-    }
-    assert(0);
+        res = *src1 - *src2;
+        break;
+    }*/
     return 0;
+}
+
+static inline rtlreg_t is_carry(const rtlreg_t *src1, char op, const rtlreg_t *src2)
+{
+    return 1;
 }
 
 static inline def_rtl(is_sub_overflow, rtlreg_t *dest,
@@ -98,7 +105,7 @@ static inline def_rtl(is_sub_carry, rtlreg_t *dest,
                       const rtlreg_t *src1, const rtlreg_t *src2)
 {
     // dest <- is_carry(src1 - src2)
-    TODO();
+    *dest = is_carry(src1, '-', src2);
 }
 
 static inline def_rtl(is_add_overflow, rtlreg_t *dest,
@@ -112,7 +119,7 @@ static inline def_rtl(is_add_carry, rtlreg_t *dest,
                       const rtlreg_t *res, const rtlreg_t *src1)
 {
     // dest <- is_carry(src1 + src2)
-    TODO();
+    *dest = is_carry(src1, '+', res);
 }
 
 #define def_rtl_setget_eflags(f)                                \
