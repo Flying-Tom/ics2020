@@ -41,7 +41,7 @@ typedef struct
 
     struct
     {
-        rtlreg_t CF, OF, ZF, SF;
+        rtlreg_t CF, ZF, SF, IF, OF;
     } eflags;
 
     vaddr_t pc;
