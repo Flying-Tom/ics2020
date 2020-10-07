@@ -23,8 +23,8 @@ static inline def_EHelper(gp1)
         EMPTY(2)
         EMPTY(3)
         EMPTY(4)
-        EMPTY(5) 
-        IDEXW(6,G2E,sub,1)
+        IDEXW(5,G2E,sub,1) 
+        EMPTY(6)
         EMPTY(7)
     }
 }
