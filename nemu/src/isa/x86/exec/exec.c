@@ -19,8 +19,13 @@ static inline def_EHelper(gp1)
     switch (s->isa.ext_opcode)
     {
         EMPTY(0)
-        EMPTY(1) EMPTY(2) EMPTY(3)
-            EMPTY(4) EMPTY(5) EMPTY(6) EMPTY(7)
+        EMPTY(1)
+        EMPTY(2)
+        EMPTY(3)
+        EMPTY(4)
+        EMPTY(5) 
+        EX(6,sub); 
+        EMPTY(7)
     }
 }
 
@@ -30,7 +35,8 @@ static inline def_EHelper(gp2)
     switch (s->isa.ext_opcode)
     {
         EMPTY(0)
-        EMPTY(1) EMPTY(2) EMPTY(3)
+        EMPTY(1)
+        EMPTY(2) EMPTY(3)
             EMPTY(4) EMPTY(5) EMPTY(6) EMPTY(7)
     }
 }
@@ -41,7 +47,8 @@ static inline def_EHelper(gp3)
     switch (s->isa.ext_opcode)
     {
         EMPTY(0)
-        EMPTY(1) EMPTY(2) EMPTY(3)
+        EMPTY(1)
+        EMPTY(2) EMPTY(3)
             EMPTY(4) EMPTY(5) EMPTY(6) EMPTY(7)
     }
 }
@@ -52,7 +59,8 @@ static inline def_EHelper(gp4)
     switch (s->isa.ext_opcode)
     {
         EMPTY(0)
-        EMPTY(1) EMPTY(2) EMPTY(3)
+        EMPTY(1)
+        EMPTY(2) EMPTY(3)
             EMPTY(4) EMPTY(5) EMPTY(6) EMPTY(7)
     }
 }
@@ -63,7 +71,8 @@ static inline def_EHelper(gp5)
     switch (s->isa.ext_opcode)
     {
         EMPTY(0)
-        EMPTY(1) EMPTY(2) EMPTY(3)
+        EMPTY(1)
+        EMPTY(2) EMPTY(3)
             EMPTY(4) EMPTY(5) EMPTY(6) EMPTY(7)
     }
 }
@@ -74,7 +83,8 @@ static inline def_EHelper(gp7)
     switch (s->isa.ext_opcode)
     {
         EMPTY(0)
-        EMPTY(1) EMPTY(2) EMPTY(3)
+        EMPTY(1)
+        EMPTY(2) EMPTY(3)
             EMPTY(4) EMPTY(5) EMPTY(6) EMPTY(7)
     }
 }
@@ -103,7 +113,7 @@ again:
         EX(0x0f, 2byte_esc)
         IDEXW(0x80, I2E, gp1, 1)
         IDEX(0x81, I2E, gp1)
-        //IDEX(0x83, SI2E, gp1)
+        IDEX(0x83, SI2E, gp1)
         IDEXW(0x88, mov_G2E, mov, 1)
         IDEX(0x89, mov_G2E, mov)
         IDEXW(0x8a, mov_E2G, mov, 1)
