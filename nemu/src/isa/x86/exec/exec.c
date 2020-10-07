@@ -72,8 +72,12 @@ static inline def_EHelper(gp5)
     {
         EMPTY(0)
         EMPTY(1)
-        EMPTY(2) EMPTY(3)
-            EMPTY(4) EMPTY(5) EMPTY(6) EMPTY(7)
+        EMPTY(2) 
+        EMPTY(3)
+        EMPTY(4) 
+        EMPTY(5) 
+        IDEX(6,r,push) 
+        EMPTY(7)
     }
 }
 
@@ -153,8 +157,7 @@ again:
         IDEX(0xff, E, gp5)
         /////////////////////
         IDEX(0xe8, J, call)
-        IDEX(0x55, I, push)
-        //IDEX(0x83, G2E, sub)
+        //IDEX(0x55, I, push)
     case 0x66:
         s->isa.is_operand_size_16 = true;
         goto again;
