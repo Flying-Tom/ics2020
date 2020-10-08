@@ -23,7 +23,7 @@ static inline def_EHelper(gp1)
         EMPTY(2)
         EMPTY(3)
         EMPTY(4)
-        IDEXW(5,mov_G2E,sub,1) 
+        IDEXW(5, mov_G2E, sub, 1)
         EMPTY(6)
         EMPTY(7)
     }
@@ -36,7 +36,8 @@ static inline def_EHelper(gp2)
     {
         EMPTY(0)
         EMPTY(1)
-        EMPTY(2) EMPTY(3)
+        EMPTY(2)
+        EMPTY(3)
             EMPTY(4) EMPTY(5) EMPTY(6) EMPTY(7)
     }
 }
@@ -48,7 +49,8 @@ static inline def_EHelper(gp3)
     {
         EMPTY(0)
         EMPTY(1)
-        EMPTY(2) EMPTY(3)
+        EMPTY(2)
+        EMPTY(3)
             EMPTY(4) EMPTY(5) EMPTY(6) EMPTY(7)
     }
 }
@@ -60,7 +62,8 @@ static inline def_EHelper(gp4)
     {
         EMPTY(0)
         EMPTY(1)
-        EMPTY(2) EMPTY(3)
+        EMPTY(2)
+        EMPTY(3)
             EMPTY(4) EMPTY(5) EMPTY(6) EMPTY(7)
     }
 }
@@ -72,11 +75,11 @@ static inline def_EHelper(gp5)
     {
         EMPTY(0)
         EMPTY(1)
-        EMPTY(2) 
+        EMPTY(2)
         EMPTY(3)
-        EMPTY(4) 
-        EMPTY(5) 
-        IDEX(6,r,push) 
+        EMPTY(4)
+        EMPTY(5)
+        IDEX(6, r, push)
         EMPTY(7)
     }
 }
@@ -88,7 +91,8 @@ static inline def_EHelper(gp7)
     {
         EMPTY(0)
         EMPTY(1)
-        EMPTY(2) EMPTY(3)
+        EMPTY(2)
+        EMPTY(3)
             EMPTY(4) EMPTY(5) EMPTY(6) EMPTY(7)
     }
 }
@@ -159,7 +163,7 @@ again:
         IDEX(0xe8, J, call)
         IDEX(0x55, r, push)
         IDEX(0x6a, I, push)
-        IDEXW(0x68, I, push,4)
+        IDEXW(0x68, I, push, 4)
     case 0x66:
         s->isa.is_operand_size_16 = true;
         goto again;
