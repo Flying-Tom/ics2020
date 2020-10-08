@@ -23,7 +23,7 @@ static inline def_EHelper(gp1)
         EMPTY(2)
         EMPTY(3)
         EMPTY(4)
-        IDEX(5, mov_G2E, sub)
+        IDEX(5, G2E, sub)
         EMPTY(6)
         EMPTY(7)
     }
