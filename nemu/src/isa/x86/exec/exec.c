@@ -23,7 +23,7 @@ static inline def_EHelper(gp1)
         EMPTY(2)
         EMPTY(3)
         EMPTY(4)
-        IDEX(5,I2E,sub) 
+        IDEXW(5,I2E,sub,1) 
         EMPTY(6)
         EMPTY(7)
     }
@@ -157,7 +157,6 @@ again:
         IDEX(0xff, E, gp5)
         /////////////////////
         IDEX(0xe8, J, call)
-        
         IDEX(0x55, r, push)
         IDEX(0x6a, I, push)
         IDEX(0x68, I, push)
