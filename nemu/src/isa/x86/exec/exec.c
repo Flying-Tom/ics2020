@@ -164,7 +164,15 @@ again:
         IDEX(0x55, r, push)
         IDEX(0x6a, I, push)
         IDEX(0x68, I, push)
+        ////////////////////
+        IDEX(0x30, G2E,xor)
         IDEX(0x31, G2E,xor)
+        IDEX(0x32, E2G,xor) // XOR r8,r/m8
+        IDEX(0x33, E2G,xor)
+        IDEX(0x34, I2a,xor)
+        IDEX(0x35, I2a,xor)
+        ////////////////////
+
         EX(0xc3, ret)
     case 0x66:
         s->isa.is_operand_size_16 = true;
