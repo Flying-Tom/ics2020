@@ -168,7 +168,7 @@ again:
         IDEX(0x30, G2E,xor)
         IDEX(0x31, G2E,xor)
         IDEX(0x32, E2G,xor) // XOR r8,r/m8
-        IDEX(0x33, E2G,xor)
+        //IDEX(0x33, E2G,xor)
         IDEX(0x34, I2a,xor)
         IDEX(0x35, I2a,xor)
         ////////////////////
