@@ -50,8 +50,8 @@ static inline def_EHelper(ret)
     }
     else
     {
-        rtl_pop(s, &s->seq_pc);
-        rtl_j(s, s->jmp_pc);
+        rtl_pop(s,s0);
+        rtl_j(s, *s0);
     }
     print_asm("ret");
 }
