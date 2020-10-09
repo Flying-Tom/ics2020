@@ -159,19 +159,20 @@ again:
         IDEX(0xf7, E, gp3)
         IDEXW(0xfe, E, gp4, 1)
         IDEX(0xff, E, gp5)
-        /////////////////////
+        ///////////////////
         IDEX(0xe8, J, call)
+        ///////////////////
         IDEX(0x55, r, push)
         IDEX(0x6a, I, push)
         IDEX(0x68, I, push)
-        ////////////////////
+        ///////////////////
         IDEX(0x30, G2E,xor)
         IDEX(0x31, G2E,xor)
         IDEX(0x32, E2G,xor) // XOR r8,r/m8
-        //IDEX(0x33, E2G,xor)
+        IDEX(0x33, E2G,xor)
         IDEX(0x34, I2a,xor)
         IDEX(0x35, I2a,xor)
-        ////////////////////
+        ///////////////////
 
         EX(0xc3, ret)
     case 0x66:
