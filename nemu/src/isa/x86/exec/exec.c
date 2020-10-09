@@ -162,7 +162,14 @@ again:
         ///////////////////
         IDEX(0xe8, J, call)
         ///////////////////
+        IDEX(0x50, r, push)
+        IDEX(0x51, r, push)
+        IDEX(0x52, r, push)
+        IDEX(0x53, r, push)
+        IDEX(0x54, r, push)
         IDEX(0x55, r, push)
+        IDEX(0x56, r, push)
+        IDEX(0x57, r, push)
         IDEX(0x6a, I, push)
         IDEX(0x68, I, push)
         ///////////////////

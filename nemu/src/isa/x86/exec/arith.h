@@ -19,8 +19,17 @@ static inline void cmp_internal(DecodeExecState *s)
 
 static inline def_EHelper(sub)
 {
-    rtl_sub(s, s0, ddest, dsrc1);
-    operand_write(s,id_dest,s0);
+    if (id_src1->width == 1 && id_dest->width >= 2)
+    {
+        rtl_sext(s,dsrc1,dsrc1,id_src1->width);
+        rtl_sub(s, s0, ddest, dsrc1);
+        operand_write(s, id_dest, s0);
+    }
+    else
+    {
+        rtl_sub(s, s0, ddest, dsrc1);
+        operand_write(s, id_dest, s0);
+    }
     print_asm_template2(sub);
 }
 
