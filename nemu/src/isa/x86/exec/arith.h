@@ -25,7 +25,7 @@ static inline def_EHelper(sub)
         operand_write(s,id_src1,s0);
     }
     rtl_sub(s, s0, ddest, dsrc1);
-    operand_write(s,id_dest,ddest);
+    operand_write(s,id_dest,s0);
     print_asm_template2(sub);
 }
 
