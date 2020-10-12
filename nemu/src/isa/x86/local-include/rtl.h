@@ -76,16 +76,9 @@ static inline def_rtl(pop, rtlreg_t *dest)
 
 static inline rtlreg_t is_overflow(const rtlreg_t *src1, char op, const rtlreg_t *src2)
 {
-    /*rtlreg_t res;
-    switch (op)
-    {
-    case '+':
-        res = *src1 + *src2;
-        break;
-    case '-':
-        res = *src1 - *src2;
-        break;
-    }*/
+    /*
+    rtl_msb(t0,src1,id_src1->width);
+    rtl_msb(t1,src1,id_src1->width);*/
     return 0;
 }
 
