@@ -180,7 +180,7 @@ again:
         IDEX(0x34, I2a,xor)
         IDEX(0x35, I2a,xor)
         ///////////////////
-        IDEX(0x8d, G2E,lea)
+        IDEX(0x8d, E2G,lea)
 
         EX(0xc3, ret)
     case 0x66:
