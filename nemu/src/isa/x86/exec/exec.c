@@ -79,8 +79,8 @@ static inline def_EHelper(gp5)
         EMPTY(3)
         EMPTY(4)
         EMPTY(5)
-        //EMPTY(6)
-        EX(6,push)
+        EMPTY(6)
+        //EX(6,push)
         EMPTY(7)
     }
 }
