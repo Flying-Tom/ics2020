@@ -42,7 +42,17 @@ static inline def_EHelper(sub)
 
 static inline def_EHelper(cmp)
 {
-    TODO();
+    if (id_src1->width == 1 && id_dest->width >= 2)
+    {    
+        rtl_sext(s, s0, dsrc1, id_src1->width);
+        operand_write(s,id_src1,s0);
+    }
+    rtl_sub(s, s0, ddest, dsrc1);
+    rtl_update_ZFSF(s,s0,id_dest->width);
+    rtl_is_sub_carry(s,s1,s0,dsrc1);
+    rtl_set_CF(s,s1);
+    rtl_is_sub_overflow(s,s2,s0,ddest,dsrc1,id_dest->width);
+    rtl_set_OF(s,s2);
 }
 
 static inline def_EHelper(inc)
