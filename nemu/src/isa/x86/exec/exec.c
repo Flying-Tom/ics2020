@@ -186,6 +186,7 @@ again:
         IDEX(0x01,G2E,add)
 
         EX(0xc3, ret)
+        EX(0x90, nop)
     case 0x66:
         s->isa.is_operand_size_16 = true;
         goto again;
