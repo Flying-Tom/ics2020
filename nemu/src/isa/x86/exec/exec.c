@@ -182,9 +182,11 @@ again:
         IDEX(0x35, I2a,xor)
         ///////////////////
         IDEX(0x8d, E2G,lea)
-        //////////////////
+        ///////////////////
         IDEX(0x01,G2E,add)
         IDEX(0x03,E2G,add)
+        ///////////////////
+        IDEX(0x13,E2G,adc)
 
         EX(0xc3, ret)
         EX(0x90, nop)
