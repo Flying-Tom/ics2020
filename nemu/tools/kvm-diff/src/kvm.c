@@ -318,9 +318,9 @@ void difftest_getregs(void *r)
     struct kvm_regs *ref = &(vcpu.kvm_run->s.regs.regs);
     x86_CPU_state *x86 = r;
     x86->eax = ref->rax;
-    x86->ebx = ref->rbx;
     x86->ecx = ref->rcx;
     x86->edx = ref->rdx;
+    x86->ebx = ref->rbx;
     x86->esp = ref->rsp;
     x86->ebp = ref->rbp;
     x86->esi = ref->rsi;
@@ -345,15 +345,15 @@ void difftest_setregs(const void *r)
     struct kvm_regs *ref = &(vcpu.kvm_run->s.regs.regs);
     const x86_CPU_state *x86 = r;
     ref->rax = x86->eax;
-    ref->rbx = x86->ebx;
     ref->rcx = x86->ecx;
     ref->rdx = x86->edx;
+    ref->rbx = x86->ebx;
     ref->rsp = x86->esp;
     ref->rbp = x86->ebp;
     ref->rsi = x86->esi;
     ref->rdi = x86->edi;
     ref->rip = x86->pc;
-   /*
+    /*
     ref->rax = x86->eax;
     ref->rcx = x86->ecx;
     ref->rdx = x86->edx;
