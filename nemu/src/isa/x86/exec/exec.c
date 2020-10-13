@@ -184,6 +184,7 @@ again:
         IDEX(0x8d, E2G,lea)
         //////////////////
         IDEX(0x01,G2E,add)
+        IDEX(0x03,E2G,add)
 
         EX(0xc3, ret)
         EX(0x90, nop)
