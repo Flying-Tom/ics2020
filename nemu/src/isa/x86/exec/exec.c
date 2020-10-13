@@ -193,7 +193,7 @@ again:
         ///////////////////
         IDEX(0x13,E2G,adc)
         ///////////////////
-        IDEX(0x74,I, jcc)
+        IDEX(0x74,J, jcc)
         EX(0xc3, ret)
         EX(0x90, nop)
     case 0x66:
