@@ -95,10 +95,12 @@ static inline def_rtl(is_sub_overflow, rtlreg_t *dest,
 }
 
 static inline def_rtl(is_sub_carry, rtlreg_t *dest,
-                      const rtlreg_t *src1, const rtlreg_t *src2)
+                    const rtlreg_t *src1, const rtlreg_t *src2)
 {
     // dest <- is_carry(src1 - src2)
-    *dest = is_carry(src1, '-', src2);
+    rtl_sub(s,t0,src1,src2),
+    rtl_setrelop(s,RELOP_LTU, t1, src1, t0);
+    *dest = *t0;
 }
 
 static inline def_rtl(is_add_overflow, rtlreg_t *dest,
