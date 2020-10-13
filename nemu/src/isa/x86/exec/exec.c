@@ -192,7 +192,8 @@ again:
         IDEX(0x03,mov_E2G,add)
         ///////////////////
         IDEX(0x13,E2G,adc)
-
+        ///////////////////
+        EX(0x74, jcc)
         EX(0xc3, ret)
         EX(0x90, nop)
     case 0x66:
