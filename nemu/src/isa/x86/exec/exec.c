@@ -79,7 +79,7 @@ static inline def_EHelper(gp5)
         EMPTY(3)
         EMPTY(4)
         EMPTY(5)
-        IDEX(6, r, push)
+        IDEX(6, E, push)
         EMPTY(7)
     }
 }
