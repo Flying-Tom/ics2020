@@ -74,47 +74,48 @@ static inline def_rtl(pop, rtlreg_t *dest)
     }
 }
 
-static inline rtlreg_t is_overflow(const rtlreg_t *src1, char op, const rtlreg_t *src2)
-{
-    /*
-    rtl_msb(t0,src1,id_src1->width);
-    rtl_msb(t1,src1,id_src1->width);*/
-    return 0;
-}
-
-static inline rtlreg_t is_carry(const rtlreg_t *src1, char op, const rtlreg_t *src2)
-{
-    return 1;
-}
-
 static inline def_rtl(is_sub_overflow, rtlreg_t *dest,
                       const rtlreg_t *res, const rtlreg_t *src1, const rtlreg_t *src2, int width)
 {
     // dest <- is_overflow(src1 - src2)
-    *dest = is_overflow(src1, '-', src2);
+    rtl_msb(s, t0, res, width);
+    rtl_msb(s, t1, src1, width);
+    rtl_msb(s, t2, src2, width);
+    if ((*t1 == 1 && *t2 == 0 && *t0 == 0) || (*t1 == 0 && *t2 == 1 && *t0 == 1))
+        *dest = 1;
+    else
+        *dest = 0;
 }
 
 static inline def_rtl(is_sub_carry, rtlreg_t *dest,
-                    const rtlreg_t *src1, const rtlreg_t *src2)
+                      const rtlreg_t *src1, const rtlreg_t *src2)
 {
     // dest <- is_carry(src1 - src2)
-    rtl_sub(s,t0,src1,src2),
-    rtl_setrelop(s,RELOP_LTU, t1, src1, t0);
-    *dest = *t0;
+    rtl_sub(s, t0, src1, src2),
+        rtl_setrelop(s, RELOP_LTU, t1, src1, t0);
+    *dest = *t1;
 }
 
 static inline def_rtl(is_add_overflow, rtlreg_t *dest,
                       const rtlreg_t *res, const rtlreg_t *src1, const rtlreg_t *src2, int width)
 {
     // dest <- is_overflow(src1 + src2)
-    *dest = is_overflow(src1, '+', src2);
+    rtl_msb(s, t0, res, width);
+    rtl_msb(s, t1, src1, width);
+    rtl_msb(s, t2, src2, width);
+    if ((*t1 == 1 && *t2 == 1 && *t0 == 0) || (*t1 == 0 && *t2 == 0 && *t0 == 1))
+        *dest = 1;
+    else
+        *dest = 0;
 }
 
 static inline def_rtl(is_add_carry, rtlreg_t *dest,
                       const rtlreg_t *res, const rtlreg_t *src1)
 {
     // dest <- is_carry(src1 + src2)
-    *dest = is_carry(src1, '+', res);
+
+        rtl_setrelop(s, RELOP_LTU, t0, res, src1);
+    *dest = *t0;
 }
 
 #define def_rtl_setget_eflags(f)                                \

@@ -2,7 +2,13 @@
 
 static inline def_EHelper(add)
 {
-    rtl_add(s, ddest, ddest, dsrc1);
+    rtl_add(s, s0, ddest, dsrc1);
+    operand_write(s,id_dest,s0);
+    rtl_update_ZFSF(s,s0,id_dest->width);
+    rtl_is_add_carry(s,s1,s0,dsrc1);
+    rtl_set_CF(s,s1);
+    rtl_is_add_overflow(s,s2,s0,dsrc1,dsrc2,id_dest->width);
+    rtl_set_OF(s,s2);
     print_asm_template2(add);
 }
 
