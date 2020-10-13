@@ -174,6 +174,8 @@ again:
         IDEX(0x6a, I, push)
         IDEX(0x68, I, push)
         ///////////////////
+        IDEX(0x09, G2E,or)
+        //////////////////
         IDEX(0x30, G2E,xor)
         IDEX(0x31, G2E,xor)
         IDEX(0x32, E2G,xor) // XOR r8,r/m8
