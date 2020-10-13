@@ -182,6 +182,8 @@ again:
         IDEX(0x35, I2a,xor)
         ///////////////////
         IDEX(0x8d, E2G,lea)
+        //////////////////
+        IDEX(0x01, G2E,add)
 
         EX(0xc3, ret)
     case 0x66:
