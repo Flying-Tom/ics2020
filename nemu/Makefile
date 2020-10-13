@@ -127,3 +127,6 @@ dummy:
 
 add:
 	cd ../am-kernels/tests/cpu-tests/ && make ARCH=x86-nemu ALL=add gdb
+
+test:
+	bash runall.sh ISA=x86
