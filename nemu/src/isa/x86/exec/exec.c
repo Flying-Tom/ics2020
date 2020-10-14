@@ -25,7 +25,7 @@ static inline def_EHelper(gp1)
         EX(4,and) //////////////
         EX(5,sub)//EXW(5,sub,1)?
         EMPTY(6) //////////////
-        IDEX(7,I2E,cmp)
+        EX(7,cmp)
     }
 }
 
