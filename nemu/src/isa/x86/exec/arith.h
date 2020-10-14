@@ -28,6 +28,7 @@ static inline def_EHelper(sub)
     if (id_src1->width == 1 && id_dest->width >= 2)
     {    
         rtl_sext(s, dsrc1, dsrc1, id_src1->width);
+        *dsrc1 =*s0;
         id_dest->width = 4;
     }
     rtl_sub(s, s0, ddest, dsrc1);
