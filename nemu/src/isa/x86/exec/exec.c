@@ -192,6 +192,7 @@ again:
         IDEX(0x03,mov_E2G,add)
         ///////////////////
         IDEX(0x3b,E2G,cmp)
+        IDEX(0x39,E2G,cmp)
         ///////////////////
         IDEX(0x13,E2G,adc)
         ///////////////////
