@@ -53,6 +53,7 @@ static inline def_EHelper(cmp)
     rtl_set_CF(s,s1);
     rtl_is_sub_overflow(s,s2,s0,ddest,dsrc1,id_dest->width);
     rtl_set_OF(s,s2);
+    print_asm_template2(cmp);
 }
 
 static inline def_EHelper(inc)
