@@ -39,12 +39,11 @@ typedef struct
         };
     };
 
+    vaddr_t pc;
     struct
     {
         rtlreg_t CF, ZF, SF, IF, OF;
     } eflags;
-
-    vaddr_t pc;
 } x86_CPU_state;
 
 // decode
