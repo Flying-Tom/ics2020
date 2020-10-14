@@ -17,6 +17,7 @@ static inline def_EHelper(and)
     {
         rtl_sext(s, dsrc1, dsrc1, id_src1->width);
         id_src1->width = 4;
+        id_dest->width = 4;
     }
     rtl_and(s, s0, ddest, dsrc1);
     operand_write(s, id_dest, s0);
