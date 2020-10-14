@@ -46,6 +46,8 @@ static inline def_rtl(push, const rtlreg_t *src1)
 {
     // esp <- esp - 4
     // M[esp] <- src1
+    if(s->width == 1)
+        rtl_sext(s,s0,src1,s->width);
     if (s->isa.is_operand_size_16)
     {
         rtl_subi(s, &cpu.esp, &cpu.esp, 2);
