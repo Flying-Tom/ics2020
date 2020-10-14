@@ -58,13 +58,17 @@ static inline def_EHelper(cmp)
 
 static inline def_EHelper(inc)
 {
-    TODO();
+    rtl_li(s,s0,1);
+    rtl_add(s,ddest,dsrc1,s0);
+    rtl_update_ZFSF(s,ddest,id_dest->width);
     print_asm_template1(inc);
 }
 
 static inline def_EHelper(dec)
 {
-    TODO();
+    rtl_li(s,s0,1);
+    rtl_sub(s,ddest,dsrc1,s0);
+    rtl_update_ZFSF(s,ddest,id_dest->width);
     print_asm_template1(dec);
 }
 

@@ -200,6 +200,8 @@ again:
         IDEXW(0x7d,J,jcc,1)
         EX(0xc3, ret)
         EX(0x90, nop)
+        ///////////////////
+        IDEX(0x4b,r,dec)
     case 0x66:
         s->isa.is_operand_size_16 = true;
         goto again;
