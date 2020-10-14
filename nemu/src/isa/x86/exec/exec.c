@@ -195,7 +195,7 @@ again:
         ///////////////////
         IDEX(0x13,E2G,adc)
         ///////////////////
-        IDEX(0x74,J,jcc)
+        IDEXW(0x74,J,jcc,1)
         EX(0xc3, ret)
         EX(0x90, nop)
     case 0x66:
