@@ -22,7 +22,7 @@ static inline def_EHelper(gp1)
         EMPTY(1)
         EMPTY(2)
         EMPTY(3)
-        EX(4,and) //////////////
+        EXW(4,and,1) //////////////
         EX(5,sub)//EXW(5,sub,1)?
         EMPTY(6) //////////////
         EXW(7,cmp,1)
