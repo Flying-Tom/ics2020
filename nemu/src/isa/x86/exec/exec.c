@@ -174,7 +174,7 @@ again:
         IDEX(0x55, r, push)
         IDEX(0x56, r, push)
         IDEX(0x57, r, push)
-        IDEX(0x6a, I, push)
+        IDEXW(0x6a, I, push,1)
         IDEX(0x68, I, push)
         ///////////////////
         IDEX(0x09, G2E,or)
