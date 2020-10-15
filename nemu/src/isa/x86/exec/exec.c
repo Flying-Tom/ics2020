@@ -219,6 +219,9 @@ again:
         IDEX(0x39, E2G, cmp)
         IDEX(0x3d, I2r, cmp)
         ///////////////////
+        IDEX(0x84, G2E, test)
+        IDEX(0x85, G2E, test)
+        ///////////////////
         IDEX(0x13, E2G, adc)
         ///////////////////
         IDEXW(0x74, J, jcc, 1)
