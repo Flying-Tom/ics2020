@@ -2,7 +2,7 @@
 
 static inline def_EHelper(test)
 {
-    rtl_and(s, s0, dsrc2, dsrc1);
+    rtl_and(s, s0, ddest, dsrc1);
     operand_write(s, id_dest, s0);
     rtl_update_ZFSF(s, ddest, id_dest->width);
     rtl_li(s, s0, 0);
