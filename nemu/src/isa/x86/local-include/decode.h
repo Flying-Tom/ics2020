@@ -131,6 +131,12 @@ static inline def_DHelper(mov_G2E)
     operand_rm(s, id_dest, false, id_src1, true);
 }
 
+static inline def_DHelper(movx1_G2E)
+{
+    id_src1->width=1;
+    operand_rm(s, id_dest, false, id_src1, true);
+}
+
 /* Gb <- Eb
  * Gv <- Ev
  */
