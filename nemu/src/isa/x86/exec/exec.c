@@ -50,7 +50,7 @@ static inline def_EHelper(gp3)
 {
     switch (s->isa.ext_opcode)
     {
-        IDEX(0,test_I,test)
+        EX(0,test)
         EMPTY(1)
         EMPTY(2)
         EMPTY(3)
