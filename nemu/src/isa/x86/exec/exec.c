@@ -245,7 +245,7 @@ again:
         IDEX(0x4e, r, dec)
         IDEX(0x4f, r, dec)
         //////////////////
-        EX(99,cltd)
+        EX(0x99,cltd)
     case 0x66:
         s->isa.is_operand_size_16 = true;
         goto again;
