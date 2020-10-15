@@ -3,12 +3,12 @@
 static inline def_EHelper(add)
 {
     rtl_add(s, s0, ddest, dsrc1);
-    operand_write(s,id_dest,s0);
-    rtl_update_ZFSF(s,s0,id_dest->width);
-    rtl_is_add_carry(s,s1,s0,dsrc1);
-    rtl_set_CF(s,s1);
-    rtl_is_add_overflow(s,s2,s0,ddest,dsrc1,id_dest->width);
-    rtl_set_OF(s,s2);
+    operand_write(s, id_dest, s0);
+    rtl_update_ZFSF(s, s0, id_dest->width);
+    rtl_is_add_carry(s, s1, s0, dsrc1);
+    rtl_set_CF(s, s1);
+    rtl_is_add_overflow(s, s2, s0, ddest, dsrc1, id_dest->width);
+    rtl_set_OF(s, s2);
     print_asm_template2(add);
 }
 
@@ -25,52 +25,52 @@ static inline void cmp_internal(DecodeExecState *s)
 
 static inline def_EHelper(sub)
 {
-    if (id_src1->width == 1 )
-    {    
+    if (id_src1->width == 1)
+    {
         rtl_sext(s, dsrc1, dsrc1, 4);
-        s->width =id_dest->width =id_src1->width= 4;
+        s->width = id_dest->width = id_src1->width = 4;
     }
     rtl_sub(s, s0, ddest, dsrc1);
-    operand_write(s,id_dest,s0);
-    rtl_update_ZFSF(s,s0,id_dest->width);
-    rtl_is_sub_carry(s,s1,s0,dsrc1);
-    rtl_set_CF(s,s1);
-    rtl_is_sub_overflow(s,s2,s0,ddest,dsrc1,id_dest->width);
-    rtl_set_OF(s,s2);
+    operand_write(s, id_dest, s0);
+    rtl_update_ZFSF(s, s0, id_dest->width);
+    rtl_is_sub_carry(s, s1, s0, ddest);
+    rtl_set_CF(s, s1);
+    rtl_is_sub_overflow(s, s2, s0, ddest, dsrc1, id_dest->width);
+    rtl_set_OF(s, s2);
     print_asm_template2(sub);
 }
 
 static inline def_EHelper(cmp)
 {
     if (id_src1->width == 1 && id_dest->width >= 2)
-    {    
+    {
         rtl_sext(s, s0, dsrc1, id_src1->width);
-        operand_write(s,id_src1,s0);
+        operand_write(s, id_src1, s0);
     }
     rtl_sub(s, s0, ddest, dsrc1);
-    rtl_update_ZFSF(s,s0,id_dest->width);
-    rtl_is_sub_carry(s,s1,s0,dsrc1);
-    rtl_set_CF(s,s1);
-    rtl_is_sub_overflow(s,s2,s0,ddest,dsrc1,id_dest->width);
-    rtl_set_OF(s,s2);
+    rtl_update_ZFSF(s, s0, id_dest->width);
+    rtl_is_sub_carry(s, s1, s0, dsrc1);
+    rtl_set_CF(s, s1);
+    rtl_is_sub_overflow(s, s2, s0, ddest, dsrc1, id_dest->width);
+    rtl_set_OF(s, s2);
     print_asm_template2(cmp);
 }
 
 static inline def_EHelper(inc)
 {
-    rtl_li(s,s0,1);
-    rtl_add(s,s1,ddest,s0);
-    operand_write(s,id_dest,s1);
-    rtl_update_ZFSF(s,ddest,id_dest->width);
+    rtl_li(s, s0, 1);
+    rtl_add(s, s1, ddest, s0);
+    operand_write(s, id_dest, s1);
+    rtl_update_ZFSF(s, ddest, id_dest->width);
     print_asm_template1(inc);
 }
 
 static inline def_EHelper(dec)
 {
-    rtl_li(s,s0,1);
-    rtl_sub(s,s1,ddest,s0);
-    operand_write(s,id_dest,s1);
-    rtl_update_ZFSF(s,ddest,id_dest->width);
+    rtl_li(s, s0, 1);
+    rtl_sub(s, s1, ddest, s0);
+    operand_write(s, id_dest, s1);
+    rtl_update_ZFSF(s, ddest, id_dest->width);
     print_asm_template1(inc);
 }
 
