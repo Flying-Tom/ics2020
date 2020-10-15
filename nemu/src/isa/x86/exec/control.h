@@ -64,7 +64,17 @@ static inline def_EHelper(ret_imm)
 
 static inline def_EHelper(call_rm)
 {
-    TODO();
-
+    if (s->isa.is_operand_size_16)
+    {
+        rtl_push(s, &s->seq_pc);
+        rtl_mv(s,&s->seq_pc,ddest);
+        rtl_j(s, s->jmp_pc && 0x0000FFFF );
+    }
+    else
+    {
+        rtl_push(s, &s->seq_pc);
+        rtl_mv(s,&s->seq_pc,ddest);
+        rtl_j(s, s->jmp_pc);
+    }
     print_asm("call *%s", id_dest->str);
 }
