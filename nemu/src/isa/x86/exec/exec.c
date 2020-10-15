@@ -39,7 +39,8 @@ static inline def_EHelper(gp2)
         EMPTY(2)
         EMPTY(3)
         EMPTY(4)
-        EMPTY(5) EMPTY(6) EMPTY(7)
+        EMPTY(5)
+        EMPTY(6) EMPTY(7)
     }
 }
 
@@ -53,7 +54,8 @@ static inline def_EHelper(gp3)
         EMPTY(2)
         EMPTY(3)
         EMPTY(4)
-        EMPTY(5) EMPTY(6) EMPTY(7)
+        EMPTY(5)
+        EMPTY(6) EMPTY(7)
     }
 }
 
@@ -67,7 +69,8 @@ static inline def_EHelper(gp4)
         EMPTY(2)
         EMPTY(3)
         EMPTY(4)
-        EMPTY(5) EMPTY(6) EMPTY(7)
+        EMPTY(5)
+        EMPTY(6) EMPTY(7)
     }
 }
 
@@ -98,7 +101,8 @@ static inline def_EHelper(gp7)
         EMPTY(2)
         EMPTY(3)
         EMPTY(4)
-        EMPTY(5) EMPTY(6) EMPTY(7)
+        EMPTY(5)
+        EMPTY(6) EMPTY(7)
     }
 }
 
@@ -111,8 +115,8 @@ static inline def_EHelper(2byte_esc)
         /* TODO: Add more instructions!!! */
         IDEX(0x01, gp7_E, gp7)
         IDEXW(0x94, setcc_E, setcc, 1)
-        IDEXW(0xb6, mov_E2G, movzx,2)
-        IDEXW(0xb7, mov_E2G, movzx,2)
+        IDEXW(0xb6, mov_E2G, movzx, 1)
+        IDEXW(0xb7, mov_E2G, movzx, 1)
     default:
         exec_inv(s);
     }
