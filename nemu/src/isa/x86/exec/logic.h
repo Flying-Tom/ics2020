@@ -20,13 +20,13 @@ static inline def_EHelper(and)
     }
     rtl_and(s, s0, ddest, dsrc1);
     operand_write(s, id_dest, s0);
+    rtl_update_ZFSF(s, ddest, id_dest->width);
     /*
     *s0 = (s0==0)? 1:0;
     rtl_set_ZF(s,s0);
     rtl_msb(s,s0,ddest,id_dest->width);
     rtl_set_SF(s,s0);
     *s0=0;*/
-    rtl_update_ZFSF(s, ddest, id_dest->width);
     rtl_li(s, s0, 0);
     rtl_set_CF(s, s0);
     rtl_set_OF(s, s0);
