@@ -72,8 +72,8 @@ static inline def_EHelper(call_rm)
     }
     else
     {
-        rtl_push(s, &s->seq_pc);
         rtl_mv(s,&s->seq_pc,ddest);
+        rtl_push(s, &s->seq_pc);
         rtl_j(s, s->jmp_pc);
     }
     print_asm("call *%s", id_dest->str);
