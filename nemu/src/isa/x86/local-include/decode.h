@@ -65,7 +65,7 @@ static inline def_DopHelper(SI)
    */
     //TODO();
     word_t simm = instr_fetch(&s->seq_pc, op->width);
-    rtl_mv(s,s0,&simm);
+    rtl_mv(s, s0, &simm);
     rtl_sext(s, &simm, s0, op->width);
     operand_imm(s, op, load_val, simm, op->width);
 }
@@ -133,10 +133,15 @@ static inline def_DHelper(mov_G2E)
 
 static inline def_DHelper(movx1_G2E)
 {
-    id_src1->width=1;
+    id_src1->width = 1;
     operand_rm(s, id_dest, false, id_src1, true);
 }
 
+static inline def_DHelper(movx2_G2E)
+{
+    id_src1->width = 2;
+    operand_rm(s, id_dest, false, id_src1, true);
+}
 /* Gb <- Eb
  * Gv <- Ev
  */
