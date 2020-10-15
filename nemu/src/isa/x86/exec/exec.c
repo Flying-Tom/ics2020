@@ -41,7 +41,7 @@ static inline def_EHelper(gp2)
         EMPTY(4)
         EMPTY(5)
         EMPTY(6)
-        EMPTY(7)
+        EX(7,sar)
     }
 }
 
