@@ -1,5 +1,3 @@
-//#include "../local-include/reg.h"
-
 static inline def_EHelper(mov)
 {
     operand_write(s, id_dest, dsrc1);
