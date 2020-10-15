@@ -187,6 +187,8 @@ again:
         IDEX(0x55, r, push)
         IDEX(0x56, r, push)
         IDEX(0x57, r, push)
+        IDEX(0x58, r, pop)
+        IDEX(0x59, r, pop)
         IDEXW(0x6a, I, push, 1)
         IDEX(0x68, I, push)
         ///////////////////
