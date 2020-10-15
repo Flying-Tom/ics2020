@@ -199,7 +199,7 @@ again:
         IDEXW(0x74,J,jcc,1)
         IDEXW(0x75,J,jcc,1)
         IDEXW(0x7d,J,jcc,1)
-        IDEX(0xeb,J,jmp)
+        IDEXW(0xeb,J,jmp,1)
         EX(0xc9, leave)
         EX(0xc3, ret)
         EX(0x90, nop)
