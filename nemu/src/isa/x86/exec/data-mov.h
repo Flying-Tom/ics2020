@@ -6,13 +6,13 @@ static inline def_EHelper(mov)
 
 static inline def_EHelper(push)
 {
-    rtl_push(s,ddest);
+    rtl_push(s, ddest);
     print_asm_template1(push);
 }
 
 static inline def_EHelper(pop)
 {
-    rtl_pop(s,ddest);
+    rtl_pop(s, ddest);
     operand_write(s, id_dest, ddest);
     print_asm_template1(pop);
 }
@@ -33,14 +33,9 @@ static inline def_EHelper(popa)
 
 static inline def_EHelper(leave)
 {
-    
-    cpu.esp = cpu.ebp;
-    if (s->isa.is_operand_size_16)
-    {
-        /////
-    }
-    else
-        rtl_pop(s,&cpu.ebp);
+
+    rtl_mv(s, &cpu.esp, &cpu.ebp);
+    rtl_pop(s, &cpu.ebp);
     print_asm("leave");
 }
 
