@@ -213,6 +213,8 @@ again:
         IDEX(0x01, G2E, add)
         IDEX(0x03, mov_E2G, add)
         ///////////////////
+        IDEX(0x29, G2E, sub)
+        ///////////////////
         IDEX(0x3b, E2G, cmp)
         IDEX(0x39, E2G, cmp)
         IDEX(0x3d, I2r, cmp)
