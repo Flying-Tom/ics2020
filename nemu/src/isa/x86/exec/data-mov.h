@@ -34,7 +34,7 @@ static inline def_EHelper(popa)
 static inline def_EHelper(leave)
 {
     
-    s->seq_pc = cpu.ebp;
+    s->jmp_pc = cpu.ebp;
     if (s->isa.is_operand_size_16)
     {
         /////
