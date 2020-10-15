@@ -55,7 +55,7 @@ static inline def_EHelper(gp3)
         EMPTY(2)
         EMPTY(3)
         EMPTY(4)
-        EMPTY(5)
+        EX(5,imul1)
         EMPTY(6)
         EMPTY(7)
     }
@@ -228,24 +228,15 @@ again:
         EX(0xc3, ret)
         EX(0x90, nop)
         ///////////////////
-        IDEX(0x40, r, inc)
-        IDEX(0x41, r, inc)
-        IDEX(0x42, r, inc)
-        IDEX(0x43, r, inc)
-        IDEX(0x44, r, inc)
-        IDEX(0x45, r, inc)
-        IDEX(0x46, r, inc)
-        IDEX(0x47, r, inc)
-        IDEX(0x48, r, dec)
-        IDEX(0x49, r, dec)
-        IDEX(0x4a, r, dec)
-        IDEX(0x4b, r, dec)
-        IDEX(0x4c, r, dec)
-        IDEX(0x4d, r, dec)
-        IDEX(0x4e, r, dec)
-        IDEX(0x4f, r, dec)
+        IDEX(0x40, r, inc)  IDEX(0x41, r, inc)  IDEX(0x42, r, inc)
+        IDEX(0x43, r, inc)  IDEX(0x44, r, inc)  IDEX(0x45, r, inc)
+        IDEX(0x46, r, inc)  IDEX(0x47, r, inc)
+        IDEX(0x48, r, dec)  IDEX(0x49, r, dec)  IDEX(0x4a, r, dec)
+        IDEX(0x4b, r, dec)  IDEX(0x4c, r, dec)  IDEX(0x4d, r, dec)
+        IDEX(0x4e, r, dec)  IDEX(0x4f, r, dec)
         //////////////////
         EX(0x99,cltd)
+        //////////////////
     case 0x66:
         s->isa.is_operand_size_16 = true;
         goto again;
