@@ -115,7 +115,6 @@ static inline def_rtl(is_add_carry, rtlreg_t *dest,
                       const rtlreg_t *res, const rtlreg_t *src1)
 {
     // dest <- is_carry(src1 + src2)
-
         rtl_setrelop(s, RELOP_LTU, t0, res, src1);
     *dest = *t0;
 }
