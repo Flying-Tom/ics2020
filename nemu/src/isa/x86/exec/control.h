@@ -68,7 +68,7 @@ static inline def_EHelper(call_rm)
     {
         rtl_push(s, &s->seq_pc);
         rtl_mv(s,&s->seq_pc,ddest);
-        rtl_j(s, s->jmp_pc && 0x0000FFFF );
+        rtl_j(s, s->seq_pc && 0x0000FFFF );
     }
     else
     {
