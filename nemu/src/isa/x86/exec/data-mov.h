@@ -33,8 +33,14 @@ static inline def_EHelper(popa)
 
 static inline def_EHelper(leave)
 {
-    TODO();
-
+    
+    s->seq_pc = cpu.ebp;
+    if (s->isa.is_operand_size_16)
+    {
+        /////
+    }
+    else
+        rtl_pop(s,&cpu.ebp);
     print_asm("leave");
 }
 
