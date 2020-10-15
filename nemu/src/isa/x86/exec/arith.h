@@ -7,8 +7,8 @@ static inline def_EHelper(add)
     rtl_set_OF(s, s2);
     rtl_is_add_carry(s, s1, s0, dsrc1);
     rtl_set_CF(s, s1);
-    rtl_update_ZFSF(s, s0, id_dest->width);
     operand_write(s, id_dest, s0);
+    rtl_update_ZFSF(s, ddest, id_dest->width);
     print_asm_template2(add);
 }
 
