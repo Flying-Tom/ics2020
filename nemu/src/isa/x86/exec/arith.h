@@ -58,18 +58,18 @@ static inline def_EHelper(cmp)
 
 static inline def_EHelper(inc)
 {
-    rtl_li(s, dsrc1, 1);
-    rtl_add(s, s1, ddest, dsrc1);
-    operand_write(s, id_dest, s1);
+    rtl_li(s, s1, 1);
+    rtl_add(s, ddest, ddest, s1);
+    operand_write(s, id_dest, ddest);
     rtl_update_ZFSF(s, ddest, id_dest->width);
     print_asm_template1(inc);
 }
 
 static inline def_EHelper(dec)
 {
-    rtl_li(s, dsrc1, 1);
-    rtl_sub(s, s1, ddest, dsrc1);
-    operand_write(s, id_dest, s1);
+    rtl_li(s, s1, 1);
+    rtl_sub(s, ddest, ddest, s1);
+    operand_write(s, id_dest, ddest);
     rtl_update_ZFSF(s, ddest, id_dest->width);
     print_asm_template1(inc);
 }
