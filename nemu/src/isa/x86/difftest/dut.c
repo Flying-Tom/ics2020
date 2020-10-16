@@ -21,6 +21,7 @@ bool isa_difftest_checkregs(CPU_state *ref_r, vaddr_t pc)
     difftest_check_reg("ebp", pc, ref_r->ebp, cpu.ebp, &judge);
     difftest_check_reg("esi", pc, ref_r->esi, cpu.esi, &judge);
     difftest_check_reg("edi", pc, ref_r->edi, cpu.edi, &judge);
+    difftest_check_reg("pc", pc, ref_r->pc, cpu.pc, &judge);
 /*
     difftest_check_reg("CF", pc, ref_r->eflags.CF, cpu.eflags.CF, &judge);
     difftest_check_reg("ZF", pc, ref_r->eflags.ZF, cpu.eflags.ZF, &judge);
