@@ -44,7 +44,7 @@ static inline def_EHelper(cmp)
 {
     if (id_src1->width == 1 && id_dest->width >= 2)
     {
-        rtl_sext(s, s0, dsrc1, id_src1->width);
+        rtl_sext(s, s0, dsrc1, id_dest->width);
         operand_write(s, id_src1, s0);
     }
     cmp_internal(s);
