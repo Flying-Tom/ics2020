@@ -210,7 +210,7 @@ again:
         IDEX(0x01, G2E, add)
         IDEX(0x03, mov_E2G, add)
         ///////////////////
-        IDEX(0x08, G2E, or)    IDEX(0x18, G2E, sbb)    IDEX(0x28, G2E, sub)    IDEX(0x38, G2E, cmp)
+        IDEXW(0x08, G2E, or, 1)    IDEXW(0x18, G2E, sbb, 1)    IDEXW(0x28, G2E, sub, 1)    IDEXW(0x38, G2E, cmp, 1)
         IDEX(0x09, G2E, or)    IDEX(0x19, G2E, sbb)    IDEX(0x29, G2E, sub)    IDEX(0x39, G2E, cmp)
         IDEX(0x0a, E2G, or)    IDEX(0x1a, E2G, sbb)    IDEX(0x2a, E2G, sub)    IDEX(0x3a, E2G, cmp)
         IDEX(0x0b, E2G, or)    IDEX(0x1b, E2G, sbb)    IDEX(0x2b, E2G, sub)    IDEX(0x3b, E2G, cmp)
