@@ -2,6 +2,11 @@
 
 static inline def_EHelper(add)
 {
+    if (id_src1->width == 1)
+    {
+        rtl_sext(s, dsrc1, dsrc1, 4);
+        s->width = id_dest->width = id_src1->width = 4;
+    }
     rtl_add(s, s0, ddest, dsrc1);
     rtl_is_add_overflow(s, s2, s0, ddest, dsrc1, id_dest->width);
     rtl_set_OF(s, s2);
