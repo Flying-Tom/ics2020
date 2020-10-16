@@ -214,7 +214,7 @@ again:
         IDEX(0x09, G2E, or)    IDEX(0x19, G2E, sbb)    IDEX(0x29, G2E, sub)    IDEX(0x39, G2E, cmp)
         IDEX(0x0a, E2G, or)    IDEX(0x1a, E2G, sbb)    IDEX(0x2a, E2G, sub)    IDEX(0x3a, E2G, cmp)
         IDEX(0x0b, E2G, or)    IDEX(0x1b, E2G, sbb)    IDEX(0x2b, E2G, sub)    IDEX(0x3b, E2G, cmp)
-        IDEX(0x0c, I2a, or)    IDEX(0x1c, I2a, sbb)    IDEX(0x2c, I2a, sub)    IDEX(0x3c, I2r, cmp)
+        IDEX(0x0c, I2a, or)    IDEX(0x1c, I2a, sbb)    IDEX(0x2c, I2a, sub)    IDEXW(0x3c, I2r, cmp, 1)
         IDEX(0x0d, I2a, or)    IDEX(0x1d, I2a, sbb)    IDEX(0x2d, I2a, sub)    IDEX(0x3d, I2r, cmp)
         ///////////////////
         IDEX(0x84, G2E, test)
