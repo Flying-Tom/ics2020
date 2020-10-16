@@ -23,7 +23,7 @@ static inline def_EHelper(gp1)
         EMPTY(2)
         EMPTY(3)
         EXW(4, and, s->src1.width) //////////////
-        EX(5, sub) //EXW(5,sub,1)?
+        EX(5, sub)                 //EXW(5,sub,1)?
         EXW(6, xor, s->src1.width) //////////////
         EXW(7, cmp, s->src1.width)
     }
@@ -225,25 +225,25 @@ again:
         IDEXW(0x0a, E2G, or, 1)
         IDEX(0x0b, E2G, or)
         IDEXW(0x0c, I2a, or, 1)
-        IDEX(0x0d, I2a, or)
+        IDEX(0x0d, mov_I2r, or)
         IDEXW(0x18, G2E, sbb, 1)
         IDEX(0x19, G2E, sbb)
         IDEXW(0x1a, E2G, sbb, 1)
         IDEX(0x1b, E2G, sbb)
         IDEXW(0x1c, I2a, sbb, 1)
-        IDEX(0x1d, I2a, sbb)
+        IDEX(0x1d, mov_I2r, sbb)
         IDEXW(0x28, G2E, sub, 1)
         IDEX(0x29, G2E, sub)
         IDEXW(0x2a, E2G, sub, 1)
         IDEX(0x2b, E2G, sub)
         IDEXW(0x2c, I2a, sub, 1)
-        IDEX(0x2d, I2a, sub)
+        IDEX(0x2d, mov_I2r, sub)
         IDEXW(0x38, G2E, cmp, 1)
         IDEX(0x39, G2E, cmp)
         IDEXW(0x3a, E2G, cmp, 1)
         IDEX(0x3b, E2G, cmp)
         IDEXW(0x3c, I2r, cmp, 1)
-        IDEX(0x3d, I2r, cmp)
+        IDEX(0x3d, mov_I2r, cmp)
         ///////////////////
         IDEXW(0x84, G2E, test, 1)
         IDEX(0x85, G2E, test)
