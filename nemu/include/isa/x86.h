@@ -54,7 +54,7 @@ typedef struct
         rtlreg_t IF : 1;
         rtlreg_t DF : 1;
         rtlreg_t OF : 1;
-        rtlreg_t :24;
+        rtlreg_t :32;
     } eflags;
 } x86_CPU_state;
 
