@@ -126,7 +126,7 @@ dummy:
 	cd ../am-kernels/tests/cpu-tests/ && make ARCH=x86-nemu ALL=dummy gdb
 
 add:
-	cd ../am-kernels/tests/cpu-tests/ && make ARCH=x86-nemu ALL=matrix-mul gdb
+	cd ../am-kernels/tests/cpu-tests/ && make ARCH=x86-nemu ALL=to-lower-case gdb
 
 test:
 	bash runall.sh ISA=x86
