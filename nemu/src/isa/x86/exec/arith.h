@@ -4,7 +4,8 @@ static inline def_EHelper(add)
 {
     if (id_src1->width == 1)
     {
-        rtl_sext(s, dsrc1, dsrc1, 4);
+        rtl_sext(s, ddest, dsrc1, 4);
+        rtl_mv(s, dsrc1, ddest);
         s->width = id_dest->width = id_src1->width = 4;
     }
     rtl_add(s, s0, ddest, dsrc1);
@@ -32,11 +33,12 @@ static inline def_EHelper(sub)
 {
     if (id_src1->width == 1)
     {
-        rtl_sext(s, dsrc1, dsrc1, 4);
+        rtl_sext(s, ddest, dsrc1, 4);
+        rtl_mv(s, dsrc1, ddest);
         s->width = id_dest->width = id_src1->width = 4;
     }
     rtl_sub(s, s0, ddest, dsrc1);
-    rtl_update_ZFSF(s, ddest, id_dest->width);
+    rtl_update_ZFSF(s, s0, id_dest->width);
     rtl_is_sub_carry(s, s3, ddest, dsrc1);
     rtl_set_CF(s, s3);
     rtl_is_sub_overflow(s, s3, s0, ddest, dsrc1, id_dest->width);
