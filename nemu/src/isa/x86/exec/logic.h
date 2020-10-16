@@ -80,13 +80,9 @@ static inline def_EHelper(shl)
 
 static inline def_EHelper(shr)
 {
-    rtl_mv(s, s3, dsrc1);
-    rtl_li(s, s2, 2);
-    while (*s3 != 0)
-    {
-        rtl_div_q(s, ddest, ddest, s2);
-        *s3 -= 1;
-    }
+    rtl_shr(s, s0, ddest, dsrc1);
+    operand_write(s, id_dest, s0);
+    rtl_update_ZFSF(s, s0, id_dest->width);
     // unnecessary to update CF and OF in NEMU
     print_asm_template2(shr);
 }
