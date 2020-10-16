@@ -242,8 +242,8 @@ again:
         IDEX(0x39, G2E, cmp)
         IDEXW(0x3a, E2G, cmp, 1)
         IDEX(0x3b, E2G, cmp)
-        IDEXW(0x3c, I2r, cmp, 1)
-        IDEX(0x3d, I2r, cmp)
+        IDEXW(0x3c, I2a, cmp, 1)
+        IDEX(0x3d, mov_I2r, cmp)
         ///////////////////
         IDEXW(0x84, G2E, test, 1)
         IDEX(0x85, G2E, test)
