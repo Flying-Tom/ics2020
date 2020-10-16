@@ -212,7 +212,12 @@ again:
         IDEX(0x01, G2E, add)
         IDEX(0x03, mov_E2G, add)
         ///////////////////
+        IDEX(0x28, G2E, sub)
         IDEX(0x29, G2E, sub)
+        IDEX(0x2a, E2G, sub)
+        IDEX(0x2b, E2G, sub)
+        IDEX(0x2c, I2a, sub)
+        IDEX(0x2d, I2a, sub)
         ///////////////////
         IDEX(0x3b, E2G, cmp)
         IDEX(0x39, E2G, cmp)
