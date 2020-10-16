@@ -184,7 +184,6 @@ again:
         IDEXW(0xf6, E, gp3, 1)
         IDEX(0xf7, E, gp3)
         IDEXW(0xfe, E, gp4, 1)
-        ///////////////////
         IDEX(0xff, E, gp5)
         ///////////////////
         IDEX(0xe8, J, call)
@@ -208,6 +207,12 @@ again:
         IDEXW(0x6a, I, push, 1)
         IDEX(0x68, I, push)
         //////////////////
+        IDEXW(0x00, G2E, add, 1)
+        IDEX(0x01, G2E, add)
+        IDEXW(0x02, E2G, add, 1)
+        IDEX(0x03, E2G, add)
+        IDEXW(0x04, I2a, add, 1)
+        IDEX(0x05, I2a, add)
         IDEXW(0x30, G2E, xor, 1)
         IDEX(0x31, G2E, xor)
         IDEXW(0x32, E2G, xor, 1) // XOR r8,r/m8
@@ -217,33 +222,30 @@ again:
         ///////////////////
         IDEX(0x8d, lea_M2G, lea)
         ///////////////////
-        IDEX(0x01, G2E, add)
-        IDEX(0x03, mov_E2G, add)
-        ///////////////////
         IDEXW(0x08, G2E, or, 1)
         IDEX(0x09, G2E, or)
         IDEXW(0x0a, E2G, or, 1)
         IDEX(0x0b, E2G, or)
         IDEXW(0x0c, I2a, or, 1)
-        IDEX(0x0d, mov_I2r, or)
+        IDEX(0x0d, I2a, or)
         IDEXW(0x18, G2E, sbb, 1)
         IDEX(0x19, G2E, sbb)
         IDEXW(0x1a, E2G, sbb, 1)
         IDEX(0x1b, E2G, sbb)
         IDEXW(0x1c, I2a, sbb, 1)
-        IDEX(0x1d, mov_I2r, sbb)
+        IDEX(0x1d, I2a, sbb)
         IDEXW(0x28, G2E, sub, 1)
         IDEX(0x29, G2E, sub)
         IDEXW(0x2a, E2G, sub, 1)
         IDEX(0x2b, E2G, sub)
         IDEXW(0x2c, I2a, sub, 1)
-        IDEX(0x2d, mov_I2r, sub)
+        IDEX(0x2d, I2a, sub)
         IDEXW(0x38, G2E, cmp, 1)
         IDEX(0x39, G2E, cmp)
         IDEXW(0x3a, E2G, cmp, 1)
         IDEX(0x3b, E2G, cmp)
         IDEXW(0x3c, I2a, cmp, 1)
-        IDEX(0x3d, mov_I2r, cmp)
+        IDEX(0x3d, I2a, cmp)
         ///////////////////
         IDEXW(0x84, G2E, test, 1)
         IDEX(0x85, G2E, test)
