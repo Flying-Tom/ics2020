@@ -26,12 +26,12 @@ bool isa_difftest_checkregs(CPU_state *ref_r, vaddr_t pc)
         judge=1;
     }
 
-    if (ref_r->eflags.OF != cpu.eflags.OF || ref_r->eflags.CF != cpu.eflags.CF || ref_r->eflags.ZF != cpu.eflags.ZF || ref_r->eflags.SF != cpu.eflags.SF)
+    if (ref_r->eflags.CF != cpu.eflags.CF || ref_r->eflags.ZF != cpu.eflags.ZF || ref_r->eflags.SF != cpu.eflags.SF || ref_r->eflags.OF != cpu.eflags.OF)
     {
-        printf("OF: NEMU:%d QEMU:%d\n", cpu.eflags.OF, ref_r->eflags.OF);
-        printf("SF: NEMU:%d QEMU:%d\n", cpu.eflags.SF, ref_r->eflags.SF);
-        printf("ZF: NEMU:%d QEMU:%d\n", cpu.eflags.ZF, ref_r->eflags.ZF);
         printf("CF: NEMU:%d QEMU:%d\n", cpu.eflags.CF, ref_r->eflags.CF);
+        printf("ZF: NEMU:%d QEMU:%d\n", cpu.eflags.ZF, ref_r->eflags.ZF);
+        printf("SF: NEMU:%d QEMU:%d\n", cpu.eflags.SF, ref_r->eflags.SF);
+        printf("OF: NEMU:%d QEMU:%d\n", cpu.eflags.OF, ref_r->eflags.OF);
         judge=1;
     }
     return (judge==0);
