@@ -13,19 +13,14 @@ static void checkregs(CPU_state *ref_r, char *s, bool *judg)
 bool isa_difftest_checkregs(CPU_state *ref_r, vaddr_t pc)
 {
     int judge=0;
-    if (ref_r->eax != cpu.eax || ref_r->ecx != cpu.ecx || ref_r->edx != cpu.edx || ref_r->ebx != cpu.ebx || ref_r->esp != cpu.esp || ref_r->ebp != cpu.ebp || ref_r->esi != cpu.esi || ref_r->edi != cpu.edi)
-    {
-        printf("eax: NEMU:%d QEMU:%d\n", cpu.eax, ref_r->eax);
-        printf("ecx: NEMU:%d QEMU:%d\n", cpu.ecx, ref_r->ecx);
-        printf("edx: NEMU:%d QEMU:%d\n", cpu.edx, ref_r->edx);
-        printf("ebx: NEMU:%d QEMU:%d\n", cpu.ebx, ref_r->ebx);
-        printf("esp: NEMU:%d QEMU:%d\n", cpu.esp, ref_r->esp);
-        printf("ebp: NEMU:%d QEMU:%d\n", cpu.ebp, ref_r->ebp);
-        printf("esi: NEMU:%d QEMU:%d\n", cpu.esi, ref_r->esi);
-        printf("edi: NEMU:%d QEMU:%d\n", cpu.edi, ref_r->edi);
-        judge=1;
-    }
-
+    difftest_check_reg("eax",pc,ref_r->eax,cpu.eax);
+    difftest_check_reg("ecx",pc,ref_r->ecx,cpu.ecx);
+    difftest_check_reg("edx",pc,ref_r->edx,cpu.edx);
+    difftest_check_reg("ebx",pc,ref_r->ebx,cpu.ebx);
+    difftest_check_reg("esp",pc,ref_r->esp,cpu.esp);
+    difftest_check_reg("ebp",pc,ref_r->ebp,cpu.ebp);
+    difftest_check_reg("esi",pc,ref_r->esi,cpu.esi);
+    difftest_check_reg("edi",pc,ref_r->edi,cpu.edi);
     if (ref_r->eflags.CF != cpu.eflags.CF || ref_r->eflags.ZF != cpu.eflags.ZF || ref_r->eflags.SF != cpu.eflags.SF || ref_r->eflags.OF != cpu.eflags.OF)
     {
         printf("CF: NEMU:%d QEMU:%d\n", cpu.eflags.CF, ref_r->eflags.CF);
