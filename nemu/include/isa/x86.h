@@ -43,9 +43,9 @@ typedef struct
     struct
     {
         rtlreg_t CF : 1;
-        rtlreg_t ZF : 7;
-        rtlreg_t SF : 8;
-        rtlreg_t OF : 12;
+        rtlreg_t ZF : 1;
+        rtlreg_t SF : 1;
+        rtlreg_t OF : 1;
     } eflags;
 } x86_CPU_state;
 
