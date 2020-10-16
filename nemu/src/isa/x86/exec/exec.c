@@ -213,9 +213,21 @@ again:
         IDEX(0x03, E2G, add)
         IDEXW(0x04, I2a, add, 1)
         IDEX(0x05, I2a, add)
+        IDEXW(0x10, G2E, adc, 1)
+        IDEX(0x11, G2E, adc)
+        IDEXW(0x12, E2G, adc, 1)
+        IDEX(0x13, E2G, adc)
+        IDEXW(0x14, I2a, adc, 1)
+        IDEX(0x15, I2a, adc)
+        IDEXW(0x20, G2E, and, 1)
+        IDEX(0x21, G2E, and)
+        IDEXW(0x22, E2G, and, 1)
+        IDEX(0x23, E2G, and)
+        IDEXW(0x24, I2a, and, 1)
+        IDEX(0x25, I2a, and)
         IDEXW(0x30, G2E, xor, 1)
         IDEX(0x31, G2E, xor)
-        IDEXW(0x32, E2G, xor, 1) // XOR r8,r/m8
+        IDEXW(0x32, E2G, xor, 1) 
         IDEX(0x33, E2G, xor)
         IDEXW(0x34, I2a, xor, 1)
         IDEX(0x35, I2a, xor)
@@ -249,8 +261,6 @@ again:
         ///////////////////
         IDEXW(0x84, G2E, test, 1)
         IDEX(0x85, G2E, test)
-        ///////////////////
-        IDEX(0x13, E2G, adc)
         ///////////////////
         IDEXW(0x70, J, jcc, 1)
         IDEXW(0x71, J, jcc, 1)
