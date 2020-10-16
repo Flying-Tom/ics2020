@@ -22,10 +22,10 @@ static inline def_EHelper(gp1)
         EMPTY(1)
         EMPTY(2)
         EMPTY(3)
-        EXW(4, and, 1) //////////////
-        EX(5, sub)     //EXW(5,sub,1)?
-        EXW(6, xor, 1) //////////////
-        EXW(7, cmp, 1)
+        EXW(4, and, s->src1.width) //////////////
+        EXW(5, sub, s->src1.width) //EXW(5,sub,1)?
+        EXW(6, xor, s->src1.width) //////////////
+        EXW(7, cmp, s->src1.width)
     }
 }
 
