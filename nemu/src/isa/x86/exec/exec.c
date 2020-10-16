@@ -222,8 +222,14 @@ again:
         ///////////////////
         IDEX(0x13, E2G, adc)
         ///////////////////
+        IDEXW(0x70, J, jcc, 1)
+        IDEXW(0x71, J, jcc, 1)
+        IDEXW(0x72, J, jcc, 1)
+        IDEXW(0x73, J, jcc, 1)
         IDEXW(0x74, J, jcc, 1)
         IDEXW(0x75, J, jcc, 1)
+        IDEXW(0x76, J, jcc, 1)
+        IDEXW(0x77, J, jcc, 1)
         IDEXW(0x7d, J, jcc, 1)
         IDEXW(0x7e, J, jcc, 1)
         IDEXW(0xeb, J, jmp, 1)
