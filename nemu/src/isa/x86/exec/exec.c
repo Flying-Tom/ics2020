@@ -54,10 +54,10 @@ static inline def_EHelper(gp3)
         EMPTY(1)
         EMPTY(2)
         EMPTY(3)
-        EX(4, mul)
-        EX(5, imul1)
+        EXW(4, mul, s->src1.width)
+        EXW(5, imul1, s->src1.width)
         EMPTY(6)
-        EX(7, idiv)
+        EXW(7, idiv, s->src1.width)
     }
 }
 
@@ -242,7 +242,7 @@ again:
         IDEX(0x25, I2a, and)
         IDEXW(0x30, G2E, xor, 1)
         IDEX(0x31, G2E, xor)
-        IDEXW(0x32, E2G, xor, 1) 
+        IDEXW(0x32, E2G, xor, 1)
         IDEX(0x33, E2G, xor)
         IDEXW(0x34, I2a, xor, 1)
         IDEX(0x35, I2a, xor)
