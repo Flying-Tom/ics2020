@@ -13,10 +13,10 @@ static inline def_EHelper(test)
 
 static inline def_EHelper(and)
 {
-    if(id_src1->width==1)
+    if (id_src1->width == 1)
     {
         rtl_sext(s, dsrc1, dsrc1, id_src1->width);
-        s->width =id_dest->width =id_src1->width= 4;
+        s->width = id_dest->width = id_src1->width = 4;
     }
     rtl_and(s, s0, ddest, dsrc1);
     operand_write(s, id_dest, s0);
@@ -62,7 +62,7 @@ static inline def_EHelper(or)
 
 static inline def_EHelper(sar)
 {
-    rtl_sar(s,s0,ddest,dsrc1);
+    rtl_sar(s, s0, ddest, dsrc1);
     operand_write(s, id_dest, s0);
     rtl_update_ZFSF(s, s0, id_dest->width);
     // unnecessary to update CF and OF in NEMU
@@ -80,9 +80,14 @@ static inline def_EHelper(shl)
 
 static inline def_EHelper(shr)
 {
-    TODO();
+    rtl_mv(s, s3, dsrc1);
+    rtl_li(s, s2, 2);
+    while (*s3 != 0)
+    {
+        rtl_div_q(s, ddest, ddest, s2);
+        *s3 -= 1;
+    }
     // unnecessary to update CF and OF in NEMU
-
     print_asm_template2(shr);
 }
 
