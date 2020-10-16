@@ -42,7 +42,10 @@ typedef struct
     vaddr_t pc;
     struct
     {
-        rtlreg_t CF, ZF, SF, IF, OF;
+        rtlreg_t CF : 1;
+        rtlreg_t ZF : 7;
+        rtlreg_t SF : 8;
+        rtlreg_t OF : 12;
     } eflags;
 } x86_CPU_state;
 
