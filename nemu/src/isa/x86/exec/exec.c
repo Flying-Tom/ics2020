@@ -226,7 +226,7 @@ again:
         IDEX(0x0c, I2a, or)    IDEX(0x1c, I2a, sbb)    IDEX(0x2c, I2a, sub)    IDEXW(0x3c, I2r, cmp, 1)
         IDEX(0x0d, I2a, or)    IDEX(0x1d, I2a, sbb)    IDEX(0x2d, I2a, sub)    IDEX(0x3d, I2r, cmp)
         ///////////////////
-        IDEX(0x84, G2E, test)
+        IDEXW(0x84, G2E, test, 1)
         IDEX(0x85, G2E, test)
         ///////////////////
         IDEX(0x13, E2G, adc)
