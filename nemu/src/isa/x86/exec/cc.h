@@ -62,7 +62,7 @@ static inline void rtl_setcc(DecodeExecState *s, rtlreg_t *dest, uint32_t subcod
         *dest = (cpu.eflags.SF != cpu.eflags.OF) ? 1 : 0;
         break;
     case CC_LE:
-        *dest = (cpu.eflags.ZF == 1 && cpu.eflags.SF != cpu.eflags.OF) ? 1 : 0;
+        *dest = (cpu.eflags.ZF == 1 || cpu.eflags.SF != cpu.eflags.OF) ? 1 : 0; ////?
         break;
     default:
         panic("should not reach here");
