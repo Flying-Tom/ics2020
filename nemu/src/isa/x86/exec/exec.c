@@ -18,7 +18,7 @@ static inline def_EHelper(gp1)
 {
     switch (s->isa.ext_opcode)
     {
-        EX(0, add)
+        EXW(0, add, s->src1.width)
         EMPTY(1)
         EMPTY(2)
         EMPTY(3)
