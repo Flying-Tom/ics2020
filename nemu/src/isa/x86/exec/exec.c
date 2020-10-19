@@ -18,7 +18,7 @@ static inline def_EHelper(gp1)
 {
     switch (s->isa.ext_opcode)
     {
-        EX(0, add)
+        EXW(0, add, s->dest.width)
         EMPTY(1)
         EMPTY(2)
         EMPTY(3)
@@ -50,14 +50,14 @@ static inline def_EHelper(gp3)
 {
     switch (s->isa.ext_opcode)
     {
-        IDEXW(0, test_I, test, s->src1.width)
+        IDEXW(0, test_I, test, s->dest.width)
         EMPTY(1)
-        EXW(2, not, s->src1.width)
+        EXW(2, not, s->dest.width)
         EMPTY(3)
-        EXW(4, mul, s->src1.width)
-        EXW(5, imul1, s->src1.width)
+        EXW(4, mul, s->dest.width)
+        EXW(5, imul1, s->dest.width)
         EMPTY(6)
-        EXW(7, idiv, s->src1.width)
+        EXW(7, idiv, s->dest.width)
     }
 }
 
