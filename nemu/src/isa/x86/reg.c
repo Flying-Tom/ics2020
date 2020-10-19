@@ -53,7 +53,7 @@ void isa_reg_display()
     printf("$ebp = 0x%x\n", cpu.ebp);
     printf("$esi = 0x%x\n", cpu.esi);
     printf("$edi = 0x%x\n", cpu.edi);
-    printf("$pc = 0x%x\n", cpu.pc);
+    printf("$ pc = 0x%x\n", cpu.pc);
 }
 
 word_t isa_reg_str2val(const char *s, bool *success)
