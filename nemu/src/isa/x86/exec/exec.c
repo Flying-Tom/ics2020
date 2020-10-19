@@ -52,7 +52,7 @@ static inline def_EHelper(gp3)
     {
         IDEXW(0, test_I, test, s->src1.width)
         EMPTY(1)
-        EMPTY(2)
+        EXW(2, not, s->src1.width)
         EMPTY(3)
         EXW(4, mul, s->src1.width)
         EXW(5, imul1, s->src1.width)
