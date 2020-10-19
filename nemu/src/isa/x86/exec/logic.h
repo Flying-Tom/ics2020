@@ -100,9 +100,9 @@ static inline def_EHelper(setcc)
     print_asm("set%s %s", get_cc_name(cc), id_dest->str);
 }
 
-static inline def_EHelper(not )
+static inline def_EHelper(not)
 {
     rtl_not(s, s0, ddest);
     operand_write(s, id_dest, s0);
-    print_asm_template1(not );
+    print_asm_template1(not);
 }
