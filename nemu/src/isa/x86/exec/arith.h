@@ -47,10 +47,10 @@ static inline def_EHelper(sub)
 
 static inline def_EHelper(cmp)
 {
-    if (id_src1->width == 1 && id_dest->width >= 2)
+    if (id_src1->width == 1 && id_dest->width != 1)
     {
-        rtl_sext(s, s0, dsrc1, id_dest->width);
-        operand_write(s, id_src1, s0);
+        rtl_sext(s, dsrc1, dsrc1, id_src1->width);
+        id_src1->width = id_dest->width;
     }
     cmp_internal(s);
     print_asm_template2(cmp);
