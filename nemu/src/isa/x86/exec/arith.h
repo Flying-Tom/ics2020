@@ -73,7 +73,7 @@ static inline def_EHelper(inc)
 
 static inline def_EHelper(dec)
 {
-    rtl_li(s, dsrc1, 1);
+    *dsrc1=1;
     rtl_sub(s, s0, ddest, dsrc1);
     rtl_update_ZFSF(s, s0, id_dest->width);
     rtl_is_sub_carry(s, s3, ddest, dsrc1);
