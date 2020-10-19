@@ -13,10 +13,10 @@ static inline def_EHelper(test)
 
 static inline def_EHelper(and)
 {
-    if (id_src1->width == 1)
+    if (id_src1->width == 1 && id_dest->width != 1)
     {
         rtl_sext(s, dsrc1, dsrc1, id_src1->width);
-        s->width = id_dest->width = id_src1->width = 4;
+        id_src1->width = id_dest->width;
     }
     rtl_and(s, s0, ddest, dsrc1);
     operand_write(s, id_dest, s0);
@@ -29,10 +29,10 @@ static inline def_EHelper(and)
 
 static inline def_EHelper(xor)
 {
-    if (id_src1->width == 1)
+    if (id_src1->width == 1 && id_dest->width != 1)
     {
         rtl_sext(s, dsrc1, dsrc1, id_src1->width);
-        s->width = id_dest->width = id_src1->width = 4;
+        id_src1->width = id_dest->width;
     }
     rtl_xor(s, s0, ddest, dsrc1);
     operand_write(s, id_dest, s0);
@@ -45,10 +45,10 @@ static inline def_EHelper(xor)
 
 static inline def_EHelper(or)
 {
-    if (id_src1->width == 1)
+    if (id_src1->width == 1 && id_dest->width != 1)
     {
         rtl_sext(s, dsrc1, dsrc1, id_src1->width);
-        s->width = id_dest->width = id_src1->width = 4;
+        id_src1->width = id_dest->width;
     }
     rtl_or(s, s0, ddest, dsrc1);
     operand_write(s, id_dest, s0);
@@ -100,9 +100,9 @@ static inline def_EHelper(setcc)
     print_asm("set%s %s", get_cc_name(cc), id_dest->str);
 }
 
-static inline def_EHelper(not)
+static inline def_EHelper(not )
 {
     rtl_not(s, s0, ddest);
     operand_write(s, id_dest, s0);
-    print_asm_template1(not);
+    print_asm_template1(not );
 }
