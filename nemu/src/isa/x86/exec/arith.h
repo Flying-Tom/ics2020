@@ -2,11 +2,10 @@
 
 static inline def_EHelper(add)
 {
-    if (id_src1->width == 1)
+    if (id_src1->width == 1 && id_dest->width != 1)
     {
-        rtl_sext(s, ddest, dsrc1, 4);
-        rtl_mv(s, dsrc1, ddest);
-        s->width = id_dest->width = id_src1->width = 4;
+        rtl_sext(s, dsrc1, dsrc1, id_src1->width);
+        id_src1->width = id_dest->width;
     }
     rtl_add(s, s0, ddest, dsrc1);
     rtl_update_ZFSF(s, s0, id_dest->width);
@@ -31,11 +30,10 @@ static inline void cmp_internal(DecodeExecState *s)
 
 static inline def_EHelper(sub)
 {
-    if (id_src1->width == 1)
+    if (id_src1->width == 1 && id_dest->width != 1)
     {
-        rtl_sext(s, ddest, dsrc1, 4);
-        rtl_mv(s, dsrc1, ddest);
-        s->width = id_dest->width = id_src1->width = 4;
+        rtl_sext(s, dsrc1, dsrc1, id_src1->width);
+        id_src1->width = id_dest->width;
     }
     rtl_sub(s, s0, ddest, dsrc1);
     rtl_update_ZFSF(s, s0, id_dest->width);
