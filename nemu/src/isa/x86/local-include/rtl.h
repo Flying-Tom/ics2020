@@ -51,7 +51,7 @@ static inline def_rtl(push, const rtlreg_t *src1)
     if (s->isa.is_operand_size_16)
     {
         rtl_subi(s, &cpu.esp, &cpu.esp, 4);
-        rtl_sm(s, &cpu.esp, 0, src1, 2);
+        rtl_sm(s, &cpu.esp, 0, src1, 4);
     }
     else
     {
