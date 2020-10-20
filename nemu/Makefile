@@ -129,7 +129,7 @@ load:
 	cd ../am-kernels/tests/cpu-tests/ && make ARCH=x86-nemu ALL=load-store gdb
 
 recursion:
-	cd ../am-kernels/tests/cpu-tests/ && make ARCH=x86-nemu ALL=recursion gdb
+	cd ../am-kernels/tests/cpu-tests/ && make ARCH=x86-nemu ALL=string gdb
 
 test:
 	bash runall.sh ISA=x86
