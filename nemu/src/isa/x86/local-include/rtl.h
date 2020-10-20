@@ -46,8 +46,8 @@ static inline def_rtl(push, const rtlreg_t *src1)
 {
     // esp <- esp - 4
     // M[esp] <- src1
-    /*if (s->width == 1)
-        rtl_sext(s, src1, src1, s->width);*/
+    if (s->width == 1)
+        rtl_sext(s, dsrc1, dsrc1, s->width);
     if (s->isa.is_operand_size_16)
     {
         rtl_subi(s, &cpu.esp, &cpu.esp, 2);
@@ -66,12 +66,12 @@ static inline def_rtl(pop, rtlreg_t *dest)
     // esp <- esp + 4
     if (s->isa.is_operand_size_16)
     {
-        rtl_lm(s, dest, &cpu.esp, s->isa.moff, 2);
+        rtl_lm(s, dest, &cpu.esp, 0, 2);
         rtl_addi(s, &cpu.esp, &cpu.esp, 2);
     }
     else
     {
-        rtl_lm(s, dest, &cpu.esp, s->isa.moff, 4);
+        rtl_lm(s, dest, &cpu.esp, 0, 4);
         rtl_addi(s, &cpu.esp, &cpu.esp, 4);
     }
 }
