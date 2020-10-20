@@ -56,7 +56,7 @@ static inline def_rtl(push, const rtlreg_t *src1)
     else
     {
         rtl_subi(s, &cpu.esp, &cpu.esp, 4);
-        rtl_sm(s, &cpu.esp, s->isa.moff, src1, 4);
+        rtl_sm(s, s->isa.mbase, s->isa.moff, src1, 4);
     }
 }
 
