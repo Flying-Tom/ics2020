@@ -66,12 +66,12 @@ static inline def_rtl(pop, rtlreg_t *dest)
     // esp <- esp + 4
     if (s->isa.is_operand_size_16)
     {
-        rtl_lm(s, dest, s->isa.mbase, s->isa.moff, 2);
+        rtl_lm(s, dest, &cpu.esp, s->isa.moff, 2);
         rtl_addi(s, &cpu.esp, &cpu.esp, 2);
     }
     else
     {
-        rtl_lm(s, dest, s->isa.mbase, s->isa.moff, 4);
+        rtl_lm(s, dest, &cpu.esp, s->isa.moff, 4);
         rtl_addi(s, &cpu.esp, &cpu.esp, 4);
     }
 }
