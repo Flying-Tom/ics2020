@@ -48,11 +48,13 @@ static inline def_EHelper(ret)
     if (s->isa.is_operand_size_16)
     {
         rtl_pop(s, &s->seq_pc);
+        rtl_mv(s, &s->seq_pc, ddest);
         rtl_j(s, s->seq_pc && 0x0000FFFF);
     }
     else
     {
         rtl_pop(s, &s->seq_pc);
+        rtl_mv(s, &s->seq_pc, ddest);
         rtl_j(s, s->seq_pc);
     }
 
