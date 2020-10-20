@@ -125,8 +125,11 @@ count:
 dummy:
 	cd ../am-kernels/tests/cpu-tests/ && make ARCH=x86-nemu ALL=dummy gdb
 
-add:
+load:
 	cd ../am-kernels/tests/cpu-tests/ && make ARCH=x86-nemu ALL=load-store gdb
+
+recursion:
+	cd ../am-kernels/tests/cpu-tests/ && make ARCH=x86-nemu ALL=recursion gdb
 
 test:
 	bash runall.sh ISA=x86
