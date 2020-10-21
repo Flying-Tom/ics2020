@@ -276,6 +276,8 @@ again:
         ///////////////////
         IDEXW(0x84, G2E, test, 1)
         IDEX(0x85, G2E, test)
+        IDEXW(0xa8, I2a, test, 1)
+        IDEX(0xa9, I2a, test)
         ///////////////////
         IDEXW(0x70, J, jcc, 1)
         IDEXW(0x71, J, jcc, 1)
