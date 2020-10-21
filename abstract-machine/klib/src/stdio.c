@@ -59,7 +59,16 @@ int _Printf(char *out, const char *fmt, va_list args)
 
 int printf(const char *fmt, ...)
 {
-    return 0;
+    va_list ap;
+    char buf[256];
+    size_t cnt=0;
+    va_start(ap, fmt);
+    int ans = _Printf(buf, fmt, ap);
+    buf[ans] = '\0';
+    va_end(ap);
+    while(buf[cnt])
+    putch(buf[cnt++]);
+    return ans;
 }
 
 int vsprintf(char *out, const char *fmt, va_list ap)
