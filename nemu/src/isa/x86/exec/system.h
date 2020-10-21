@@ -59,14 +59,16 @@ static inline def_EHelper(in)
     switch (s->dest.width)
     {
     case 1:
-        pio_read_b(*ddest);
+        *s0 = pio_read_b(*ddest);
         break;
     case 2:
-        pio_read_w(*ddest);
+        *s0 = pio_read_w(*ddest);
+        break;
     case 4:
-        pio_read_l(*ddest);
+        *s0 = pio_read_l(*ddest);
+        break;
     }
-    operand_write(s,id_dest,dsrc1);
+    operand_write(s, id_dest, s0);
     print_asm_template2(in);
 }
 
@@ -78,9 +80,11 @@ static inline def_EHelper(out)
         pio_write_b(*ddest, *dsrc1);
         break;
     case 2:
-        pio_write_w(*ddest, *dsrc1 );
+        pio_write_w(*ddest, *dsrc1);
+        break;
     case 4:
         pio_write_l(*ddest, *dsrc1);
+        break;
     }
 
     print_asm_template2(out);
