@@ -318,6 +318,7 @@ again:
         IDEX(0x4e, r, dec)
         IDEX(0x4f, r, dec)
         //////////////////
+        EX(0x98, cwtl)
         EX(0x99, cltd)
         //////////////////
         IDEXW(0xe4, in_I2a, in, 1)
