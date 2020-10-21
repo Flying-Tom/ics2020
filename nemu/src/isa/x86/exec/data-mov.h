@@ -1,4 +1,3 @@
-#include <monitor/difftest.h>
 static inline def_EHelper(mov)
 {
     operand_write(s, id_dest, dsrc1);
@@ -76,12 +75,9 @@ static inline def_EHelper(cwtl)
 
 static inline def_EHelper(movsx)
 {
-    //difftest_skip_ref(s);
-
     id_dest->width = s->isa.is_operand_size_16 ? 2 : 4;
     rtl_sext(s, ddest, dsrc1, id_src1->width);
     operand_write(s, id_dest, ddest);
-    //cpu.eax=0;
     print_asm_template2(movsx);
 }
 

@@ -1,6 +1,4 @@
 #include "cc.h"
-#include <monitor/difftest.h>
-
 static inline def_EHelper(test)
 {
     rtl_and(s, s0, ddest, dsrc1);
@@ -65,7 +63,6 @@ static inline def_EHelper(sar)
     operand_write(s, id_dest, s0);
     rtl_update_ZFSF(s, s0, id_dest->width);
     // unnecessary to update CF and OF in NEMU
-
     print_asm_template2(sar);
 }
 
@@ -75,7 +72,6 @@ static inline def_EHelper(shl)
     operand_write(s, id_dest, s0);
     rtl_update_ZFSF(s, s0, id_dest->width);
     // unnecessary to update CF and OF in NEMU
-
     print_asm_template2(shl);
 }
 
@@ -84,7 +80,6 @@ static inline def_EHelper(shr)
     rtl_shr(s, s0, ddest, dsrc1);
     operand_write(s, id_dest, s0);
     rtl_update_ZFSF(s, s0, id_dest->width);
-
     // unnecessary to update CF and OF in NEMU
     print_asm_template2(shr);
 }
@@ -94,7 +89,6 @@ static inline def_EHelper(setcc)
     uint32_t cc = s->opcode & 0xf;
     rtl_setcc(s, ddest, cc);
     operand_write(s, id_dest, ddest);
-
     print_asm("set%s %s", get_cc_name(cc), id_dest->str);
 }
 
