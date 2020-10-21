@@ -131,8 +131,10 @@ load:
 string:
 	cd ../am-kernels/tests/cpu-tests/ && make ARCH=x86-nemu ALL=string run
 
-recursion:
-	cd ../am-kernels/tests/cpu-tests/ && make ARCH=x86-nemu ALL=string gdb
+hello:
+	cd ../am-kernels/tests/cpu-tests/ && make ARCH=x86-nemu ALL=hello-str gdb
+
+
 
 test:
 	bash runall.sh ISA=x86
