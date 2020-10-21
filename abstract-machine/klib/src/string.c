@@ -5,10 +5,10 @@
 
 size_t strlen(const char *s)
 {
-    size_t i = 0;
-    for (i = 0; s[i] != '\0'; i++)
-        ;
-    return i;
+    size_t cnt = 0;
+    while (*s++)
+        cnt++;
+    return cnt;
 }
 
 char *strcpy(char *dst, const char *src)
@@ -24,9 +24,9 @@ char *strncpy(char *dst, const char *src, size_t n)
     char *ret = dst;
     do
     {
-        if (!n--)
+        if (!(n--))
             return ret;
-    } while (((*dst++ = *src++)));
+    } while ((*dst++ = *src++));
     while (n--)
         *dst++ = 0;
     return ret;
