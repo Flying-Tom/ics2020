@@ -78,7 +78,7 @@ static inline def_EHelper(out)
         pio_write_b(*ddest, *dsrc1);
         break;
     case 2:
-        pio_write_w(*dsrc1, *ddest);
+        pio_write_w(*ddest, *dsrc1 );
     case 4:
         pio_write_l(*ddest, *dsrc1);
     }
