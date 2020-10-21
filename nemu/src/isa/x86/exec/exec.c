@@ -22,9 +22,9 @@ static inline def_EHelper(gp1)
         EMPTY(1)
         EMPTY(2)
         EMPTY(3)
-        EXW(4, and, s->dest.width) //////////////
-        EXW(5, sub, s->dest.width) //EXW(5,sub,1)?
-        EXW(6, xor, s->dest.width) //////////////
+        EXW(4, and, s->dest.width)
+        EXW(5, sub, s->dest.width)
+        EXW(6, xor, s->dest.width)
         EXW(7, cmp, s->dest.width)
     }
 }
@@ -318,6 +318,14 @@ again:
         //////////////////
         EX(0x99, cltd)
         //////////////////
+        IDEXW(0xe4, in_I2a, in, 1)
+        IDEX(0xe5, in_dx2a, in)
+        IDEXW(0xec, in_I2a, in, 1)
+        IDEX(0xed, in_dx2a, in)
+        IDEXW(0xe6, out_a2I, out, 1)
+        IDEX(0xe7, out_a2dx, out)
+        IDEXW(0xee, out_a2I, out, 1)
+        IDEX(0xef, out_a2dx, out)
     case 0x66:
         s->isa.is_operand_size_16 = true;
         goto again;
