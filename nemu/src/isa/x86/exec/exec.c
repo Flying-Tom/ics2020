@@ -318,13 +318,13 @@ again:
         //////////////////
         EX(0x99, cltd)
         //////////////////
-        IDEXW(0xe4, in_I2a, in, 1)
+        IDEX(0xe4, in_I2a, in)
         IDEX(0xe5, in_dx2a, in)
-        IDEXW(0xec, in_I2a, in, 1)
+        IDEX(0xec, in_I2a, in)
         IDEX(0xed, in_dx2a, in)
-        IDEXW(0xe6, out_a2I, out, 1)
+        IDEX(0xe6, out_a2I, out)
         IDEX(0xe7, out_a2dx, out)
-        IDEXW(0xee, out_a2I, out, 1)
+        IDEX(0xee, out_a2I, out)
         IDEX(0xef, out_a2dx, out)
     case 0x66:
         s->isa.is_operand_size_16 = true;
