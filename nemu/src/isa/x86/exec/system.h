@@ -56,7 +56,7 @@ void pio_write_b(ioaddr_t, uint32_t);
 
 static inline def_EHelper(in)
 {
-    switch (s->dest.width)
+    switch (s->src1.width)
     {
     case 1:
         pio_read_b(*ddest);
