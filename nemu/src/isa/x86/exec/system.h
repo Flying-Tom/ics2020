@@ -59,13 +59,13 @@ static inline def_EHelper(in)
     switch (s->dest.width)
     {
     case 1:
-        *s0 = pio_read_b(*ddest);
+        *s0 = pio_read_b(*dsrc1);
         break;
     case 2:
-        *s0 = pio_read_w(*ddest);
+        *s0 = pio_read_w(*dsrc1);
         break;
     case 4:
-        *s0 = pio_read_l(*ddest);
+        *s0 = pio_read_l(*dsrc1);
         break;
     }
     operand_write(s, id_dest, s0);
