@@ -82,8 +82,8 @@ static inline def_EHelper(gp5)
 {
     switch (s->isa.ext_opcode)
     {
-        EX(0, inc)
-        EMPTY(1)
+        EXW(0, inc, 1)
+        EXW(1, dec, 1)
         EX(2, call_rm)
         EX(3, call_rm)
         EX(4, jmp_rm)
