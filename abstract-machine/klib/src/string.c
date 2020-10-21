@@ -22,13 +22,13 @@ char *strcpy(char *dst, const char *src)
 char *strncpy(char *dst, const char *src, size_t n)
 {
     char *ret = dst;
-    do
+    while ((*dst++ = *src++))
     {
         if (!(n--))
             return ret;
-    } while ((*dst++ = *src++));
+    }
     while (n--)
-        *dst++ = '0';
+        *dst++ = '\0';
     return ret;
 }
 
