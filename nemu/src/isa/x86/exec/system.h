@@ -66,7 +66,7 @@ static inline def_EHelper(in)
     case 4:
         pio_read_l(*ddest);
     }
-
+    operand_write(s,id_dest,dsrc1);
     print_asm_template2(in);
 }
 
