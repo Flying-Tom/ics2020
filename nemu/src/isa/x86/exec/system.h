@@ -56,7 +56,6 @@ static inline def_EHelper(in) {
 }
 
 static inline def_EHelper(out) {
-  TODO();
 
   print_asm_template2(out);
 }
