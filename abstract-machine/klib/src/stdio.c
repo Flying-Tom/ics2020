@@ -25,7 +25,7 @@ int _Printf(char *out, const char *fmt, va_list args)
 {
 
     int ans = 0, temp = 0;
-    char* strtemp='\0';
+    char *strtemp = '\0';
     while (*fmt != '\0')
     {
         while (*fmt != '%' && *fmt != '\0')
@@ -33,7 +33,10 @@ int _Printf(char *out, const char *fmt, va_list args)
             *out++ = *fmt++;
             ans++;
         }
-        fmt++;
+        if (*fmt == '\0')
+            break;
+        else
+            fmt++;
         switch (*fmt++)
         {
         case 'd':
