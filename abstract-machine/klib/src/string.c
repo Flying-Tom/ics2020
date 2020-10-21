@@ -24,7 +24,7 @@ char *strncpy(char *dst, const char *src, size_t n)
     char *ret = dst;
     while ((*dst++ = *src++))
     {
-        if (!(n--))
+        if (!n--)
             return ret;
     }
     while (n--)
@@ -46,7 +46,7 @@ int strcmp(const char *s1, const char *s2)
 {
     while (*s1 && (*s1 == *s2))
         s1++, s2++;
-    return *(const unsigned char *)s1 - *(const unsigned char *)s2;
+    return s1 - s2;
 }
 
 int strncmp(const char *s1, const char *s2, size_t n)
