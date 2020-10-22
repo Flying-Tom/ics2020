@@ -46,6 +46,7 @@ int _Printf(char *out, const char *fmt, va_list args)
         {
         case 'd':
             temp = num_to_str(out, ctrl, va_arg(args, int));
+            ctrlcnt=0;
             ans += temp;
             out += temp;
             break;
