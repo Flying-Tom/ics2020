@@ -97,6 +97,9 @@ static inline def_EHelper(movsb)
     if (id_dest->width == 1)
     {
         rtl_lr(s, s0, R_ESI, 1);
+        rtl_addi(s,s0,s0,1);
+        rtl_sr(s, R_ESI, s0, 1);
+        rtl_subi(s,s0,s0,2);
         rtl_sr(s, R_EDI, s0, 1);
         //rtl_mv(s,reg_b(R_EDI),reg_b(R_ESI));
     }
