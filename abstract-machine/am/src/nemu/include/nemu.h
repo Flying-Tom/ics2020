@@ -4,6 +4,13 @@
 #include <klib-macros.h>
 #include "x86.h" // "x86.h", "mips32.h", ...
 
+#ifndef __ISA_X86__
+#define __ISA_X86__
+#endif
+#ifndef __ARCH_X86_NEMU
+#define __ARCH_X86_NEMU
+#endif
+
 #if defined(__ISA_X86__)
 # define nemu_trap(code) asm volatile (".byte 0xd6" : :"a"(code))
 #elif defined(__ISA_MIPS32__)
