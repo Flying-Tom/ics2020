@@ -47,7 +47,7 @@ int _Printf(char *out, const char *fmt, va_list args)
         switch (*fmt++)
         {
         case 'd':
-            assert(ctrl[0]=='\0');
+            assert(ctrl[0]!='\0');
             temp = num_to_str(out, ctrl, va_arg(args, int));
             ans += temp;
             out += temp;
