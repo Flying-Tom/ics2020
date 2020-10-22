@@ -94,16 +94,19 @@ static inline def_EHelper(movzx)
 
 static inline def_EHelper(movsb)
 {
+    rtl_li(s,s3,id_dest->width);
     if (id_dest->width == 1)
     {
         rtl_lr(s, s0, R_ESI, 1);
-        rtl_addi(s,s0,s0,1);
-        rtl_sr(s, R_ESI, s0, 1);
-        rtl_subi(s,s0,s0,2);
         rtl_sr(s, R_EDI, s0, 1);
-        //rtl_mv(s,reg_b(R_EDI),reg_b(R_ESI));
     }
-    print_asm_template2(movsb);
+    rtl_lr(s, s0, R_ESI, id_dest->width);
+    rtl_add(s,s0,s0,s3);
+    rtl_sr(s, R_ESI, s0, id_dest->width);
+    rtl_lr(s, s0, R_EDI, id_dest->width);
+    rtl_add(s,s0,s0,s3);
+    rtl_sr(s, R_EDI, s0, id_dest->width);
+    print_asm_template1(movsb);
 }
 
 static inline def_EHelper(lea)
