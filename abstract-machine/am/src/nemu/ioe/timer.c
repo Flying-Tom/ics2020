@@ -1,15 +1,15 @@
 #include <am.h>
 #include <nemu.h>
 
-//uint64_t BOOT_TIME = 0;
+uint64_t BOOT_TIME = 0;
 void __am_timer_init()
 {
-    //BOOT_TIME = inl(RTC_ADDR);
+    BOOT_TIME = inl(RTC_ADDR);
 }
 
 void __am_timer_uptime(AM_TIMER_UPTIME_T *uptime)
 {
-    uptime->us = inl(RTC_ADDR) - boot_record()->jmp_code;
+    uptime->us = inl(RTC_ADDR) - BOOT_TIME;
 }
 
 void __am_timer_rtc(AM_TIMER_RTC_T *rtc)
