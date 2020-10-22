@@ -19,7 +19,7 @@ int num_to_str(char *out, char *ctrl, int x)
     if (ctrl[0] == '0' && ctrl[1] != '\0')
         while (len < ctrl[1] - '0')
             temp[len++] = '0';
-    memset(ctrl,'\0',sizeof(ctrl));
+    memset(ctrl, '\0', sizeof(ctrl));
     while (len > 0)
         *out++ = temp[len--];
     return ans;
@@ -40,8 +40,9 @@ int _Printf(char *out, const char *fmt, va_list args)
         }
         if (*fmt == '\0')
             break;
-        else
-            fmt++;
+        while (*(++fmt) >= '0' && *(++fmt) <= '9')
+            ;
+
         switch (*fmt++)
         {
         case 'd':
@@ -61,8 +62,6 @@ int _Printf(char *out, const char *fmt, va_list args)
                 *out++ = *strtemp++;
                 ans++;
             }
-            break;
-        default:
             break;
         }
     }
