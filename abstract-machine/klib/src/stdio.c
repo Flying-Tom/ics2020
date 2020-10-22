@@ -14,13 +14,12 @@ int num_to_str(char *out, char *ctrl, int x)
         temp[len++] = x % 10 + '0';
         x /= 10;
     }
-    ans = len;
-
     if (ctrl[0] == '0' && ctrl[1] != '\0')
     {
         while (len < ctrl[1] - '0')
             temp[len++] = '0';
     }
+    ans = len;
     memset(ctrl, '\0', sizeof(ctrl));
     while (len > 0)
         *out++ = temp[--len];
