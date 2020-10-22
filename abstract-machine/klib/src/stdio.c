@@ -5,7 +5,7 @@
 
 #if !defined(__ISA_NATIVE__) || defined(__NATIVE_USE_KLIB__)
 
-int num_to_str(char *out, int x)
+int num_to_str(char *out, char *ctrl, int x)
 {
     char temp[32];
     int len = 0, ans = 0;
@@ -16,7 +16,11 @@ int num_to_str(char *out, int x)
     }
     ans = len;
     len--;
-    while (len >= 0)
+    if (ctrl[0] == 0 && ctrl[1] != '\0')
+        while (len < ctrl[1] - '0')
+            temp[len++] = '0';
+    memset(ctrl,'\0',sizeof(ctrl));
+    while (len > 0)
         *out++ = temp[len--];
     return ans;
 }
@@ -24,8 +28,9 @@ int num_to_str(char *out, int x)
 int _Printf(char *out, const char *fmt, va_list args)
 {
 
-    int ans = 0, temp = 0;
+    int ans = 0, temp = 0, ctrlcnt = 0;
     char *strtemp = '\0';
+    char ctrl[16];
     while (*fmt != '\0')
     {
         while (*fmt != '%' && *fmt != '\0')
@@ -40,7 +45,7 @@ int _Printf(char *out, const char *fmt, va_list args)
         switch (*fmt++)
         {
         case 'd':
-            temp = num_to_str(out, va_arg(args, int));
+            temp = num_to_str(out, ctrl, va_arg(args, int));
             ans += temp;
             out += temp;
             break;
@@ -57,6 +62,9 @@ int _Printf(char *out, const char *fmt, va_list args)
                 ans++;
             }
             break;
+        default:
+            ctrl[ctrlcnt++] = *fmt;
+            break;
         }
     }
     return ans;
@@ -70,7 +78,7 @@ int printf(const char *fmt, ...)
     int ans = _Printf(buf, fmt, ap);
     buf[ans] = '\0';
     va_end(ap);
-    size_t cnt=0;
+    size_t cnt = 0;
     while (buf[cnt])
         putch(buf[cnt++]);
     return ans;
