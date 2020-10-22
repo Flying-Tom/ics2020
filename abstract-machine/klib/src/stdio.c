@@ -15,12 +15,13 @@ int num_to_str(char *out, char *ctrl, int x)
         x /= 10;
     }
     ans = len;
-    /*
+
     if (ctrl[0] == '0' && ctrl[1] != '\0')
-        while (len < ctrl[1] - 49)
+    {
+        while (len < ctrl[1] - '0')
             temp[len++] = '0';
-    len--;
-    memset(ctrl, '\0', sizeof(ctrl));*/
+    }
+    memset(ctrl, '\0', sizeof(ctrl));
     while (len > 0)
         *out++ = temp[--len];
     return ans;
@@ -31,7 +32,7 @@ int _Printf(char *out, const char *fmt, va_list args)
 
     int ans = 0, temp = 0;
     char *strtemp = '\0';
-    char ctrl[16];
+    char ctrl[8];
     while (*fmt != '\0')
     {
         while (*fmt != '%' && *fmt != '\0')
