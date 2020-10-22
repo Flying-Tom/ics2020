@@ -44,6 +44,11 @@ int _Printf(char *out, const char *fmt, va_list args)
             ans += temp;
             out += temp;
             break;
+        case 'c':
+            strtemp = va_arg(args, char *);
+            *out++ = *strtemp++;
+            ans++;
+            break;
         case 's':
             strtemp = va_arg(args, char *);
             while (*strtemp)
@@ -61,13 +66,13 @@ int printf(const char *fmt, ...)
 {
     va_list ap;
     char buf[256];
-    size_t cnt=0;
     va_start(ap, fmt);
     int ans = _Printf(buf, fmt, ap);
     buf[ans] = '\0';
     va_end(ap);
-    while(buf[cnt])
-    putch(buf[cnt++]);
+    size_t cnt=0;
+    while (buf[cnt])
+        putch(buf[cnt++]);
     return ans;
 }
 
