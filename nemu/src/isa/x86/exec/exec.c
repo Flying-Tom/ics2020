@@ -210,6 +210,8 @@ again:
         IDEXW(0xfe, E, gp4, 1)
         IDEX(0xff, E, gp5)
         ///////////////////
+        EXW(0xa4,movsb,1)
+        ///////////////////
         IDEX(0xe8, J, call)
         ///////////////////
         IDEX(0x50, r, push)
