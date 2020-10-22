@@ -9,11 +9,11 @@ int num_to_str(char *out, char *ctrl, int x)
 {
     char temp[32];
     int len = 0, ans = 0;
-    while (x)
+    do
     {
         temp[len++] = x % 10 + '0';
         x /= 10;
-    }
+    } while (x);
     if (ctrl[0] == '0' && ctrl[1] != '\0')
     {
         while (len < ctrl[1] - '0')
