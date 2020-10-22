@@ -94,12 +94,10 @@ static inline def_EHelper(movzx)
 
 static inline def_EHelper(movsb)
 {
-    id_dest->type=OP_TYPE_REG;
     if (id_dest->width == 1)
     {
-        rtl_lr(s, dsrc1, R_DH, 1);
-        rtl_lr(s, ddest, R_BH, 1);
-        operand_write(s, id_dest, dsrc1);
+        rtl_lr(s, s0, R_DH, 1);
+        rtl_sr(s, R_BH, s0, 1);
         //rtl_mv(s,reg_b(R_EDI),reg_b(R_ESI));
     }
     print_asm_template2(movsb);
