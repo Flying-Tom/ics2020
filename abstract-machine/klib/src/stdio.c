@@ -18,7 +18,7 @@ int num_to_str(char *out, char *ctrl, int x)
     {
         while (len < ctrl[1] - '0')
             temp[len++] = '0';
-        assert(len==ctrl[1] - '0');
+        assert(len == ctrl[1] - '0');
     }
     ans = len;
     memset(ctrl, '\0', sizeof(ctrl));
@@ -30,7 +30,7 @@ int num_to_str(char *out, char *ctrl, int x)
 int _Printf(char *out, const char *fmt, va_list args)
 {
 
-    int ans = 0, temp = 0;
+    int ans = 0, temp = 0, ctrlcnt = 0;
     char *strtemp = '\0';
     char ctrl[8];
     while (*fmt != '\0')
@@ -42,8 +42,9 @@ int _Printf(char *out, const char *fmt, va_list args)
         }
         if (*fmt++ == '\0')
             break;
+        ctrlcnt = 0;
         while (*fmt >= '0' && *fmt <= '9')
-            fmt++;
+            ctrl[ctrlcnt++] = *fmt++;
 
         switch (*fmt++)
         {
