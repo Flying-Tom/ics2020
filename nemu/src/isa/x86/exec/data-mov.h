@@ -63,15 +63,15 @@ static inline def_EHelper(cwtl)
 {
     if (s->isa.is_operand_size_16)
     {
-        rtl_lr(s,s0,R_AL,1);
+        rtl_lr(s, s0, R_AL, 1);
         rtl_sext(s, s1, s0, 2);
-        rtl_sr(s,R_AX,s1,2);
+        rtl_sr(s, R_AX, s1, 2);
     }
     else
     {
-        rtl_lr(s,s0,R_AX,2);
+        rtl_lr(s, s0, R_AX, 2);
         rtl_sext(s, s1, s0, 4);
-        rtl_sr(s,R_EAX,s1,4);
+        rtl_sr(s, R_EAX, s1, 4);
     }
 
     print_asm(s->isa.is_operand_size_16 ? "cbtw" : "cwtl");
@@ -94,11 +94,12 @@ static inline def_EHelper(movzx)
 
 static inline def_EHelper(movsb)
 {
-    if(id_dest->width ==1)
+    if (id_dest->width == 1)
     {
-        rtl_lr(s,dsrc1,R_DH,1);
-        rtl_lr(s,ddest,R_BH,1);
+        rtl_lr(s, dsrc1, R_DH, 1);
+        rtl_lr(s, ddest, R_BH, 1);
         operand_write(s, id_dest, dsrc1);
+        //rtl_mv(s,reg_b(R_EDI),reg_b(R_ESI));
     }
     print_asm_template2(movsb);
 }
