@@ -334,10 +334,10 @@ again:
         //////////////////
         IDEXW(0xe4, in_I2a, in, 1)
         IDEX(0xe5, in_I2a, in)
-        IDEXW(0xec, in_dx2a, in, 1)
-        IDEX(0xed, in_dx2a, in)
         IDEXW(0xe6, out_a2I, out, 1)
         IDEX(0xe7, out_a2I, out)
+        IDEXW(0xec, in_dx2a, in, 1)
+        IDEX(0xed, in_dx2a, in)
         IDEXW(0xee, out_a2dx, out, 1)
         IDEX(0xef, out_a2dx, out)
     case 0x66:

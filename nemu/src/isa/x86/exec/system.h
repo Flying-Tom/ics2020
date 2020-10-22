@@ -74,7 +74,7 @@ static inline def_EHelper(in)
 
 static inline def_EHelper(out)
 {
-    switch (s->dest.width)
+    switch (s->src1.width)
     {
     case 1:
         pio_write_b(*ddest, *dsrc1);
