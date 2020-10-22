@@ -6,8 +6,14 @@
 void __am_input_keybrd(AM_INPUT_KEYBRD_T *kbd)
 {
     //bd->keydown = 0;
-    if(kbd->keydown == 0)
-    kbd->keycode = AM_KEY_NONE;
+    if (inb(0x64) & 0x1)
+    {
+        kbd->keydown = 1;
+        kbd->keycode = inl(KBD_ADDR);
+    }
     else
-    kbd->keycode = inl(KBD_ADDR);
+    {
+        kbd->keydown = 0;
+        kbd->keycode = AM_KEY_NONE;
+    }
 }
