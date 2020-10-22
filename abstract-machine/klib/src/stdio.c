@@ -28,7 +28,7 @@ int num_to_str(char *out, char *ctrl, int x)
 int _Printf(char *out, const char *fmt, va_list args)
 {
 
-    int ans = 0, temp = 0, ctrlcnt = 0;
+    int ans = 0, temp = 0;
     char *strtemp = '\0';
     char ctrl[16];
     while (*fmt != '\0')
@@ -46,7 +46,6 @@ int _Printf(char *out, const char *fmt, va_list args)
         {
         case 'd':
             temp = num_to_str(out, ctrl, va_arg(args, int));
-            ctrlcnt=0;
             ans += temp;
             out += temp;
             break;
@@ -64,7 +63,6 @@ int _Printf(char *out, const char *fmt, va_list args)
             }
             break;
         default:
-            ctrl[ctrlcnt++] = *fmt;
             break;
         }
     }
