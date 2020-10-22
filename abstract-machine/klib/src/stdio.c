@@ -16,11 +16,12 @@ int num_to_str(char *out, char *ctrl, int x)
     }
     ans = len;
     len--;
+    /*
     if (ctrl[0] == '0' && ctrl[1] != '\0')
         while (len < ctrl[1] - 49)
             temp[len++] = '0';
     len--;
-    memset(ctrl, '\0', sizeof(ctrl));
+    memset(ctrl, '\0', sizeof(ctrl));*/
     while (len > 0)
         *out++ = temp[len--];
     return ans;
