@@ -18,6 +18,7 @@ int num_to_str(char *out, char *ctrl, int x)
     {
         while (len < ctrl[1] - '0')
             temp[len++] = '0';
+        assert(len==ctrl[1] - '0');
     }
     ans = len;
     memset(ctrl, '\0', sizeof(ctrl));
