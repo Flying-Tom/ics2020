@@ -41,8 +41,8 @@ int _Printf(char *out, const char *fmt, va_list args)
         }
         if (*fmt == '\0')
             break;
-        while (*(++fmt) >= '0' && *(++fmt) <= '9')
-            ;
+        while (*fmt >= '0' && *fmt <= '9')
+            fmt++;
 
         switch (*fmt++)
         {
