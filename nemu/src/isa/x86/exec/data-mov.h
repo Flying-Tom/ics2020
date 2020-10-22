@@ -94,6 +94,7 @@ static inline def_EHelper(movzx)
 
 static inline def_EHelper(movsb)
 {
+    id_dest->type=OP_TYPE_REG;
     if (id_dest->width == 1)
     {
         rtl_lr(s, dsrc1, R_DH, 1);
