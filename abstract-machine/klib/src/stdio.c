@@ -39,7 +39,7 @@ int _Printf(char *out, const char *fmt, va_list args)
             *out++ = *fmt++;
             ans++;
         }
-        if (*fmt == '\0')
+        if (*fmt++ == '\0')
             break;
         while (*fmt >= '0' && *fmt <= '9')
             fmt++;
@@ -47,7 +47,6 @@ int _Printf(char *out, const char *fmt, va_list args)
         switch (*fmt++)
         {
         case 'd':
-            assert(ctrl[0]!='\0');
             temp = num_to_str(out, ctrl, va_arg(args, int));
             ans += temp;
             out += temp;
