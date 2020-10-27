@@ -1,9 +1,40 @@
 #include <am.h>
 #include <nemu.h>
+//#include <klib.h>
+#include <string.h>
+#include <stdio.h>
+
+static int W;
+static int H;
 
 #define SYNC_ADDR (VGACTL_ADDR + 4)
 
-void __am_gpu_init() {
+static inline int min(int x, int y)
+{
+    return (x < y) ? x : y;
+}
+
+void __am_gpu_init()
+{
+
+    if (((400 << 16) | 300) == inl(VGACTL_ADDR))
+    {
+        W = 400;
+        H = 300;
+    }
+    else
+    {
+        W = 800;
+        H = 600;
+    }
+    /*
+    int i;
+    int w = W; // TODO: get the correct width
+    int h = H; // TODO: get the correct height
+    uint32_t *fb = (uint32_t *)(uintptr_t)FB_ADDR;
+    for (i = 0; i < w * h; i++)
+        fb[i] = i;
+    outl(SYNC_ADDR, 0);*/
 }
 
 void __am_gpu_config(AM_GPU_CONFIG_T *cfg) {
@@ -14,12 +45,25 @@ void __am_gpu_config(AM_GPU_CONFIG_T *cfg) {
   };
 }
 
-void __am_gpu_fbdraw(AM_GPU_FBDRAW_T *ctl) {
-  if (ctl->sync) {
-    outl(SYNC_ADDR, 1);
-  }
+void __am_gpu_fbdraw(AM_GPU_FBDRAW_T *ctl)
+{
+    if (ctl->sync)
+    {
+        outl(SYNC_ADDR, 1);
+    }
+    /*
+    int x = ctl->x, y = ctl->y, w = ctl->w, h = ctl->h;
+    uint32_t *pixels = ctl->pixels;
+    int cp_bytes = sizeof(uint32_t) * min(w, W - x);
+    
+    for (int j = 0; j < h && y + j < H; j++)
+    {
+        memcpy(&fb[(y + j) * W + x], pixels, cp_bytes);
+        pixels += w;
+    }*/
 }
 
-void __am_gpu_status(AM_GPU_STATUS_T *status) {
-  status->ready = true;
+void __am_gpu_status(AM_GPU_STATUS_T *status)
+{
+    status->ready = true;
 }
