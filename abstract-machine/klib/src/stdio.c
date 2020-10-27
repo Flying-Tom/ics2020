@@ -74,7 +74,7 @@ int _Printf(char *out, const char *fmt, va_list args)
 int printf(const char *fmt, ...)
 {
     va_list ap;
-    char buf[256];
+    char buf[1024];
     va_start(ap, fmt);
     int ans = _Printf(buf, fmt, ap);
     buf[ans] = '\0';
