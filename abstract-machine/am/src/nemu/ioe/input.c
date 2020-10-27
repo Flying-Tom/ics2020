@@ -6,14 +6,7 @@
 void __am_input_keybrd(AM_INPUT_KEYBRD_T *kbd)
 {
     //bd->keydown = 0;
-    if (inb(0x64) & 0x1)
-    {
-        kbd->keydown = 1;
-        kbd->keycode = inl(KBD_ADDR);
-    }
-    else
-    {
-        kbd->keydown = 0;
-        kbd->keycode = AM_KEY_NONE;
-    }
+    int k = inl(KBD_ADDR);
+    kbd->keydown = (k & KEYDOWN_MASK ? true : false);
+    kbd->keycode = k & ~KEYDOWN_MASK;
 }
