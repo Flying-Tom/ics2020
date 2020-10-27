@@ -42,6 +42,7 @@ void vga_update_screen()
 {
     // TODO: call `update_screen()` when the sync register is non-zero,
     // then zero out the sync register
+
 }
 
 void init_vga()
