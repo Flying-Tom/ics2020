@@ -17,32 +17,21 @@ static inline int min(int x, int y)
 void __am_gpu_init()
 {
 
-    if (((400 << 16) | 300) == inl(VGACTL_ADDR))
-    {
-        W = 400;
-        H = 300;
-    }
-    else
-    {
-        W = 800;
-        H = 600;
-    }
-    /*
+    W = io_read(AM_GPU_CONFIG).width;
+    H = io_read(AM_GPU_CONFIG).height;
     int i;
     int w = W; // TODO: get the correct width
     int h = H; // TODO: get the correct height
     uint32_t *fb = (uint32_t *)(uintptr_t)FB_ADDR;
     for (i = 0; i < w * h; i++)
         fb[i] = i;
-    outl(SYNC_ADDR, 0);*/
+    outl(SYNC_ADDR, 0);
 }
 
-void __am_gpu_config(AM_GPU_CONFIG_T *cfg) {
-  *cfg = (AM_GPU_CONFIG_T) {
-    .present = true, .has_accel = false,
-    .width = 0, .height = 0,
-    .vmemsz = 0
-  };
+void __am_gpu_config(AM_GPU_CONFIG_T *cfg)
+{
+    *cfg = (AM_GPU_CONFIG_T){
+        .present = true, .has_accel = false, .width = 0, .height = 0, .vmemsz = 0};
 }
 
 void __am_gpu_fbdraw(AM_GPU_FBDRAW_T *ctl)
