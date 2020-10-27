@@ -78,15 +78,6 @@ void cpu_exec(uint64_t n) {
 
   for (; n > 0; n --) {
     vaddr_t this_pc = cpu.pc;
-    ///////////////////////////////////////
-    //////////////////////////////////////
-    if(!check_wp())
-    {
-      nemu_state.state = NEMU_STOP;
-      return;
-    }
-    ///////////////////////////////////////
-    ///////////////////////////////////////
     /* Execute one instruction, including instruction fetch,
      * instruction decode, and the actual execution. */
     __attribute__((unused)) vaddr_t seq_pc = isa_exec_once();
@@ -99,6 +90,11 @@ void cpu_exec(uint64_t n) {
     asm_print(this_pc, seq_pc - this_pc, n < MAX_INSTR_TO_PRINT);
 
     /* TODO: check watchpoints here. */
+    if(!check_wp())
+    {
+      nemu_state.state = NEMU_STOP;
+      return;
+    }
 #endif
 
 #ifdef HAS_IOE
