@@ -43,14 +43,14 @@ static inline def_EHelper(cltd)
 {
     if (s->isa.is_operand_size_16)
     {
-        if (reg_w(R_AX) < 0)
+        if ((int16_t)reg_w(R_AX) < 0)
             reg_w(R_DX) = 0xffff;
         else
             reg_w(R_DX) = 0;
     }
     else
     {
-        if (reg_l(R_EAX) < 0)
+        if ((int32_t)reg_l(R_EAX) < 0)
             reg_l(R_EDX) = 0xffffffff;
         else
             reg_l(R_EDX) = 0;
