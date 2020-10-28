@@ -10,11 +10,6 @@ static inline def_EHelper(test)
 
 static inline def_EHelper(and)
 {
-    if (id_src1->width == 1 && id_dest->width != 1)
-    {
-        rtl_sext(s, dsrc1, dsrc1, id_src1->width);
-        id_src1->width = id_dest->width;
-    }
     rtl_and(s, s0, ddest, dsrc1);
     operand_write(s, id_dest, s0);
     rtl_update_ZFSF(s, s0, id_dest->width);
@@ -25,11 +20,6 @@ static inline def_EHelper(and)
 
 static inline def_EHelper(xor)
 {
-    /*if (id_src1->width == 1 && id_dest->width != 1)
-    {
-        rtl_sext(s, dsrc1, dsrc1, id_src1->width);
-        id_src1->width = id_dest->width;
-    }*/
     rtl_xor(s, s0, ddest, dsrc1);
     operand_write(s, id_dest, s0);
     rtl_update_ZFSF(s, s0, id_dest->width);
@@ -40,11 +30,6 @@ static inline def_EHelper(xor)
 
 static inline def_EHelper(or)
 {
-    if (id_src1->width == 1 && id_dest->width != 1)
-    {
-        rtl_sext(s, dsrc1, dsrc1, id_src1->width);
-        id_src1->width = id_dest->width;
-    }
     rtl_or(s, s0, ddest, dsrc1);
     operand_write(s, id_dest, s0);
     rtl_update_ZFSF(s, s0, id_dest->width);
