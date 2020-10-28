@@ -3,9 +3,8 @@ static inline def_EHelper(test)
 {
     rtl_and(s, s0, ddest, dsrc1);
     rtl_update_ZFSF(s, s0, id_dest->width);
-    rtl_li(s, s0, 0);
-    rtl_set_CF(s, s0);
-    rtl_set_OF(s, s0);
+    rtl_set_CF(s, rz);
+    rtl_set_OF(s, rz);
     print_asm_template2(test);
 }
 
@@ -19,7 +18,6 @@ static inline def_EHelper(and)
     rtl_and(s, s0, ddest, dsrc1);
     operand_write(s, id_dest, s0);
     rtl_update_ZFSF(s, s0, id_dest->width);
-    //rtl_li(s, s0, 0);
     rtl_set_CF(s, rz);
     rtl_set_OF(s, rz);
     print_asm_template2(and);
@@ -35,7 +33,6 @@ static inline def_EHelper(xor)
     rtl_xor(s, s0, ddest, dsrc1);
     operand_write(s, id_dest, s0);
     rtl_update_ZFSF(s, s0, id_dest->width);
-    //rtl_li(s, s0, 0);
     rtl_set_CF(s, rz);
     rtl_set_OF(s, rz);
     print_asm_template2(xor);
@@ -51,7 +48,6 @@ static inline def_EHelper(or)
     rtl_or(s, s0, ddest, dsrc1);
     operand_write(s, id_dest, s0);
     rtl_update_ZFSF(s, s0, id_dest->width);
-    //rtl_li(s, s0, 0);
     rtl_set_CF(s, rz);
     rtl_set_OF(s, rz);
     print_asm_template2(or);

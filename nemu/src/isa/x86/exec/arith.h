@@ -84,7 +84,6 @@ static inline def_EHelper(dec)
 
 static inline def_EHelper(neg)
 {
-    if(*ddest)
     *s0 = (*ddest !=0 )? 0 : 1;
     rtl_set_CF(s,s0);
     rtl_neg(s, s0, ddest);
