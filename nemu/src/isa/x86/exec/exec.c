@@ -18,14 +18,14 @@ static inline def_EHelper(gp1)
 {
     switch (s->isa.ext_opcode)
     {
-        EXW(0, add, s->dest.width)
-        EXW(1, or, s->dest.width)
-        EXW(2, adc, s->dest.width)
-        EXW(3, sbb, s->dest.width)
-        EXW(4, and, s->dest.width)
-        EXW(5, sub, s->dest.width)
-        EXW(6, xor, s->dest.width)
-        EXW(7, cmp, s->dest.width)
+        EX(0, add)
+        EX(1, or)
+        EX(2, adc)
+        EX(3, sbb)
+        EX(4, and)
+        EX(5, sub)
+        EX(6, xor)
+        EX(7, cmp)
     }
 }
 
