@@ -44,11 +44,12 @@ void __am_gpu_fbdraw(AM_GPU_FBDRAW_T *ctl)
     int x = ctl->x, y = ctl->y, w = ctl->w, h = ctl->h;
     uint32_t *pixels = ctl->pixels;
     int cp_bytes = min(w, W - x);
-
     for (int j = 0; j < h && y + j < H; j++)
     {
         for (int i = 0; i < cp_bytes; i++)
             *(fb + (y + j) * W + x + i) = *pixels++;
+        
+        printf("?\n");
         //memcpy(&fb[(y + j) * W + x], pixels, cp_bytes);
         pixels += w;
     }
