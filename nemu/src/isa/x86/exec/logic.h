@@ -117,7 +117,7 @@ static inline def_EHelper(bsr)
     else
     {
         rtl_li(s, s3, 0);
-        rtl_set_ZF(s, s3);
+        rtl_set_ZF(s, rz);
         rtl_mv(s, s0, dsrc1);
         rtl_li(s, s1, 0);
         while ((*s0 & 1) == 0)
