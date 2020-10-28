@@ -2,8 +2,8 @@
 #include <nemu.h>
 //#include <klib.h>
 
-static int W;
-static int H;
+static int W=400;
+static int H=300;
 
 #define SYNC_ADDR (VGACTL_ADDR + 4)
 
@@ -15,8 +15,6 @@ static inline int min(int x, int y)
 void __am_gpu_init()
 {
 
-    W = io_read(AM_GPU_CONFIG).width;
-    H = io_read(AM_GPU_CONFIG).height;
     int i;
     int w = W; // TODO: get the correct width
     int h = H; // TODO: get the correct height
@@ -29,7 +27,7 @@ void __am_gpu_init()
 void __am_gpu_config(AM_GPU_CONFIG_T *cfg)
 {
     *cfg = (AM_GPU_CONFIG_T){
-        .present = true, .has_accel = false, .width = 400, .height = 300, .vmemsz = 0};
+        .present = true, .has_accel = false, .width = W, .height = H, .vmemsz = 0};
 }
 
 void __am_gpu_fbdraw(AM_GPU_FBDRAW_T *ctl)
