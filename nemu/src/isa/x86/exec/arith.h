@@ -2,11 +2,6 @@
 
 static inline def_EHelper(add)
 {
-    if (id_src1->width == 1 && id_dest->width != 1)
-    {
-        rtl_sext(s, dsrc1, dsrc1, id_src1->width);
-        id_src1->width = id_dest->width;
-    }
     rtl_add(s, s0, ddest, dsrc1);
     rtl_update_ZFSF(s, s0, id_dest->width);
     rtl_is_add_carry(s, s3, s0, dsrc1);
@@ -30,11 +25,6 @@ static inline void cmp_internal(DecodeExecState *s)
 
 static inline def_EHelper(sub)
 {
-    if (id_src1->width == 1 && id_dest->width != 1)
-    {
-        rtl_sext(s, dsrc1, dsrc1, id_src1->width);
-        id_src1->width = id_dest->width;
-    }
     rtl_sub(s, s0, ddest, dsrc1);
     rtl_update_ZFSF(s, s0, id_dest->width);
     rtl_is_sub_carry(s, s3, ddest, dsrc1);
@@ -47,11 +37,6 @@ static inline def_EHelper(sub)
 
 static inline def_EHelper(cmp)
 {
-    if (id_src1->width == 1 && id_dest->width != 1)
-    {
-        rtl_sext(s, dsrc1, dsrc1, id_src1->width);
-        id_src1->width = id_dest->width;
-    }
     cmp_internal(s);
     print_asm_template2(cmp);
 }
