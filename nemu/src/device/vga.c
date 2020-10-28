@@ -43,12 +43,12 @@ void vga_update_screen()
 {
     // TODO: call `update_screen()` when the sync register is non-zero,
     // then zero out the sync register
-    /*
+    
     if (paddr_read(VGACTL_MMIO + 4, 4))
     {
         update_screen();
         paddr_write(VGACTL_MMIO + 4, 0, 4);
-    }*/
+    }
 }
 
 void init_vga()
