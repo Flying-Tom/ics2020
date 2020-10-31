@@ -31,6 +31,7 @@ int _Printf(char *out, const char *fmt, va_list args)
 {
 
     int ans = 0, temp = 0, ctrlcnt = 0;
+    char *initout = out;
     char *strtemp = '\0';
     char ctrl[8];
     while (*fmt)
@@ -68,7 +69,7 @@ int _Printf(char *out, const char *fmt, va_list args)
             break;
         }
     }
-    return ans;
+    return out-initout;
 }
 
 int printf(const char *fmt, ...)
