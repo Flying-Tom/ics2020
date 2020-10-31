@@ -97,10 +97,10 @@ static inline def_EHelper(movzx)
 static inline def_EHelper(movsb)
 {
     assert(s->dest.width == 1 || s->dest.width == 2 || s->dest.width == 4 );
-    rtl_lr(s, s0, R_ESI, 4);
+    rtl_lr(s, s0, R_ESI, s->dest.width);
     rtl_addi(s, s0, s0, s->dest.width);
-    rtl_sr(s, R_ESI, s0, 4);
-    rtl_sr(s, R_EDI, s0, 4);
+    rtl_sr(s, R_ESI, s0, s->dest.width);
+    rtl_sr(s, R_EDI, s0, s->dest.width);
     print_asm_template1(movsb);
 }
 
