@@ -45,7 +45,7 @@ int _Printf(char *out, const char *fmt, va_list args)
         ctrlcnt = 0;
         while (*fmt >= '0' && *fmt <= '9')
             ctrl[ctrlcnt++] = *fmt++;
-        switch (*fmt)
+        switch (*fmt++)
         {
         case 'd':
             temp = num_to_str(out, ctrl, va_arg(args, int));
