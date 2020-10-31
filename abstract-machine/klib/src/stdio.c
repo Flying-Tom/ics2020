@@ -53,6 +53,7 @@ int _Printf(char *out, const char *fmt, va_list args)
             out += temp;
             break;
         case 'c':
+            *strtemp = va_arg(args, int);
             *out++ = va_arg(args, int);
             break;
         case 's':
