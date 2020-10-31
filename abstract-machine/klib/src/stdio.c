@@ -42,10 +42,9 @@ int _Printf(char *out, const char *fmt, va_list args)
             continue;
         }
         fmt++;
-        ctrlcnt = 0;/*
+        ctrlcnt = 0;
         while (*fmt >= '0' && *fmt <= '9')
-            ctrl[ctrlcnt++] = *fmt++;*/
-            ctrlcnt++;
+            ctrl[ctrlcnt++] = *fmt++;
 
         switch (*fmt)
         {
@@ -54,8 +53,7 @@ int _Printf(char *out, const char *fmt, va_list args)
             out += temp;
             break;
         case 'c':
-            *strtemp = va_arg(args, int);
-            *out++ = *strtemp++;
+            *out++ = va_arg(args, int);
             break;
         case 's':
             strtemp = va_arg(args, char *);
