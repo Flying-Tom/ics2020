@@ -102,7 +102,6 @@ static inline def_EHelper(movsb)
     rtl_lm(s, s1, s0, 0, s->dest.width);
     rtl_lr(s, s2, R_EDI, 4);
     rtl_sm(s, s2, 0, s1, s->dest.width);
-
     rtl_lr(s, s0, R_ESI, 4);
     rtl_addi(s, s0, s0, s->dest.width);
     rtl_sr(s, R_ESI, s0, 4);
