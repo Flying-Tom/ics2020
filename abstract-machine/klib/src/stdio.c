@@ -33,15 +33,15 @@ int _Printf(char *out, const char *fmt, va_list args)
     int ans = 0, temp = 0, ctrlcnt = 0;
     char *strtemp = '\0';
     char ctrl[8];
-    while (*fmt != '\0')
+    while (*fmt)
     {
-        while (*fmt != '%' && *fmt != '\0')
+        if (*fmt != '%' )
         {
             *out++ = *fmt++;
             ans++;
+            continue;
         }
-        if (*fmt++ == '\0')
-            break;
+        
         ctrlcnt = 0;
         while (*fmt >= '0' && *fmt <= '9')
             ctrl[ctrlcnt++] = *fmt++;
