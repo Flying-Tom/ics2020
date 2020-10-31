@@ -83,7 +83,7 @@ static inline def_EHelper(not )
 static inline def_EHelper(rol)
 {
     rtl_mv(s, s0, dsrc1);
-    id_dest->width = 1;
+    id_src1->width = 1;
     while (*s0)
     {
         rtl_msb(s, s1, ddest, id_dest->width);
