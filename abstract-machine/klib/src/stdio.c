@@ -30,7 +30,7 @@ int num_to_str(char *out, char *ctrl, int x)
 int _Printf(char *out, const char *fmt, va_list args)
 {
 
-    int ans = 0, temp = 0, ctrlcnt = 0;
+    int  temp = 0, ctrlcnt = 0;
     char *initout = out;
     char *strtemp = '\0';
     char ctrl[8];
@@ -39,7 +39,6 @@ int _Printf(char *out, const char *fmt, va_list args)
         if (*fmt != '%' )
         {
             *out++ = *fmt++;
-            ans++;
             continue;
         }
         
@@ -51,21 +50,16 @@ int _Printf(char *out, const char *fmt, va_list args)
         {
         case 'd':
             temp = num_to_str(out, ctrl, va_arg(args, int));
-            ans += temp;
             out += temp;
             break;
         case 'c':
             *strtemp = va_arg(args, int);
             *out++ = *strtemp++;
-            ans++;
             break;
         case 's':
             strtemp = va_arg(args, char *);
             while (*strtemp)
-            {
                 *out++ = *strtemp++;
-                ans++;
-            }
             break;
         }
     }
