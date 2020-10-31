@@ -83,27 +83,21 @@ static inline def_EHelper(not )
 static inline def_EHelper(rol)
 {
     rtl_mv(s, s0, dsrc1);
-    while (*s0 != 0)
+    while (*s0)
     {
         rtl_msb(s, s1, ddest, id_dest->width);
-        rtl_add(s, s2, ddest, ddest);
+        rtl_shli(s, ddest, ddest, 1);
         rtl_add(s, s2, s2, s1);
         rtl_subi(s, s0, s0, 1);
     }
     if (*dsrc1 == 1)
     {
-        if (*s1 != cpu.eflags.CF)
-        {
-            rtl_li(s, s0, 1);
-            rtl_set_OF(s, s0);
-        }
-        else
-        {
-            rtl_li(s, s0, 0);
-            rtl_set_OF(s, s0);
-        }
+        rtl_msb(s, s1, ddest, id_dest->width);
+        rtl_get_CF(s,s2);
+        rtl_li(s, s3, s1 != s2 ? 1 : 0);
+        rtl_set_OF(s,s3);
     }
-    operand_write(s, id_dest, s2);
+    operand_write(s, id_dest, ddest);
     print_asm_template2(rol);
 }
 
