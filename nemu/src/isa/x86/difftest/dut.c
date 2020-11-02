@@ -3,13 +3,6 @@
 #include "../local-include/reg.h"
 #include "difftest.h"
 
-/*
-static void checkregs(CPU_state *ref_r, char *s, bool *judg)
-{
-    if (concat(cpu., s) != concat(ref_r->, s))
-        cnt
-}*/
-
 bool isa_difftest_checkregs(CPU_state *ref_r, vaddr_t pc)
 {
     bool judge = true;
