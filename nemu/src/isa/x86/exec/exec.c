@@ -232,7 +232,7 @@ again:
         EX(0xc3, ret)
         EX(0x90, nop)
         ///////////////////
-        EXW(0xa4,  movsb, 1)
+        EXW(0xa4, movsb, 1)
         ///////////////////
         IDEX(0xe8, J, call)
         ///////////////////
@@ -280,6 +280,8 @@ again:
         IDEXW(0x34, I2a, xor, 1)
         IDEX(0x35, I2a, xor)
         ///////////////////
+        IDEX(0x69, I_E2G, imul3)
+        IDEX(0x6b, I_E2G, imul3)
         IDEX(0x8d, lea_M2G, lea)
         ///////////////////
         IDEXW(0x08, G2E, or, 1)
