@@ -102,6 +102,40 @@ static inline def_EHelper(rol)
     print_asm_template2(rol);
 }
 
+static inline def_EHelper(ror)
+{
+    rtl_mv(s, s0, ddest);
+    rtl_mv(s, s1, dsrc1);
+    while (*s1)
+    {
+        rtl_andi(s, s2, s0, 1);
+        rtl_shri(s, s0, s0, 1);
+        switch (s->dest.width)
+        {
+        case 1:
+            break;
+            *s2 = *s2 * 2;
+        case 2:
+            *s2 = *s2 * 4;
+            break;
+        case 4:
+            *s2 = *s2 * 16;
+            break;
+        }
+        rtl_add(s, s0, s0, s2);
+        rtl_subi(s, s1, s1, 1);
+    }
+    if (*dsrc1 == 1)
+    {
+        rtl_msb(s, s1, s0, id_dest->width);
+        rtl_shri(s, s2, s0, 8 * id_dest->width - 2);
+        rtl_li(s, s3, s1 != s2 ? 1 : 0);
+        rtl_set_OF(s, s3);
+    }
+    operand_write(s, id_dest, s0);
+    print_asm_template2(rol);
+}
+
 static inline def_EHelper(bsr)
 {
     if (*dsrc1 == 0)
