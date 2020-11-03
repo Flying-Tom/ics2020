@@ -45,8 +45,9 @@ void __am_gpu_fbdraw(AM_GPU_FBDRAW_T *ctl)
         for (int i = 0; i < cp_bytes; i++)
         {
             //*(fb + (y + j) * W + x + i) = *(pixels+i);
-            memcpy(fb + (y + j) * W + x, pixels, cp_bytes);
+            //memcpy(fb + (y + j) * W + x, pixels, cp_bytes);
         }
+        memcpy(fb + (y + j) * W + x, pixels, cp_bytes);
         pixels += w;
     }
 }
