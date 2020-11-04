@@ -158,3 +158,20 @@ static inline def_EHelper(bsr)
     }
     print_asm_template2(bsr);
 }
+
+static inline def_EHelper(shld)
+{
+    uint32_t cnt = (uint32_t)*dsrc1;
+    cnt = cnt % (id_dest->width * 8);
+    rtl_mv(s, s1, ddest);
+    rtl_mv(s, s2, dsrc2);
+    while (cnt != 0)
+    {
+        *s0 = 1 & (*s2 >> (id_dest->width * 8 - 1));
+        *s1 = (*s1 << 1) + *s0;
+        *s2 = *s2 << 1;
+        cnt--;
+    }
+    operand_write(s, id_dest, s1);
+    print_asm_template3(shld);
+}
