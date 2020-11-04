@@ -105,13 +105,13 @@ int memcmp(const void *s1, const void *s2, size_t n)
 {
     char *str1 = (char *)s1;
     char *str2 = (char *)s2;
-
+    putch(*str1);
+    putch(*str2);
     while (*str1 == *str2 && n-- > 0)
     {
         if (*str1 == '\0')
             return 0;
         putch(*str1);
-        putch('1');
         str1++;
         str2++;
     }
