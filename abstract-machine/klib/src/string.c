@@ -103,17 +103,36 @@ void *memcpy(void *out, const void *in, size_t n)
 
 int memcmp(const void *s1, const void *s2, size_t n)
 {
-    if(s1==NULL || s2 ==NULL || n==0)
-    return 0;
-    char *buf1=(char*)s1;
-    char *buf2=(char*)s2;
-    while( (*buf1 == *buf2) && n-->0)
+    const int *p1, *q1;
+    const char *p2, *q2;
+    int off, mod;
+
+    off = n >> 2;
+    mod = n - (off << 2);
+
+    if (mod > 0)
     {
-        buf1++;
-        buf2++;
+        p2 = (const char *)s1;
+        q2 = (const char *)s2;
+        while (mod--)
+        {
+            if (*p2++ != *q2++)
+            {
+                return p2[-1] > q2[-1] ? 1 : -1;
+            }
+        }
     }
-    return *buf1-*buf2;
-    
+    mod = n - (off << 2);
+    p1 = (const int *)(s1 + mod);
+    q1 = (const int *)(s2 + mod);
+
+    while (off--)
+    {
+        if (*p1++ != *q1++)
+            return p1[-1] > q1[-1] ? 1 : -1;
+    }
+
+    return 0;
 }
 
 #endif
