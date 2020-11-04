@@ -103,13 +103,17 @@ void *memcpy(void *out, const void *in, size_t n)
 
 int memcmp(const void *s1, const void *s2, size_t n)
 {
-    const unsigned char *p1 = s1, *p2 = s2;
-    while (n--)
-        if (*p1 != *p2)
-            return *p1 - *p2;
-        else
-            p1++, p2++;
+    if(s1==NULL || s2 ==NULL || n==0)
     return 0;
+    char *buf1=(char*)s1;
+    char *buf2=(char*)s2;
+    while( (*buf1 == *buf2) && n-->0)
+    {
+        buf1++;
+        buf2++;
+    }
+    return *buf1-*buf2;
+    
 }
 
 #endif
