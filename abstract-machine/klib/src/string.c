@@ -103,17 +103,15 @@ void *memcpy(void *out, const void *in, size_t n)
 
 int memcmp(const void *s1, const void *s2, size_t n)
 {
-    char *str1 = (char*) s1;
-    char *str2 = (char*) s2;
-    while (n--)
+    char *str1 = (char *)s1;
+    char *str2 = (char *)s2;
+
+    while (*str1 == *str2 && n-- > 0)
     {
-        while (*str1 == *str2)
-        {
-            if (*str1 == '\0')
-                return 0;
-            str1++;
-            str2++;
-        }
+        if (*str1 == '\0')
+            return 0;
+        str1++;
+        str2++;
     }
     if (*str1 > *str2)
         return 1;
