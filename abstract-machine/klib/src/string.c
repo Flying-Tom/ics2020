@@ -13,8 +13,9 @@ size_t strlen(const char *s)
 
 char *strcpy(char *dst, const char *src)
 {
+    assert(dst != NULL && src != NULL);
     char *ret = dst;
-    while ((*dst++ = *src++))
+    while ((*dst++ = *src++) != '\0')
         ;
     return ret;
 }
@@ -64,9 +65,11 @@ int strncmp(const char *s1, const char *s2, size_t n)
 
 void *memset(void *v, int c, size_t n)
 {
-    unsigned char *p = v;
+    if (v == NULL || n < 0)
+        return NULL;
+    char *p = (char *)v;
     while (n--)
-        *p++ = (unsigned char)c;
+        *p++ = c;
     return v;
 }
 
