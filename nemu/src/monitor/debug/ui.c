@@ -152,8 +152,8 @@ static int cmd_d(char *args)
 
 static int cmd_history()
 {
-    for(int i=0;i<cmd_id;i++)
-    printf("%d: %s\n",i,history_cmd[i]);
+    for (int i = 0; i < cmd_id; i++)
+        printf("%d: %s\n", i + 1, history_cmd[i]);
     return 0;
 }
 
@@ -242,7 +242,7 @@ void ui_mainloop()
         extern void sdl_clear_event_queue();
         sdl_clear_event_queue();
 #endif
-        
+
         sscanf(cmd, "%s", history_cmd[cmd_id++]);
 
         int i;
