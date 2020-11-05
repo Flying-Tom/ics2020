@@ -13,7 +13,6 @@ static inline def_EHelper(jcc)
     // the target address is calculated at the decode stage
     uint32_t cc = s->opcode & 0xf;
     rtl_setcc(s, s0, cc);
-    printf("jmppc:%d\n",s->jmp_pc);
     rtl_jrelop(s, RELOP_NE, s0, rz, s->jmp_pc);
 
     print_asm("j%s %x", get_cc_name(cc), s->jmp_pc);
