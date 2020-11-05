@@ -174,8 +174,8 @@ static struct
     {"p", "print the value of an expression", cmd_p},
     {"w", "w num : set the watch point num", cmd_w},
     {"d", "de num : delete the watch point num", cmd_d},
-    {"de", "debug the function which needs polishing.", cmd_de},
-    {"history", "debug the function which needs polishing.", cmd_history}
+    {"de", "Test the function which needs polishing.", cmd_de},
+    {"history", "Print the command history.", cmd_history}
     /* TODO: Add more commands */
 };
 
@@ -243,7 +243,7 @@ void ui_mainloop()
         sdl_clear_event_queue();
 #endif
         
-        history_cmd[cmd_id++]=cmd;
+        sscanf(cmd, "%s", history_cmd[cmd_id++]);
 
         int i;
         for (i = 0; i < NR_CMD; i++)
