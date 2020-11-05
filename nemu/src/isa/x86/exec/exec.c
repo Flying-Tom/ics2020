@@ -18,14 +18,14 @@ static inline def_EHelper(gp1)
 {
     switch (s->isa.ext_opcode)
     {
-        EX(0, add)
-        EX(1, or)
-        EX(2, adc)
-        EX(3, sbb)
-        EX(4, and)
-        EX(5, sub)
-        EX(6, xor)
-        EX(7, cmp)
+        EXW(0, add, -1)
+        EXW(1, or, -1)
+        EXW(2, adc, -1)
+        EXW(3, sbb, -1)
+        EXW(4, and, -1)
+        EXW(5, sub, -1)
+        EXW(6, xor, -1)
+        EXW(7, cmp, -1)
     }
 }
 
@@ -34,14 +34,14 @@ static inline def_EHelper(gp2)
 {
     switch (s->isa.ext_opcode)
     {
-        EX(0, rol)
-        EX(1, ror)
+        EXW(0, rol, -1)
+        EXW(1, ror, -1)
         EMPTY(2)
         EMPTY(3)
-        EX(4, shl)
-        EX(5, shr)
+        EXW(4, shl, -1)
+        EXW(5, shr, -1)
         EMPTY(6)
-        EX(7, sar)
+        EXW(7, sar, -1)
     }
 }
 
@@ -52,12 +52,12 @@ static inline def_EHelper(gp3)
     {
         IDEXW(0, test_I, test, 1)
         EMPTY(1)
-        EX(2, not )
-        EX(3, neg)
-        EX(4, mul)
-        EX(5, imul1)
-        EX(6, div)
-        EX(7, idiv)
+        EXW(2, not, -1)
+        EXW(3, neg, -1)
+        EXW(4, mul, -1)
+        EXW(5, imul1, -1)
+        EXW(6, div, -1)
+        EXW(7, idiv, -1)
     }
 }
 
@@ -66,8 +66,8 @@ static inline def_EHelper(gp4)
 {
     switch (s->isa.ext_opcode)
     {
-        EXW(0, inc, 1)
-        EXW(1, dec, 1)
+        EXW(0, inc, -1)
+        EXW(1, dec, -1)
         EMPTY(2)
         EMPTY(3)
         EMPTY(4)
