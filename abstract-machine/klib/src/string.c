@@ -105,9 +105,9 @@ int memcmp(const void *s1, const void *s2, size_t n)
 {
     char *str1 = (char *)s1;
     char *str2 = (char *)s2;
-    while (n > 0)
+    while (n)
     {
-        printf("%d\n",n);
+        printf("%d\n", n);
         if (*str1 == '\0' || *str2 == '\0')
             break;
         if (*str1 == *str2)
@@ -117,6 +117,8 @@ int memcmp(const void *s1, const void *s2, size_t n)
         }
         n--;
     }
+    if (n == 0)
+        return 0;
     if (*str1 > *str2)
         return 1;
     if (*str1 < *str2)
