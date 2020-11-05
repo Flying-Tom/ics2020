@@ -9,6 +9,14 @@
 void cpu_exec(uint64_t);
 int is_batch_mode();
 
+static int cmd_id = 0;
+static char *history_cmd[500];
+
+static void cmd_store(char *cmd)
+{
+    history_cmd[cmd_id]=cmd;
+}
+
 /* We use the `readline' library to provide more flexibility to read from stdin. */
 static char *rl_gets()
 {
@@ -219,8 +227,8 @@ void ui_mainloop()
         }
 
         /* treat the remaining string as the arguments,
-     * which may need further parsing
-     */
+        * which may need further parsing
+        */
         char *args = cmd + strlen(cmd) + 1;
         if (args >= str_end)
         {
@@ -231,7 +239,7 @@ void ui_mainloop()
         extern void sdl_clear_event_queue();
         sdl_clear_event_queue();
 #endif
-
+        cmd_store(cmd);
         int i;
         for (i = 0; i < NR_CMD; i++)
         {
