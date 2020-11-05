@@ -7,7 +7,7 @@ static inline def_EHelper(mov)
 static inline def_EHelper(push)
 {
     if (id_dest->type == OP_TYPE_IMM && id_dest->width == 1)
-        rtl_sext(s, ddest, ddest, 4);
+        rtl_sext(s, ddest, ddest, id_dest->width);
     rtl_push(s, ddest);
     print_asm_template1(push);
 }

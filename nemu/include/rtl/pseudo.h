@@ -33,18 +33,20 @@ static inline def_rtl(neg, rtlreg_t *dest, const rtlreg_t *src1)
 static inline def_rtl(sext, rtlreg_t *dest, const rtlreg_t *src1, int width)
 {
     // dest <- signext(src1[(width * 8 - 1) .. 0])
+    int32_t temp=0;
     switch (width)
     {
     case 1:
-        *dest = (int8_t)(*src1);
+        temp = (int8_t)(*src1);
         break;
     case 2:
-        *dest = (int16_t)(*src1);
+        temp = (int16_t)(*src1);
         break;
     case 4:
-        *dest = (int32_t)(*src1);
+        temp = (int32_t)(*src1);
         break;
     }
+    *dest=temp;
 }
 
 static inline def_rtl(zext, rtlreg_t *dest, const rtlreg_t *src1, int width)
