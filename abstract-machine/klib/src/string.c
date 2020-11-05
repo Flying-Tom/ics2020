@@ -107,7 +107,6 @@ int memcmp(const void *s1, const void *s2, size_t n)
     char *str2 = (char *)s2;
     while (n)
     {
-        printf("%d\n", n);
         if (*str1 == '\0' || *str2 == '\0')
             break;
         if (*str1 == *str2)
