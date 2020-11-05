@@ -125,16 +125,5 @@ count:
 dummy:
 	cd ../am-kernels/tests/cpu-tests/ && make ARCH=x86-nemu ALL=dummy gdb
 
-load:
-	cd ../am-kernels/tests/cpu-tests/ && make ARCH=x86-nemu ALL=load-store gdb
-
-string:
-	cd ../am-kernels/tests/cpu-tests/ && make ARCH=x86-nemu ALL=string run
-
-hello:
-	cd ../am-kernels/tests/cpu-tests/ && make ARCH=x86-nemu ALL=hello-str gdb
-
-
-
 test:
 	bash runall.sh ISA=x86
