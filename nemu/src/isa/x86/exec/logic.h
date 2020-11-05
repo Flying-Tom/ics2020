@@ -84,6 +84,7 @@ static inline def_EHelper(rol)
 {
     rtl_mv(s, s0, ddest);
     rtl_mv(s, s1, dsrc1);
+    printf("rol\n");
     while (*s1)
     {
         rtl_msb(s, s2, ddest, id_dest->width);
@@ -110,7 +111,7 @@ static inline def_EHelper(ror)
     {
         rtl_andi(s, s2, ddest, 1);
         rtl_shri(s, s0, s0, 1);
-        switch (s->dest.width)
+        switch (id_dest->width)
         {
         case 1:
             break;
