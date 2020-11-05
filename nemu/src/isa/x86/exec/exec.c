@@ -1,7 +1,7 @@
 #include <cpu/exec.h>
 #include "../local-include/decode.h"
 #include "all-instr.h"
-
+//static int instrcnt = 0;
 static inline void set_width(DecodeExecState *s, int width)
 {
     if (width == -1)
@@ -113,9 +113,6 @@ static inline def_EHelper(2byte_esc)
 {
     uint8_t opcode = instr_fetch(&s->seq_pc, 1);
     s->opcode = opcode;
-    printf("pc:0x%x\n",cpu.pc);
-    //printf("seqpc:0x%x\n",s->seq_pc);
-    //printf("jmppc:0x%x\n",s->jmp_pc);
     switch (opcode)
     {
         /* TODO: Add more instructions!!! */
@@ -157,7 +154,7 @@ static inline def_EHelper(2byte_esc)
         IDEXW(0xbe, mov_E2G, movsx, 1)
         IDEXW(0xbf, mov_E2G, movsx, 2)
         IDEX(0xaf, E2G, imul2)
-        IDEX(0xa5,cl_G2E,shld)
+        IDEX(0xa5, cl_G2E, shld)
     default:
         exec_inv(s);
     }
@@ -169,6 +166,7 @@ static inline void fetch_decode_exec(DecodeExecState *s)
 again:
     opcode = instr_fetch(&s->seq_pc, 1);
     s->opcode = opcode;
+    printf("pc:0x%x\n", cpu.pc);
     switch (opcode)
     {
         EX(0x0f, 2byte_esc)
