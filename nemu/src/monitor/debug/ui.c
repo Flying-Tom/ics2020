@@ -243,7 +243,7 @@ void ui_mainloop()
         sdl_clear_event_queue();
 #endif
 
-        sscanf(cmd, "%s", history_cmd[cmd_id++]);
+        sscanf(cmd, "%[^\n]", history_cmd[cmd_id++]);
 
         int i;
         for (i = 0; i < NR_CMD; i++)
