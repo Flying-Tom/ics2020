@@ -96,7 +96,6 @@ static inline def_EHelper(movzx)
 
 static inline def_EHelper(movsb)
 {
-    //assert(id_dest->width == 1 || id_dest->width == 2 || id_dest->width == 4);
 
     rtl_lr(s, s1, R_ESI, 4);
     rtl_lr(s, s2, R_EDI, 4);
