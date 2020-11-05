@@ -152,8 +152,10 @@ static int cmd_d(char *args)
 
 static int cmd_history()
 {
+    /*
     for (int i = 0; i < cmd_id; i++)
-        printf("%d: %s\n", i + 1, history_cmd[i]);
+        printf("%d: %s\n", i + 1, history_cmd[i]);*/
+    // buggy, the buf is too small
     return 0;
 }
 
