@@ -282,7 +282,7 @@ again:
         IDEX(0x35, I2a, xor)
         ///////////////////
         IDEX(0x69, I_E2G, imul3)
-        IDEX(0x6b, I_E2G, imul3)
+        IDEXW(0x6b, I_E2G, imul3,1)
         IDEX(0x8d, lea_M2G, lea)
         ///////////////////
         IDEXW(0x08, G2E, or, 1)
