@@ -182,7 +182,6 @@ static bool make_token(char *e)
                     break;
                 default:
                     printf("There exists an undefined expression. Please check it. Failed! \n");
-                    //printf("%d",rules[i].token_type);
                 }
 
                 break;
@@ -263,8 +262,6 @@ static uint32_t main_operator(uint32_t p, uint32_t q)
     for (int j = 12; j >= 2; j--)
     {
         judge = 0;
-        //if(priority_used[j]==0)
-        //continue;
         for (int i = p; i <= q; i++)
         {
             judge += (tokens[i].type == '(');
@@ -304,7 +301,7 @@ static word_t eval(uint32_t p, uint32_t q, char *error)
         word_t op = main_operator(p, q);
         if (tokens[op].type == TK_DEREF || tokens[op].type == TK_NEG)
         {
-            int temp = eval(op + 1, q, error); 
+            int temp = eval(op + 1, q, error);
             switch (tokens[op].type)
             {
             case TK_NEG:
@@ -325,7 +322,7 @@ static word_t eval(uint32_t p, uint32_t q, char *error)
             return eval(p, op - 1, error) * eval(op + 1, q, error);
         case '/':
         {
-            word_t temp = eval(op + 1, q, error); 
+            word_t temp = eval(op + 1, q, error);
             if (temp == 0)
             {
                 *error = '0';

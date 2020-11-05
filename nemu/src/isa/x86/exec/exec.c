@@ -166,7 +166,6 @@ static inline void fetch_decode_exec(DecodeExecState *s)
 again:
     opcode = instr_fetch(&s->seq_pc, 1);
     s->opcode = opcode;
-    //printf("pc:0x%x\n", cpu.pc);
     switch (opcode)
     {
         EX(0x0f, 2byte_esc)
