@@ -88,7 +88,7 @@ static inline def_EHelper(rol)
     //printf("rol\n");
     while (*s1)
     {
-        rtl_msb(s, s2, ddest, id_dest->width);
+        rtl_msb(s, s2, s0, id_dest->width);
         rtl_shli(s, s0, s0, 1);
         rtl_add(s, s0, s0, s2);
         rtl_subi(s, s1, s1, 1);
