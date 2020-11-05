@@ -12,11 +12,6 @@ int is_batch_mode();
 static int cmd_id = 0;
 static char *history_cmd[500];
 
-static void cmd_store(char *cmd)
-{
-    history_cmd[cmd_id]=cmd;
-}
-
 /* We use the `readline' library to provide more flexibility to read from stdin. */
 static char *rl_gets()
 {
@@ -155,6 +150,13 @@ static int cmd_d(char *args)
     return 0;
 }
 
+static int cmd_history()
+{
+    for(int i=0;i<cmd_id;i++)
+    printf("%d: %s\n",i,history_cmd[i]);
+    return 0;
+}
+
 static int cmd_help(char *args);
 
 static struct
@@ -172,7 +174,8 @@ static struct
     {"p", "print the value of an expression", cmd_p},
     {"w", "w num : set the watch point num", cmd_w},
     {"d", "de num : delete the watch point num", cmd_d},
-    {"de", "debug the function which needs polishing.", cmd_de}
+    {"de", "debug the function which needs polishing.", cmd_de},
+    {"history", "debug the function which needs polishing.", cmd_history}
     /* TODO: Add more commands */
 };
 
@@ -239,7 +242,9 @@ void ui_mainloop()
         extern void sdl_clear_event_queue();
         sdl_clear_event_queue();
 #endif
-        cmd_store(cmd);
+        
+        history_cmd[cmd_id++]=cmd;
+
         int i;
         for (i = 0; i < NR_CMD; i++)
         {
