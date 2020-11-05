@@ -254,7 +254,7 @@ again:
         IDEX(0x5e, r, pop)
         IDEX(0x5f, r, pop)
         IDEXW(0x6a, I, push, 1)
-        IDEX(0x68, I, push)
+        IDEXW(0x68, I, push, 1)
         //////////////////
         IDEXW(0x00, G2E, add, 1)
         IDEX(0x01, G2E, add)
