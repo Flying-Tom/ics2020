@@ -113,6 +113,7 @@ static inline def_EHelper(2byte_esc)
 {
     uint8_t opcode = instr_fetch(&s->seq_pc, 1);
     s->opcode = opcode;
+    printf("pc:%d\n",cpu.pc);
     switch (opcode)
     {
         /* TODO: Add more instructions!!! */

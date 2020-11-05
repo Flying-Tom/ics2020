@@ -84,7 +84,7 @@ static inline def_EHelper(rol)
 {
     rtl_mv(s, s0, ddest);
     rtl_mv(s, s1, dsrc1);
-    printf("rol\n");
+    //printf("rol\n");
     while (*s1)
     {
         rtl_msb(s, s2, ddest, id_dest->width);
