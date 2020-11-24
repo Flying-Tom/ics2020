@@ -49,6 +49,7 @@ typedef struct
         rtlreg_t OF : 1;
         rtlreg_t : 20;
     } eflags;
+    rtlreg_t cs;
 } x86_CPU_state;
 
 // decode
