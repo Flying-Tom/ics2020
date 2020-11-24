@@ -5,15 +5,49 @@
 
 #if !defined(__ISA_NATIVE__) || defined(__NATIVE_USE_KLIB__)
 
-int num_to_str(char *out, char *ctrl, int x)
+int num_to_str(char *out, char *ctrl, int x, char type)
 {
     char temp[32];
     int len = 0, ans = 0;
-    do
+    if (type == 'd')
     {
-        temp[len++] = x % 10 + '0';
-        x /= 10;
-    } while (x);
+        do
+        {
+            temp[len++] = x % 10 + '0';
+            x /= 10;
+        } while (x);
+    }
+    else
+    {
+        do
+        {
+            switch (x % 16)
+            {
+            case 10:
+                temp[len++] = 'a';
+                break;
+            case 11:
+                temp[len++] = 'b';
+                break;
+            case 12:
+                temp[len++] = 'c';
+                break;
+            case 13:
+                temp[len++] = 'd';
+                break;
+            case 14:
+                temp[len++] = 'e';
+                break;
+            case 15:
+                temp[len++] = 'f';
+                break;
+            default:
+                temp[len++] = x % 16 + '0';
+                break;
+            }
+            x /= 16;
+        } while (x);
+    }
     if (ctrl[0] == '0' && ctrl[1] != '\0')
     {
         while (len < ctrl[1] - '0')
@@ -30,13 +64,13 @@ int num_to_str(char *out, char *ctrl, int x)
 int _Printf(char *out, const char *fmt, va_list args)
 {
 
-    int  temp = 0, ctrlcnt = 0;
+    int temp = 0, ctrlcnt = 0;
     char *initout = out;
     char *strtemp = '\0';
     char ctrl[8];
     while (*fmt)
     {
-        if (*fmt != '%' )
+        if (*fmt != '%')
         {
             *out++ = *fmt++;
             continue;
@@ -48,7 +82,11 @@ int _Printf(char *out, const char *fmt, va_list args)
         switch (*fmt++)
         {
         case 'd':
-            temp = num_to_str(out, ctrl, va_arg(args, int));
+            temp = num_to_str(out, ctrl, va_arg(args, int), 'd');
+            out += temp;
+            break;
+        case 'x':
+            temp = num_to_str(out, ctrl, va_arg(args, int), 'x');
             out += temp;
             break;
         case 'c':
@@ -61,7 +99,7 @@ int _Printf(char *out, const char *fmt, va_list args)
             break;
         }
     }
-    return out-initout;
+    return out - initout;
 }
 
 int printf(const char *fmt, ...)
