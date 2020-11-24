@@ -327,17 +327,6 @@ void difftest_getregs(void *r)
     x86->edi = ref->rdi;
     x86->pc = ref->rip;
 
-    /*
-    x86->eax = ref->rax;
-    x86->ecx = ref->rcx;
-    x86->edx = ref->rdx;
-    x86->ebx = ref->rbx;
-    x86->esp = ref->rsp;
-    x86->ebp = ref->rbp;
-    x86->esi = ref->rsi;
-    x86->edi = ref->rdi;
-    x86->pc = ref->rip;
-    */
 }
 
 void difftest_setregs(const void *r)
@@ -353,17 +342,6 @@ void difftest_setregs(const void *r)
     ref->rsi = x86->esi;
     ref->rdi = x86->edi;
     ref->rip = x86->pc;
-    /*
-    ref->rax = x86->eax;
-    ref->rcx = x86->ecx;
-    ref->rdx = x86->edx;
-    ref->rbx = x86->ebx;
-    ref->rsp = x86->esp;
-    ref->rbp = x86->ebp;
-    ref->rsi = x86->esi;
-    ref->rdi = x86->edi;
-    ref->rip = x86->pc;
-    */
     ref->rflags |= (1 << 8);
 
     vcpu.kvm_run->kvm_dirty_regs = KVM_SYNC_X86_REGS;
