@@ -108,7 +108,7 @@ static inline def_EHelper(ror)
 {
     rtl_mv(s, s0, ddest);
     rtl_mv(s, s1, dsrc1);
-    *s1 %= id_dest->width;
+    *s1 %= 8 * id_dest->width;
     while (*s1)
     {
         rtl_andi(s, s2, ddest, 1);
