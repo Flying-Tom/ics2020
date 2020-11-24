@@ -85,7 +85,7 @@ static inline def_EHelper(rol)
 {
     rtl_mv(s, s0, ddest);
     rtl_mv(s, s1, dsrc1);
-    *s1 %= id_dest->width;
+    *s1 %= 8 * id_dest->width;
     while (*s1)
     {
         rtl_msb(s, s2, s0, id_dest->width);
@@ -109,7 +109,6 @@ static inline def_EHelper(ror)
     rtl_mv(s, s0, ddest);
     rtl_mv(s, s1, dsrc1);
     *s1 %= 8 * id_dest->width;
-    printf("s1:%d iddestwidth:%d",*s1,id_dest->width);
     while (*s1)
     {
         rtl_andi(s, s2, ddest, 1);
