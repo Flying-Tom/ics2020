@@ -1,5 +1,7 @@
 #include <monitor/difftest.h>
 
+void raise_intr(DecodeExecState *, uint32_t, vaddr_t);
+
 static inline def_EHelper(lidt)
 {
     rtl_lm(s, s0, dsrc1, 0, 2);
@@ -28,7 +30,7 @@ static inline def_EHelper(mov_cr2r)
 
 static inline def_EHelper(int)
 {
-    //raise_intr(s,ddest,s->seq_pc);
+    raise_intr(s, *ddest, s->seq_pc);
     TODO();
     print_asm("int %s", id_dest->str);
 
