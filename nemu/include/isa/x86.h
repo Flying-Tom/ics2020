@@ -49,7 +49,18 @@ typedef struct
         rtlreg_t OF : 1;
         rtlreg_t : 20;
     } eflags;
-    rtlreg_t idt[32];
+    struct GateDesc
+    {
+        uint32_t off_15_0 : 16;  // Low 16 bits of offset in segment
+        uint32_t cs : 16;        // Code segment selector
+        uint32_t args : 5;       // # args, 0 for interrupt/trap gates
+        uint32_t rsv1 : 3;       // Reserved(should be zero I guess)
+        uint32_t type : 4;       // Type(STS_{TG,IG32,TG32})
+        uint32_t s : 1;          // Must be 0 (system)
+        uint32_t dpl : 2;        // Descriptor(meaning new) privilege level
+        uint32_t p : 1;          // Present
+        uint32_t off_31_16 : 16; // High bits of offset in segment
+    } idt[32];
     rtlreg_t cs;
 } x86_CPU_state;
 
