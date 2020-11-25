@@ -7,7 +7,7 @@
 
 int num_to_str(char *out, char *ctrl, int x, char type)
 {
-    char temp[32];
+    char temp[64];
     int len = 0, ans = 0;
     if (type == 'd')
     {
@@ -67,7 +67,7 @@ int _Printf(char *out, const char *fmt, va_list args)
     int temp = 0, ctrlcnt = 0;
     char *initout = out;
     char *strtemp = '\0';
-    char ctrl[8];
+    char ctrl[16];
     while (*fmt)
     {
         if (*fmt != '%')
@@ -105,7 +105,7 @@ int _Printf(char *out, const char *fmt, va_list args)
 int printf(const char *fmt, ...)
 {
     va_list ap;
-    char buf[1024];
+    char buf[2048];
     va_start(ap, fmt);
     int ans = _Printf(buf, fmt, ap);
     buf[ans] = '\0';
