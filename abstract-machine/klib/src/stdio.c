@@ -67,7 +67,7 @@ int _Printf(char *out, const char *fmt, va_list args)
     int temp = 0, ctrlcnt = 0;
     char *initout = out;
     char *strtemp = '\0';
-    char ctrl[16];
+    char ctrl[8];
     while (*fmt)
     {
         if (*fmt != '%')
