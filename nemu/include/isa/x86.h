@@ -39,16 +39,27 @@ typedef struct
         };
     };
     vaddr_t pc;
-    struct
+    union
     {
-        rtlreg_t CF : 1;
-        rtlreg_t : 5;
-        rtlreg_t ZF : 1;
-        rtlreg_t SF : 1;
-        rtlreg_t : 3;
-        rtlreg_t OF : 1;
-        rtlreg_t : 20;
-    } eflags;
+        rtlreg_t EFLAGS;
+        struct
+        {
+            rtlreg_t CF : 1;
+            rtlreg_t : 1;
+            rtlreg_t PF : 1;
+            rtlreg_t : 1;
+            rtlreg_t AF : 1;
+            rtlreg_t : 1;
+            rtlreg_t ZF : 1;
+            rtlreg_t SF : 1;
+            rtlreg_t TF : 1;
+            rtlreg_t IF : 1;
+            rtlreg_t DF : 1;
+            rtlreg_t OF : 1;
+            rtlreg_t : 20;
+        } eflags;
+    };
+
     struct
     {
         rtlreg_t limit : 16;
