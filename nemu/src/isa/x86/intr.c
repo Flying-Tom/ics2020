@@ -9,7 +9,7 @@ void raise_intr(DecodeExecState *s, uint32_t NO, vaddr_t ret_addr)
     /*GateDesc32 gate;
   vaddr_t gate_addr = cpu.IDTR.base + NO * 0x8;
   gate.*/
-    TODO();
+    //TODO();
     rtl_push(s, &cpu.EFLAGS);
     cpu.eflags.IF = 0;
     cpu.eflags.TF = 0;
