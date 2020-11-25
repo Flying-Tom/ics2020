@@ -2,7 +2,6 @@
 
 static inline def_EHelper(lidt)
 {
-    TODO();
     rtl_lm(s,s0,dsrc1,0,2);
     cpu.IDTR.limit = *s0;
     cpu.IDTR.base = *ddest;
