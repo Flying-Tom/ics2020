@@ -49,12 +49,11 @@ typedef struct
         rtlreg_t OF : 1;
         rtlreg_t : 20;
     } eflags;
-    struct GateDesc
+    struct
     {
-        uint32_t : 15;
-        uint32_t p : 1;
-        uint32_t : 16;
-    } idt[32];
+        rtlreg_t limit : 16;
+        rtlreg_t base : 16;
+    } IDTR;
     rtlreg_t cs;
 } x86_CPU_state;
 
