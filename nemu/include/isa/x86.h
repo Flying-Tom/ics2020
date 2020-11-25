@@ -52,7 +52,7 @@ typedef struct
     struct
     {
         rtlreg_t limit : 16;
-        rtlreg_t base : 16;
+        rtlreg_t base;
     } IDTR;
     rtlreg_t cs;
 } x86_CPU_state;
