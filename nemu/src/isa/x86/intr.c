@@ -9,6 +9,7 @@ void raise_intr(DecodeExecState *s, uint32_t NO, vaddr_t ret_addr)
     //GateDesc32 gate;
     /*vaddr_t gate_addr = cpu.IDTR.base + NO * 0x8;
     gate.*/
+    TODO();
     vaddr_t gate_addr = cpu.IDTR.base + NO * 0x8;
     vaddr_t gate_selector = vaddr_read(gate_addr, 4);
     vaddr_t gate_offset = vaddr_read(gate_addr + 4, 4);
@@ -18,7 +19,6 @@ void raise_intr(DecodeExecState *s, uint32_t NO, vaddr_t ret_addr)
     rtl_push(s, &cpu.cs);
     rtl_push(s, &cpu.pc);
     cpu.cs = gate_selector;
-    TODO();
     //printf("%d",gate_offset);
     rtl_j(s,gate_offset);
 }
