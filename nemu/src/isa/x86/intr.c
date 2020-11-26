@@ -18,6 +18,7 @@ void raise_intr(DecodeExecState *s, uint32_t NO, vaddr_t ret_addr)
     rtl_push(s, &cpu.cs);
     rtl_push(s, &cpu.pc);
     cpu.cs = gate_selector;
+    printf("%d",gate_offset);
     rtl_j(s,gate_offset);
 }
 
