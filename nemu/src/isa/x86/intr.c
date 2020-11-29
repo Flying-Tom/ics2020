@@ -6,6 +6,7 @@ void raise_intr(DecodeExecState *s, uint32_t NO, vaddr_t ret_addr)
     /* TODO: Trigger an interrupt/exception with ``NO''.
    * That is, use ``NO'' to index the IDT.
    */
+    assert(NO<=cpu.IDTR.limit);
     vaddr_t gate_addr = cpu.IDTR.base + NO * 0x8;
     vaddr_t gate_selector = vaddr_read(gate_addr, 4) & 0x0000ffff;
     vaddr_t gate_offset = vaddr_read(gate_addr + 4, 4) & 0xffff0000;
