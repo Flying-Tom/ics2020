@@ -343,7 +343,7 @@ again:
         IDEXW(0xee, out_a2dx, out, 1)
         IDEX(0xef, out_a2dx, out)
         ///////////////////
-        EXW(0xcd, int, 1)
+        IDEXW(0xcd, I, int, 1)
     case 0x66:
         s->isa.is_operand_size_16 = true;
         goto again;
