@@ -9,7 +9,7 @@ void raise_intr(DecodeExecState *s, uint32_t NO, vaddr_t ret_addr)
     assert(NO <= cpu.IDTR.limit);
     vaddr_t gate_addr = cpu.IDTR.base + NO * 0x4;
     vaddr_t offset_lo = vaddr_read(gate_addr, 4) & 0x0000ffff;
-    vaddr_t offset_hi = vaddr_read(gate_addr + 4, 4) & 0xffff0000;
+    vaddr_t offset_hi = vaddr_read(gate_addr + 4, 4) & 0x0000ffff;
     rtl_push(s, &cpu.EFLAGS);
     cpu.eflags.IF = 0;
     cpu.eflags.TF = 0;
