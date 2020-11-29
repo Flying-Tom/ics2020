@@ -11,6 +11,7 @@ static inline def_EHelper(lidt)
     printf("%x\n",cpu.pc);
     cpu.IDTR.limit = *s0;
     cpu.IDTR.base = *s1;
+    printf("%x\n",cpu.pc);
     print_asm_template1(lidt);
 }
 
