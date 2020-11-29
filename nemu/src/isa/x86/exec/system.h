@@ -4,8 +4,8 @@ void raise_intr(DecodeExecState *, uint32_t, vaddr_t);
 
 static inline def_EHelper(lidt)
 {
-    printf("ddest:%u\n",*ddest);
-    printf("dsrc1:%u\n",*dsrc1);
+    printf("ddest:%x\n",*ddest);
+    printf("dsrc1:%x\n",*dsrc1);
     rtl_lm(s, s0, dsrc1, 0, 2);
     rtl_lm(s, s1, ddest, 2, 4);
     cpu.IDTR.limit = *s0;
