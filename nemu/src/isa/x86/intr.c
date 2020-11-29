@@ -6,6 +6,7 @@ void raise_intr(DecodeExecState *s, uint32_t NO, vaddr_t ret_addr)
     /* TODO: Trigger an interrupt/exception with ``NO''.
    * That is, use ``NO'' to index the IDT.
    */
+    printf("%x\n",NO);
     assert(NO <= cpu.IDTR.limit);
     rtl_push(s, &cpu.EFLAGS);
     rtl_push(s, &cpu.cs);
