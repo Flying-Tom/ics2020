@@ -5,10 +5,10 @@ void raise_intr(DecodeExecState *, uint32_t, vaddr_t);
 static inline def_EHelper(lidt)
 {
     //printf("%x\n", *ddest);
-    rtl_lm(s, s0, s->isa.mbase, 0, 2);
-    rtl_lm(s, s1, s->isa.mbase, 2, 4);
-    cpu.IDTR.limit = *s0;
-    cpu.IDTR.base = *s1;
+    //rtl_lm(s, s0, s->isa.mbase, 0, 2);
+    //rtl_lm(s, s1, s->isa.mbase, 2, 4);
+    cpu.IDTR.limit = vaddr_read(*s->isa.mbase, 2);
+    cpu.IDTR.base = vaddr_read(*s->isa.mbase + 2, 4);
     print_asm_template1(lidt);
 }
 
