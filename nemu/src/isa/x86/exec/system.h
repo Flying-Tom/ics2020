@@ -6,7 +6,7 @@ static inline def_EHelper(lidt)
 {
     rtl_host_lm(s, s0, s->isa.mbase, 2);
     rtl_host_lm(s, s1, s->isa.mbase + 2, 4);
-    printf("%d",*s0);
+    printf("%x",*s0);
     cpu.IDTR.limit = *s0;
     cpu.IDTR.base = *s1;
     print_asm_template1(lidt);
