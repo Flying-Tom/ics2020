@@ -12,7 +12,6 @@ void raise_intr(DecodeExecState *s, uint32_t NO, vaddr_t ret_addr)
     vaddr_t gate_addr = cpu.IDTR.base + NO * 0x8;
     vaddr_t gate_selector = vaddr_read(gate_addr, 4);
     vaddr_t gate_offset = vaddr_read(gate_addr + 4, 4);
-    TODO();
     rtl_push(s, &cpu.EFLAGS);
     cpu.eflags.IF = 0;
     cpu.eflags.TF = 0;
