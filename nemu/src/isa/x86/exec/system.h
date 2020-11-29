@@ -4,9 +4,7 @@ void raise_intr(DecodeExecState *, uint32_t, vaddr_t);
 
 static inline def_EHelper(lidt)
 {
-    TODO();
     cpu.IDTR.limit = vaddr_read(*s->isa.mbase, 2);
-    TODO();
     cpu.IDTR.base = vaddr_read(*s->isa.mbase + 2, 4);
     print_asm_template1(lidt);
 }
