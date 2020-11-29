@@ -4,10 +4,11 @@ void raise_intr(DecodeExecState *, uint32_t, vaddr_t);
 
 static inline def_EHelper(lidt)
 {
+    printf("%x\n",cpu.pc);
     rtl_host_lm(s, s0, s->isa.mbase, 2);
+    printf("%x\n",cpu.pc);
     rtl_host_lm(s, s1, s->isa.mbase + 2, 4);
-    printf("%x",cpu.pc);
-    printf("%d",*s0);
+    printf("%x\n",cpu.pc);
     cpu.IDTR.limit = *s0;
     cpu.IDTR.base = *s1;
     print_asm_template1(lidt);
