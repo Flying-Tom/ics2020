@@ -181,7 +181,7 @@ static inline def_DHelper(I_E2G)
 
 static inline def_DHelper(Ib_E2G)
 {
-    id_src1->width=1;
+    id_src1->width = 1;
     operand_rm(s, id_src2, true, id_dest, false);
     decode_op_I(s, id_src1, true);
 }
