@@ -8,7 +8,6 @@ static inline def_EHelper(lidt)
     rtl_host_lm(s, s1, s->isa.mbase + 2, 4);
     cpu.IDTR.limit = *s0;
     cpu.IDTR.base = *s1;
-    TODO();
     print_asm_template1(lidt);
 }
 
@@ -32,7 +31,7 @@ static inline def_EHelper(mov_cr2r)
 
 static inline def_EHelper(int)
 {
-    //TODO();
+    TODO();
     raise_intr(s, *ddest, s->seq_pc);
     print_asm("int %s", id_dest->str);
 
