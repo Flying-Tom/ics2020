@@ -6,9 +6,9 @@ static inline def_EHelper(lidt)
 {
 
     rtl_lm(s, s0, dsrc1, 0, 2);
-    rtl_lm(s, s1, &id_dest->reg, 2, 4);
+    //rtl_lm(s, s1, &id_dest->reg, 2, 4);
     cpu.IDTR.limit = *s0;
-    cpu.IDTR.base = *s1;
+    cpu.IDTR.base = *ddest;
     print_asm_template1(lidt);
 }
 
