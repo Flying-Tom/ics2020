@@ -21,7 +21,7 @@ Context *__am_irq_handle(Context *c)
 		Event ev = {0};
 		switch (c->irq)
 		{
-		case 0:
+		/*case 0:
 			ev.event = EVENT_NULL;
 			break;
 		case 1:
@@ -41,7 +41,7 @@ Context *__am_irq_handle(Context *c)
 			break;
 		case 6:
 			ev.event = EVENT_IRQ_IODEV;
-			break;
+			break;*/
 		default:
 			ev.event = EVENT_ERROR;
 			break;
