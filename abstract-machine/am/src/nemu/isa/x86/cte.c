@@ -15,7 +15,7 @@ void __am_vecnull();
 
 Context *__am_irq_handle(Context *c)
 {
-	assert(false);
+	printf("%d", c->irq);
 	if (user_handler)
 	{
 		Event ev = {0};
@@ -29,8 +29,7 @@ Context *__am_irq_handle(Context *c)
 		c = user_handler(ev, c);
 		assert(c != NULL);
 	}
-	assert(false);
-	//printf("%d",c->eip);
+	printf("%d", c->eip);
 	return c;
 }
 
