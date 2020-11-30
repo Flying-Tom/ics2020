@@ -22,6 +22,7 @@ static inline def_EHelper(pop)
 static inline def_EHelper(pusha)
 {
     assert(reg_l(R_ESP) == cpu.esp );
+    printf("%d %d \n",reg_l(R_ESP),cpu.esp);
     *s0 = reg_l(R_ESP);
 
     print_asm("pusha");
