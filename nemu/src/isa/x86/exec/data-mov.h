@@ -21,7 +21,8 @@ static inline def_EHelper(pop)
 
 static inline def_EHelper(pusha)
 {
-    TODO();
+    assert(reg_l(R_ESP) == cpu.esp );
+    *s0 = reg_l(R_ESP);
 
     print_asm("pusha");
 }
