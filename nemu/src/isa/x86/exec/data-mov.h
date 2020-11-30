@@ -21,10 +21,15 @@ static inline def_EHelper(pop)
 
 static inline def_EHelper(pusha)
 {
-    assert(reg_l(R_ESP) == cpu.esp );
-    printf("%d %d \n",reg_l(R_ESP),cpu.esp);
     *s0 = reg_l(R_ESP);
-
+    rtl_push(s, &reg_l(R_EAX));
+    rtl_push(s, &reg_l(R_ECX));
+    rtl_push(s, &reg_l(R_EDX));
+    rtl_push(s, &reg_l(R_EBX));
+    rtl_push(s, s0);
+    rtl_push(s, &reg_l(R_EBP));
+    rtl_push(s, &reg_l(R_ESI));
+    rtl_push(s, &reg_l(R_EDI));
     print_asm("pusha");
 }
 
