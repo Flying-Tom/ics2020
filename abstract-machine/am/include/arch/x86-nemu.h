@@ -1,11 +1,20 @@
 #ifndef ARCH_H__
 #define ARCH_H__
 
+struct Context
+{
+  void *cr3;
+  uintptr_t esi, ebx, eax, edx, ecx, esp, edi, ebp;
+  int irq;
+  uintptr_t eip, eflags, cs;
+};
+/*
 struct Context {
   uintptr_t esi, ebx, eax, eip, edx, eflags, ecx, cs, esp, edi, ebp;
   void *cr3;
   int irq;
 };
+*/
 
 #define GPR1 eax
 #define GPR2 eip
