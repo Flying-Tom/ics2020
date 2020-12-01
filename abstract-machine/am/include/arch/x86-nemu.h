@@ -3,11 +3,10 @@
 
 struct Context
 {
-  void *cr3;
   uintptr_t edi, esi, ebp, esp, ebx, edx, ecx, eax;
-  uintptr_t eip, cs, eflags;
+  void *cr3;
   int irq;
-
+  uintptr_t eip, cs, eflags;
 };
 /*
 struct Context {
