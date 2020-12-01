@@ -15,7 +15,7 @@ void __am_vecnull();
 
 Context *__am_irq_handle(Context *c)
 {
-	
+
 	printf("0x%x\n", c->irq);
 	printf("eax:0x%x\n", c->eax);
 	printf("ecx:0x%x\n", c->ecx);
@@ -30,14 +30,13 @@ Context *__am_irq_handle(Context *c)
 		Event ev = {0};
 		switch (c->irq)
 		{
-		//case 0x81:
-		//	ev.event = EVENT_YIELD;
-		//	break;
+		case 0x81:
+			ev.event = EVENT_YIELD;
+			break;
 		default:
 			ev.event = EVENT_ERROR;
 			break;
 		}
-		printf("%u\n", c->irq);
 		c = user_handler(ev, c);
 		assert(c != NULL);
 	}
