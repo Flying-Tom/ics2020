@@ -21,7 +21,7 @@ static inline def_EHelper(pop)
 
 static inline def_EHelper(pusha)
 {
-    /*s0 = reg_l(R_ESP);
+    *s0 = reg_l(R_ESP);
     rtl_push(s, &reg_l(R_EAX));
     rtl_push(s, &reg_l(R_ECX));
     rtl_push(s, &reg_l(R_EDX));
@@ -29,18 +29,7 @@ static inline def_EHelper(pusha)
     rtl_push(s, s0);
     rtl_push(s, &reg_l(R_EBP));
     rtl_push(s, &reg_l(R_ESI));
-    rtl_push(s, &reg_l(R_EDI));*/
-
-    *s0 = cpu.esp;
-    rtl_push(s, &cpu.eax);
-    rtl_push(s, &cpu.ecx);
-    rtl_push(s, &cpu.edx);
-    rtl_push(s, &cpu.ebx);
-    rtl_push(s, s0);
-    rtl_push(s, &cpu.ebx);
-    rtl_push(s, &cpu.esi);
-    rtl_push(s, &cpu.edi);
-
+    rtl_push(s, &reg_l(R_EDI));
     print_asm("pusha");
 }
 
