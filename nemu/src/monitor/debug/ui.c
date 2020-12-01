@@ -10,8 +10,6 @@ void cpu_exec(uint64_t);
 int is_batch_mode();
 
 static int si_counter = 0;
-static int cmd_id = 0;
-static char history_cmd[50][20];
 
 /* We use the `readline' library to provide more flexibility to read from stdin. */
 static char *rl_gets()
@@ -53,7 +51,7 @@ static int cmd_si(char *args)
         sscanf(arg, "%d", &num);
     cpu_exec(num);
     si_counter += num;
-    printf("\033[01;34msi_counter:%d\n \033[0m\n", si_counter);
+    printf("\033[01;34mCounter:%d\n \033[0m\n", si_counter);
     return 0;
 }
 
@@ -153,15 +151,6 @@ static int cmd_d(char *args)
     return 0;
 }
 
-static int cmd_history()
-{
-    /*
-    for (int i = 0; i < cmd_id; i++)
-        printf("%d: %s\n", i + 1, history_cmd[i]);*/
-    // buggy, the buf is too small
-    return 0;
-}
-
 static int cmd_help(char *args);
 
 static struct
@@ -179,8 +168,7 @@ static struct
     {"p", "print the value of an expression", cmd_p},
     {"w", "w num : set the watch point num", cmd_w},
     {"d", "de num : delete the watch point num", cmd_d},
-    {"de", "Test the function which needs polishing.", cmd_de},
-    {"history", "Print the command history.", cmd_history}
+    {"de", "Test the function which needs polishing.", cmd_de}
     /* TODO: Add more commands */
 };
 
@@ -247,8 +235,6 @@ void ui_mainloop()
         extern void sdl_clear_event_queue();
         sdl_clear_event_queue();
 #endif
-
-        sscanf(cmd, "%[^\n]", history_cmd[cmd_id++]);
 
         int i;
         for (i = 0; i < NR_CMD; i++)
