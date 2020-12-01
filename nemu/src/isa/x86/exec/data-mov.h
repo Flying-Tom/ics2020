@@ -22,8 +22,6 @@ static inline def_EHelper(pop)
 static inline def_EHelper(pusha)
 {
     *s0 = reg_l(R_ESP);
-    assert(cpu.eax == reg_l(R_EAX));
-    assert(cpu.ebx == reg_l(R_EBX));
     rtl_push(s, &reg_l(R_EAX));
     rtl_push(s, &reg_l(R_ECX));
     rtl_push(s, &reg_l(R_EDX));
