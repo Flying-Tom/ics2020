@@ -16,15 +16,6 @@ void __am_vecnull();
 Context *__am_irq_handle(Context *c)
 {
 
-	printf("0x%x\n", c->irq);
-	printf("eax:0x%x\n", c->eax);
-	printf("ecx:0x%x\n", c->ecx);
-	printf("edx:0x%x\n", c->edx);
-	printf("ebx:0x%x\n", c->ebx);
-	printf("esp:0x%x\n", c->esp);
-	printf("ebp:0x%x\n", c->ebp);
-	printf("esi:0x%x\n", c->esi);
-	printf("edi:0x%x\n", c->edi);
 	if (user_handler)
 	{
 		Event ev = {0};
