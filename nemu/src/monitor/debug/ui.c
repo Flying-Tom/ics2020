@@ -9,6 +9,7 @@
 void cpu_exec(uint64_t);
 int is_batch_mode();
 
+static int si_counter = 0;
 static int cmd_id = 0;
 static char history_cmd[50][20];
 
@@ -51,6 +52,8 @@ static int cmd_si(char *args)
     if (arg != NULL)
         sscanf(arg, "%d", &num);
     cpu_exec(num);
+    si_counter += num;
+    printf("The current si_counter is: %d\n", si_counter);
     return 0;
 }
 
