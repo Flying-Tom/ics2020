@@ -53,8 +53,7 @@ static int cmd_si(char *args)
         sscanf(arg, "%d", &num);
     cpu_exec(num);
     si_counter += num;
-    printf("si_counter is: %d\n", si_counter);
-    printf("\033[31mThis is RED.\n\033[0m");
+    printf("\034[31m si_counter:%d\n\034[0m", si_counter);
     return 0;
 }
 
