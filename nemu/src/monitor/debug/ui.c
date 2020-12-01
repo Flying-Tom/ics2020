@@ -53,7 +53,7 @@ static int cmd_si(char *args)
         sscanf(arg, "%d", &num);
     cpu_exec(num);
     si_counter += num;
-    printf("\033[01;34m si_counter:%d\n \033[0m\n", si_counter);
+    printf("\033[01;34msi_counter:%d\n \033[0m\n", si_counter);
     return 0;
 }
 
