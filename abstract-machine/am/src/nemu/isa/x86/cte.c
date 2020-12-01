@@ -17,7 +17,7 @@ Context *__am_irq_handle(Context *c)
 {
 	printf("irq:0x%x\n",c->irq);
 	printf("eip:0x%x\n",c->eip);
-	printf("eflags:0x%x\n",c->eflags);
+	//printf("eflags:0x%x\n",c->eflags);
 	if (user_handler)
 	{
 		Event ev = {0};
