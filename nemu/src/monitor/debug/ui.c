@@ -89,7 +89,7 @@ static int cmd_x(char *args)
         sscanf(arg, "%d", &address);
 
     for (int i = 0; i < num; i++)
-        printf("0x%x : 0x%x\n", address + 4 * i, paddr_read(address + 4 * i, 4));
+        printf("\033[1m\033[44;37m %d \033[0m  0x%x : 0x%x\n", i + 1, address + 4 * i, paddr_read(address + 4 * i, 4));
     return 0;
 }
 
