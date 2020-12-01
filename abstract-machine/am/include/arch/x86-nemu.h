@@ -4,9 +4,9 @@
 struct Context
 {
   void *cr3;
-  uintptr_t cs, edi, esi, ebp, esp, ebx, edx, ecx, eax;
+  uintptr_t temp, edi, esi, ebp, esp, ebx, edx, ecx, eax;
   int irq;
-  uintptr_t eip, eflags;
+  uintptr_t eip, cs, eflags;
 };
 /*
 struct Context {
