@@ -6,11 +6,11 @@ static Context *do_event(Event e, Context *c)
     {
     /*case EVENT_YIELD:
         printf("System Yield\n");
-        break;
+        break;*/
     case EVENT_SYSCALL:
         printf("Systemcall\n");
         do_syscall(c);
-        break;*/
+        break;
     default:
         panic("Unhandled event ID = %d", e.event);
     }
