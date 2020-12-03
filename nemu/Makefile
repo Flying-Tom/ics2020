@@ -120,7 +120,7 @@ clean:
 	$(MAKE) -C tools/kvm-diff clean
 
 count:
-	git rev-parse HEAD | git diff --stat e9616d8cfb8b6b9807cde9567ad23d2b9024c4c1
+	git log | grep "191250004" | wc -l; git rev-parse HEAD | git diff --stat e9616d8cfb8b6b9807cde9567ad23d2b9024c4c1 
 
 dummy:
 	cd ../am-kernels/tests/cpu-tests/ && make ARCH=x86-nemu ALL=dummy run
