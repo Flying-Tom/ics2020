@@ -326,7 +326,7 @@ again:
         IDEX(0xc7, mov_I2E, mov)
         EX(0xc9, leave)
         IDEXW(0xcd, I, int, 1)
-        EX(0xcf, pusha)
+        EX(0xcf, iret)
 
         IDEXW(0xd0, gp2_1_E, gp2, 1)
         IDEX(0xd1, gp2_1_E, gp2)
