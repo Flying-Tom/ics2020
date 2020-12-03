@@ -90,7 +90,7 @@ int _Printf(char *out, const char *fmt, va_list args)
             out += temp;
             break;
         case 'p':
-            temp = num_to_str(out, ctrl, va_arg(args, int), 'x');
+            temp = num_to_str(out, ctrl, va_arg(args, long long), 'x');
             out += temp;
             break;
         case 'c':
