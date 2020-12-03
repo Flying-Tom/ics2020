@@ -22,10 +22,10 @@ static uintptr_t loader(PCB *pcb, const char *filename)
 
 	for (size_t i = 0; i < elf.e_phnum; i++)
 	{
-		ramdisk_read((void *)&phdr[i], elf.e_entry + i * elf.e_phentsize, elf.e_phentsize);
+		//ramdisk_read((void *)&phdr[i], elf.e_entry + i * elf.e_phentsize, elf.e_phentsize);
 		if (phdr[i].p_type == PT_LOAD)
 		{
-			//ramdisk_read((void *)phdr[i].p_vaddr, phdr[i].p_offset, phdr[i].p_memsz);
+			ramdisk_read((void *)phdr[i].p_vaddr, phdr[i].p_offset, phdr[i].p_memsz);
 			memset((void *)(phdr[i].p_vaddr + phdr[i].p_filesz), 0, phdr[i].p_memsz - phdr[i].p_filesz);
 		}
 	}
