@@ -8,6 +8,7 @@ static Context *do_event(Event e, Context *c)
         printf("YIELD\n");
         break;
     case EVENT_SYSCALL:
+        TODO();
         do_syscall(c);
         break;
     default:
