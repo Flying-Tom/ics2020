@@ -17,12 +17,15 @@ static uintptr_t loader(PCB *pcb, const char *filename)
     //TODO();
     Elf_Ehdr elf;
     ramdisk_read((void *)&elf, 0, sizeof(elf));
-    //Elf_Phdr phdr[elf.e_phnum];
-    /*for (size_t i = 0; i < elf.e_phnum; i++)
+    Elf_Phdr phdr[elf.e_phnum];
+    for (size_t i = 0; i < elf.e_phnum; i++)
     {
-        ramdisk_read(void(*) phdr[i].p_vadrr, 0, elf.e_phentsize);
+        ramdisk_read((void*) phdr[i].p_vaddr, 0, elf.e_phentsize);
         if (phdr[i].p_type == PT_LOAD)
-    }*/
+        {
+            memset((void *)(phdr[i].p_vaddr + phdr[i].p_filesz), 0, phdr[i].p_memsz - phdr[i].p_filesz);
+        }
+    }
     return 0;
 }
 
