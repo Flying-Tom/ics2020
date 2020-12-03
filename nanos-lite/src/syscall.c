@@ -1,5 +1,8 @@
 #include <common.h>
 #include "syscall.h"
+
+//extern intptr_t _syscall_(intptr_t, intptr_t, intptr_t, intptr_t);
+
 void do_syscall(Context *c)
 {
     uintptr_t a[4];
@@ -14,7 +17,7 @@ void do_syscall(Context *c)
         halt(0);
         break;
     case SYS_yield:
-        yield();
+        //_syscall_(SYS_yield, 0, 0, 0);
         c->GPRx = 0;
         break;
     case SYS_write:
