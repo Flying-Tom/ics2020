@@ -11,6 +11,8 @@
 
 static uintptr_t loader(PCB *pcb, const char *filename) {
   TODO();
+  //Elf_Ehdr elf;
+  
   return 0;
 }
 
