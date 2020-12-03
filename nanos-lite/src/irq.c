@@ -6,7 +6,6 @@ static Context *do_event(Event e, Context *c)
     {
     case EVENT_YIELD:
         printf("System Yield\n");
-        yield();
         break;
     case EVENT_SYSCALL:
         printf("Systemcall\n");
