@@ -8,6 +8,7 @@ static Context *do_event(Event e, Context *c)
         printf("System Yield\n");
         break;
     case EVENT_SYSCALL:
+        printf("Systemcall\n");
         do_syscall(c);
         break;
     default:
