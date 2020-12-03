@@ -26,7 +26,7 @@ static uintptr_t loader(PCB *pcb, const char *filename)
 	printf("%d\n",get_ramdisk_size());
 	for (size_t i = 0; i < elf.e_phnum; i++)
 	{
-		ramdisk_read((void *)&phdr[i], elf.e_entry + i * elf.e_phentsize, elf.e_phentsize);
+		ramdisk_read((void *)&phdr[i], i * elf.e_phentsize, elf.e_phentsize);
 		if (phdr[i].p_type == PT_LOAD)
 		{
 			TODO();
