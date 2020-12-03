@@ -67,7 +67,7 @@ int _Printf(char *out, const char *fmt, va_list args)
     int temp = 0, ctrlcnt = 0;
     char *initout = out;
     char *strtemp = '\0';
-    char ctrl[8];
+    char ctrl[16];
     while (*fmt)
     {
         if (*fmt != '%')
@@ -90,6 +90,7 @@ int _Printf(char *out, const char *fmt, va_list args)
             out += temp;
             break;
         case 'p':
+            memset(ctrl,'0',sizeof(ctrl));
             temp = num_to_str(out, ctrl, va_arg(args, long long), 'x');
             out += temp;
             break;
