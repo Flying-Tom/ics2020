@@ -35,8 +35,14 @@ static inline def_EHelper(pusha)
 
 static inline def_EHelper(popa)
 {
-    TODO();
 
+    rtl_pop(s, &reg_l(R_EDI));
+    rtl_pop(s, &reg_l(R_ESI));
+    rtl_pop(s, &reg_l(R_EBP));
+    rtl_pop(s, &reg_l(R_EBX));
+    rtl_pop(s, &reg_l(R_EDX));
+    rtl_pop(s, &reg_l(R_ECX));
+    rtl_pop(s, &reg_l(R_EAX));
     print_asm("popa");
 }
 
