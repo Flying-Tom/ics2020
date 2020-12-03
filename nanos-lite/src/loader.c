@@ -19,12 +19,6 @@ static uintptr_t loader(PCB *pcb, const char *filename)
     ramdisk_read((void *)&elf, 0, sizeof(Elf_Ehdr));
     Elf_Phdr phdr[elf.e_phnum];
 
-    //assert(elf.e_phentsize == sizeof(Elf_Phdr));
-    printf("%d\n", elf.e_phnum);
-    printf("%d\n", elf.e_phentsize);
-    printf("%d\n", elf.e_entry);
-    printf("%d\n", elf.e_phentsize);
-    printf("%d\n", sizeof(Elf_Phdr));
     for (size_t i = 0; i < elf.e_phnum; i++)
     {
         ramdisk_read((void *)&phdr[i], elf.e_phoff + i * elf.e_phentsize, elf.e_phentsize);
