@@ -39,8 +39,8 @@ static inline def_EHelper(popa)
     rtl_pop(s, &reg_l(R_EDI));
     rtl_pop(s, &reg_l(R_ESI));
     rtl_pop(s, &reg_l(R_EBP));
-    rtl_pop(s, &reg_l(R_EBX));
     rtl_pop(s, s0);
+    rtl_pop(s, &reg_l(R_EBX));
     rtl_pop(s, &reg_l(R_EDX));
     rtl_pop(s, &reg_l(R_ECX));
     rtl_pop(s, &reg_l(R_EAX));
