@@ -1,8 +1,5 @@
 #include <common.h>
 #include "syscall.h"
-
-//extern intptr_t _syscall_(intptr_t, intptr_t, intptr_t, intptr_t);
-
 void do_syscall(Context *c)
 {
     uintptr_t a[4];
@@ -14,13 +11,13 @@ void do_syscall(Context *c)
     switch (a[0])
     {
     case SYS_exit:
-        halt(0);
+        c->GPRx = sys_exit(a[1]);
         break;
     case SYS_yield:
-        //_syscall_(SYS_yield, 0, 0, 0);
-        c->GPRx = 0;
+        c->GPRx = sys_yield();
         break;
     case SYS_write:
+        c->GPRx = sys_write(a[1], (void *)a[2], a[3]);
         break;
     default:
         panic("Unhandled syscall ID = %d", a[0]);
