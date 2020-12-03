@@ -90,7 +90,7 @@ int _Printf(char *out, const char *fmt, va_list args)
             out += temp;
             break;
         case 'p':
-            memset(ctrl,'0',sizeof(ctrl));
+            //memset(ctrl,'0',sizeof(ctrl));
             temp = num_to_str(out, ctrl, va_arg(args, long long), 'x');
             out += temp;
             break;
