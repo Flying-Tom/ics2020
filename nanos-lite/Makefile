@@ -1,4 +1,4 @@
-#HAS_NAVY = 1
+HAS_NAVY = 1
 RAMDISK_FILE = build/ramdisk.img
 
 NAME = nanos-lite
@@ -28,8 +28,8 @@ update:
 endif
 
 hello:
-	make clean && mkdir build;
-	cd ~/ics2020/navy-apps/tests/hello && make ;
-	cd ~/ics2020/navy-apps/tests/hello/build/ && cp hello-x86 ~/ics2020/nanos-lite/build/ ;
-	cd ~/ics2020/nanos-lite/build/ ; rename.ul hello-x86 ramdisk.img hello-x86;
-	make run;
+	-@ make clean && mkdir build;
+	-@ cd ~/ics2020/navy-apps/tests/hello && make clean && make ;
+	-@ cd ~/ics2020/navy-apps/tests/hello/build/ && cp hello-x86 ~/ics2020/nanos-lite/build/ ;
+	-@ cd ~/ics2020/nanos-lite/build/ ; rename.ul hello-x86 ramdisk.img hello-x86;
+	-@ make run;
