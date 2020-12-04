@@ -37,10 +37,10 @@ void do_syscall(Context *c)
     case SYS_read:
         c->GPRx = fs_read(a[1], (void *)a[2], (size_t)a[3]);
         break;
-        /*
     case SYS_write:
         c->GPRx = sys_write(a[1], (void *)a[2], a[3]);
         break;
+        /*
     case SYS_close:
         c->GPRx = fs_close(a[1]);
         break;*/
