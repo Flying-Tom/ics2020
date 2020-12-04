@@ -35,6 +35,7 @@ hello:
 	-@ make run;
 
 ramdisk:
+	-@ make update;
 	-@ make clean && mkdir build;
 	-@ cd ~/ics2020/navy-apps/build && cp ramdisk.img ~/ics2020/nanos-lite/build/;
 	-@ make ARCH=x86-nemu run 
