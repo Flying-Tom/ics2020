@@ -43,10 +43,10 @@ void do_syscall(Context *c)
         break;
     case SYS_close:
         c->GPRx = fs_close(a[1]);
-        break;
+        break;*/
     case SYS_lseek:
         c->GPRx = fs_lseek(a[1], a[2], a[3]);
-        break;*/
+        break;
     case SYS_brk:
         c->GPRx = 0;
         break;
