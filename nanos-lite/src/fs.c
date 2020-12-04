@@ -83,6 +83,7 @@ size_t fs_write(int fd, const void *buf, size_t len)
 
 size_t fs_lseek(int fd, size_t offset, int whence)
 {
+    assert(fd >= 0 && fd < FILE_NUM);
     switch (whence)
     {
     case SEEK_SET:
