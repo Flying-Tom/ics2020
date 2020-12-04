@@ -100,6 +100,8 @@ size_t fs_lseek(int fd, size_t offset, int whence)
     default:
         return -1;
     }
+    if (file_table[fd].open_offset > file_table[fd].size)
+        file_table[fd].open_offset = file_table[fd].size;
     return file_table[fd].open_offset;
 }
 int fs_close(int fd)
