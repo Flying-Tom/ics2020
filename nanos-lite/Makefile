@@ -14,7 +14,7 @@ $(shell touch $(RAMDISK_FILE) src/files.h src/syscall.h)
 else
 
 ifeq ($(wildcard $(NAVY_HOME)/libs/libos/src/syscall.h),)
-  $(error $$NAVY_HOME must be a Navy-apps repo)
+	$(error $$NAVY_HOME must be a Navy-apps repo)
 endif
 
 update:
