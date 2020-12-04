@@ -5,10 +5,8 @@ static Context *do_event(Event e, Context *c)
     switch (e.event)
     {
     case EVENT_YIELD:
-        //printf("System Yield\n");
         break;
     case EVENT_SYSCALL:
-        //printf("Systemcall\n");
         do_syscall(c);
         break;
     default:
