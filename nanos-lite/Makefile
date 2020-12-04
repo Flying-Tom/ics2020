@@ -28,8 +28,8 @@ update:
 endif
 
 hello:
-	make clean; mkdir build;
-	cd ~/ics2020/navy-apps/tests/hello; make ISA=x86;
-	cd ~/ics2020/navy-apps/tests/hello/build/ ; cp hello-x86 ~/ics2020/nanos-lite/build/ ;
+	make clean && mkdir build;
+	cd ~/ics2020/navy-apps/tests/hello && make ;
+	cd ~/ics2020/navy-apps/tests/hello/build/ && cp hello-x86 ~/ics2020/nanos-lite/build/ ;
 	cd ~/ics2020/nanos-lite/build/ ; rename.ul hello-x86 ramdisk.img hello-x86;
 	make run;
