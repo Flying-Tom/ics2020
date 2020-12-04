@@ -30,6 +30,7 @@ void init_ramdisk()
 {
     Log("ramdisk info: start = %p, end = %p, size = %d bytes",
         &ramdisk_start, &ramdisk_end, RAMDISK_SIZE);
+    printf("RAMDISK_SIZE:%d\n",RAMDISK_SIZE);
 }
 
 size_t get_ramdisk_size()
