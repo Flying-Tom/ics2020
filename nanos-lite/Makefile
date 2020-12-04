@@ -26,3 +26,8 @@ update:
 
 .PHONY: update
 endif
+
+hello:
+	cd ~/ics2020/navy-apps/tests/hello/build; cp hello-x86 ~/ics2020/nanos-lite/build/ ;
+	cd ~/ics2020/nanos-lite/build/ ; rename.ul hello-x86 ramdisk.img hello-x86;
+	make run;
