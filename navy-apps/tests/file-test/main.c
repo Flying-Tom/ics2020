@@ -22,7 +22,7 @@ int main()
     {
         fprintf(fp, "%4d\n", i + 1 + 1000);
     }
-    fprintf(fp, "%4d\n", 9999);
+    fprintf(fp, "%4d\n", 111);
 
     for (i = 500; i < 1000; i++)
     {
