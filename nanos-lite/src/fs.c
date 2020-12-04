@@ -67,8 +67,6 @@ size_t fs_read(int fd, void *buf, size_t len)
 {
     assert(fd >= 0 && fd < FILE_NUM);
     size_t offset = len;
-    if (file_table[fd].size && file_table[fd].open_offset + len > file_table[fd].size)
-        offset = file_table[fd].size - file_table[fd].open_offset;
     offset = ramdisk_read(buf, file_table[fd].disk_offset + file_table[fd].open_offset, offset);
     file_table[fd].open_offset += len;
     return offset;
@@ -78,8 +76,6 @@ size_t fs_write(int fd, const void *buf, size_t len)
 {
     assert(fd >= 0 && fd < FILE_NUM);
     size_t offset = len;
-    if (file_table[fd].size && file_table[fd].open_offset + len > file_table[fd].size)
-        offset = file_table[fd].size - file_table[fd].open_offset;
     offset = ramdisk_write(buf, file_table[fd].disk_offset + file_table[fd].open_offset, offset);
     file_table[fd].open_offset += len;
     return offset;
