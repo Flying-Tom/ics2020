@@ -21,7 +21,7 @@ int main()
     for (i = 0; i < 500; i++)
     {
         fprintf(fp, "%4d\n", i + 1 + 1000);
-        //fscanf(fp, "%d", &n);
+        fscanf(fp, "%d", &n);
         printf("%d\n",n);
     }
 
