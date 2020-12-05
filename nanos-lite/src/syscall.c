@@ -10,9 +10,8 @@ int sys_write(int fd, const void *buf, size_t count)
             putch(*(char *)(buf + i));
         return count;
     }
-    //else
-    //    fs_write(fd, buf, count);
-    return -1;
+    else
+        return fs_write(fd, buf, count);
 }
 
 void do_syscall(Context *c)
