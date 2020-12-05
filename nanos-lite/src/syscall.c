@@ -2,18 +2,6 @@
 #include "syscall.h"
 #include <fs.h>
 
-int sys_write(int fd, const void *buf, size_t count)
-{
-    if (fd == 1 || fd == 2)
-    {
-        for (int i = 0; i < count; i++)
-            putch(*(char *)(buf + i));
-        return count;
-    }
-    else
-        return fs_write(fd, buf, count);
-}
-
 void do_syscall(Context *c)
 {
     uintptr_t a[4];
