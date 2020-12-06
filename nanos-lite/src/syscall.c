@@ -6,7 +6,6 @@
 int sys_gettimeofday(struct timeval *tv, struct timezone *tz)
 {
     tv->tv_usec = io_read(AM_TIMER_UPTIME).us;
-    printf("%d\n", io_read(AM_TIMER_UPTIME).us);
     return 0;
 }
 
