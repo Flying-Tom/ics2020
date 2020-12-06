@@ -10,6 +10,7 @@ extern AM_TIMER_UPTIME_T *uptime;
 int sys_gettimeofday(struct timeval *tv, struct timezone *tz)
 {
     //tv->tv_usec = 0;
+    //printf("%llu\n", uptime->us);
     return 0;
 }
 
