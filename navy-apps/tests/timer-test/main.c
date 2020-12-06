@@ -16,7 +16,7 @@ int main()
     uint64_t boot_time = get_time();
     while (1)
     {
-        printf("%lu\n", get_time() - boot_time);
+        printf("%llu\n", get_time() - boot_time);
     }
 
     return 0;
