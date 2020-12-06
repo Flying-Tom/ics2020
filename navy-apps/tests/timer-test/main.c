@@ -8,11 +8,8 @@ int main()
     struct timeval now;
     while (1)
     {
-        while (now.tv_usec / 1000000 < sec)
-        {    
+        while (now.tv_usec / 1000000 < sec)   
             gettimeofday(&now, NULL);
-            printf("%llu\n", now.tv_usec);
-        }
         if (sec == 1)
         {
             printf("%d second).\n", sec);
