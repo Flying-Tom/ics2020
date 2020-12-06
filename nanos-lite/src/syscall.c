@@ -2,6 +2,17 @@
 #include "syscall.h"
 #include <fs.h>
 
+extern void __am_timer_init();
+extern struct timeval *tv;
+extern struct timezone *tz;
+
+int sys_gettimeofday(struct timeval *tv, struct timezone *tz)
+{
+    //tv->tv_usec = uptime->us;
+    __am_timer_init();
+    return 0;
+}
+
 void do_syscall(Context *c)
 {
     uintptr_t a[4];
@@ -39,7 +50,7 @@ void do_syscall(Context *c)
         c->GPRx = 0;
         break;
     case SYS_gettimeofday:
-        c->GPRx = 0;
+        c->GPRx = sys_gettimeofday((struct timeval *)a[1], (struct timezone *)a[2]);
         break;
     default:
         panic("Unhandled syscall ID = %d", a[0]);
