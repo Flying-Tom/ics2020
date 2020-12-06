@@ -5,12 +5,11 @@
 extern void __am_timer_init();
 extern struct timeval *tv;
 extern struct timezone *tz;
-extern AM_TIMER_UPTIME_T *uptime;
+extern AM_TIMER_RTC_T rtc;
 
 int sys_gettimeofday(struct timeval *tv, struct timezone *tz)
 {
-    //tv->tv_usec = 0;
-    //printf("%llu\n", uptime->us);
+    printf("%llu\n", io_read(AM_TIMER_UPTIME).us);
     return 0;
 }
 
