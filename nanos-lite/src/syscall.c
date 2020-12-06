@@ -9,7 +9,7 @@ extern AM_TIMER_RTC_T rtc;
 
 int sys_gettimeofday(struct timeval *tv, struct timezone *tz)
 {
-    printf("%llu\n", io_read(AM_TIMER_UPTIME).us);
+    printf("%u\n", io_read(AM_TIMER_UPTIME).us);
     return 0;
 }
 
