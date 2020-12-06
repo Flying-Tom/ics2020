@@ -8,16 +8,12 @@ int main()
     struct timeval now;
     while (1)
     {
-        while (now.tv_usec / 1000000 < sec)   
-            gettimeofday(&now, &zone);
+        while (now.tv_usec / 1000000 < sec)
+            gettimeofday(&now, NULL);
         if (sec == 1)
-        {
-            printf("%d second.\n", sec);
-        }
+            printf("This is %d second.\n", sec);
         else
-        {
-            printf("%d seconds.\n", sec);
-        }
+            printf("This is %d seconds.\n", sec);
         sec++;
     }
 
