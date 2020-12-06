@@ -4,11 +4,12 @@
 
 int main()
 {
+    //gettimeofday(&now, NULL);
     int sec = 1;
     struct timeval now;
     while (1)
     {
-        while (NDL_GetTicks() / 1000000 < sec)
+        while (gettimeofday(&now, NULL) / 1000000 < sec)
             printf("%llu\n", NDL_GetTicks());
         if (sec == 1)
             printf("This is %d second.\n", sec);
