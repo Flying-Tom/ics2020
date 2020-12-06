@@ -9,14 +9,14 @@ int main()
     while (1)
     {
         while (now.tv_usec / 1000000 < sec)   
-            gettimeofday(&now, NULL);
+            gettimeofday(&now, &zone);
         if (sec == 1)
         {
-            printf("%d second).\n", sec);
+            printf("%d second.\n", sec);
         }
         else
         {
-            printf("%d seconds).\n", sec);
+            printf("%d seconds.\n", sec);
         }
         sec++;
     }
