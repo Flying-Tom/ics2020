@@ -10,6 +10,8 @@
 #define NAME(key) \
     [AM_KEY_##key] = #key,
 
+#define KEYDOWN_MASK 0x8000
+
 static const char *keyname[256] __attribute__((used)) = {
     [AM_KEY_NONE] = "NONE",
     AM_KEYS(NAME)};
@@ -24,10 +26,10 @@ size_t serial_write(const void *buf, size_t offset, size_t len)
 size_t events_read(void *buf, size_t offset, size_t len)
 {
     int key = io_read(AM_INPUT_KEYBRD).keycode;
-    if (key & 0x8000)
-        sprintf(buf, "kd %s\n", keyname[key & ~0x8000]);
-    else if ((key & 0x8000) != AM_KEY_NONE)
-        sprintf(buf, "kd %s\n", keyname[key & ~0x8000]);
+    if (key & ~KEYDOWN_MASK)
+        sprintf(buf, "kd %s\n", keyname[key & ~KEYDOWN_MASK]);
+    else if ((key & ~KEYDOWN_MASK) != AM_KEY_NONE)
+        sprintf(buf, "kd %s\n", keyname[key & ~KEYDOWN_MASK]);
     return strlen(buf);
 }
 
