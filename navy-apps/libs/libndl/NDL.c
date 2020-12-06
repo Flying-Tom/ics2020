@@ -31,7 +31,7 @@ int NDL_PollEvent(char *buf, int len)
         }
     }
     printf("%d\n", p - buf);
-    //fclose(fp);
+    fclose(fp);
     return (p - buf);
 }
 
