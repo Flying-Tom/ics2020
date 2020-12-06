@@ -9,7 +9,7 @@ int main()
     while (1)
     {
         while (NDL_GetTicks() / 1000000 < sec)
-            NDL_GetTicks();
+            printf("%llu\n", NDL_GetTicks());
         if (sec == 1)
             printf("This is %d second.\n", sec);
         else
