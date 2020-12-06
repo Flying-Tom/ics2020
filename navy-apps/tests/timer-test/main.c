@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <assert.h>
+#include <NDL.h>
 #include <sys/time.h>
 
 int main()
@@ -8,8 +8,8 @@ int main()
     struct timeval now;
     while (1)
     {
-        while (now.tv_usec / 1000000 < sec)
-            gettimeofday(&now, NULL);
+        while (NDL_GetTicks() / 1000000 < sec)
+            NDL_GetTicks();
         if (sec == 1)
             printf("This is %d second.\n", sec);
         else
