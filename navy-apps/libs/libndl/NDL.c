@@ -28,7 +28,8 @@ int NDL_PollEvent(char *buf, int len)
             break;
         }
     }
-    return (p-buf);
+    printf("%d\n", p - buf);
+    return (p - buf);
 }
 
 void NDL_OpenCanvas(int *w, int *h)
