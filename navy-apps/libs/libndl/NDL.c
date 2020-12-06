@@ -8,6 +8,7 @@ static int evtdev = -1;
 static int fbdev = -1;
 static int screen_w = 0, screen_h = 0;
 
+extern FILE *fp;
 uint32_t NDL_GetTicks()
 {
     struct timeval now;
@@ -17,7 +18,6 @@ uint32_t NDL_GetTicks()
 
 int NDL_PollEvent(char *buf, int len)
 {
-    FILE *fp = fopen("/dev/events", "r");
     char *p = buf, ch;
     while ((ch = fgetc(fp)) != -1)
     {
@@ -28,7 +28,6 @@ int NDL_PollEvent(char *buf, int len)
             break;
         }
     }
-    fclose(fp);
     return (p-buf);
 }
 
