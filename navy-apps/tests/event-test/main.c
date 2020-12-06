@@ -3,7 +3,6 @@
 
 int main()
 {
-    FILE *fp = fopen("/dev/events", "r");
     NDL_Init(0);
     while (1)
     {
@@ -13,6 +12,5 @@ int main()
             printf("receive event: %s\n", buf);
         }
     }
-    fclose(fp);
     return 0;
 }
