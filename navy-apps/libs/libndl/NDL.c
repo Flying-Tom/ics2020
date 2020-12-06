@@ -29,6 +29,7 @@ int NDL_PollEvent(char *buf, int len)
             break;
         }
     }
+    printf("%s\n",buf);
     fseek(fp, 0, SEEK_SET);
     fclose(fp);
     return (p - buf);
