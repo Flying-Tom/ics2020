@@ -29,6 +29,8 @@ int NDL_PollEvent(char *buf, int len)
             break;
         }
     }
+    if (fp)
+        fclose(fp);
     return (p - buf);
 }
 
