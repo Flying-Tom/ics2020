@@ -13,6 +13,10 @@ static uint64_t get_time()
 
 int main()
 {
-    get_time();
+    while (1)
+    {
+        printf("%d\n", get_time());
+    }
+
     return 0;
 }
