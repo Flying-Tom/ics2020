@@ -20,8 +20,10 @@ int NDL_PollEvent(char *buf, int len)
 {
     FILE *fp = fopen("/dev/events", "r");
     char *p = buf, ch;
+    int cnt = 0;
     while ((ch = fgetc(fp)) != -1)
     {
+        printf("%d\n", cnt++);
         *p++ = ch;
         if (ch == '\n')
         {
@@ -29,7 +31,6 @@ int NDL_PollEvent(char *buf, int len)
             break;
         }
     }
-    printf("%d\n", p - buf);
     fclose(fp);
     printf("%d\n", p - buf);
     return (p - buf);
