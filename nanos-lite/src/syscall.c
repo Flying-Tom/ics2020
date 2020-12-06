@@ -38,6 +38,8 @@ void do_syscall(Context *c)
     case SYS_brk:
         c->GPRx = 0;
         break;
+    case SYS_gettimeofday:
+        c->GPRx = 0;
     default:
         panic("Unhandled syscall ID = %d", a[0]);
     }
