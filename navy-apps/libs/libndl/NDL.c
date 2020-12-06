@@ -30,7 +30,7 @@ int NDL_PollEvent(char *buf, int len)
         }
     }
     fclose(fp);
-    //printf("%d\n", p - buf);
+    printf("%d\n", p - buf);
     return (p - buf);
 }
 
