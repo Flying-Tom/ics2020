@@ -23,7 +23,6 @@ int NDL_PollEvent(char *buf, int len)
     int cnt = 0;
     while ((ch = fgetc(fp)) != -1)
     {
-        printf("%d\n", cnt++);
         *p++ = ch;
         if (ch == '\n')
         {
