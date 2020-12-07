@@ -1,5 +1,6 @@
 #include <common.h>
 #include <sys/time.h>
+#include <fs.h>
 
 #if defined(MULTIPROGRAM) && !defined(TIME_SHARING)
 #define MULTIPROGRAM_YIELD() yield()
@@ -38,7 +39,10 @@ size_t events_read(void *buf, size_t offset, size_t len)
 
 size_t dispinfo_read(void *buf, size_t offset, size_t len)
 {
-    //strncpy(buf, offset, len);
+    assert(offset == 0);
+    int fp = fs_open("/proc/dispinfo", 0, 0);
+    fs_read(fp, buf + offset, len);
+    fs_close(fp);
     return len;
 }
 

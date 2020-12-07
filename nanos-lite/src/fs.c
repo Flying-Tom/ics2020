@@ -55,13 +55,12 @@ void init_fs()
 
 int fs_open(const char *pathname, int flags, int mode)
 {
-    Log("Pathname:%s", pathname);
     for (int i = 0; i < FILE_NUM; i++)
     {
         if (strcmp(pathname, file_table[i].name) == 0)
             return i;
     }
-    printf("%s\n", pathname);
+    Log("Pathname:%s", pathname);
     panic("Couldn't find file");
     return -1;
 }
