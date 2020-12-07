@@ -20,15 +20,7 @@ int NDL_PollEvent(char *buf, int len)
 {
     FILE *fp = fopen("/dev/events", "r");
     fread(buf, 1, 32, fp);
-    //assert(strlen(buf) <= len);
-    if (strlen(buf) - 1)
-    {
-        printf("%d\n", strlen(buf) - 1);
-        //fclose(fp);
-        printf("Closed!\n");
-    }
-    else
-        fclose(fp);
+    fclose(fp);
     return strlen(buf) - 1;
 }
 
