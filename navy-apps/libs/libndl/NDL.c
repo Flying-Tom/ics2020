@@ -21,7 +21,7 @@ int NDL_PollEvent(char *buf, int len)
     buf="\0";
     int ret = fread(buf, 1, sizeof(buf), fp);
     printf("%s\n",buf);
-    fclose(fp);
+    //fclose(fp);
     return strlen(buf);
 }
 
