@@ -20,7 +20,7 @@ int NDL_PollEvent(char *buf, int len)
 {
     FILE *fp = fopen("/dev/events", "r");
     memset(buf,'\0',len);
-    assert(strlen(buf) == 1);
+    //assert(strlen(buf) == 1);
     char *p = buf, ch;
     while ((ch = fgetc(fp)) != -1)
     {
@@ -33,7 +33,7 @@ int NDL_PollEvent(char *buf, int len)
     }
     if (strlen(buf) > len)
         printf("%s\n", buf);
-    assert(strlen(buf) <= len);
+    //assert(strlen(buf) <= len);
     if (strlen(buf) - 1)
     {
         printf("%d\n", strlen(buf) - 1);
