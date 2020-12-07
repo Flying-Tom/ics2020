@@ -20,7 +20,7 @@ int NDL_PollEvent(char *buf, int len)
 {
     memset(buf, '\0', len);
     FILE *fp = fopen("/dev/events", "r");
-    fread(buf, len, 1, fp);
+    fread(buf, 32, 1, fp);
     fclose(fp);
     return strlen(buf);
 }
