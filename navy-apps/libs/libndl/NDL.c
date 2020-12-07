@@ -22,6 +22,7 @@ int NDL_PollEvent(char *buf, int len)
     fread(p, 1, sizeof(buf), fp);
     //printf("%s\n",buf);
     printf("%d\n", p - buf);
+    printf("%s\n", buf);
     if (p - buf)
         return p - buf;
     else
