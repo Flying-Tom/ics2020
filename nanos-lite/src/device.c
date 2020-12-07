@@ -24,19 +24,19 @@ size_t serial_write(const void *buf, size_t offset, size_t len)
 size_t events_read(void *buf, size_t offset, size_t len)
 {
     AM_INPUT_KEYBRD_T kbd = io_read(AM_INPUT_KEYBRD);
-    bool keydown = kbd.keydown;
+    bool keydown = kbd.keydown; //为什么调用两次ioe_read的结果就会不对
     int keycode = kbd.keycode;
     if (keycode != AM_KEY_NONE)
     {
         if (keydown)
         {
-            //sprintf(buf, "kd %s\n", keyname[keycode]);
-            printf("kd %s\n", keyname[keycode]);
+            sprintf(buf, "kd %s\n", keyname[keycode]);
+            //printf("kd %s\n", keyname[keycode]);
         }
         else
         {
-            //sprintf(buf, "ku %s\n", keyname[keycode]);
-            printf("ku %s\n", keyname[keycode]);
+            sprintf(buf, "ku %s\n", keyname[keycode]);
+            //printf("ku %s\n", keyname[keycode]);
         }
     }
     return strlen(buf);
