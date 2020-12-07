@@ -29,8 +29,8 @@ size_t events_read(void *buf, size_t offset, size_t len)
     {
         if (keydown)
             sprintf(buf, "kd %s\n", keyname[keycode]);
-        //else
-        //    sprintf(buf, "kd RETURN\n");
+        else
+            sprintf(buf, "kd RETURN\n");
     }
 
     return strlen(buf);
