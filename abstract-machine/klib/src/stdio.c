@@ -137,8 +137,9 @@ int sprintf(char *out, const char *fmt, ...)
     va_start(ap, fmt);
     int ans = _Printf(out, fmt, ap);
     out[ans] = '\0';
-    printf("%s\n",out);
+    //printf("%s\n", out);
     va_end(ap);
+    assert(strlen(out) == ans);
     return ans;
 }
 
