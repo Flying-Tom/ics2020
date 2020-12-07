@@ -18,8 +18,8 @@ enum
     FD_STDIN,
     FD_STDOUT,
     FD_STDERR,
-    FD_FB,
-    FD_EVENT
+    FD_EVENT,
+    FD_FB
 };
 
 size_t invalid_read(void *buf, size_t offset, size_t len)
