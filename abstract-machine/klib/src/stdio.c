@@ -127,6 +127,7 @@ int printf(const char *fmt, ...)
 
 int vsprintf(char *out, const char *fmt, va_list ap)
 {
+    assert(0);
     return 0;
 }
 
@@ -142,11 +143,13 @@ int sprintf(char *out, const char *fmt, ...)
 
 int snprintf(char *out, size_t n, const char *fmt, ...)
 {
+    assert(0);
     return 0;
 }
 
 int vsnprintf(char *out, size_t n, const char *fmt, va_list ap)
 {
+    assert(0);
     return 0;
 }
 

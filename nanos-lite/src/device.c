@@ -33,7 +33,7 @@ size_t events_read(void *buf, size_t offset, size_t len)
     {
         sprintf(buf, "kd RETURN\n");
     }
-    
+
     return strlen(buf);
 }
 
