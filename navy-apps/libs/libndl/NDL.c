@@ -22,12 +22,12 @@ int NDL_PollEvent(char *buf, int len)
     FILE *fp = fopen("/dev/events", "r");
     fread(buf, 1, 32, fp);
     fclose(fp);*/
-    *buf = '\0';
+    memset(buf, '\0', len);
     int fp = open("/dev/events", 0, 0);
     read(fp, buf, len);
     close(fp);
     assert(strlen(buf) - 1 >= 0);
-    return strlen(buf) - 1;
+    return strlen(buf);
 }
 
 void NDL_OpenCanvas(int *w, int *h)
