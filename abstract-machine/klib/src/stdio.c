@@ -133,6 +133,7 @@ int vsprintf(char *out, const char *fmt, va_list ap)
 
 int sprintf(char *out, const char *fmt, ...)
 {
+    assert(0);
     va_list ap;
     va_start(ap, fmt);
     int ans = _Printf(out, fmt, ap);
