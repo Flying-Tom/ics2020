@@ -34,7 +34,7 @@ void *BMP_Load(const char *filename, int *width, int *height)
         return NULL;
     if (hdr.compression != 0)
         return NULL;
-    printf("Checkpoint\n");
+    
     int w = hdr.width;
     int h = hdr.height;
     uint32_t *pixels = malloc(w * h * sizeof(uint32_t));
@@ -54,6 +54,7 @@ void *BMP_Load(const char *filename, int *width, int *height)
     }
 
     fclose(fp);
+    printf("Checkpoint\n");
     if (width)
         *width = w;
     if (height)
