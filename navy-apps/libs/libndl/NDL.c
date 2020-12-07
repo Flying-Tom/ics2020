@@ -22,17 +22,6 @@ int NDL_PollEvent(char *buf, int len)
     //memset(buf, '\0', len);
     //assert(strlen(buf) == 1);
     fread(buf, 1, 16, fp);
-    /*
-    if (strlen(buf) > len)
-        printf("%s\n", buf);
-    assert(strlen(buf) <= len);*/
-    if (strlen(buf) - 1)
-    {
-        printf("%d\n", strlen(buf) - 1);
-        //fclose(fp);
-        printf("Closed!\n");
-    }
-    else
         fclose(fp);
     return strlen(buf) - 1;
 }
