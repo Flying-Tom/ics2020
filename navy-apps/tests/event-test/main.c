@@ -12,7 +12,7 @@ int main()
         {
             printf("receive event: %s\n", buf);
         }
-        printf("%d\n",cnt++);
+        //printf("%d\n",cnt++);
     }
     return 0;
 }
