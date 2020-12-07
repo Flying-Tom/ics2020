@@ -19,11 +19,11 @@ int NDL_PollEvent(char *buf, int len)
 {
     FILE *fp = fopen("/dev/events", "r");
     char *p = buf;
-    int ret = fread(p, 1, sizeof(buf), fp);
+    fread(p, 1, sizeof(buf), fp);
     //printf("%s\n",buf);
     printf("%d\n", p - buf);
     if (p - buf)
-        return p -buf;
+        return p - buf;
     else
         fclose(fp);
     return p - buf;
