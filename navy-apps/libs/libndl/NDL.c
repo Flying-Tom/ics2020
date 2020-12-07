@@ -27,6 +27,7 @@ int NDL_PollEvent(char *buf, int len)
         if (ch == '\n')
         {
             *p = '\0';
+            printf("break\n");
             break;
         }
     }
