@@ -19,7 +19,7 @@ uint32_t NDL_GetTicks()
 int NDL_PollEvent(char *buf, int len)
 {
     FILE *fp = fopen("/dev/events", "r");
-    memset(buf,'\0',len);
+    memset(buf, '\0', len);
     //assert(strlen(buf) == 1);
     char *p = buf, ch;
     while ((ch = fgetc(fp)) != -1)
@@ -30,18 +30,18 @@ int NDL_PollEvent(char *buf, int len)
             *p = '\0';
             break;
         }
-    }
+    } /*
     if (strlen(buf) > len)
         printf("%s\n", buf);
-    //assert(strlen(buf) <= len);
+    assert(strlen(buf) <= len);
     if (strlen(buf) - 1)
     {
         printf("%d\n", strlen(buf) - 1);
         //fclose(fp);
         printf("Closed!\n");
     }
-    else
-        fclose(fp);
+    else*/
+    fclose(fp);
     return strlen(buf) - 1;
 }
 
