@@ -139,7 +139,7 @@ int sprintf(char *out, const char *fmt, ...)
     out[ans] = '\0';
     //printf("%s\n", out);
     va_end(ap);
-    assert(strlen(out) == ans);
+    assert(strlen(out) != ans);
     return ans;
 }
 
