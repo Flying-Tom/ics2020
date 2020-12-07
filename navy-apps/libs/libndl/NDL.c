@@ -31,6 +31,7 @@ int NDL_PollEvent(char *buf, int len)
             printf("break:%d\n",cnt);
             break;
         }
+        printf("strlen(buf):%d\n",strlen(buf));
         cnt++;
     }
     if (strlen(buf) > sizeof(buf))
