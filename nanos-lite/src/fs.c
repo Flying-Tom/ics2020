@@ -19,6 +19,7 @@ enum
     FD_STDOUT,
     FD_STDERR,
     FD_EVENT,
+    FD_DISPINFO,
     FD_FB
 };
 
@@ -40,6 +41,7 @@ static Finfo file_table[] __attribute__((used)) = {
     [FD_STDOUT] = {"stdout", 0, 0, 0, invalid_read, serial_write},
     [FD_STDERR] = {"stderr", 0, 0, 0, invalid_read, serial_write},
     [FD_EVENT] = {"/dev/events", 0, 0, 0, events_read, invalid_write},
+    [FD_DISPINFO] = {"/proc/dispinfo", 0, 0, 0, dispinfo_read, invalid_write},
     [FD_FB] = {"/dev/fb", 0, 0, 0, events_read, fb_write},
 #include "files.h"
 };
@@ -53,7 +55,7 @@ void init_fs()
 
 int fs_open(const char *pathname, int flags, int mode)
 {
-    //Log("Pathname:%s", pathname);
+    Log("Pathname:%s", pathname);
     for (int i = 0; i < FILE_NUM; i++)
     {
         if (strcmp(pathname, file_table[i].name) == 0)
