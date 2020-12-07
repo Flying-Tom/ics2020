@@ -31,8 +31,9 @@ size_t events_read(void *buf, size_t offset, size_t len)
     }
     else if (keycode != AM_KEY_NONE)
     {
-        sprintf(buf, "kd %s\n", keyname[keycode]);
+        sprintf(buf, "kd RETURN\n");
     }
+    
     return strlen(buf);
 }
 
