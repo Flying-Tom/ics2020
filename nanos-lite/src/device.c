@@ -27,12 +27,11 @@ size_t events_read(void *buf, size_t offset, size_t len)
     bool keydown = io_read(AM_INPUT_KEYBRD).keydown;
     if (keycode != AM_KEY_NONE)
     {
-        if (!keydown)
+        if (keydown)
             sprintf(buf, "kd %s\n", keyname[keycode]);
         else
-            sprintf(buf, "kd RETURN\n");
+            sprintf(buf, "ku %s\n", keyname[keycode]);
     }
-
     return strlen(buf);
 }
 
