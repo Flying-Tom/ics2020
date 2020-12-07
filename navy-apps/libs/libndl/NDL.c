@@ -21,23 +21,18 @@ int NDL_PollEvent(char *buf, int len)
     FILE *fp = fopen("/dev/events", "r");
     assert(strlen(buf) == 1);
     char *p = buf, ch;
-    int cnt=0;
     while ((ch = fgetc(fp)) != -1)
     {
         *p++ = ch;
         if (ch == '\n')
         {
             *p = '\0';
-            printf("break:%d\n",cnt);
             break;
         }
-        printf("strlen(buf):%d\n",strlen(buf));
-        cnt++;
     }
-    printf("sizeof(buf):%d\n",sizeof(buf));
-    if (strlen(buf) > sizeof(buf))
+    if (strlen(buf) > len)
         printf("%s\n", buf);
-    assert(strlen(buf) <= sizeof(buf));
+    assert(strlen(buf) <= len);
     if (strlen(buf) - 1)
     {
         printf("%d\n", strlen(buf) - 1);
