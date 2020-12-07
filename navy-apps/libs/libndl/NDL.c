@@ -21,16 +21,8 @@ int NDL_PollEvent(char *buf, int len)
     FILE *fp = fopen("/dev/events", "r");
     //memset(buf, '\0', len);
     //assert(strlen(buf) == 1);
-    char *p = buf, ch;
-    while ((ch = fgetc(fp)) != -1)
-    {
-        *p++ = ch;
-        if (ch == '\n')
-        {
-            *p = '\0';
-            break;
-        }
-    } /*
+    fread(buf, 1, 16, fp);
+    /*
     if (strlen(buf) > len)
         printf("%s\n", buf);
     assert(strlen(buf) <= len);*/
@@ -41,7 +33,7 @@ int NDL_PollEvent(char *buf, int len)
         printf("Closed!\n");
     }
     else
-    fclose(fp);
+        fclose(fp);
     return strlen(buf) - 1;
 }
 
