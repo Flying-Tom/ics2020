@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <assert.h>
 
 static int evtdev = -1;
 static int fbdev = -1;
@@ -18,13 +19,11 @@ uint32_t NDL_GetTicks()
 int NDL_PollEvent(char *buf, int len)
 {
     FILE *fp = fopen("/dev/events", "r");
-    char *p = buf;
+    assert(sizeof(buf) == 0);
     fread(buf, 1, len, fp);
-    //printf("%s\n",buf);
-    printf("%d\n", p - buf);
     printf("%s\n", buf);
     fclose(fp);
-    return p - buf;
+    return sizeof(buf);
 }
 
 void NDL_OpenCanvas(int *w, int *h)
