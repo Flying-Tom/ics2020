@@ -11,7 +11,7 @@ void test()
     char buf[128];
     //fread(buf,1,128,fp);
     fscanf(fp, "WIDTH:%d\nHEIGHT:%d\n", &WIDTH, &HEIGHT);
-    printf("WIDTH:%d\nHEIGHT:%d\n", WIDTH, HEIGHT);
+    printf("width:%d\nheight:%d\n", WIDTH, HEIGHT);
     fclose(fp);
 }
 
