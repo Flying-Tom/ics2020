@@ -8,11 +8,10 @@ int main()
 {
     NDL_Init(0);
     int w, h;
-    uint32_t *test = malloc(2000);
-    assert(test);
     void *bmp = BMP_Load("/share/pictures/projectn.bmp", &w, &h);
     assert(bmp);
     NDL_OpenCanvas(&w, &h);
+    printf("w:%d h:%d\n", w, h);
     NDL_DrawRect(bmp, 0, 0, w, h);
     free(bmp);
     NDL_Quit();
