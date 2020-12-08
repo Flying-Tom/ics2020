@@ -39,6 +39,7 @@ size_t events_read(void *buf, size_t offset, size_t len)
 
 size_t dispinfo_read(void *buf, size_t offset, size_t len)
 {
+    assert(false);
     /*
     static char dispinfo[32] = {};
 
