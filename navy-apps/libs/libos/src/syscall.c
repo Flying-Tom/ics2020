@@ -72,7 +72,7 @@ int _write(int fd, void *buf, size_t count)
 
 void *_sbrk(intptr_t increment)
 {
-    extern char _end;
+    extern uintptr_t _end;
     static uintptr_t init_brk = &_end;
     intptr_t pre_brk = init_brk, cur_brk = pre_brk + increment;
     if (_syscall_(SYS_brk, pre_brk + increment, 0, 0) == 0)
