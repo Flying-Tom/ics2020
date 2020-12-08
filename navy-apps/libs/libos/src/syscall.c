@@ -72,8 +72,8 @@ int _write(int fd, void *buf, size_t count)
 
 void *_sbrk(intptr_t increment)
 {
-    extern uint64_t end;
-    uint64_t *breakpoint = &end;
+    extern uint32_t end;
+    uint32_t *breakpoint = &end;
     if (_syscall_(SYS_brk, (intptr_t)(breakpoint + increment), 0, 0) == 0)
     {
         breakpoint += increment;
