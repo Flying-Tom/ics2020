@@ -75,7 +75,7 @@ void NDL_OpenCanvas(int *w, int *h)
         canvas = malloc(sizeof(uint32_t) * canvas_w * canvas_h);
         assert(canvas && screen_w >= canvas_w && screen_h >= canvas_h);
         pad_x = (screen_w - canvas_w) / 2;
-        pad_y = (screen_w - canvas_w) / 2;
+        pad_y = (screen_h - canvas_h) / 2;
         fbdev = open("/dev/fb", 2, 0);
         assert(fbdev == 5);
     }
