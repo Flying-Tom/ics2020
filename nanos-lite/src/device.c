@@ -40,7 +40,7 @@ size_t events_read(void *buf, size_t offset, size_t len)
 size_t dispinfo_read(void *buf, size_t offset, size_t len)
 {
     assert(offset == 0);
-    assert(0);
+    assert(false);
     int fp = fs_open("/proc/dispinfo", 0, 0);
     fs_read(fp, buf + offset, len);
     fs_close(fp);
