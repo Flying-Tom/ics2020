@@ -106,7 +106,7 @@ static int cmd_p(char *args)
 static int cmd_de(char *args)
 {
     char de_buf[1024] = "";
-    char *de_buf_p;
+    char *de_buf_p = NULL;
     word_t temp, my_ans, len, error_cnt = 0;
     printf("Test is running\n");
     FILE *fp = fopen(args, "r"), *test_log_fp = fopen("test_log", "w");
