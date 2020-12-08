@@ -75,7 +75,7 @@ void *_sbrk(intptr_t increment)
     extern char _end;
     static uintptr_t init_brk = &_end;
     intptr_t pre_brk = init_brk, cur_brk = pre_brk + increment;
-    if (_syscall_(SYS_brk, breakpoint + increment, 0, 0) == 0)
+    if (_syscall_(SYS_brk, pre_brk + increment, 0, 0) == 0)
     {
         init_brk = cur_brk;
         return (void *)pre_brk;
