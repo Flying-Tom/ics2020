@@ -8,6 +8,7 @@
 static int evtdev = -1;
 static int fbdev = -1;
 static int screen_w = 0, screen_h = 0;
+static uint32_t *canvas;
 
 uint32_t NDL_GetTicks()
 {
@@ -34,6 +35,9 @@ void NDL_OpenCanvas(int *w, int *h)
         fbdev = 5;
         screen_w = *w;
         screen_h = *h;
+
+        canvas = malloc(sizeof(uint32_t) * screen_w * screen_h); //////
+
         char buf[64];
         int len = sprintf(buf, "%d %d", screen_w, screen_h);
         // let NWM resize the window and create the frame buffer
@@ -54,6 +58,12 @@ void NDL_OpenCanvas(int *w, int *h)
 
 void NDL_DrawRect(uint32_t *pixels, int x, int y, int w, int h)
 {
+    if (getenv("NWM_APP"))
+    {
+        for (int i = 0; i < h; i++)
+            for (int j = 0; j < w; j++)
+                canvas[(i + y) * screen_w + (j + x)] = pixels[i * w + j];
+    }
 }
 
 void NDL_OpenAudio(int freq, int channels, int samples)
