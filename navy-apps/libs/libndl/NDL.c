@@ -88,6 +88,7 @@ void NDL_DrawRect(uint32_t *pixels, int x, int y, int w, int h)
         for (int j = 0; j < w; j++)
         {
             canvas[(i + y) * canvas_w + (j + x)] = pixels[i * w + j];
+            printf("i:%d,j:%d\n", i, j);
         }
     }
     for (int i = 0; i < canvas_h; i++)
