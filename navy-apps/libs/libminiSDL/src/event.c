@@ -16,33 +16,37 @@ int SDL_PushEvent(SDL_Event *ev)
 
 int SDL_PollEvent(SDL_Event *ev)
 {
-    /*char buf[256];
+    /*
+    char buf[256], keynamebuf[32];
+    uint8_t keytype = 0;
     if (NDL_PollEvent(buf, sizeof(buf)))
     {
-        switch (buf[1])
+        sscanf(buf + 3, "%s", keynamebuf);
+        keytype = (buf[1] == 'd') ? SDL_KEYDOWN : SDL_KEYUP;
+        for (int i = 0; i < sizeof(keyname) / sizeof(keyname[0]); i++)
         {
-        case 'd':
-            ev->type = SDL_KEYDOWN;
-
-            break;
-        case 'u':
-            ev->type = SDL_KEYUP;
-            break;
-        default:
-            assert(false);
+            if (strcmp(keyname[i], keynamebuf) == 0)
+            {
+                event->type = keytype;
+                event->key.type = keytype;
+                event->key.keysym.sym = i;
+                printf("%s\n", keynamebuf);
+                break;
+            }
         }
+        return 1;
     }*/
     return 0;
 }
 
 int SDL_WaitEvent(SDL_Event *event)
 {
+    /*
     char buf[256], keynamebuf[32];
     uint8_t keytype = 0;
     NDL_PollEvent(buf, sizeof(buf));
     sscanf(buf + 3, "%s", keynamebuf);
     keytype = (buf[1] == 'd') ? SDL_KEYDOWN : SDL_KEYUP;
-
     for (int i = 0; i < sizeof(keyname) / sizeof(keyname[0]); i++)
     {
         if (strcmp(keyname[i], keynamebuf) == 0)
@@ -50,9 +54,29 @@ int SDL_WaitEvent(SDL_Event *event)
             event->type = keytype;
             event->key.type = keytype;
             event->key.keysym.sym = i;
-            printf("%s\n",keynamebuf);
+            printf("%s\n", keynamebuf);
             break;
         }
+    }
+    return 1;*/
+    char buf[256], keynamebuf[32];
+    uint8_t keytype = 0;
+    if (NDL_PollEvent(buf, sizeof(buf)))
+    {
+        sscanf(buf + 3, "%s", keynamebuf);
+        keytype = (buf[1] == 'd') ? SDL_KEYDOWN : SDL_KEYUP;
+        for (int i = 0; i < sizeof(keyname) / sizeof(keyname[0]); i++)
+        {
+            if (strcmp(keyname[i], keynamebuf) == 0)
+            {
+                event->type = keytype;
+                event->key.type = keytype;
+                event->key.keysym.sym = i;
+                printf("%s\n", keynamebuf);
+                break;
+            }
+        }
+        return 1;
     }
     return 0;
 }
