@@ -41,6 +41,7 @@ int SDL_WaitEvent(SDL_Event *event)
     NDL_PollEvent(buf, sizeof(buf));
     uint8_t keytype = 0;
     keytype = (buf[1] == 'd') ? SDL_KEYDOWN : SDL_KEYUP;
+    printf("keyname:%d\n",sizeof(keyname));
     for (int i = 0; i < sizeof(keyname); i++)
     {
         if (strcmp(keyname[i], keynamebuf) == 0)
