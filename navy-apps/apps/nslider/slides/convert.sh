@@ -6,4 +6,4 @@ convert slides.pdf \
 
 mkdir -p $NAVY_HOME/fsimg/share/slides/
 rm $NAVY_HOME/fsimg/share/slides/*
-mv *.bmp $NAVY_HOME/fsimg/share/slides/
+cp *.bmp $NAVY_HOME/fsimg/share/slides/
