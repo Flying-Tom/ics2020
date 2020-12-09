@@ -67,6 +67,7 @@ int main()
         if (e.type == SDL_KEYDOWN)
         {
             printf("%d\n",e.key.keysym.sym);
+            render();
             switch (e.key.keysym.sym)
             {
             case SDLK_0:
