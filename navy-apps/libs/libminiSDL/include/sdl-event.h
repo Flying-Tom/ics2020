@@ -12,51 +12,58 @@
 
 #define enumdef(k) SDLK_##k,
 
-enum SDL_Keys {
-  SDLK_NONE = 0,
-  _KEYS(enumdef)
+enum SDL_Keys
+{
+    SDLK_NONE = 0,
+    _KEYS(enumdef)
 };
 
-enum SDL_EventType {
-  SDL_KEYDOWN,
-  SDL_KEYUP,
-  SDL_USEREVENT,
+enum SDL_EventType
+{
+    SDL_KEYDOWN,
+    SDL_KEYUP,
+    SDL_USEREVENT,
 };
 
 #define SDL_EVENTMASK(ev_type) (1u << (ev_type))
 
-enum SDL_EventAction {
-  SDL_ADDEVENT,
-  SDL_PEEKEVENT,
-  SDL_GETEVENT,
+enum SDL_EventAction
+{
+    SDL_ADDEVENT,
+    SDL_PEEKEVENT,
+    SDL_GETEVENT,
 };
 
-typedef struct {
-  uint8_t sym;
+typedef struct
+{
+    uint8_t sym;
 } SDL_keysym;
 
-typedef struct {
-  uint8_t type;
-  SDL_keysym keysym;
+typedef struct
+{
+    uint8_t type;
+    SDL_keysym keysym;
 } SDL_KeyboardEvent;
 
-typedef struct {
-  uint8_t type;
-  int code;
-  void *data1;
-  void *data2;
+typedef struct
+{
+    uint8_t type;
+    int code;
+    void *data1;
+    void *data2;
 } SDL_UserEvent;
 
-typedef union {
-  uint8_t type;
-  SDL_KeyboardEvent key;
-  SDL_UserEvent user;
+typedef union
+{
+    uint8_t type;
+    SDL_KeyboardEvent key;
+    SDL_UserEvent user;
 } SDL_Event;
 
 int SDL_PushEvent(SDL_Event *ev);
 int SDL_PollEvent(SDL_Event *ev);
 int SDL_WaitEvent(SDL_Event *ev);
 int SDL_PeepEvents(SDL_Event *ev, int numevents, int action, uint32_t mask);
-uint8_t* SDL_GetKeyState(int *numkeys);
+uint8_t *SDL_GetKeyState(int *numkeys);
 
 #endif
