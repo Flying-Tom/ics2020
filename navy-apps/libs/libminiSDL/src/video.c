@@ -22,6 +22,8 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h)
         w = s->w;
         h = s->h;
     }
+    NDL_DrawRect(&s->format->palette->colors, x, y, w, h);
+    /*
     uint8_t *pixels_tmp = (uint8_t *)s->pixels;
     uint32_t *pixels_buf = malloc(w * h * sizeof(uint32_t));
     assert(pixels_buf);
@@ -35,7 +37,7 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h)
         }
     }
     NDL_DrawRect(pixels_buf, x, y, w, h);
-    //assert(0);
+    //assert(0);*/
 }
 
 // APIs below are already implemented.
