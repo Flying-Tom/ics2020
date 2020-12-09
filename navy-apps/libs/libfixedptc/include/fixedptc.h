@@ -152,9 +152,7 @@ static inline fixedpt fixedpt_abs(fixedpt A) {
 }
 
 static inline fixedpt fixedpt_floor(fixedpt A) {
-	while( A % 2 )
-        A--;
-    return A;
+    return ((fixedpt)(A) & ~FIXEDPT_FMASK);
 }
 
 static inline fixedpt fixedpt_ceil(fixedpt A) {
