@@ -16,7 +16,6 @@ int SDL_PushEvent(SDL_Event *ev)
 
 int SDL_PollEvent(SDL_Event *ev)
 {
-    /*
     char buf[256], keynamebuf[32];
     uint8_t keytype = 0;
     if (NDL_PollEvent(buf, sizeof(buf)))
@@ -27,21 +26,20 @@ int SDL_PollEvent(SDL_Event *ev)
         {
             if (strcmp(keyname[i], keynamebuf) == 0)
             {
-                event->type = keytype;
-                event->key.type = keytype;
-                event->key.keysym.sym = i;
-                printf("%s\n", keynamebuf);
+                ev->type = keytype;
+                ev->key.type = keytype;
+                ev->key.keysym.sym = i;
+                //printf("%s\n", keynamebuf);
                 break;
             }
         }
         return 1;
-    }*/
+    }
     return 0;
 }
 
 int SDL_WaitEvent(SDL_Event *event)
 {
-    /*
     char buf[256], keynamebuf[32];
     uint8_t keytype = 0;
     NDL_PollEvent(buf, sizeof(buf));
@@ -54,31 +52,11 @@ int SDL_WaitEvent(SDL_Event *event)
             event->type = keytype;
             event->key.type = keytype;
             event->key.keysym.sym = i;
-            printf("%s\n", keynamebuf);
+            //printf("%s\n", keynamebuf);
             break;
         }
     }
-    return 1;*/
-    char buf[256], keynamebuf[32];
-    uint8_t keytype = 0;
-    if (NDL_PollEvent(buf, sizeof(buf)))
-    {
-        sscanf(buf + 3, "%s", keynamebuf);
-        keytype = (buf[1] == 'd') ? SDL_KEYDOWN : SDL_KEYUP;
-        for (int i = 0; i < sizeof(keyname) / sizeof(keyname[0]); i++)
-        {
-            if (strcmp(keyname[i], keynamebuf) == 0)
-            {
-                event->type = keytype;
-                event->key.type = keytype;
-                event->key.keysym.sym = i;
-                printf("%s\n", keynamebuf);
-                break;
-            }
-        }
-        return 1;
-    }
-    return 0;
+    return 1;
 }
 
 int SDL_PeepEvents(SDL_Event *ev, int numevents, int action, uint32_t mask)
