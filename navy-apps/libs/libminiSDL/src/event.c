@@ -38,8 +38,9 @@ int SDL_PollEvent(SDL_Event *ev)
 int SDL_WaitEvent(SDL_Event *event)
 {
     char buf[256], keynamebuf[32];
-    NDL_PollEvent(buf, sizeof(buf));
     uint8_t keytype = 0;
+    NDL_PollEvent(buf, sizeof(buf));
+    sscanf(buf + 3, "%s", keynamebuf);
     keytype = (buf[1] == 'd') ? SDL_KEYDOWN : SDL_KEYUP;
 
     for (int i = 0; i < sizeof(keyname) / sizeof(keyname[0]); i++)
@@ -49,6 +50,7 @@ int SDL_WaitEvent(SDL_Event *event)
             event->type = keytype;
             event->key.type = keytype;
             event->key.keysym.sym = i;
+            printf("%s\n",keynamebuf);
             break;
         }
     }
