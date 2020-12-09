@@ -17,7 +17,7 @@ void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color)
 void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h)
 {
     //NDL_DrawRect(&s->format->palette->colors, x, y, w, h);
-    uint32_t pixels_buf = malloc(w * h * sizeof(uint32_t));
+    uint32_t *pixels_buf = malloc(w * h * sizeof(uint32_t));
     for (int i = 0; i < w * h; i++)
     {
         pixels_buf[i] = 0;
