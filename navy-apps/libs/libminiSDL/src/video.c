@@ -17,7 +17,7 @@ void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color)
 void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h)
 {
     //NDL_DrawRect(&s->format->palette->colors, x, y, w, h);
-    uint8_t *pixels_tmp = s->pixels;
+    uint8_t *pixels_tmp = (uint8_t *)s->pixels;
     uint32_t *pixels_buf = malloc(w * h * sizeof(uint32_t));
     assert(pixels_buf);
     memset(pixels_buf, 0, w * h * sizeof(uint32_t));
