@@ -42,22 +42,23 @@ int SDL_WaitEvent(SDL_Event *event)
 {
     char buf[256], keynamebuf[32];
     uint8_t keytype = 0;
-    while (NDL_PollEvent(buf, sizeof(buf)))
+    while (NDL_PollEvent(buf, sizeof(buf)) == 0)
+        ;
+
+    sscanf(buf + 3, "%s", keynamebuf);
+    keytype = (buf[1] == 'd') ? SDL_KEYDOWN : SDL_KEYUP;
+    for (int i = 0; i < sizeof(keyname) / sizeof(keyname[0]); i++)
     {
-        sscanf(buf + 3, "%s", keynamebuf);
-        keytype = (buf[1] == 'd') ? SDL_KEYDOWN : SDL_KEYUP;
-        for (int i = 0; i < sizeof(keyname) / sizeof(keyname[0]); i++)
+        if (strcmp(keyname[i], keynamebuf) == 0)
         {
-            if (strcmp(keyname[i], keynamebuf) == 0)
-            {
-                event->type = keytype;
-                event->key.type = keytype;
-                event->key.keysym.sym = i;
-                //printf("%s\n", keynamebuf);
-                break;
-            }
+            event->type = keytype;
+            event->key.type = keytype;
+            event->key.keysym.sym = i;
+            //printf("%s\n", keynamebuf);
+            break;
         }
     }
+
     return 1;
 }
 
