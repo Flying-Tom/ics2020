@@ -22,6 +22,7 @@ int SDL_PollEvent(SDL_Event *ev)
         {
         case 'd':
             ev->type = SDL_KEYDOWN;
+            assert(false);
             break;
         case 'u':
             ev->type = SDL_KEYUP;
