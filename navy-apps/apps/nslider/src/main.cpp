@@ -60,12 +60,11 @@ int main()
     int rep = 0, g = 0;
 
     render();
-    assert(false);
     while (1)
     {
         SDL_Event e;
         SDL_WaitEvent(&e);
-
+        assert(false);
         if (e.type == SDL_KEYDOWN)
         {
             switch (e.key.keysym.sym)
