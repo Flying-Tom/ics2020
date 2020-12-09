@@ -121,7 +121,7 @@ static inline def_EHelper(movsb)
     rtl_lr(s, s0, R_EDI, 4);
     rtl_addi(s, s0, s0, id_dest->width);
     rtl_sr(s, R_EDI, s0, 4);
-    print_asm_template1(movsb);
+    print_asm(str(movsb) "%c %%esi,%%edi", suffix_char(id_dest->width), id_src1->str, id_dest->str);
 }
 
 static inline def_EHelper(lea)
