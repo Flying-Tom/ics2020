@@ -48,7 +48,7 @@ void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color)
         for (int j = 0; j < dstrect->h; j++)
             for (int i = 0; i < dstrect->w; i++)
             {
-                printf("j:%d i:%d\n", j, i);
+                //printf("j:%d i:%d\n", j, i);
                 int loc = ((j + dstrect->y) >= dst->h ? (dst->h - 1) : (j + dstrect->y)) * dst->w + ((i + dstrect->x) >= dst->w ? (dst->w - 1) : (i + dstrect->x));
                 pixels_tmp[loc] = color;
             }
