@@ -2,10 +2,9 @@
 #include <nemu.h>
 #include <klib.h>
 
+#define SYNC_ADDR (VGACTL_ADDR + 4)
 static int W = 400;
 static int H = 300;
-
-#define SYNC_ADDR (VGACTL_ADDR + 4)
 
 static inline int min(int x, int y)
 {
@@ -14,10 +13,12 @@ static inline int min(int x, int y)
 
 void __am_gpu_init()
 {
+    W = inl(VGACTL_ADDR, 1) >> 16;
+    H = inl(VGACTL_ADDR, 1) & (1 << 16 - 1);
 }
 
 void __am_gpu_config(AM_GPU_CONFIG_T *cfg)
-{
+
     *cfg = (AM_GPU_CONFIG_T){
         .present = true, .has_accel = false, .width = W, .height = H, .vmemsz = 0};
 }
