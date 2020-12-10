@@ -20,10 +20,18 @@ void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color)
         rect_tmp.w = dst->w;
         rect_tmp.h = dst->h;
     }
-    for (int i = 0; i < dst->format->palette->ncolors; i++)
-    {
-        dst->format->palette->colors[i].val = color;
-    }
+    uint8_t pixels_buf = (uint8_t *)dst->pixels;
+    for (int j = 0; j < dstrect->h; j++)
+        for (int i = 0; i < dstrect->w; i++)
+        {
+            int cnt = 0;
+            while (cnt < dst->format->palette->ncolors)
+            {
+                printf("cnt:%d\n", cnt);
+                if (dst->format->palette->colors[cnt++].val == color)
+                    break;
+            }
+        }
 }
 
 void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h)
