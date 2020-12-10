@@ -167,7 +167,7 @@ again:
     opcode = instr_fetch(&s->seq_pc, 1);
     s->opcode = opcode;
     switch (opcode)
-    {
+    {/*
         IDEXW(0x00, G2E, add, 1)
         IDEX(0x01, G2E, add)
         IDEXW(0x02, E2G, add, 1)
@@ -220,7 +220,7 @@ again:
         IDEX(0x3b, E2G, cmp)
         IDEXW(0x3c, I2a, cmp, 1)
         IDEX(0x3d, I2a, cmp)
-
+*/
         IDEX(0x40, r, inc)
         IDEX(0x41, r, inc)
         IDEX(0x42, r, inc)
