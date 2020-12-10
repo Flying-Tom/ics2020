@@ -15,7 +15,7 @@ void __am_gpu_init()
 {
     W = inl(VGACTL_ADDR) >> 16;
     H = inl(VGACTL_ADDR) & ((1 << 16) - 1);
-    W += 10;
+    W += 1;
 }
 
 void __am_gpu_config(AM_GPU_CONFIG_T *cfg)
