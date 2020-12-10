@@ -20,25 +20,38 @@ void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color)
         rect_tmp.w = dst->w;
         rect_tmp.h = dst->h;
     }
-    assert(dst->format->palette);
-    printf("color:%d\n", color);
-    printf("ncolor:%d\n", dst->format->palette->ncolors);
-    uint8_t *pixels_tmp = (uint8_t *)dst->pixels;
-    for (int j = 0; j < dstrect->h; j++)
-        for (int i = 0; i < dstrect->w; i++)
-        {
-            int cnt = 0;
-            while (cnt < dst->format->palette->ncolors)
+    //assert(dst->format->palette);
+    if (dst->format->palette)
+    {
+        printf("color:%d\n", color);
+        printf("ncolor:%d\n", dst->format->palette->ncolors);
+        uint8_t *pixels_tmp = (uint8_t *)dst->pixels;
+        for (int j = 0; j < dstrect->h; j++)
+            for (int i = 0; i < dstrect->w; i++)
             {
-               // if(cnt % 1000000)
+                int cnt = 0;
+                while (cnt < dst->format->palette->ncolors)
+                {
+                    // if(cnt % 1000000)
+                    printf("cnt:%d\n", cnt);
+                    if (dst->format->palette->colors[cnt++].val == color)
+                        break;
+                }
                 printf("cnt:%d\n", cnt);
-                if (dst->format->palette->colors[cnt++].val == color)
-                    break;
+                int loc = (j + dstrect->y) * dst->w + i + dstrect->x;
+                pixels_tmp[loc] = cnt % dst->format->palette->ncolors;
             }
-            printf("cnt:%d\n", cnt);
-            int loc = (j + dstrect->y) * dst->w + i + dstrect->x;
-            pixels_tmp[loc] = cnt % dst->format->palette->ncolors;
-        }
+    }
+    else
+    {
+        uint32_t *pixels_tmp = (uint32_t *)dst->pixels;
+        for (int j = 0; j < dstrect->h; j++)
+            for (int i = 0; i < dstrect->w; i++)
+            {
+                int loc = (j + dstrect->y) * dst->w + i + dstrect->x;
+                pixels_tmp[loc] = color;
+            }
+    }
 }
 
 void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h)
