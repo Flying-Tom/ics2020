@@ -29,7 +29,6 @@ int SDL_PollEvent(SDL_Event *ev)
                 ev->type = keytype;
                 ev->key.type = keytype;
                 ev->key.keysym.sym = i;
-                //printf("%s\n", keynamebuf);
                 break;
             }
         }
