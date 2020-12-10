@@ -19,11 +19,11 @@ void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color)
         rect_tmp.y = 0;
         rect_tmp.w = dst->w;
         rect_tmp.h = dst->h;
-    }/*
+    }
     for (int i = 0; i < dst->format->palette->ncolors; i++)
     {
         dst->format->palette->colors[i].val = color;
-    }*/
+    }
 }
 
 void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h)
