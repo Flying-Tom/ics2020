@@ -29,8 +29,7 @@ void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color)
             int cnt = 0;
             while (cnt < dst->format->palette->ncolors)
             {
-                assert(0);
-                if(cnt % 100000000)
+                if(cnt % 10000000)
                 printf("cnt:%d\n", cnt);
                 if (dst->format->palette->colors[cnt++].val == color)
                     break;
