@@ -13,13 +13,17 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
 void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color)
 {
     SDL_Rect rect_tmp;
-    /*if (dstrect == NULL)
+    if (dstrect == NULL)
     {
         rect_tmp.x = 0;
         rect_tmp.y = 0;
         rect_tmp.w = dst->w;
         rect_tmp.h = dst->h;
-    }*/
+    }
+    for (int i = 0; i < dst->format->palette->ncolors; i++)
+    {
+        dst->format->palette->colors[i].val = color;
+    }
 }
 
 void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h)
