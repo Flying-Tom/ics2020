@@ -20,6 +20,7 @@ void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color)
         rect_tmp.w = dst->w;
         rect_tmp.h = dst->h;
     }
+    assert(dst->format->palette);
     printf("color:%d\n", color);
     printf("ncolor:%d\n", dst->format->palette->ncolors);
     uint8_t *pixels_tmp = (uint8_t *)dst->pixels;
