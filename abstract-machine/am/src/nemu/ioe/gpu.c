@@ -3,8 +3,8 @@
 #include <klib.h>
 
 #define SYNC_ADDR (VGACTL_ADDR + 4)
-static int W = 400;
-static int H = 300;
+static int W = -1;
+static int H = -1;
 
 static inline int min(int x, int y)
 {
