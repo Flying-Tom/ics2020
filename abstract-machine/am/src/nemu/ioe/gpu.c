@@ -14,8 +14,7 @@ static inline int min(int x, int y)
 void __am_gpu_init()
 {
     W = inl(VGACTL_ADDR) >> 16;
-    H = inl(VGACTL_ADDR) & ((1 << 16) - 1);
-    W++;
+    H = inl(VGACTL_ADDR) & 0xffff;
 }
 
 void __am_gpu_config(AM_GPU_CONFIG_T *cfg)
