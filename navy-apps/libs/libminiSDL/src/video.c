@@ -40,9 +40,15 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
             int dst_loc = ((j + dstrect->y) >= dst->h ? (dst->h - 1) : (j + dstrect->y)) * dst->w + ((i + dstrect->x) >= dst->w ? (dst->w - 1) : (i + dstrect->x));
             int src_loc = ((j + srcrect->y) >= src->h ? (src->h - 1) : (j + srcrect->y)) * src->w + ((i + srcrect->x) >= src->w ? (src->w - 1) : (i + srcrect->x));
             if (src->format->palette == NULL)
+            {    
                 dst_pixels_buf[dst_loc] = src_pixels_buf[src_loc];
+                printf("if\n");
+            }
             else
+            {
                 ((uint8_t *)dst_pixels_buf)[dst_loc] = ((uint8_t *)src_pixels_buf)[src_loc];
+                printf("else\n");
+            }
         }
 }
 
