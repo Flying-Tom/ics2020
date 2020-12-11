@@ -27,7 +27,7 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
         dstrect->w = srcrect->w;
         dstrect->h = srcrect->h;
     }
-    assert(false);
+    
     uint32_t *dst_pixels_buf = (uint32_t *)dst->pixels;
     uint32_t *src_pixels_buf = (uint32_t *)src->pixels;
     for (int j = 0; j < srcrect->h; j++)
