@@ -48,7 +48,7 @@ void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color)
     {
         printf("Else!\n");
         uint32_t *pixels_tmp = (uint32_t *)dst->pixels;
-        for (int j = 0; j < dstrect->h; j++)
+        /*for (int j = 0; j < dstrect->h; j++)
         {
             //printf("j:%d\n",j);
             for (int i = 0; i < dstrect->w; i++)
@@ -57,7 +57,7 @@ void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color)
                 int loc = ((j + dstrect->y) >= dst->h ? (dst->h - 1) : (j + dstrect->y)) * dst->w + ((i + dstrect->x) >= dst->w ? (dst->w - 1) : (i + dstrect->x));
                 pixels_tmp[loc] = color;
             }
-        }
+        }*/
     }
     printf("Exit Succeed!\n");
 }
