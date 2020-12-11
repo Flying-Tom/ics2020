@@ -27,10 +27,12 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
         dstrect->w = srcrect->w;
         dstrect->h = srcrect->h;
     }
-    
+    assert(dst->pixels);
+    assert(src->pixels);
+
     uint32_t *dst_pixels_buf = (uint32_t *)dst->pixels;
     uint32_t *src_pixels_buf = (uint32_t *)src->pixels;
-    assert(false);
+    
     for (int j = 0; j < srcrect->h; j++)
         for (int i = 0; i < srcrect->w; i++)
         {
