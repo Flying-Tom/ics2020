@@ -6,8 +6,8 @@
 
 void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_Rect *dstrect)
 {
-    //assert(dst && src);
-    //assert(dst->format->BitsPerPixel == src->format->BitsPerPixel);
+    assert(dst && src);
+    assert(dst->format->BitsPerPixel == src->format->BitsPerPixel);
     printf("SDL_BlitSurface Enter Succeed!\n");
 
     SDL_Rect rect_tmp;
@@ -27,11 +27,9 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
         dstrect->w = srcrect->w;
         dstrect->h = srcrect->h;
     }
-    assert(dst->pixels);
-    assert(src->pixels);
 
-    uint8_t *dst_pixels_buf = (uint8_t *)dst->pixels;
-    uint8_t *src_pixels_buf = (uint8_t *)src->pixels;
+    uint32_t *dst_pixels_buf = (uint32_t *)dst->pixels;
+    uint32_t *src_pixels_buf = (uint32_t *)src->pixels;
 
     for (int j = 0; j < srcrect->h; j++)
         for (int i = 0; i < srcrect->w; i++)
@@ -43,7 +41,7 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
             {
                 dst_loc += (dst->h - 1) * dst->w;
                 //printf("dst->h - 1:%d\n", dst->h - 1);
-               // printf("dst->w:%d\n", dst->w);
+                // printf("dst->w:%d\n", dst->w);
                 //printf("dst_loc:%d\n", dst_loc);
             }
             else
@@ -64,7 +62,10 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
                 src_loc += i + srcrect->x;
             printf("src_loc:%d\n", src_loc);
             if (src->format->palette == NULL)
+            {
                 dst_pixels_buf[dst_loc] = src_pixels_buf[src_loc];
+                printf("dst->w:%d\n", dst->w);
+            }
             else
                 ((uint8_t *)dst_pixels_buf)[dst_loc] = ((uint8_t *)src_pixels_buf)[src_loc];
         }
