@@ -30,8 +30,8 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
     assert(dst->pixels);
     assert(src->pixels);
 
-    uint8_t *dst_pixels_buf = (uint8_t *)dst->pixels;
-    uint8_t *src_pixels_buf = (uint8_t *)src->pixels;
+    uint32_t *dst_pixels_buf = (uint32_t *)dst->pixels;
+    uint32_t *src_pixels_buf = (uint32_t *)src->pixels;
 
     for (int j = 0; j < srcrect->h; j++)
         for (int i = 0; i < srcrect->w; i++)
@@ -48,7 +48,7 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
             }
             else
                 dst_loc += (j + dstrect->y) * dst->w;
-            printf("dst_loc:%d\n", dst_loc);
+            //printf("dst_loc:%d\n", dst_loc);
             if (i + dstrect->x >= dst->w)
                 dst_loc += dst->w - 1;
             else
