@@ -64,6 +64,7 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
             if (src->format->palette == NULL)
             {
                 dst_pixels_buf[dst_loc] = src_pixels_buf[src_loc];
+                printf("src_pixels_buf[src_loc]:%d\n",src_pixels_buf[src_loc]);
                 printf("dst->w:%d\n", dst->w);
             }
             else
