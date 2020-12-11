@@ -34,19 +34,12 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
     for (int j = 0; j < srcrect->h; j++)
         for (int i = 0; i < srcrect->w; i++)
         {
-            //printf("j:%d,i:%d\n", j, i);
             int dst_loc = 0, src_loc = 0;
-            //printf("dst_loc:%d\n", dst_loc);
             if (j + dstrect->y >= dst->h)
-            {
                 dst_loc += (dst->h - 1) * dst->w;
-                //printf("dst->h - 1:%d\n", dst->h - 1);
-                // printf("dst->w:%d\n", dst->w);
-                //printf("dst_loc:%d\n", dst_loc);
-            }
             else
                 dst_loc += (j + dstrect->y) * dst->w;
-            //printf("dst_loc:%d\n", dst_loc);
+
             if (i + dstrect->x >= dst->w)
                 dst_loc += dst->w - 1;
             else
@@ -60,13 +53,9 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
                 src_loc += src->w - 1;
             else
                 src_loc += i + srcrect->x;
-            printf("src_loc:%d\n", src_loc);
+
             if (src->format->palette == NULL)
-            {
                 dst_pixels_buf[dst_loc] = src_pixels_buf[src_loc];
-                printf("src_pixels_buf[src_loc]:%d\n",src_pixels_buf[src_loc]);
-                printf("dst->w:%d\n", dst->w);
-            }
             else
                 ((uint8_t *)dst_pixels_buf)[dst_loc] = ((uint8_t *)src_pixels_buf)[src_loc];
         }
@@ -84,26 +73,19 @@ void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color)
         rect_tmp.h = dst->h;
         dstrect = &rect_tmp;
     }
-    //assert(dst->format->palette);
+
     if (dst->format->palette == NULL)
     {
-        printf("IFS!\n");
         uint32_t *pixels_tmp = (uint32_t *)dst->pixels;
         for (int j = 0; j < dstrect->h; j++)
-        {
-            //printf("j:%d\n",j);
             for (int i = 0; i < dstrect->w; i++)
             {
-                //printf("j:%d i:%d\n", j, i);
                 int loc = ((j + dstrect->y) >= dst->h ? (dst->h - 1) : (j + dstrect->y)) * dst->w + ((i + dstrect->x) >= dst->w ? (dst->w - 1) : (i + dstrect->x));
                 pixels_tmp[loc] = color;
             }
-        }
     }
     else
     {
-        //printf("color:%d\n", color);
-        //printf("ncolor:%d\n", dst->format->palette->ncolors);
         uint8_t *pixels_tmp = (uint8_t *)dst->pixels;
         for (int j = 0; j < dstrect->h; j++)
             for (int i = 0; i < dstrect->w; i++)
@@ -111,17 +93,14 @@ void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color)
                 int cnt = 0;
                 while (cnt < dst->format->palette->ncolors)
                 {
-                    // if(cnt % 1000000)
-                    printf("cnt:%d\n", cnt);
-                    if (dst->format->palette->colors[cnt++].val == color)
+                    if (dst->format->palette->colors[cnt].val == color)
                         break;
+                    cnt++;
                 }
-                printf("cnt:%d\n", cnt);
-                int loc = (j + dstrect->y) * dst->w + i + dstrect->x;
+                int loc = ((j + dstrect->y) >= dst->h ? (dst->h - 1) : (j + dstrect->y)) * dst->w + ((i + dstrect->x) >= dst->w ? (dst->w - 1) : (i + dstrect->x));
                 pixels_tmp[loc] = cnt % dst->format->palette->ncolors;
             }
     }
-    printf("Exit Succeed!\n");
 }
 
 void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h)
