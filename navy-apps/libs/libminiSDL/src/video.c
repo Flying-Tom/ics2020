@@ -36,15 +36,15 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
     for (int j = 0; j < srcrect->h; j++)
         for (int i = 0; i < srcrect->w; i++)
         {
-            printf("j:%d,i:%d\n", j, i);
+            //printf("j:%d,i:%d\n", j, i);
             int dst_loc = 0, src_loc = 0;
-            printf("dst_loc:%d\n", dst_loc);
+            //printf("dst_loc:%d\n", dst_loc);
             if (j + dstrect->y >= dst->h)
             {
                 dst_loc += (dst->h - 1) * dst->w;
-                printf("dst->h - 1:%d\n", dst->h - 1);
-                printf("dst->w:%d\n", dst->w);
-                printf("dst_loc:%d\n", dst_loc);
+                //printf("dst->h - 1:%d\n", dst->h - 1);
+               // printf("dst->w:%d\n", dst->w);
+                //printf("dst_loc:%d\n", dst_loc);
             }
             else
                 dst_loc += (j + dstrect->y) * dst->w;
@@ -62,7 +62,7 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
                 src_loc += src->w - 1;
             else
                 src_loc += i + srcrect->x;
-            printf("src_loc:%d\n", src_loc);
+            //printf("src_loc:%d\n", src_loc);
             if (src->format->palette == NULL)
                 dst_pixels_buf[dst_loc] = src_pixels_buf[src_loc];
             else
