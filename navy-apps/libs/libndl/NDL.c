@@ -80,6 +80,7 @@ void NDL_OpenCanvas(int *w, int *h)
         space_h = (screen_h - canvas_h) / 2;
         fbdev = open("/dev/fb", 2, 0);
         assert(fbdev == 5);
+        close(fbdev);
     }
 }
 
