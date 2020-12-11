@@ -40,8 +40,10 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
             int dst_loc = 0, src_loc = 0;
             printf("dst_loc:%d\n", dst_loc);
             if (j + dstrect->y >= dst->h)
-            {   
+            {
                 dst_loc += (dst->h - 1) * dst->w;
+                printf("dst->h - 1:%d", dst->h - 1);
+                printf("dst->w:%d", dst->w);
                 printf("dst_loc:%d\n", dst_loc);
             }
             else
