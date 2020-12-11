@@ -62,22 +62,25 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h)
         w = s->w;
         h = s->h;
     }
-    NDL_DrawRect((uint32_t *)s->pixels, x, y, w, h);
-    /*
-    uint8_t *pixels_tmp = (uint8_t *)s->pixels;
-    uint32_t *pixels_buf = malloc(w * h * sizeof(uint32_t));
-    assert(pixels_buf);
-    memset(pixels_buf, 0, w * h * sizeof(uint32_t));
-    int cnt = 0;
-    for (int i = 0; i < h && y + i < s->h; i++)
+    if (s->format->palette)
     {
-        for (int j = 0; j < w && x + j < s->w; j++)
+        uint8_t *pixels_tmp = (uint8_t *)s->pixels;
+        uint32_t *pixels_buf = malloc(w * h * sizeof(uint32_t));
+        assert(pixels_buf);
+        memset(pixels_buf, 0, w * h * sizeof(uint32_t));
+        int cnt = 0;
+        for (int i = 0; i < h && y + i < s->h; i++)
         {
-            pixels_buf[cnt++] = s->format->palette->colors[pixels_tmp[(y + j) * s->w + x + i]].val;
+            for (int j = 0; j < w && x + j < s->w; j++)
+            {
+                pixels_buf[cnt++] = s->format->palette->colors[pixels_tmp[(y + j) * s->w + x + i]].val;
+            }
         }
+        NDL_DrawRect(pixels_buf, x, y, w, h);
+        free(pixels_buf);
     }
-    NDL_DrawRect(pixels_buf, x, y, w, h);
-    //assert(0);*/
+    else
+        NDL_DrawRect((uint32_t *)s->pixels, x, y, w, h);
 }
 
 // APIs below are already implemented.
