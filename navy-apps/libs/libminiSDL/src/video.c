@@ -8,7 +8,29 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
 {
     assert(dst && src);
     assert(dst->format->BitsPerPixel == src->format->BitsPerPixel);
-    printf("SDL_BlitSurface Enter Succeed!\n");
+    //printf("SDL_BlitSurface Enter Succeed!\n");
+
+    SDL_Rect rect_tmp;
+    if (dstrect == NULL)
+    {
+        rect_tmp.x = 0;
+        rect_tmp.y = 0;
+        rect_tmp.w = dst->w;
+        rect_tmp.h = dst->h;
+    }
+
+    uint32_t *dst_pixels_buf = (uint32_t *)dst->pixels;
+    uint32_t *src_pixels_buf = (uint32_t *)src->pixels;
+    for (int j = 0; j < srcrect->h; j++)
+        for (int i = 0; i < srcrect->w; i++)
+        {
+            int dst_loc = ((j + dstrect->y) >= dst->h ? (dst->h - 1) : (j + dstrect->y)) * dst->w + ((i + dstrect->x) >= dst->w ? (dst->w - 1) : (i + dstrect->x));
+            int src_loc = ((j + srcrect->y) >= src->h ? (src->h - 1) : (j + srcrect->y)) * src->w + ((i + srcrect->x) >= src->w ? (src->w - 1) : (i + srcrect->x));
+            if (src->format->palette == NULL)
+                dst_pixels_buf[dst_loc] = src_pixels_buf[src_loc];
+            else
+                ((uint8_t *)dst_pixels_buf)[dst_loc] = ((uint8_t *)src_pixels_buf)[src_loc];
+        }
 }
 
 void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color)
