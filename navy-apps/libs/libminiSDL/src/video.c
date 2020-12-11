@@ -46,6 +46,7 @@ void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color)
     }
     else
     {
+        printf("Else!\n");
         uint32_t *pixels_tmp = (uint32_t *)dst->pixels;
         for (int j = 0; j < dstrect->h; j++)
             for (int i = 0; i < dstrect->w; i++)
