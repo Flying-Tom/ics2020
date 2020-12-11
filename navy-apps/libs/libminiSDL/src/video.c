@@ -11,12 +11,20 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
     //printf("SDL_BlitSurface Enter Succeed!\n");
 
     SDL_Rect rect_tmp;
-    if (dstrect == NULL)
+    if (srcrect == NULL)
     {
         rect_tmp.x = 0;
         rect_tmp.y = 0;
         rect_tmp.w = dst->w;
         rect_tmp.h = dst->h;
+    }
+
+    if (dstrect == NULL)
+        dstrect = srcrect;
+    else
+    {
+        dstrect->w = srcrect->w;
+        dstrect->h = srcrect->h;
     }
 
     uint32_t *dst_pixels_buf = (uint32_t *)dst->pixels;
