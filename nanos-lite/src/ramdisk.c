@@ -21,6 +21,8 @@ size_t ramdisk_read(void *buf, size_t offset, size_t len)
 size_t ramdisk_write(const void *buf, size_t offset, size_t len)
 {
     assert(offset + len <= RAMDISK_SIZE);
+    printf("RAMDISK_SIZE:%d\n", RAMDISK_SIZE);
+    printf("offset + len:%d\n", offset + len);
     memcpy(&ramdisk_start + offset, buf, len);
     return len;
 }
