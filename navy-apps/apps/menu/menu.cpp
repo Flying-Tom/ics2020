@@ -83,7 +83,7 @@ int main(int argc, char *argv[], char *envp[])
     logo_sf = SDL_LoadBMP("/share/pictures/projectn.bmp");
     assert(logo_sf);
     set_i_max();
-
+    assert(0);
     while (1)
     {
         display_menu(i_max);
@@ -158,7 +158,7 @@ int main(int argc, char *argv[], char *envp[])
 
 static void draw_ch(BDF_Font *font, int x, int y, char ch, uint32_t fg, uint32_t bg)
 {
-    printf("x:%d y:%d\n", x, y);
+    //printf("x:%d y:%d\n", x, y);
     SDL_Surface *s = BDF_CreateSurface(font, ch, fg, bg);
     SDL_Rect dstrect = {.x = x, .y = y};
     SDL_BlitSurface(s, NULL, screen, &dstrect);
