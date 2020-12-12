@@ -77,6 +77,8 @@ void NDL_OpenCanvas(int *w, int *h)
         }
         canvas = malloc(sizeof(uint32_t) * canvas_w * canvas_h);
         assert(canvas);
+        printf("screen_w:%d\n", screen_w);
+        printf("canvas_w:%d\n", canvas_w);
         assert(screen_w >= canvas_w && screen_h >= canvas_h);
         space_w = (screen_w - canvas_w) / 2;
         space_h = (screen_h - canvas_h) / 2;
