@@ -18,22 +18,23 @@ int SDL_PollEvent(SDL_Event *ev)
 {
     char buf[256], keynamebuf[32];
     uint8_t keytype = 0;
-    if (NDL_PollEvent(buf, sizeof(buf)))
+    while (NDL_PollEvent(buf, sizeof(buf)) == 0)
+        ;
+
+    sscanf(buf + 3, "%s", keynamebuf);
+    keytype = (buf[1] == 'd') ? SDL_KEYDOWN : SDL_KEYUP;
+    for (int i = 0; i < sizeof(keyname) / sizeof(keyname[0]); i++)
     {
-        sscanf(buf + 3, "%s", keynamebuf);
-        keytype = (buf[1] == 'd') ? SDL_KEYDOWN : SDL_KEYUP;
-        for (int i = 0; i < sizeof(keyname) / sizeof(keyname[0]); i++)
+        if (strcmp(keyname[i], keynamebuf) == 0)
         {
-            if (strcmp(keyname[i], keynamebuf) == 0)
-            {
-                ev->type = keytype;
-                ev->key.type = keytype;
-                ev->key.keysym.sym = i;
-                break;
-            }
+            ev->type = keytype;
+            ev->key.type = keytype;
+            ev->key.keysym.sym = i;
+            break;
         }
-        return 1;
     }
+    return 1;
+
     return 0;
 }
 
