@@ -18,7 +18,6 @@ static uintptr_t loader(PCB *pcb, const char *filename)
     int fd = fs_open(filename, 0, 0);
     fs_read(fd, (void *)&elf, sizeof(Elf_Ehdr));
 
-    printf("elf.e_phnum:%d\n", elf.e_phnum);
     for (size_t i = 0; i < elf.e_phnum; i++)
     {
         Elf_Phdr phdr;
@@ -33,6 +32,7 @@ static uintptr_t loader(PCB *pcb, const char *filename)
         }
     }
     fs_close(fd);
+    printf("out\n");
     return elf.e_entry;
 }
 
