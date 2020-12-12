@@ -68,7 +68,6 @@ void NDL_OpenCanvas(int *w, int *h)
         {
             *w = canvas_w = screen_w;
             *h = canvas_h = screen_h;
-            //printf("canvas_w:%d canvas_h:%d\n", canvas_w, canvas_h);
         }
         else
         {
@@ -80,7 +79,7 @@ void NDL_OpenCanvas(int *w, int *h)
         space_w = (screen_w - canvas_w) / 2;
         space_h = (screen_h - canvas_h) / 2;
         fbdev = open("/dev/fb", 2, 0);
-        //assert(fbdev == 5);
+        assert(fbdev == 5);
         close(fbdev);
     }
     printf("*w:%d *h:%d\n", *w, *h);
