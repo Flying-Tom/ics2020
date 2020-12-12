@@ -17,11 +17,12 @@ static uintptr_t loader(PCB *pcb, const char *filename)
     //Log("Loader:%s", filename);
     int fd = fs_open(filename, 0, 0);
     fs_read(fd, (void *)&elf, sizeof(Elf_Ehdr));
-    //Elf_Phdr phdr[elf.e_phnum];
 
+    printf("elf.e_phnum:%d\n", elf.e_phnum);
     for (size_t i = 0; i < elf.e_phnum; i++)
     {
         Elf_Phdr phdr;
+        printf("i:%d\n", i);
         fs_lseek(fd, elf.e_phoff + i * elf.e_phentsize, SEEK_SET);
         fs_read(fd, (void *)&phdr, elf.e_phentsize);
         if (phdr.p_type == PT_LOAD)
