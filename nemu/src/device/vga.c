@@ -4,7 +4,7 @@
 #ifdef HAS_IOE
 
 #define SHOW_SCREEN
-//#define MODE_800x600
+#define MODE_800x600
 
 #ifdef MODE_800x600
 #define SCREEN_W 800
