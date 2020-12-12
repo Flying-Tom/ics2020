@@ -31,7 +31,9 @@ void do_syscall(Context *c)
         c->GPRx = fs_open((const char *)a[1], a[2], a[3]);
         break;
     case SYS_read:
+        printf("in\n");
         c->GPRx = fs_read(a[1], (void *)a[2], a[3]);
+        printf("out\n");
         break;
     case SYS_write:
         c->GPRx = fs_write(a[1], (const void *)a[2], a[3]);
