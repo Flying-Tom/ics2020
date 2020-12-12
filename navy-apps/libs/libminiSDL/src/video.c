@@ -28,8 +28,8 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
         dstrect->h = srcrect->h;
     }
 
-    uint32_t *dst_pixels_buf = (uint32_t *)dst->pixels;
-    uint32_t *src_pixels_buf = (uint32_t *)src->pixels;
+    uint32_t *dst_pixels_tmp = (uint32_t *)dst->pixels;
+    uint32_t *src_pixels_tmp = (uint32_t *)src->pixels;
 
     printf("srcrect->w:%d\n", srcrect->w);
 
@@ -40,16 +40,17 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
             int src_loc = ((j + srcrect->y) >= src->h ? (src->h - 1) : (j + srcrect->y)) * src->w + ((i + srcrect->x) >= src->w ? (src->w - 1) : (i + srcrect->x));
 
             printf("i:%d j:%d\n", i, j);
-            printf("src_pixels_buf[src_loc]:%d\n", src_pixels_buf[src_loc]);
+            printf("src_pixels_tmp[src_loc]:%d\n", src_pixels_tmp[src_loc]);
             printf("dst->w:%d\n", dst->w);
 
-            printf("dst_pixels_buf[dst_loc]:%p\n", &dst_pixels_buf[dst_loc]);
+            printf("dst_pixels_tmp[dst_loc]:%p\n", &dst_pixels_tmp[dst_loc]);
             printf("dst->w:%p\n", &dst->w);
+            printf("dst->h:%p\n", &dst->h);
 
             if (src->format->palette == NULL)
-                dst_pixels_buf[dst_loc] = src_pixels_buf[src_loc];
+                dst_pixels_tmp[dst_loc] = src_pixels_tmp[src_loc];
             else
-                ((uint8_t *)dst_pixels_buf)[dst_loc] = ((uint8_t *)src_pixels_buf)[src_loc];
+                ((uint8_t *)dst_pixels_tmp)[dst_loc] = ((uint8_t *)src_pixels_tmp)[src_loc];
         }
 }
 
