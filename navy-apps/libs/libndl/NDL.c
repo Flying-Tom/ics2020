@@ -81,7 +81,7 @@ void NDL_OpenCanvas(int *w, int *h)
         printf("canvas_w:%d\n", canvas_w);
         printf("screen_h:%d\n", screen_h);
         printf("canvas_h:%d\n", canvas_h);
-        //assert(screen_w >= canvas_w && screen_h >= canvas_h);
+        assert(screen_w >= canvas_w && screen_h >= canvas_h);
         space_w = (screen_w - canvas_w) / 2;
         space_h = (screen_h - canvas_h) / 2;
         fbdev = open("/dev/fb", 2, 0);
