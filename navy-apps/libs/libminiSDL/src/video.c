@@ -39,7 +39,7 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
             if (src->format->palette == NULL)
                 dst_pixels_tmp[dst_loc] = src_pixels_tmp[src_loc];
             else
-                ((uint8_t *)dst_pixels_tmp)[dst_loc] = ((uint8_t *)src_pixels_tmp)[src_loc];
+                dst->pixels[dst_loc] = src->pixels[src_loc];
         }
 }
 
