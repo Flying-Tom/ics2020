@@ -156,9 +156,7 @@ static inline fixedpt fixedpt_floor(fixedpt A) {
 }
 
 static inline fixedpt fixedpt_ceil(fixedpt A) {
-	while( A % 2 )
-        A++;
-    return A;
+    return ((fixedpt)(A) & ((~FIXEDPT_FMASK) << 1));
 }
 
 /*
