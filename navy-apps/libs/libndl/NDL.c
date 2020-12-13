@@ -6,7 +6,7 @@
 #include <assert.h>
 
 static int evtdev = -1;
-static int fbdev = 5;
+static int fbdev = -1;
 static int screen_w = 0, screen_h = 0, canvas_w = 0, canvas_h = 0, space_w = 0, space_h = 0;
 static uint32_t *canvas;
 static struct timeval boot_time = {.tv_sec = 0, .tv_usec = 0};
@@ -84,6 +84,7 @@ void NDL_OpenCanvas(int *w, int *h)
         space_w = (screen_w - canvas_w) / 2;
         space_h = (screen_h - canvas_h) / 2;
     }
+
 }
 
 void NDL_DrawRect(uint32_t *pixels, int x, int y, int w, int h)
