@@ -80,15 +80,10 @@ void NDL_OpenCanvas(int *w, int *h)
         }
         canvas = malloc(sizeof(uint32_t) * canvas_w * canvas_h);
         assert(canvas);
-        //assert(screen_w >= canvas_w && screen_h >= canvas_h);
+
         space_w = (screen_w - canvas_w) / 2;
         space_h = (screen_h - canvas_h) / 2;
-        fbdev = open("/dev/fb", 2, 0);
-        printf("fbdev:%d\n", fbdev);
-        assert(fbdev == 5);
-        close(fbdev);
     }
-    //printf("*w:%d *h:%d\n", *w, *h);
 }
 
 void NDL_DrawRect(uint32_t *pixels, int x, int y, int w, int h)
@@ -129,6 +124,10 @@ int NDL_Init(uint32_t flags)
     }
     return 0;
     gettimeofday(&boot_time, NULL);
+    fbdev = open("/dev/fb", 2, 0);
+    printf("fbdev:%d\n", fbdev);
+    assert(fbdev == 5);
+    close(fbdev);
 }
 
 void NDL_Quit()
