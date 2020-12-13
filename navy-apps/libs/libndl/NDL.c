@@ -9,14 +9,14 @@ static int evtdev = -1;
 static int fbdev = -1;
 static int screen_w = 0, screen_h = 0, canvas_w = 0, canvas_h = 0, space_w = 0, space_h = 0;
 static uint32_t *canvas;
-static struct timeval boot_time;
+static struct timeval boot_time = {.tv_sec = 0, .tv_usec = 0};
 
 uint32_t NDL_GetTicks()
 {
     struct timeval now;
     gettimeofday(&now, NULL);
-    uint32_t sec = now.tv_sec - boot_time.tv_sec;
     uint32_t usec = now.tv_usec - boot_time.tv_usec;
+    uint32_t sec = boot_time.tv_sec + usec / 1000000;
     uint32_t msec = sec * 1000 + usec / 1000;
     return msec;
 }
