@@ -21,8 +21,8 @@ static uintptr_t loader(PCB *pcb, const char *filename)
     for (size_t i = 0; i < elf.e_phnum; i++)
     {
         Elf_Phdr phdr;
-        fs_lseek(fd, elf.e_phoff + i * elf.e_phentsize, SEEK_SET);
-        fs_read(fd, (void *)&phdr, elf.e_phentsize);
+        fs_lseek(fd, elf.e_phoff + i * sizeof(Elf_Phdr), SEEK_SET);
+        fs_read(fd, (void *)&phdr, sizeof(Elf_Phdr));
         if (phdr.p_type == PT_LOAD)
         {
             fs_lseek(fd, phdr.p_offset, SEEK_SET);
