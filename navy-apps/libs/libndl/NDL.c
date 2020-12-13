@@ -80,7 +80,7 @@ void NDL_OpenCanvas(int *w, int *h)
         }
         canvas = malloc(sizeof(uint32_t) * canvas_w * canvas_h);
         assert(canvas);
-
+        fbdev = open("/dev/fb", 2, 0);
         space_w = (screen_w - canvas_w) / 2;
         space_h = (screen_h - canvas_h) / 2;
     }
@@ -125,7 +125,6 @@ int NDL_Init(uint32_t flags)
     }
     return 0;
     gettimeofday(&boot_time, NULL);
-    printf("fbdev:%d\n", fbdev);
     fbdev = open("/dev/fb", 2, 0);
     assert(fbdev == 5);
     close(fbdev);
