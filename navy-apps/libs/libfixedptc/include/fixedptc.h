@@ -140,13 +140,13 @@ static inline fixedpt fixedpt_divi(fixedpt A, int B)
 /* Multiplies two fixedpt numbers, returns the result. */
 static inline fixedpt fixedpt_mul(fixedpt A, fixedpt B)
 {
-    return fixedpt_divi(A * B, FIXEDPT_FBITS);
+    return ((fixedpt)A * (fixedpt)B >> FIXEDPT_FBITS);
 }
 
 /* Divides two fixedpt numbers, returns the result. */
 static inline fixedpt fixedpt_div(fixedpt A, fixedpt B)
 {
-    return fixedpt_muli(A / B, FIXEDPT_FBITS);
+    return ((fixedpt)A << FIXEDPT_FBITS / (fixedpt)B);
 }
 
 static inline fixedpt fixedpt_abs(fixedpt A)
