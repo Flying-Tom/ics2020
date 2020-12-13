@@ -6,7 +6,7 @@
 #include <assert.h>
 
 static int evtdev = -1;
-static int fbdev = -1;
+static int fbdev = 5;
 static int screen_w = 0, screen_h = 0, canvas_w = 0, canvas_h = 0, space_w = 0, space_h = 0;
 static uint32_t *canvas;
 static struct timeval boot_time = {.tv_sec = 0, .tv_usec = 0};
