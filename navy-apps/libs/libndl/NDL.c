@@ -9,12 +9,15 @@ static int evtdev = -1;
 static int fbdev = -1;
 static int screen_w = 0, screen_h = 0, canvas_w = 0, canvas_h = 0, space_w = 0, space_h = 0;
 static uint32_t *canvas;
+static struct timeval boot_time;
 
 uint32_t NDL_GetTicks()
 {
     struct timeval now;
     gettimeofday(&now, NULL);
-    uint32_t msec = now.tv_sec * 1000 + now.tv_usec / 1000;
+    uint32_t sec = now.tv_sec - boot_time.tv_sec - 1;
+    uint32_t usec = now.tv_usec - boot_time.tv_usec;
+    uint32_t msec = sec * 1000 + usec / 1000;
     return msec;
 }
 
@@ -124,6 +127,7 @@ int NDL_Init(uint32_t flags)
         evtdev = 3;
     }
     return 0;
+    gettimeofday(&boot_time, NULL);
 }
 
 void NDL_Quit()
