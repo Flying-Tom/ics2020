@@ -22,12 +22,12 @@ int SDL_PollEvent(SDL_Event *ev)
     {
         sscanf(buf + 3, "%s", keynamebuf);
         keytype = (buf[1] == 'd') ? SDL_KEYDOWN : SDL_KEYUP;
+        ev->type = 2;
+        ev->key.type = keytype;
         for (int i = 0; i < sizeof(keyname) / sizeof(keyname[0]); i++)
         {
             if (strcmp(keyname[i], keynamebuf) == 0)
             {
-                ev->type = keytype;
-                ev->key.type = keytype;
                 ev->key.keysym.sym = i;
                 break;
             }
