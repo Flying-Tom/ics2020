@@ -82,8 +82,7 @@ void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color)
                     cnt++;
                 }
                 int loc = min(j + dstrect->y, dst->h - 1) * dst->w + min(i + dstrect->x, dst->w - 1);
-                //dst->pixels[loc] = cnt % dst->format->palette->ncolors;
-                assert(0);
+                dst->pixels[loc] = cnt % dst->format->palette->ncolors;
             }
     }
 }
@@ -113,6 +112,7 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h)
         NDL_DrawRect(pixels_buf, x, y, w, h);
         free(pixels_buf);
     }
+    assert(0);
 }
 
 // APIs below are already implemented.
