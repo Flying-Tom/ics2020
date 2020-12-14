@@ -83,6 +83,7 @@ void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color)
                 }
                 int loc = min(j + dstrect->y, dst->h - 1) * dst->w + min(i + dstrect->x, dst->w - 1);
                 //dst->pixels[loc] = cnt % dst->format->palette->ncolors;
+                assert(0);
             }
     }
 }
