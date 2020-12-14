@@ -35,6 +35,8 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
         dstrect->w = srcrect->w;
         dstrect->h = srcrect->h;
     }
+    Print(srcrect->x);
+    Print(srcrect->y);
     Print(srcrect->h);
     Print(srcrect->w);
     for (int j = 0; j < srcrect->h; j++)
