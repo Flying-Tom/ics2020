@@ -3,7 +3,7 @@
 #include <assert.h>
 #include <string.h>
 #include <stdlib.h>
-#define Print(A) printf(#A":%d\n", A)
+#define Print(A) printf(#A ":%d\n", A)
 
 static int min(int x, int y)
 {
@@ -17,6 +17,7 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
 {
     assert(dst && src);
     assert(dst->format->BitsPerPixel == src->format->BitsPerPixel);
+    Print(src->format->BitsPerPixel);
 
     SDL_Rect rect_tmp;
     if (srcrect == NULL)
@@ -35,14 +36,6 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
         dstrect->w = srcrect->w;
         dstrect->h = srcrect->h;
     }
-    Print(srcrect->x);
-    Print(srcrect->y);
-    Print(srcrect->h);
-    Print(srcrect->w);
-    Print(dstrect->x);
-    Print(dstrect->y);
-    Print(dstrect->h);
-    Print(dstrect->w);
     assert(srcrect->h == dstrect->h && srcrect->w == srcrect->w);
     for (int j = 0; j < srcrect->h; j++)
         for (int i = 0; i < srcrect->w; i++)
