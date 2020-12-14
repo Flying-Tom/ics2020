@@ -9,7 +9,7 @@ int main()
     struct timeval now;
     while (1)
     {
-        while (NDL_GetTicks() / 1000000 < sec)
+        while (NDL_GetTicks() / 1000 < sec)
             ;
         if (sec == 1)
             printf("This is %d second.\n", sec);
