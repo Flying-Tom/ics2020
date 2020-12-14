@@ -26,9 +26,9 @@ int NDL_PollEvent(char *buf, int len)
 
     memset(buf, '\0', len);
     int events = open("/dev/events", 0, 0);
-    read(events, buf, len);
+    int ret = read(events, buf, len);
     close(events);
-    return strlen(buf);
+    return ret;
 }
 
 void NDL_Dispinfo_init()
