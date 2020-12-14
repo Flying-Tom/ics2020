@@ -15,9 +15,7 @@ static int min(int x, int y)
 
 void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_Rect *dstrect)
 {
-    assert(dst && src);
-    assert(dst->format->BitsPerPixel == src->format->BitsPerPixel);
-    Print(src->format->BitsPerPixel);
+    assert(dst && src && dst->format->BitsPerPixel == src->format->BitsPerPixel);
 
     SDL_Rect rect_tmp;
     if (srcrect == NULL)
@@ -41,7 +39,7 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
         for (int i = 0; i < srcrect->w; i++)
         {
             int loc = min(j + srcrect->y, src->h - 1) * src->w + min(i + srcrect->x, src->w - 1);
-
+            Print(loc);
             if (src->format->palette == NULL)
                 ((uint32_t *)dst->pixels)[loc] = ((uint32_t *)src->pixels)[loc];
             else
