@@ -109,7 +109,7 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h)
                 pixels_buf[cnt++] = color_tmp;
             }
         }
-        NDL_DrawRect(pixels_buf, x, y, w, h);
+        //NDL_DrawRect(pixels_buf, x, y, w, h);
         free(pixels_buf);
     }
 }
