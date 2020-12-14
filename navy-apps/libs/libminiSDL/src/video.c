@@ -107,7 +107,7 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h)
             for (int j = 0; j < w && x + j < s->w; j++)
             {
                 uint32_t color_tmp = s->format->palette->colors[s->pixels[(y + j) * s->w + x + i]].val;
-                color_tmp = (color_tmp >> 16) | (color_tmp & 0x0000FF00) | ((0x000000FF & color_tmp) << 16);
+                color_tmp = (color_tmp >> 16) | (color_tmp & 0xFF00) | ((0xFF & color_tmp) << 16);
                 pixels_buf[cnt++] = color_tmp;
             }
         }
