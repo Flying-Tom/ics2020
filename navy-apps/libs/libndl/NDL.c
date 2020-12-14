@@ -16,7 +16,7 @@ uint32_t NDL_GetTicks()
     struct timeval now;
     gettimeofday(&now, NULL);
     uint32_t usec = (now.tv_usec - boot_time.tv_usec) % 1000000;
-    uint32_t sec = usec / 1000000;
+    uint32_t sec = (now.tv_usec - boot_time.tv_usec) / 1000000;
     uint32_t msec = sec * 1000 + usec / 1000;
     return msec;
 }
