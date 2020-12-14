@@ -43,8 +43,8 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
     Print(dstrect->y);
     Print(dstrect->h);
     Print(dstrect->w);
-    for (int j = 0; j < srcrect->w; j++)
-        for (int i = 0; i < srcrect->h; i++)
+    for (int j = 0; j < srcrect->h; j++)
+        for (int i = 0; i < srcrect->w; i++)
         {
 
             int dst_loc = min(j + dstrect->y, dst->h - 1) * dst->w + min(i + dstrect->x, dst->w - 1);
