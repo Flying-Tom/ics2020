@@ -3,6 +3,7 @@
 #include <assert.h>
 #include <string.h>
 #include <stdlib.h>
+#define Print(A) printf(#A":%d\n", A)
 
 static int min(int x, int y)
 {
@@ -34,7 +35,8 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
         dstrect->w = srcrect->w;
         dstrect->h = srcrect->h;
     }
-
+    Print(srcrect->h);
+    Print(srcrect->w);
     for (int j = 0; j < srcrect->h; j++)
         for (int i = 0; i < srcrect->w; i++)
         {
@@ -83,7 +85,6 @@ void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color)
                 }
                 int loc = min(j + dstrect->y, dst->h - 1) * dst->w + min(i + dstrect->x, dst->w - 1);
                 dst->pixels[loc] = cnt % dst->format->palette->ncolors;
-                assert(0);
             }
     }
 }
