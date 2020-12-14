@@ -46,6 +46,7 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
                 ((uint32_t *)dst->pixels)[dst_loc] = ((uint32_t *)src->pixels)[src_loc];
             else
                 dst->pixels[dst_loc] = src->pixels[src_loc];
+                assert(0);
         }
 }
 
