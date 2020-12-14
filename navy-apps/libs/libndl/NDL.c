@@ -78,19 +78,18 @@ void NDL_OpenCanvas(int *w, int *h)
             canvas_w = *w;
             canvas_h = *h;
         }
-        canvas = malloc(sizeof(uint32_t) * canvas_w * canvas_h);
-        assert(canvas);
         space_w = (screen_w - canvas_w) / 2;
         space_h = (screen_h - canvas_h) / 2;
+        canvas = malloc(sizeof(uint32_t) * canvas_w * canvas_h);
+        assert(canvas);
     }
-
 }
 
 void NDL_DrawRect(uint32_t *pixels, int x, int y, int w, int h)
 {
-    for (int i = 0; i < h; i++)
-        for (int j = 0; j < w; j++)
-            canvas[(i + y) * canvas_w + (j + x)] = pixels[i * w + j];
+    for (int j = 0; j < h; j++)
+        for (int i = 0; i < w; i++)
+            canvas[(j + y) * canvas_w + (i + x)] = pixels[j * w + i];
     for (int i = 0; i < canvas_h; i++)
     {
         lseek(fbdev, ((i + space_h) * screen_w + space_w) * sizeof(uint32_t), SEEK_SET);
