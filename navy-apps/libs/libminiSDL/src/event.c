@@ -17,12 +17,12 @@ int SDL_PushEvent(SDL_Event *ev)
 int SDL_PollEvent(SDL_Event *ev)
 {
     char buf[256], keynamebuf[32];
-    uint8_t keytype = 0;
     if (NDL_PollEvent(buf, sizeof(buf)))
     {
+        uint8_t keytype = 0;
         sscanf(buf + 3, "%s", keynamebuf);
         keytype = (buf[1] == 'd') ? SDL_KEYDOWN : SDL_KEYUP;
-        ev->type = 2;
+        ev->type = keytype;
         ev->key.type = keytype;
         for (int i = 0; i < sizeof(keyname) / sizeof(keyname[0]); i++)
         {
@@ -34,6 +34,7 @@ int SDL_PollEvent(SDL_Event *ev)
         }
         return 1;
     }
+
     return 0;
 }
 
@@ -51,5 +52,16 @@ int SDL_PeepEvents(SDL_Event *ev, int numevents, int action, uint32_t mask)
 
 uint8_t *SDL_GetKeyState(int *numkeys)
 {
-    return NULL;
+    /*if (numkeys == NULL)
+        static uint8_t KeyState[sizeof(keyname) / sizeof(keyname[0])] = {};
+    else
+        static uint8_t KeyState[*numkeys] = {};*/
+    static uint8_t KeyState[sizeof(keyname) / sizeof(keyname[0])] = {};
+
+    static SDL_Event ev;
+    while (SDL_PollEvent(&ev))
+    {
+        KeyState[ev.key.keysym.sym] = 1;
+    }
+    return KeyState;
 }
