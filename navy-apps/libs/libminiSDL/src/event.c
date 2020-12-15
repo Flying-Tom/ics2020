@@ -58,11 +58,12 @@ uint8_t *SDL_GetKeyState(int *numkeys)
         static uint8_t KeyState[sizeof(keyname) / sizeof(keyname[0])] = {};
     else
         static uint8_t KeyState[*numkeys] = {};*/
+    *numkeys = sizeof(keyname) / sizeof(keyname[0]);
     static uint8_t KeyState[sizeof(keyname) / sizeof(keyname[0])] = {};
 
     static SDL_Event ev;
     SDL_PollEvent(&ev);
-        //printf("Enter\n");
+    //printf("Enter\n");
     KeyState[ev.key.keysym.sym] = 1;
     //printf("%d\n", *KeyState);
     return KeyState;
