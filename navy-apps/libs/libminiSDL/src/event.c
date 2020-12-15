@@ -61,6 +61,7 @@ uint8_t *SDL_GetKeyState(int *numkeys)
     static SDL_Event ev;
     while (SDL_PollEvent(&ev))
     {
+        printf("Enter While\n");
         KeyState[ev.key.keysym.sym] = 1;
     }
     printf("%d\n", *KeyState);
