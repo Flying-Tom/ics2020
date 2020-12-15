@@ -9,7 +9,8 @@ static const char *keyname[] = {
     "NONE",
     _KEYS(keyname)};
 
-static uint8_t KeyState[sizeof(keyname) / sizeof(keyname[0])] = {};
+#define keynum sizeof(keyname) / sizeof(keyname[0])
+static uint8_t KeyState[keynum] = {};
 
 int SDL_PushEvent(SDL_Event *ev)
 {
@@ -27,7 +28,7 @@ int SDL_PollEvent(SDL_Event *ev)
         keytype = (buf[1] == 'd') ? SDL_KEYDOWN : SDL_KEYUP;
         ev->type = keytype;
         ev->key.type = keytype;
-        for (int i = 0; i < sizeof(keyname) / sizeof(keyname[0]); i++)
+        for (int i = 0; i < keynum; i++)
         {
             if (strcmp(keyname[i], keynamebuf) == 0)
             {
@@ -57,10 +58,6 @@ int SDL_PeepEvents(SDL_Event *ev, int numevents, int action, uint32_t mask)
 
 uint8_t *SDL_GetKeyState(int *numkeys)
 {
-    /*if (numkeys == NULL)
-        static uint8_t KeyState[sizeof(keyname) / sizeof(keyname[0])] = {};
-    else
-        static uint8_t KeyState[*numkeys] = {};*/
-    *numkeys = sizeof(keyname) / sizeof(keyname[0]);
+    *numkeys = keynum;
     return KeyState;
 }
