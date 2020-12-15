@@ -65,7 +65,10 @@ uint8_t *SDL_GetKeyState(int *numkeys)
     {
         KeyState[ev.key.keysym.sym] = 1;
         if (KeyState[ev.key.keysym.sym])
+        {   
+            printf("break\n"); 
             break;
+        }
     }
     //printf("%d\n", *KeyState);
     return KeyState;
