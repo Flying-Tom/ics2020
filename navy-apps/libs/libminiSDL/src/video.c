@@ -38,9 +38,8 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
     for (int j = 0; j < srcrect->h; j++)
         for (int i = 0; i < srcrect->w; i++)
         {
-            Print(dstrect->w);
-            Print(dstrect->h);
             int loc = min(j + srcrect->y, src->h - 1) * src->w + min(i + srcrect->x, src->w - 1);
+            Print(loc);
             if (src->format->palette == NULL)
                 ((uint32_t *)dst->pixels)[loc] = ((uint32_t *)src->pixels)[loc];
             else
