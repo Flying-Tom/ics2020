@@ -342,8 +342,7 @@ void difftest_setregs(const void *r)
     ref->rsi = x86->esi;
     ref->rdi = x86->edi;
     ref->rip = x86->pc;
-    ref->rflags = x86->EFLAGS;
-    //ref->rflags |= (1 << 8);
+    ref->rflags |= (1 << 8);
 
     vcpu.kvm_run->kvm_dirty_regs = KVM_SYNC_X86_REGS;
 }
