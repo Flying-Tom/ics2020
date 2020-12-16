@@ -70,9 +70,8 @@ static inline def_EHelper(loopne)
 
     rtl_subi(s, &cpu.ecx, &cpu.ecx, 1);
     *s0 = (cpu.eflags.ZF == 0) && (cpu.ecx != 0);
-    rtl_sext(s, s1, ddest, 4);
     if (*s0)
-        rtl_j(s, s->seq_pc + *s1);
+        rtl_j(s, s->jmp_pc);
 
     print_asm("loopne *%s", id_dest->str);
 }
