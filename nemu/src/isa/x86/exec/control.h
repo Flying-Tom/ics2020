@@ -76,9 +76,9 @@ static inline def_EHelper(loopne)
 
     *s0 = (cpu.eflags.ZF == 0) && (cpu.ecx != 0);
     rtl_sext(s, s1, ddest, 4);
-    //printf("ddest:%x\n", *ddest);
+    printf("ddest:%x\n", *ddest);
     //printf("dsrc1:%x\n", *dsrc1);
-    //printf("s1:%x\n", *s1);
+    printf("s1:%x\n", *s1);
     //printf("address:%x\n", s->seq_pc + *s1);
     if (*s0)
     {
