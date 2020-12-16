@@ -1,4 +1,6 @@
 #include "cc.h"
+extern void difftest_skip_ref();
+
 static inline def_EHelper(test)
 {
     rtl_and(s, s0, ddest, dsrc1);
@@ -44,6 +46,7 @@ static inline def_EHelper(sar)
     rtl_sar(s, s1, s0, dsrc1);
     operand_write(s, id_dest, s1);
     rtl_update_ZFSF(s, s1, id_dest->width);
+    difftest_skip_ref();
     // unnecessary to update CF and OF in NEMU
     print_asm_template2(sar);
 }
@@ -53,6 +56,7 @@ static inline def_EHelper(shl)
     rtl_shl(s, s0, ddest, dsrc1);
     operand_write(s, id_dest, s0);
     rtl_update_ZFSF(s, s0, id_dest->width);
+    difftest_skip_ref();
     // unnecessary to update CF and OF in NEMU
     print_asm_template2(shl);
 }
