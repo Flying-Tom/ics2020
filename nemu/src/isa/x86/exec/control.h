@@ -69,6 +69,7 @@ static inline def_EHelper(loopne)
 {
 
     rtl_subi(s, &cpu.ecx, &cpu.ecx, 1);
+    printf("cpu.ecx:%x\n", cpu.ecx);
     *s0 = (cpu.eflags.ZF == 0) && (cpu.ecx != 0);
     rtl_jrelop(s, RELOP_NE, s0, rz, s->jmp_pc);
     print_asm("loopne *%s", id_dest->str);
