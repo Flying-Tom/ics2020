@@ -67,7 +67,9 @@ static inline def_EHelper(call_rm)
 
 static inline def_EHelper(loopne)
 {
-    *s0 = (cpu.eflags.ZF == 0) && (cpu.ecx != 1);
+    *s0 = 1;
+    rtl_sub(s, &cpu.ecx, &cpu.ecx, s0);
+    *s0 = (cpu.eflags.ZF == 0) && (cpu.ecx > 0);
     rtl_sext(s, s1, dsrc1, id_dest->width);
     if (*s0)
         rtl_j(s, s->seq_pc + *s1);
