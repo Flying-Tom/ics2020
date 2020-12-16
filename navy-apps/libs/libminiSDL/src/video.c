@@ -35,6 +35,8 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
         dstrect->h = srcrect->h;
     }
     assert(srcrect->h == dstrect->h && srcrect->w == srcrect->w);
+    Print(dstrect->w);
+    Print(dstrect->h);
     for (int j = 0; j < srcrect->h; j++)
         for (int i = 0; i < srcrect->w; i++)
         {
