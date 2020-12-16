@@ -64,3 +64,13 @@ static inline def_EHelper(call_rm)
 
     print_asm("call *%s", id_dest->str);
 }
+
+static inline def_EHelper(loopne)
+{
+    *s0 = (cpu.eflags.ZF == 0) && (cpu.ecx != 1);
+    rtl_sext(s, s1, dsrc1, id_dest->width);
+    if (*s0)
+        rtl_j(s, s->seq_pc + *s1);
+
+    print_asm("loopne *%s", id_dest->str);
+}
