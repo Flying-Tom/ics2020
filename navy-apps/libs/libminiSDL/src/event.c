@@ -5,9 +5,7 @@
 
 #define keyname(k) #k,
 
-static const char *keyname[] = {
-    "NONE",
-    _KEYS(keyname)};
+static const char *keyname[] = {"NONE", _KEYS(keyname)};
 
 #define keynum sizeof(keyname) / sizeof(keyname[0])
 static uint8_t KeyState[keynum] = {};
