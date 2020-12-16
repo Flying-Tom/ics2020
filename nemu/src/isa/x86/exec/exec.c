@@ -336,6 +336,7 @@ again:
         IDEX(0xd3, gp2_cl2E, gp2)
         EX(0xd6, nemu_trap)
 
+        IDEXW(0xe0, J, loopne, 1)
         IDEXW(0xe4, in_I2a, in, 1)
         IDEX(0xe5, in_I2a, in)
         IDEXW(0xe6, out_a2I, out, 1)
