@@ -11,6 +11,14 @@ static int screen_w = 0, screen_h = 0, canvas_w = 0, canvas_h = 0, space_w = 0, 
 static uint32_t *canvas;
 static struct timeval boot_time = {.tv_sec = 0, .tv_usec = 0};
 
+static int min(int x, int y)
+{
+    if (x < y)
+        return x;
+    else
+        return y;
+}
+
 uint32_t NDL_GetTicks()
 {
     struct timeval now;
@@ -75,12 +83,10 @@ void NDL_OpenCanvas(int *w, int *h)
         }
         else
         {
-            canvas_w = *w;
-            canvas_h = *h;
-            /*
+            //canvas_w = *w;
+            //canvas_h = *h;
             canvas_w = min(screen_w, *w);
             canvas_h = min(screen_h, *h);
-            */
         }
         space_w = (screen_w - canvas_w) / 2;
         space_h = (screen_h - canvas_h) / 2;
