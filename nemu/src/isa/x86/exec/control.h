@@ -67,18 +67,15 @@ static inline def_EHelper(call_rm)
 
 static inline def_EHelper(loopne)
 {
-    *s0 = 1;
-    printf("cpu.ecx:%x\n", cpu.ecx);
 
-    rtl_sub(s, &cpu.ecx, &cpu.ecx, s0);
-
-    printf("cpu.ecx:%x\n", cpu.ecx);
+    rtl_subi(s, &cpu.ecx, &cpu.ecx, 1);
 
     *s0 = (cpu.eflags.ZF == 0) && (cpu.ecx != 0);
     rtl_sext(s, s1, ddest, 4);
+    /*
     printf("ddest:%x\n", *ddest);
     printf("s1:%x\n", *s1);
-    printf("address:%x\n", s->seq_pc + *s1);
+    printf("address:%x\n", s->seq_pc + *s1);*/
     if (*s0)
     {
         rtl_j(s, s->seq_pc + *s1);
