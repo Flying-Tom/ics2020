@@ -69,8 +69,11 @@ static inline def_EHelper(loopne)
 {
     *s0 = 1;
     printf("cpu.ecx:%x\n", cpu.ecx);
+
     rtl_sub(s, &cpu.ecx, &cpu.ecx, s0);
+
     printf("cpu.ecx:%x\n", cpu.ecx);
+    
     *s0 = (cpu.eflags.ZF == 0) && (cpu.ecx > 0);
     rtl_sext(s, s1, dsrc1, 4);
 
