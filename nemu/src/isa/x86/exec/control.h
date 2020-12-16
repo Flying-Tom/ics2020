@@ -71,11 +71,12 @@ static inline def_EHelper(loopne)
     rtl_sub(s, &cpu.ecx, &cpu.ecx, s0);
     *s0 = (cpu.eflags.ZF == 0) && (cpu.ecx > 0);
     rtl_sext(s, s1, dsrc1, id_dest->width);
+    
+    printf("dsrc1:%x", *dsrc1);
+    printf("s1:%x", *s1);
+    printf("address,:%x", s->seq_pc + *s1);
     if (*s0)
     {
-        printf("dsrc1:%x", *dsrc1);
-        printf("s1:%x", *s1);
-        printf("address,:%x", s->seq_pc + *s1);
         rtl_j(s, s->seq_pc + *s1);
     }
 
