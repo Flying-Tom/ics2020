@@ -26,7 +26,6 @@ int NDL_PollEvent(char *buf, int len)
 
     memset(buf, '\0', len);
     int events = open("/dev/events", 0, 0);
-    printf("events:%d\n",events);
     int ret = read(events, buf, len);
     close(events);
     return ret;
