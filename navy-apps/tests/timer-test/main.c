@@ -12,6 +12,7 @@ int main()
     {
         while (NDL_GetTicks() / 1000 < sec)
             ;
+        break;
         if (sec == 1)
             printf("This is %d second.\n", sec);
         else

@@ -5,6 +5,7 @@
 
 int sys_gettimeofday(struct timeval *tv, struct timezone *tz)
 {
+    tv->tv_sec = io_read(AM_TIMER_UPTIME).us / 1000000;
     tv->tv_usec = io_read(AM_TIMER_UPTIME).us;
     return 0;
 }
