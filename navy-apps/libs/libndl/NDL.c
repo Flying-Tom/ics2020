@@ -90,7 +90,7 @@ void NDL_DrawRect(uint32_t *pixels, int x, int y, int w, int h)
     for (int j = 0; j < h; j++)
         for (int i = 0; i < w; i++)
             canvas[(j + y) * canvas_w + (i + x)] = pixels[j * w + i];
-    for (int i = 0; i < canvas_h; i++)
+    for (int i = 0; i < h; i++)
     {
         lseek(fbdev, ((i + space_h) * screen_w + space_w) * sizeof(uint32_t), SEEK_SET);
         write(fbdev, &canvas[i * canvas_w], canvas_w);
@@ -124,7 +124,9 @@ int NDL_Init(uint32_t flags)
     gettimeofday(&boot_time, NULL);
     printf("boot_time.tv_sec:%lu\nboot_time.tv_usec:%lu\n", boot_time.tv_sec, boot_time.tv_usec);
     fbdev = open("/dev/fb", 2, 0);
-    //assert(fbdev == 5);
+    evtdev = open("/dev/events", 0, 0);
+    printf("fbdev:%d\n", fbdev);
+    printf("evtdev:%d\n", evtdev);
     close(fbdev);
     return 0;
 }
