@@ -126,6 +126,7 @@ int NDL_Init(uint32_t flags)
     }
     gettimeofday(&boot_time, NULL);
     printf("boot_time.tv_sec:%llu\nboot_time.tv_usec:%llu\n", boot_time.tv_sec, boot_time.tv_usec);
+    assert(0);
     fbdev = open("/dev/fb", 2, 0);
     //assert(fbdev == 5);
     close(fbdev);
