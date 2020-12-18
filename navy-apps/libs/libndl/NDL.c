@@ -18,7 +18,7 @@ uint32_t NDL_GetTicks()
     uint32_t usec = (now.tv_usec - boot_time.tv_usec) % 1000000;
     uint32_t sec = (now.tv_usec - boot_time.tv_usec) / 1000000;
     uint32_t msec = sec * 1000 + usec / 1000;
-    printf("now.tv_sec:%u\n", now.tv_sec);
+    //printf("now.tv_sec:%u\n", now.tv_sec);
     printf("now.tv_usec:%u\n", now.tv_usec);
     return msec;
 }
