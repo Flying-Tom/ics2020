@@ -18,7 +18,6 @@ uint32_t NDL_GetTicks()
     uint32_t sec = now.tv_sec - boot_time.tv_sec;
     uint32_t usec = (now.tv_usec - boot_time.tv_usec) / 1000000;
     uint32_t msec = sec * 1000 + usec / 1000;
-    //printf("usec:%llu\n", now.tv_usec);
     return msec;
 }
 
@@ -27,6 +26,7 @@ int NDL_PollEvent(char *buf, int len)
 
     memset(buf, '\0', len);
     int events = open("/dev/events", 0, 0);
+    printf("events:%d\n",events);
     int ret = read(events, buf, len);
     close(events);
     return ret;
@@ -123,7 +123,7 @@ int NDL_Init(uint32_t flags)
         evtdev = 3;
     }
     gettimeofday(&boot_time, NULL);
-    printf("boot_time.tv_sec:%llu\nboot_time.tv_usec:%llu\n", boot_time.tv_sec, boot_time.tv_usec);
+    printf("boot_time.tv_sec:%lu\nboot_time.tv_usec:%lu\n", boot_time.tv_sec, boot_time.tv_usec);
     fbdev = open("/dev/fb", 2, 0);
     //assert(fbdev == 5);
     close(fbdev);
