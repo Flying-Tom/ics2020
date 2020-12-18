@@ -15,10 +15,10 @@ uint32_t NDL_GetTicks()
 {
     struct timeval now;
     gettimeofday(&now, NULL);
-    /*uint32_t sec = now.tv_sec - boot_time.tv_sec;
+    uint32_t sec = now.tv_sec - boot_time.tv_sec;
     uint32_t usec = (now.tv_usec - boot_time.tv_usec) / 1000000;
-    uint32_t msec = sec * 1000 + usec / 1000;*/
-    return (now.tv_usec - boot_time.tv_usec) / 1000;
+    uint32_t msec = sec * 1000 + usec / 1000;
+    return msec;
 }
 
 int NDL_PollEvent(char *buf, int len)
@@ -87,22 +87,14 @@ void NDL_OpenCanvas(int *w, int *h)
 
 void NDL_DrawRect(uint32_t *pixels, int x, int y, int w, int h)
 {
-    /*
     for (int j = 0; j < h; j++)
         for (int i = 0; i < w; i++)
             canvas[(j + y) * canvas_w + (i + x)] = pixels[j * w + i];
+
     for (int i = 0; i < canvas_h; i++)
     {
         lseek(fbdev, ((i + space_h) * screen_w + space_w) * sizeof(uint32_t), SEEK_SET);
         write(fbdev, &canvas[i * canvas_w], canvas_w);
-    }*/
-    int offset = x + y * screen_w;
-    for (int i = 0; i < h; i++)
-    {
-        lseek(fbdev, offset, SEEK_SET);
-        write(fbdev, (void *)pixels, w);
-        pixels += w;
-        offset += screen_w;
     }
 }
 
@@ -134,6 +126,7 @@ int NDL_Init(uint32_t flags)
     printf("boot_time.tv_sec:%lu\nboot_time.tv_usec:%lu\n", boot_time.tv_sec, boot_time.tv_usec);
     fbdev = open("/dev/fb", 2, 0);
     evtdev = open("/dev/events", 0, 0);
+    //assert(fbdev == 5);
     close(fbdev);
     return 0;
 }
