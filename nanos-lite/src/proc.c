@@ -30,7 +30,7 @@ void init_proc()
     Log("Initializing processes...");
 
     // load program here
-    //naive_uload(NULL, "/bin/pal");
+    naive_uload(NULL, "/bin/pal");
     //naive_uload(NULL, "/bin/bird");
     //naive_uload(NULL, "/bin/menu");
     //naive_uload(NULL, "/bin/nslider");
@@ -39,7 +39,7 @@ void init_proc()
     //naive_uload(NULL, "/bin/event-test");
     //naive_uload(NULL, "/bin/timer-test");
     //naive_uload(NULL, "/bin/file-test");
-    naive_uload(NULL, "/bin/dummy");
+    //naive_uload(NULL, "/bin/dummy");
 }
 
 Context *schedule(Context *prev)
