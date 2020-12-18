@@ -198,7 +198,7 @@ ssize_t read(int fd, void *buf, size_t count) {
 
       const char *name = NULL;
       _KEYS(COND);
-      if (name) return snprintf((char *)buf, count, "k%c %s\n", keydown ? 'd' : 'u', name);
+      if (name) return snprintf((char *)buf, count, "k%c %s", keydown ? 'd' : 'u', name);
     }
     return 0;
   } else if (fd == sbctl_fd) {
