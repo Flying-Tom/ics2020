@@ -125,8 +125,6 @@ int NDL_Init(uint32_t flags)
     printf("boot_time.tv_sec:%lu\nboot_time.tv_usec:%lu\n", boot_time.tv_sec, boot_time.tv_usec);
     fbdev = open("/dev/fb", 2, 0);
     evtdev = open("/dev/events", 0, 0);
-    printf("fbdev:%d\n", fbdev);
-    printf("evtdev:%d\n", evtdev);
     close(fbdev);
     return 0;
 }
