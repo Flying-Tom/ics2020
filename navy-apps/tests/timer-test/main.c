@@ -7,6 +7,7 @@ int main()
 {
     int sec = 1;
     struct timeval now;
+    printf("Start\n");
     while (1)
     {
         while (NDL_GetTicks() / 1000 < sec)

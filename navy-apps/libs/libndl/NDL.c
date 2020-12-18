@@ -18,6 +18,8 @@ uint32_t NDL_GetTicks()
     uint32_t usec = (now.tv_usec - boot_time.tv_usec) % 1000000;
     uint32_t sec = (now.tv_usec - boot_time.tv_usec) / 1000000;
     uint32_t msec = sec * 1000 + usec / 1000;
+    //printf("sec:%u\n",sec);
+    printf("now.tv_usec:%u\n",usec);
     return msec;
 }
 
@@ -123,7 +125,7 @@ int NDL_Init(uint32_t flags)
     }
     gettimeofday(&boot_time, NULL);
     fbdev = open("/dev/fb", 2, 0);
-    assert(fbdev == 5);
+    //assert(fbdev == 5);
     close(fbdev);
     return 0;
 }
