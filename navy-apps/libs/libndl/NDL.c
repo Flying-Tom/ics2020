@@ -15,10 +15,10 @@ uint32_t NDL_GetTicks()
 {
     struct timeval now;
     gettimeofday(&now, NULL);
-    uint32_t sec = now.tv_sec -1 ;
-    uint32_t usec = (now.tv_sec - boot_time.tv_sec) + (now.tv_usec - boot_time.tv_usec) / 1000000;
+    uint32_t sec = now.tv_sec;
+    uint32_t usec = (now.tv_usec - boot_time.tv_usec) / 1000000;
     uint32_t msec = sec * 1000 + usec / 1000;
-    printf("usec:%llu\n", now.tv_usec);
+    //printf("usec:%llu\n", now.tv_usec);
     return msec;
 }
 
