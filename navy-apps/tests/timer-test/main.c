@@ -7,12 +7,12 @@ int main()
 {
     int sec = 1;
     struct timeval now;
+    NDL_Init(0);
     printf("Start\n");
     while (1)
     {
         while (NDL_GetTicks() / 1000 < sec)
             ;
-        break;
         if (sec == 1)
             printf("This is %d second.\n", sec);
         else
