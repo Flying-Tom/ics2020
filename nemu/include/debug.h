@@ -23,7 +23,7 @@
       assert(cond); \
     } \
   } while (0)
-volatile static int dummy;
+
 #define panic(...) Assert(0, __VA_ARGS__)
 
 #define TODO() panic("please implement me")
