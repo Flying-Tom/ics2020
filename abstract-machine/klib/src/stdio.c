@@ -52,7 +52,6 @@ int num_to_str(char *out, char *ctrl, int x, char type)
     {
         while (len < ctrl[1] - '0')
             temp[len++] = '0';
-        //assert(len == ctrl[1] - '0');
     }
     ans = len;
     memset(ctrl, '\0', sizeof(ctrl));
@@ -90,7 +89,6 @@ int _Printf(char *out, const char *fmt, va_list args)
             out += temp;
             break;
         case 'p':
-            //memset(ctrl,'0',sizeof(ctrl));
             temp = num_to_str(out, ctrl, va_arg(args, long long), 'x');
             out += temp;
             break;
