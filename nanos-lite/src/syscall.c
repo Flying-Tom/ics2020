@@ -11,6 +11,13 @@ int sys_gettimeofday(struct timeval *tv, struct timezone *tz)
     return 0;
 }
 
+int sys_execve(const char *fname, char *const argv[], char *const envp[])
+{
+    extern void native_uload(PCB * pcb, const char *filename);
+    native_uload(NULL, fname);
+    return -1;
+}
+
 void do_syscall(Context *c)
 {
     uintptr_t a[4];
@@ -50,7 +57,11 @@ void do_syscall(Context *c)
     case SYS_gettimeofday:
         c->GPRx = sys_gettimeofday((struct timeval *)a[1], (struct timezone *)a[2]);
         break;
+    case SYS_execve:
+        c->GPRX = sys_execve((char *)a[1], (char **)a[2], (char **)a[3]);
+        break;
     default:
         panic("Unhandled syscall ID = %d", a[0]);
+        break;
     }
 }
