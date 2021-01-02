@@ -4,7 +4,7 @@
 #include <sys/time.h>
 #include <proc.h>
 
-extern void native_uload(PCB *pcb, const char *filename);
+extern void naive_uload(PCB *, const char *);
 
 int sys_gettimeofday(struct timeval *tv, struct timezone *tz)
 {
@@ -16,7 +16,7 @@ int sys_gettimeofday(struct timeval *tv, struct timezone *tz)
 
 int sys_execve(const char *fname, char *const argv[], char *const envp[])
 {
-    //native_uload(NULL, fname);
+    naive_uload(NULL, fname);
     return -1;
 }
 
