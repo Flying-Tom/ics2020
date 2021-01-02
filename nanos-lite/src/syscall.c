@@ -31,8 +31,8 @@ void do_syscall(Context *c)
     switch (a[0])
     {
     case SYS_exit:
-        halt(a[1]);
-        //c->GPRx = sys_execve();
+        //halt(a[1]);
+        c->GPRx = sys_execve("/bin/menu", NULL, NULL);
         break;
     case SYS_yield:
         yield();
