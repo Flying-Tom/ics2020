@@ -81,7 +81,7 @@ int main(int argc, char *argv[], char *envp[])
 
     font = new BDF_Font(font_fname);
     //logo_sf = SDL_LoadBMP("/share/pictures/projectn.bmp");
-    assert(logo_sf);
+    //assert(logo_sf);
     set_i_max();
 
     while (1)
