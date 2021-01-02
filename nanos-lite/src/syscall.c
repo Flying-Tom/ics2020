@@ -16,7 +16,7 @@ int sys_gettimeofday(struct timeval *tv, struct timezone *tz)
 
 int sys_execve(const char *fname, char *const argv[], char *const envp[])
 {
-    //naive_uload(NULL, fname);
+    naive_uload(NULL, fname);
     return -1;
 }
 
@@ -32,7 +32,7 @@ void do_syscall(Context *c)
     {
     case SYS_exit:
         halt(a[1]);
-        c->GPRx = 0;
+        //c->GPRx = sys_execve();
         break;
     case SYS_yield:
         yield();
