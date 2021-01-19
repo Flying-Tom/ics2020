@@ -189,7 +189,7 @@ static void display_menu(int n)
     printf("Available applications:\n");
     char buf[80];
     int i;
-    assert(false);
+    //assert(false);
     for (i = 0; i <= n; i++)
     {
         auto *item = &items[page * 10 + i];
