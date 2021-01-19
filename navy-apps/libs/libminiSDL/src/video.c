@@ -103,9 +103,9 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h)
         assert(pixels_buf);
         memset(pixels_buf, 0, w * h * sizeof(uint32_t));
         int cnt = 0;
-        for (int j = 0; j < h && y + j < s->h; j++)
+        for (int j = 0; j < h; j++)
         {
-            for (int i = 0; i < w && x + i < s->w; i++)
+            for (int i = 0; i < w; i++)
                 pixels_buf[i + j * w] = s->format->palette->colors[s->pixels[(y + j) * s->w + x + i]].val;
         }
         ConvertPixelsARGB_ABGR(pixels_buf, pixels_buf, w * h);
