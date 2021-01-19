@@ -5,6 +5,8 @@
 #include <stdlib.h>
 #define Print(A) printf(#A ":%d\n", A)
 
+static void ConvertPixelsARGB_ABGR(void *dst, void *src, int len);
+
 static int min(int x, int y)
 {
     if (x < y)
@@ -104,12 +106,9 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h)
         for (int j = 0; j < h && y + j < s->h; j++)
         {
             for (int i = 0; i < w && x + i < s->w; i++)
-            {
-                uint32_t color_tmp = s->format->palette->colors[s->pixels[(y + j) * s->w + x + i]].val;
-                color_tmp = (color_tmp >> 16) | (color_tmp & 0xFF00) | ((0xFF & color_tmp) << 16);
-                pixels_buf[cnt++] = color_tmp;
-            }
+                pixels_buf[i + j * w] = s->format->palette->colors[s->pixels[(y + j) * s->w + x + i]].val;
         }
+        ConvertPixelsARGB_ABGR(pixels_buf, pixels_buf, w * h);
         NDL_DrawRect(pixels_buf, x, y, w, h);
         free(pixels_buf);
     }
