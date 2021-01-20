@@ -26,11 +26,13 @@ uint32_t NDL_GetTicks()
 
 int NDL_PollEvent(char *buf, int len)
 {
+    /*
     memset(buf, '\0', len);
     int events = open("/dev/events", 0, 0);
     int ret = read(events, buf, len);
     close(events);
-    return ret;
+    return ret;*/
+    return read(evtdev, buf, len);
 }
 
 void NDL_Dispinfo_init()
@@ -45,7 +47,6 @@ void NDL_Dispinfo_init()
 
 void NDL_OpenCanvas(int *w, int *h)
 {
-    NDL_Dispinfo_init();
     if (getenv("NWM_APP"))
     {
         int fbctl = 4;
@@ -124,13 +125,16 @@ int NDL_Init(uint32_t flags)
     }
     gettimeofday(&boot_time, NULL);
     printf("boot_time.tv_sec:%lu\nboot_time.tv_usec:%lu\n", boot_time.tv_sec, boot_time.tv_usec);
-    fbdev = open("/dev/fb", 2, 0);
+    NDL_Dispinfo_init();
     evtdev = open("/dev/events", 0, 0);
-    //assert(fbdev == 5);
-    close(fbdev);
+    fbdev = open("/dev/fb", 2, 0);
+    //assert(fbdev == 5 && evtdev ==3);
+
     return 0;
 }
 
 void NDL_Quit()
 {
+    close(evtdev);
+    close(fbdev);
 }
