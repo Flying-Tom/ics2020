@@ -119,15 +119,19 @@ int NDL_Init(uint32_t flags)
     {
         evtdev = 3;
     }
-    gettimeofday(&boot_time, NULL);
-    printf("boot_time.tv_sec:%lu\nboot_time.tv_usec:%lu\n", boot_time.tv_sec, boot_time.tv_usec);
-    fbdev = open("/dev/fb", 2, 0);
-    evtdev = open("/dev/events", 0, 0);
-    //assert(fbdev == 5);
-    close(fbdev);
+    else
+    {
+        gettimeofday(&boot_time, NULL);
+        printf("boot_time.tv_sec:%lu\nboot_time.tv_usec:%lu\n", boot_time.tv_sec, boot_time.tv_usec);
+        fbdev = open("/dev/fb", 2, 0);
+        evtdev = open("/dev/events", 0, 0);
+        //assert(fbdev == 5);
+    }
     return 0;
 }
 
 void NDL_Quit()
 {
+    close(evtdev);
+    close(fbdev);
 }
