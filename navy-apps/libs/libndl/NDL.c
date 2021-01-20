@@ -15,15 +15,17 @@ uint32_t NDL_GetTicks()
 {
     struct timeval now;
     gettimeofday(&now, NULL);
+    /*
     uint32_t sec = now.tv_sec - boot_time.tv_sec;
     uint32_t usec = (now.tv_usec - boot_time.tv_usec) / 1000000;
     uint32_t msec = sec * 1000 + usec / 1000;
     return (now.tv_usec - boot_time.tv_usec) / 1000;
+    */
+    return now.tv_sec * 1000 + now.tv_usec / 1000;
 }
 
 int NDL_PollEvent(char *buf, int len)
 {
-
     memset(buf, '\0', len);
     int events = open("/dev/events", 0, 0);
     int ret = read(events, buf, len);
@@ -70,14 +72,12 @@ void NDL_OpenCanvas(int *w, int *h)
     {
         if (*w == 0 && *h == 0)
         {
-            *w = canvas_w = screen_w;
-            *h = canvas_h = screen_h;
+            *w = screen_w;
+            *h = screen_h;
         }
-        else
-        {
-            canvas_w = *w;
-            canvas_h = *h;
-        }
+        canvas_w = *w;
+        canvas_h = *h;
+
         space_w = (screen_w - canvas_w) / 2;
         space_h = (screen_h - canvas_h) / 2;
         canvas = malloc(sizeof(uint32_t) * canvas_w * canvas_h);
@@ -87,14 +87,15 @@ void NDL_OpenCanvas(int *w, int *h)
 
 void NDL_DrawRect(uint32_t *pixels, int x, int y, int w, int h)
 {
+    /*
     for (int j = 0; j < h; j++)
         for (int i = 0; i < w; i++)
             canvas[(j + y) * canvas_w + (i + x)] = pixels[j * w + i];
-
-    for (int i = 0; i < canvas_h; i++)
+    */
+    for (int i = 0; i < h; i++)
     {
-        lseek(fbdev, ((i + space_h) * screen_w + space_w) * sizeof(uint32_t), SEEK_SET);
-        write(fbdev, &canvas[i * canvas_w], canvas_w);
+        lseek(fbdev, ((i + space_h + y) * screen_w + space_w + x) * sizeof(uint32_t), SEEK_SET);
+        write(fbdev, pixels + i * w, w * sizeof(uint32_t));
     }
 }
 
