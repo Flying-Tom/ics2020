@@ -41,9 +41,9 @@ size_t dispinfo_read(void *buf, size_t offset, size_t len)
 {
     static char dispinfo[256] = {};
     AM_GPU_CONFIG_T gpu_cfg = io_read(AM_GPU_CONFIG);
-    snprintf(dispinfo, len, "WIDTH:%d\nHEIGHT:%d\n", gpu_cfg.width, gpu_cfg.height);
-    //assert(offset == 0);
-    //strncpy(buf, dispinfo + offset, len);
+    sprintf(dispinfo, "WIDTH:%d\nHEIGHT:%d\n", gpu_cfg.width, gpu_cfg.height);
+    assert(offset == 0);
+    strncpy(buf, dispinfo + offset, len);
     return len;
 }
 
