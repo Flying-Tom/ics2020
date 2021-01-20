@@ -15,24 +15,20 @@ uint32_t NDL_GetTicks()
 {
     struct timeval now;
     gettimeofday(&now, NULL);
-
     uint32_t sec = now.tv_sec - boot_time.tv_sec;
     uint32_t usec = (now.tv_usec - boot_time.tv_usec) / 1000000;
     uint32_t msec = sec * 1000 + usec / 1000;
     return (now.tv_usec - boot_time.tv_usec) / 1000;
-
-    //return now.tv_sec * 1000 + now.tv_usec / 1000;
 }
 
 int NDL_PollEvent(char *buf, int len)
 {
-    /*
+
     memset(buf, '\0', len);
     int events = open("/dev/events", 0, 0);
     int ret = read(events, buf, len);
     close(events);
-    return ret;*/
-    return read(evtdev, buf, len) > 0 ? 1 : 0;
+    return ret;
 }
 
 void NDL_Dispinfo_init()
@@ -47,6 +43,7 @@ void NDL_Dispinfo_init()
 
 void NDL_OpenCanvas(int *w, int *h)
 {
+    NDL_Dispinfo_init();
     if (getenv("NWM_APP"))
     {
         int fbctl = 4;
@@ -73,12 +70,14 @@ void NDL_OpenCanvas(int *w, int *h)
     {
         if (*w == 0 && *h == 0)
         {
-            *w = screen_w;
-            *h = screen_h;
+            *w = canvas_w = screen_w;
+            *h = canvas_h = screen_h;
         }
-        canvas_w = *w;
-        canvas_h = *h;
-
+        else
+        {
+            canvas_w = *w;
+            canvas_h = *h;
+        }
         space_w = (screen_w - canvas_w) / 2;
         space_h = (screen_h - canvas_h) / 2;
         canvas = malloc(sizeof(uint32_t) * canvas_w * canvas_h);
@@ -125,16 +124,13 @@ int NDL_Init(uint32_t flags)
     }
     gettimeofday(&boot_time, NULL);
     printf("boot_time.tv_sec:%lu\nboot_time.tv_usec:%lu\n", boot_time.tv_sec, boot_time.tv_usec);
-    NDL_Dispinfo_init();
-    evtdev = open("/dev/events", 0, 0);
     fbdev = open("/dev/fb", 2, 0);
-    //assert(fbdev == 5 && evtdev ==3);
-
+    evtdev = open("/dev/events", 0, 0);
+    //assert(fbdev == 5);
+    close(fbdev);
     return 0;
 }
 
 void NDL_Quit()
 {
-    close(evtdev);
-    close(fbdev);
 }
