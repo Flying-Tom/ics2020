@@ -40,7 +40,7 @@ static inline def_EHelper(int)
 static inline def_EHelper(iret)
 {
 
-    rtl_pop(s, &s->seq_pc);
+    rtl_pop(s, &s->jmp_pc);
     rtl_pop(s, &cpu.cs);
     rtl_pop(s, &cpu.EFLAGS);
     rtl_j(s, s->jmp_pc);
