@@ -30,6 +30,7 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
 
     if (dstrect == NULL)
     {
+        dstrect = malloc(sizeof(SDL_Rect));
         dstrect->x = 0;
         dstrect->y = 0;
         dstrect->w = dst->w;
