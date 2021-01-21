@@ -24,6 +24,7 @@ int SDL_PollEvent(SDL_Event *ev)
         if (buf[0] == 'k')
         {
             ev->type = (buf[1] == 'd') ? SDL_KEYDOWN : SDL_KEYUP;
+            printf("%s\n", buf[1]);
         }
         else
             assert(0);
