@@ -32,15 +32,22 @@ void NDL_Dispinfo_init()
 {
     int dispinfo = open("/proc/dispinfo", 0, 0);
     char buf[128];
+    int offset = 0;
     read(dispinfo, buf, sizeof(buf));
-    sscanf(buf, "WIDTH:%d\nHEIGHT:%d\n", &screen_w, &screen_h);
+    while (buf[offset++] != '\n')
+        ;
+    assert(strncmp(buf, "WIDTH", 5) == 0);
+    sscanf(buf + 5, "%*[: \t] %d", &screen_w);
+    assert(strncmp(buf + offset, "HEIGHT", 6) == 0);
+    sscanf(buf + offset + 6, "%*[: \t] %d", &screen_h);
+    //sscanf(buf, "WIDTH:%d\nHEIGHT:%d\n", &screen_w, &screen_h);
     close(dispinfo);
+    printf("screen_w:%d\nscreen_h:%d\n", screen_w, screen_h);
     assert(screen_w >= 0 && screen_h >= 0);
 }
 
 void NDL_OpenCanvas(int *w, int *h)
 {
-    NDL_Dispinfo_init();
     if (getenv("NWM_APP"))
     {
         int fbctl = 4;
@@ -127,6 +134,7 @@ int NDL_Init(uint32_t flags)
         evtdev = open("/dev/events", 0, 0);
         //assert(fbdev == 5);
     }
+    NDL_Dispinfo_init();
     return 0;
 }
 
