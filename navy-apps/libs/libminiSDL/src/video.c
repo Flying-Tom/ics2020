@@ -49,8 +49,6 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
             else
                 dst->pixels[dst_loc] = src->pixels[src_loc];
         }
-    free(srcrect);
-    free(dstrect);
 }
 
 void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color)
