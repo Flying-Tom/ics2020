@@ -21,7 +21,7 @@ int SDL_PollEvent(SDL_Event *ev)
     char buf[256];
     if (NDL_PollEvent(buf, sizeof(buf)))
     {
-        ev->type = (buf[1] == 'k') ? SDL_KEYDOWN : SDL_KEYUP;
+        ev->type = (buf[1] == 'u') ? SDL_KEYDOWN : SDL_KEYUP;
         ev->key.type = ev->type;
         for (int i = 0; i < keynum; i++)
         {
