@@ -149,14 +149,14 @@ static inline def_EHelper(bsr)
     }
     else
     {
-        rtl_li(s, s3, 0);
         rtl_set_ZF(s, rz);
         rtl_mv(s, s0, dsrc1);
-        rtl_li(s, s1, 0);
-        while ((*s0 & 1) == 0)
+        *s1 = 8 * id_src1->width - 1;
+        *s2 = 1 << *s1;
+        while ((*s0 & *s2) == 0)
         {
-            *s0 >>= 1;
-            rtl_addi(s, s1, s1, 1);
+            *s2 >>= 1;
+            *s1-=1;
         }
         operand_write(s, id_dest, s1);
     }
