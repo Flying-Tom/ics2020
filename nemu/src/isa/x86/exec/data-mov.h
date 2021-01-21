@@ -110,7 +110,6 @@ static inline def_EHelper(movzx)
 
 static inline def_EHelper(movs)
 {
-    //id_dest->width = s->isa.is_operand_size_16 ? 2 : 4;
     rtl_lr(s, s1, R_ESI, 4);
     rtl_lr(s, s2, R_EDI, 4);
     rtl_lm(s, s0, s1, 0, id_dest->width);
