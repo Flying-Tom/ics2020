@@ -18,24 +18,23 @@ int SDL_PushEvent(SDL_Event *ev)
 
 int SDL_PollEvent(SDL_Event *ev)
 {
-    char buf[256], keynamebuf[32];
+    char buf[256];
     if (NDL_PollEvent(buf, sizeof(buf)))
     {
         uint8_t keytype = 0;
-        sscanf(buf + 3, "%s", keynamebuf);
+        //sscanf(buf + 3, "%s", keynamebuf);
         keytype = (buf[1] == 'd') ? SDL_KEYDOWN : SDL_KEYUP;
         ev->type = keytype;
         ev->key.type = keytype;
         for (int i = 0; i < keynum; i++)
         {
-            if (strcmp(keyname[i], keynamebuf) == 0)
+            if (strcmp(keyname[i], buf + 3) == 0)
             {
                 ev->key.keysym.sym = i;
                 KeyState[ev->key.keysym.sym] = keytype;
-                break;
+                return 1;
             }
         }
-        return 1;
     }
 
     return 0;
