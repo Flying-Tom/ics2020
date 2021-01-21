@@ -90,12 +90,12 @@ void NDL_DrawRect(uint32_t *pixels, int x, int y, int w, int h)
         for (int i = 0; i < w; i++)
             canvas[(j + y) * canvas_w + (i + x)] = pixels[j * w + i];
     */
-    w = w <= screen_w - x ? w : screen_w - x;
-    h = h <= screen_h - y ? h : screen_h - y;
-    for (int i = 0; i < h; i++)
+    int wtemp = w <= screen_w - x ? w : screen_w - x;
+    int htemp = h <= screen_h - y ? h : screen_h - y;
+    for (int i = 0; i < htemp; i++)
     {
         lseek(fbdev, (i + y) * screen_w + x, SEEK_SET);
-        write(fbdev, &pixels[i * w], w);
+        write(fbdev, &pixels[i * w], wtemp);
     }
 }
 
