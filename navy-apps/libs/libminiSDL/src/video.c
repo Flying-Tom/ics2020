@@ -43,7 +43,7 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
             int src_loc = min(j + srcrect->y, srcrect->h - 1) * src->w + min(i + srcrect->x, src->w - 1);
             int dst_loc = min(j + dstrect->y, dstrect->h - 1) * dst->w + min(i + dstrect->x, dst->w - 1);
             if (src->format->palette == NULL)
-                ((uint32_t *)dst->pixels)[dst_loc] = ((uint32_t *)src->pixels)[src_loc] + 0x123;
+                ((uint32_t *)dst->pixels)[dst_loc] = ((uint32_t *)src->pixels)[src_loc];
             else
                 dst->pixels[dst_loc] = src->pixels[src_loc];
         }
