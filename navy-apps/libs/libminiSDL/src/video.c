@@ -18,6 +18,7 @@ static int min(int x, int y)
 void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_Rect *dstrect)
 {
     assert(dst && src && dst->format->BitsPerPixel == src->format->BitsPerPixel);
+    printf("Enter Blit\n");
     SDL_Rect rect_tmp;
     if (srcrect == NULL)
     {
