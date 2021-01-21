@@ -24,7 +24,18 @@ int SDL_PollEvent(SDL_Event *ev)
         if (buf[0] == 'k')
         {
             ev->type = (buf[1] == 'd') ? SDL_KEYDOWN : SDL_KEYUP;
-            printf("%s\n", buf[1]);
+            switch (buf[1])
+            {
+            case 'd':
+                printf("down\n");
+                break;
+            case 'u':
+                printf("up\n");
+                break;
+            default:
+                printf("error\n");
+                break;
+            }
         }
         else
             assert(0);
