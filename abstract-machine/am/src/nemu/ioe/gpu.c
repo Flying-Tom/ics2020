@@ -13,12 +13,14 @@ static inline int min(int x, int y)
 
 void __am_gpu_init()
 {
-    W = inl(VGACTL_ADDR) >> 16;
-    H = inl(VGACTL_ADDR) & 0xffff;
 }
 
 void __am_gpu_config(AM_GPU_CONFIG_T *cfg)
 {
+    uint32_t WH_ctl = inl(VGACTL_ADDR);
+    W = WH_ctl >> 16;
+    H = WH_ctl & 0xffff;
+
     *cfg = (AM_GPU_CONFIG_T){
         .present = true, .has_accel = false, .width = W, .height = H, .vmemsz = W * H * sizeof(uint32_t)};
 }
