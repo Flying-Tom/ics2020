@@ -25,7 +25,7 @@ size_t serial_write(const void *buf, size_t offset, size_t len)
 size_t events_read(void *buf, size_t offset, size_t len)
 {
     AM_INPUT_KEYBRD_T kbd = io_read(AM_INPUT_KEYBRD);
-    bool keydown = kbd.keydown;
+    bool keydown = kbd.keydown; 
     int keycode = kbd.keycode;
     if (keycode != AM_KEY_NONE)
     {
@@ -49,15 +49,10 @@ size_t dispinfo_read(void *buf, size_t offset, size_t len)
 
 size_t fb_write(const void *buf, size_t offset, size_t len)
 {
-    offset = offset / sizeof(uint32_t);
-    len = len / sizeof(uint32_t);
-    AM_GPU_CONFIG_T gpu_cfg = io_read(AM_GPU_CONFIG);
-    int x = offset % gpu_cfg.width;
-    int y = offset / gpu_cfg.width;
-    int temp = gpu_cfg.width - x;
-    len = len < temp ? len : temp;
+    int x = (offset / sizeof(uint32_t)) % io_read(AM_GPU_CONFIG).width;
+    int y = (offset / sizeof(uint32_t)) / io_read(AM_GPU_CONFIG).width;
     io_write(AM_GPU_FBDRAW, x, y, (void *)buf, len, 1, true);
-    return len * sizeof(uint32_t);
+    return len;
 }
 
 void init_device()
