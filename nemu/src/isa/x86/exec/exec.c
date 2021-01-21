@@ -301,7 +301,7 @@ again:
         IDEXW(0xa2, a2O, mov, 1)
         IDEX(0xa3, a2O, mov)
         EXW(0xa4, movs, 1)
-        EXW(0xa5, movs, 4)
+        EX(0xa5, movs)
         IDEXW(0xa8, I2a, test, 1)
         IDEX(0xa9, I2a, test)
 
