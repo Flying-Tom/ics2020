@@ -27,11 +27,14 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
         rect_tmp.h = src->h;
         srcrect = &rect_tmp;
     }
-    dstrect = malloc(sizeof(SDL_Rect));
-    dstrect->x = 0;
-    dstrect->y = 0;
-    dstrect->w = dst->w;
-    dstrect->h = dst->h;
+    if (dstrect == NULL)
+    {
+        dstrect = malloc(sizeof(SDL_Rect));
+        dstrect->x = 0;
+        dstrect->y = 0;
+        dstrect->w = dst->w;
+        dstrect->h = dst->h;
+    }
 
     assert(srcrect->h == dstrect->h && srcrect->w == dstrect->w);
     for (int j = 0; j < srcrect->h; j++)
