@@ -19,14 +19,13 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
 {
     assert(dst && src && dst->format->BitsPerPixel == src->format->BitsPerPixel);
     printf("Enter Blit\n");
-    SDL_Rect rect_tmp;
     if (srcrect == NULL)
     {
-        rect_tmp.x = 0;
-        rect_tmp.y = 0;
-        rect_tmp.w = src->w;
-        rect_tmp.h = src->h;
-        srcrect = &rect_tmp;
+        srcrect = malloc(sizeof(SDL_Rect));
+        srcrect->x = 0;
+        srcrect->y = 0;
+        srcrect->w = src->w;
+        srcrect->h = src->h;
     }
 
     if (dstrect == NULL)
