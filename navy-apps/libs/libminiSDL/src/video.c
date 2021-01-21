@@ -30,10 +30,14 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
     }
 
     if (dstrect == NULL)
-        dstrect = srcrect;
-
-    dstrect->w = srcrect->w;
-    dstrect->h = srcrect->h;
+    {
+        dstrect = malloc(sizeof(SDL_Rect));
+        assert(dstrect);
+        dstrect->x = 0;
+        dstrect->y = 0;
+        dstrect->w = srcrect->w;
+        dstrect->h = srcrect->h;
+    }
 
     assert(srcrect->h == dstrect->h && srcrect->w == dstrect->w);
     for (int j = 0; j < srcrect->h; j++)
