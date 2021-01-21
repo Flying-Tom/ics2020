@@ -15,9 +15,6 @@ uint32_t NDL_GetTicks()
 {
     struct timeval now;
     gettimeofday(&now, NULL);
-    //uint32_t sec = now.tv_sec - boot_time.tv_sec;
-    //uint32_t usec = (now.tv_usec - boot_time.tv_usec) / 1000000;
-    //uint32_t msec = sec * 1000 + usec / 1000;
     return (now.tv_sec - boot_time.tv_sec) * 1000 + (now.tv_usec - boot_time.tv_usec) / 1000;
 }
 
@@ -73,14 +70,12 @@ void NDL_OpenCanvas(int *w, int *h)
     {
         if (*w == 0 && *h == 0)
         {
-            *w = canvas_w = screen_w;
-            *h = canvas_h = screen_h;
+            canvas_w = screen_w;
+            canvas_h = screen_h;
         }
-        else
-        {
-            canvas_w = *w;
-            canvas_h = *h;
-        }
+        canvas_w = *w;
+        canvas_h = *h;
+
         space_w = (screen_w - canvas_w) / 2;
         space_h = (screen_h - canvas_h) / 2;
         canvas = malloc(sizeof(uint32_t) * canvas_w * canvas_h);
