@@ -21,8 +21,13 @@ int SDL_PollEvent(SDL_Event *ev)
     char buf[256];
     if (NDL_PollEvent(buf, sizeof(buf)))
     {
-        ev->type = (buf[1] == 'd') ? SDL_KEYDOWN : SDL_KEYUP;
-        ev->key.type = ev->type;
+        if (buf[0] == 'k')
+        {
+            ev->type = (buf[1] == 'd') ? SDL_KEYDOWN : SDL_KEYUP;
+            ev->key.type = ev->type;
+        }
+        else
+            assert(0);
         for (int i = 0; i < keynum; i++)
         {
             if (strcmp(keyname[i], buf + 3) == 0)
