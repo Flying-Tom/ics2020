@@ -243,6 +243,7 @@ Terminal::~Terminal()
 
 void input_process(char *input)
 {
+    /*
     for (int i = 0; i < sizeof(items) / sizeof(BinItem); i++)
     {
         if (strcmp(items[i].name, input) == 0)
@@ -255,7 +256,8 @@ void input_process(char *input)
             execve(exec_argv[0], (char **)exec_argv, NULL);
             return;
         }
-    }
+    }*/
+    execve(input, NULL, NULL);
     printf("%s: command not found\n");
 }
 
