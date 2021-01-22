@@ -369,7 +369,7 @@ const char *Terminal::keypress(char ch)
             break;
         case '\n':
             strcpy(cooked, input);
-            printf("%s", input);
+            printf("%s\n", input);
             strcat(cooked, "\n");
             ret = cooked;
             write("\n", 1);
