@@ -23,8 +23,8 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
     if (srcrect == NULL)
     {
         srcrect = &tmprect;
-        srcrect->x = 0;
-        srcrect->y = 0;
+        srcrect->x = 5;
+        srcrect->y = 5;
         srcrect->w = src->w;
         srcrect->h = src->h;
     }
