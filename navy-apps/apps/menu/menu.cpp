@@ -160,13 +160,14 @@ static void draw_ch(BDF_Font *font, int x, int y, char ch, uint32_t fg, uint32_t
 {
     SDL_Surface *s = BDF_CreateSurface(font, ch, fg, bg);
     SDL_Rect dstrect = {.x = x, .y = y};
-    printf("x:%d y%:d ch:%d\n", x, y, ch);
+    //printf("x:%d y%:d ch:%d\n", x, y, ch);
     SDL_BlitSurface(s, NULL, screen, &dstrect);
     SDL_FreeSurface(s);
 }
 
 static void draw_str(BDF_Font *font, int x, int y, char *str, uint32_t fp, uint32_t bg)
 {
+    printf("str:%s", str);
     while (*str)
     {
         draw_ch(font, x, y, *str, fp, bg);
