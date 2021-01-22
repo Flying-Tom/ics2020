@@ -169,7 +169,7 @@ static void draw_str(BDF_Font *font, int x, int y, char *str, uint32_t fp, uint3
 {
     while (*str)
     {
-        printf("*str:%s\n", str);
+        printf("*str:%s\n", *str);
         draw_ch(font, x, y, *str, fp, bg);
         x += font->w;
         str++;
