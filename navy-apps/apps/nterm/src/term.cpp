@@ -47,6 +47,23 @@ Terminal::Pattern Terminal::esc_seqs[] = {
     {"\033[#;#;#m", &Terminal::esc_setattr3},
 };
 
+struct BinItem
+{
+    const char *name, *bin, *arg1;
+} items[] = {
+    {"NJU Terminal", "/bin/nterm", NULL},
+    {"NSlider", "/bin/nslider", NULL},
+    {"FCEUX (Super Mario Bros)", "/bin/fceux", "/share/games/nes/mario.nes"},
+    {"FCEUX (100 in 1)", "/bin/fceux", "/share/games/nes/100in1.nes"},
+    {"Flappy Bird", "/bin/bird", NULL},
+    {"PAL - Xian Jian Qi Xia Zhuan", "/bin/pal", NULL},
+    {"NPlayer", "/bin/nplayer", NULL},
+    {"coremark", "/bin/coremark", NULL},
+    {"dhrystone", "/bin/dhrystone", NULL},
+    {"typing-game", "/bin/typing-game", NULL},
+    {"ONScripter", "/bin/onscripter", NULL},
+};
+
 static inline int min(int x, int y) { return x < y ? x : y; }
 static inline int max(int x, int y) { return x > y ? x : y; }
 
@@ -222,6 +239,28 @@ Terminal::~Terminal()
     delete[] dirty;
 }
 
+//////////////////////
+
+void input_process(char *input)
+{
+    for (int i = 0; i < sizeof(items) / sizeof(BinItem); i++)
+    {
+        if (strcmp(items[i].name, input) == 0)
+        {
+            const char *exec_argv[3];
+            auto *item = &items[i];
+            exec_argv[0] = item->bin;
+            exec_argv[1] = item->arg1;
+            exec_argv[2] = NULL;
+            execve(exec_argv[0], (char **)exec_argv, NULL);
+            return;
+        }
+    }
+    printf("%s: command not found\n");
+}
+
+//////////////////////
+
 void Terminal::backspace()
 {
     cursor.x--;
@@ -369,7 +408,8 @@ const char *Terminal::keypress(char ch)
             break;
         case '\n':
             strcpy(cooked, input);
-            printf("%s\n", input);
+            //printf("%s\n", input);
+            input_process(input);
             strcat(cooked, "\n");
             ret = cooked;
             write("\n", 1);
