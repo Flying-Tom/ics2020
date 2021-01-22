@@ -158,6 +158,7 @@ int main(int argc, char *argv[], char *envp[])
 
 static void draw_ch(BDF_Font *font, int x, int y, char ch, uint32_t fg, uint32_t bg)
 {
+    printf("ch:%c\n", ch);
     SDL_Surface *s = BDF_CreateSurface(font, ch, fg, bg);
     SDL_Rect dstrect = {.x = x, .y = y};
     //printf("x:%d y%:d ch:%d\n", x, y, ch);
@@ -169,7 +170,7 @@ static void draw_str(BDF_Font *font, int x, int y, char *str, uint32_t fp, uint3
 {
     while (*str)
     {
-        printf("*str:%c\n", *str);
+        //printf("*str:%c\n", *str);
         draw_ch(font, x, y, *str, fp, bg);
         x += font->w;
         str++;
