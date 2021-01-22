@@ -22,7 +22,7 @@ static SDL_Surface *logo_sf = NULL;
 
 static void display_menu(int n);
 
-struct MenuItem.
+struct MenuItem
 {
     const char *name, *bin, *arg1;
 } items[] = {
