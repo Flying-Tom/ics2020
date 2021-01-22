@@ -19,9 +19,11 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
 {
     assert(dst && src);
     printf("Enter Blit\n");
+    SDL_Rect tmprect;
     if (srcrect == NULL)
     {
-        srcrect = malloc(sizeof(SDL_Rect));
+        srcrect = &tmprect;
+        //srcrect = malloc(sizeof(SDL_Rect));
         srcrect->x = 0;
         srcrect->y = 0;
         srcrect->w = src->w;
@@ -34,9 +36,9 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
         assert(dstrect);
         dstrect->x = 0;
         dstrect->y = 0;
+        dstrect->w = srcrect->w;
+        dstrect->h = srcrect->h;
     }
-    dstrect->w = srcrect->w;
-    dstrect->h = srcrect->h;
 
     assert(srcrect->h == dstrect->h && srcrect->w == dstrect->w);
     for (int j = 0; j < srcrect->h; j++)
