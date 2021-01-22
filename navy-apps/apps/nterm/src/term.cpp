@@ -256,9 +256,12 @@ void input_process(char *input)
             execve(exec_argv[0], (char **)exec_argv, NULL);
             return;
         }
-    }*/
+    }
     execve(input, NULL, NULL);
     printf("%s: command not found\n");
+    */
+    setenv("PATH", "/bin", 0);
+    execvp(input, NULL);
 }
 
 //////////////////////
