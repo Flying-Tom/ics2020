@@ -92,7 +92,7 @@ void NDL_DrawRect(uint32_t *pixels, int x, int y, int w, int h)
     for (int i = 0; i < canvas_h; i++)
     {
         lseek(fbdev, ((i + space_h) * screen_w + space_w) * sizeof(uint32_t), SEEK_SET);
-        write(fbdev, &canvas[i * canvas_w], canvas_w * 4);
+        write(fbdev, &canvas[i * canvas_w], canvas_w);
     }
     
 }
