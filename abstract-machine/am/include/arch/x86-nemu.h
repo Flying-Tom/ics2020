@@ -10,9 +10,9 @@ struct Context
 };
 
 #define GPR1 eax
-#define GPR2 ebx
-#define GPR3 ecx
-#define GPR4 edx
+#define GPR2 ecx
+#define GPR3 edx
+#define GPR4 ebx
 #define GPRx eax
 
 #endif
